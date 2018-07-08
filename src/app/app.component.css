@@ -1,0 +1,18 @@
+a{font-weight: 400;font-size: 1rem;}
+a.logo{font-weight: bold;}
+.logo img{width:25px;}
+nav {
+    background: #4c4c4c;
+}
+nav  .publishBT{
+    padding:0px;}
+nav  .publishBT button{
+    border: 1px solid #fff;
+    color: #fff;
+}
+.signOut{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    display:none; margin-left:10px;
+}

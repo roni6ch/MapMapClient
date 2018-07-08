@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Righteous';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Righteous-Regular') format('woff2');
+  }
+*{
+    font-family: 'Righteous', cursive;
+}
+a:hover {
+    text-decoration: none;
+    color: #42A5F5 !important;
+}
+body {
+    background-color: #3aa0ff;
+    height: 100vh;
+}
+
+nav  {
+    height:5vh;
+    background-color: #4c4c4c;
+}

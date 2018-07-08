@@ -1,0 +1,34 @@
+<div class='markerWrapper' (click)="infoWindowClick()" data-toggle="modal" data-target="#infowindowmodal">
+  <div class='markerImgWrapper'>
+    <p>{{apartment.apartment.price}}
+      <img src='assets/images/icons/price.png' />
+    </p>
+
+    <img class='markerImg' [src]='apartment.images.length > 0 ? apartment.images[0] : "assets/images/apartments/no_image.jpg"' #img (error)="img.src = 'assets/images/apartments/no_image.jpg'"/>
+    <div id='streetImg'></div>
+
+    <img src='assets/images/icons/heart.png' class='markerHeart' />
+  </div>
+
+  <div class='markerDetails'>
+    <p> {{apartment.apartment.apartmentType}} </p>
+    <p> {{apartment.apartment.location }}</p>
+    <p>
+      <span> {{apartment.apartment.rooms}}
+        <img src='assets/images/icons/rooms.png' />
+      </span>
+      <span>{{apartment.apartment.floor}}
+        <img src='assets/images/icons/floor.png' />
+      </span>
+      <span>{{apartment.apartment.parking}}
+        <img src='assets/images/icons/parking.png' />
+      </span>
+    </p>
+    <p>
+      <span>{{apartment.apartment.entrence_date}}
+        <img src='assets/images/icons/entrence_date.png' />
+      </span>
+    </p>
+  </div>
+</div>
+
