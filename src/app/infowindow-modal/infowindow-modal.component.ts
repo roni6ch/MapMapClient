@@ -7,7 +7,7 @@ import { Component, OnInit , Input } from '@angular/core';
 })
 export class InfowindowModalComponent implements OnInit {
   
-  @Input() apartment; 
+  @Input() apartment: any; 
   
   constructor() { }
 

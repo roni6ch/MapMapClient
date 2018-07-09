@@ -1,0 +1,33 @@
+.gallery{
+    width: 100px;
+    height: 100px;
+}
+.gallery img{
+    width: 100px;
+    height: 100px;
+}
+.markerCarouselDetails {
+    text-align: right;
+    direction: rtl;
+    width: 100%;
+}
+.markerOwnerContact .ownerPhone {
+    width: 130px;
+    float: left;
+    margin-top: 5px;
+}
+.markerOwnerContact h6 img {
+    margin: 0px 0px 0px 10px;
+}
+.apartmentModalWrapper .notes+label {
+    text-align: right;
+    direction: rtl;
+    right: 12px;
+}
+.markerOwnerContact textarea{
+overflow-y: hidden;
+padding: .8rem 0 1.6rem 0;
+resize: none;
+min-height: 3rem;
+width: 100px;
+}
