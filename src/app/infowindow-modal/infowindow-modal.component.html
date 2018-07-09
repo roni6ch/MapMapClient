@@ -3,12 +3,28 @@
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-            <div class="gallery" *ngFor="let apartmentImg of apartment.images">
-                <img [src]='apartmentImg ? apartmentImg : "assets/images/apartments/no_image.jpg"' #img (error)="img.src = 'assets/images/apartments/no_image.jpg'">
+<!-- CAROUSEL -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators" *ngIf="apartment.images?.length > 1">
+                  <li data-target="#carouselExampleIndicators"  *ngFor="let apartmentImg of apartment.images; let i = index" [attr.data-slide-to]="i" [ngClass]="{'active' : i == 0}"></li>
+                </ol>
+                <div class="carousel-inner" >
+                  <div  *ngFor="let apartmentImg of apartment.images; let i = index" class="carousel-item" [ngClass]="{'active' : i == 0}">
+                    <img class="d-block w-100" [src]='apartmentImg' alt="Second slide">
+                  </div>
+                </div>
+                <div  *ngIf="apartment.images?.length > 1">
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
             </div>
+              </div>
+            
       </div>
       <div class="modal-body">
         <div class="markerCarouselDetails row">
