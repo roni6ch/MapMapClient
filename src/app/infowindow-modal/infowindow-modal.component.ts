@@ -8,10 +8,15 @@ import { Component, OnInit , Input } from '@angular/core';
 export class InfowindowModalComponent implements OnInit {
   
   @Input() apartment: any; 
-  
+  indicatorNumber = 0;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  updateIndector(id:number){
+    console.log(id);
+    this.indicatorNumber = id;
   }
 
 }

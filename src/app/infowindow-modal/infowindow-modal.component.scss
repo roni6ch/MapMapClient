@@ -31,3 +31,10 @@ resize: none;
 min-height: 3rem;
 width: 100px;
 }
+.carousel-item > img{
+margin: 0 auto;
+height: 400px;
+width: auto !important;}
+.modal-header{display:block;}
+.carousel-control-next, .carousel-control-prev{    background: #00000094;
+    width: 10%;}

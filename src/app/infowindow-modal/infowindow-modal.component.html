@@ -5,14 +5,17 @@
       <div class="modal-header">
 <!-- CAROUSEL -->
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators" *ngIf="apartment.images?.length > 1">
-                  <li data-target="#carouselExampleIndicators"  *ngFor="let apartmentImg of apartment.images; let i = index" [attr.data-slide-to]="i" [ngClass]="{'active' : i == 0}"></li>
+              <!-- indicators -->
+                <ol class="carousel-indicators" *ngIf="apartment.images?.length > 0" >
+                  <li data-target="#carouselExampleIndicators" [id]="i" #imageNumber (click)="updateIndector(imageNumber.id)" *ngFor="let apartmentImg of apartment.images; let i = index" [attr.data-slide-to]="i" [class.active]="i == indicatorNumber" ></li>
                 </ol>
+                <!-- Images -->
                 <div class="carousel-inner" >
-                  <div  *ngFor="let apartmentImg of apartment.images; let i = index" class="carousel-item" [ngClass]="{'active' : i == 0}">
+                  <div  *ngFor="let apartmentImg of apartment.images; let i = index" class="carousel-item" [class.active]="i == 0">
                     <img class="d-block w-100" [src]='apartmentImg' alt="Second slide">
                   </div>
                 </div>
+                <!-- RIGHT LEFT BUTTONS -->
                 <div  *ngIf="apartment.images?.length > 1">
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
@@ -47,9 +50,9 @@
 
             <div class="col-4 markerOwnerContact">
                 <h5><span>צור קשר</span></h5>
-                <h6><img src="content/images/icons/owner.png" /><span>{{apartment.name}}</span></h6>
-                <h6><img src="content/images/icons/email.png" /><span>{{apartment.email}}</span></h6>
-                <h6><img src="content/images/icons/phone.png" /><p  class="ownerPhone" *ngFor="let apartmentPhone of apartment.phones"><a href="tel:">{{apartmentPhone.split("972")[1]}}</a></p></h6>
+                <h6><img src="assets/images/icons/owner.png" /><span>{{apartment.name}}</span></h6>
+                <h6><img src="assets/images/icons/email.png" /><span>{{apartment.email}}</span></h6>
+                <h6><img src="assets/images/icons/phone.png" /><p  class="ownerPhone" *ngFor="let apartmentPhone of apartment.phones"><a href="tel:">{{apartmentPhone.split("972")[1]}}</a></p></h6>
                
                 <div class="input-field col s12">
                     <textarea id="notes" class="notes"></textarea>
@@ -60,6 +63,21 @@
         </div>
       </div>
       <div class="modal-footer">
+
+          <div class="col s6"><span>שמירה </span>
+            <span class="heart"><img [src]="apartment?.favorite ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'"  /></span>
+            <span (click)="calendar(apartment)"><img [src]="assets/images/icons/calendar.png" class="modal-action modal-close waves-effect"></span>
+        </div>
+        <div class="col s6 left-align">
+            <span>שיתוף  </span>
+            <span (click)="shareFacebook(apartment)" class="fb-share-button"><img [src]="assets/images/icons/facebook.png" /></span>
+            <span (click)="sendWhatsapp(apartment.phones[0])"><img [src]="assets/images/icons/whatsapp.png" /></span>
+            <span><a (click)="sendMail(apartment)" href="mailto:{{apartment.email}}&subject=This%20is%20the%20subject&body=This%20is%20the%20body"><img [src]="assets/images/icons/gmail.png" /></a></span>
+            <span class="hide-on-large-only"><a (click)="openWaze(apartment)"><img [src]="assets/images/icons/waze-icon.png" /></a></span>
+            <span (click)="print()"><img [src]="assets/images/icons/printer.png" /></span>
+        </div>
+
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
