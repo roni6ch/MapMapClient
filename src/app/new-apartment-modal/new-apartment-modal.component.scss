@@ -1,67 +1,9 @@
-#newApartmentWindowModal{
-    text-align: right;
+.input-field .prefix.active{
+    color:#3AA0FF;
 }
-.modal-content{
-    padding: 10px;
+.advancedFilters {
+    width: 12%;
 }
-input{
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #9e9e9e;
-    border-radius: 0;
-    outline: none;
-    height: 3rem;
-    font-size: 1rem;
-    padding: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-}
-.input-field.col input {
-    text-align: right;
-    margin-left: 0px;
-    margin-right: 20px;
-    direction: rtl;
-}
-.form-row{direction: rtl;}
-.input-field .prefix {
-    right: -10px;
-    left: auto;
-}
-#apartmentInfoDetails {
-    text-align: right;
-    height: 25px;
-    direction: rtl;
-    padding: 0;
-}
-.imageuploadify {
-    width: 100%;
-    margin-bottom: 20px;
-}
-.btn {
-    color: rgb(58, 160, 255);
-    background: white;
-}
-#publishNewHouseModal .uploadBtn {
-    display: block;
-    text-align: center;
-    margin: 20px auto;
-}
-#publishNewHouseModal .switch label {
+.advancedFilters .switch label {
     text-align: center;
 }
-.modal-footer {
-    display: inline-block;
-    border-radius: 0 0 2px 2px;
-    padding: 4px 6px;
-    height: 56px;
-    width: 100%;
-    text-align: right;
-}
-.modal-footer .btn {
-    margin: 5px;
-}
-    

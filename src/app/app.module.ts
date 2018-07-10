@@ -17,6 +17,9 @@ import { InfowindowComponent } from './infowindow/infowindow.component';
 import { InfowindowModalComponent } from './infowindow-modal/infowindow-modal.component';
 import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-modal.component';
 
+/* Image Uloader */
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,7 @@ import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCG43sbbdLsGywMwY0T7-1yOoKVDGfnbsk'
     }),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [ApartmentsService,AdvancedFilterService],
   bootstrap: [AppComponent]

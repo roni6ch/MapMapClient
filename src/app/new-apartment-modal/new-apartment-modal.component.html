@@ -1,81 +1,99 @@
 <!-- Modal Structure -->
 <div id="newApartmentWindowModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
+
+  <div class="modal-dialog-centered  modal-lg" role="document">
     <div class="modal-content">
+
+
+       
+          
       <form>
-        <h6>פרסם נכס חדש</h6>
+        <h6>Publish New Apartment!</h6>
         <hr>
         <div class="row">
           <form class="col s12">
 
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <i class="material-icons prefix">account_circle</i>
-                <label for="inputName">שם : </label>
-                <input id="inputName" type="text" class="form-control" required>
-              </div>
-              <div class="form-group col-md-3">
-                <i class="material-icons prefix">phone</i>
-                <label for="inputPhone">טלפון : </label>
-                <input id="inputPhone" class="form-control" type="number" type="text" data-length="15" min="10" max="15" required/>
-              </div>
-              <div class="form-group col-md-3">
-                <i class="material-icons prefix">phone</i>
-                <label for="inputPhone2">טלפון 2 : </label>
-                <input id="inputPhone2" class="form-control" type="number" type="text" data-length="15" min="10" max="15" />
-              </div>
-            </div>
+              <div class="row">
+                  <div  class="col s12">
 
-            <div class="form-row">
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">account_circle</i>
+                      <input id="inputFirstName" type="text" class="validate" required data-length="20" materialize="characterCounter">
+                      <label for="inputFirstName">First Name</label>
+                      <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    </div>
 
-              <div class="form-group col-md-3">
-                <i class="material-icons prefix">
-                  <img src="assets/images/icons/coins/ils.png" />
-                </i>
-                <label for="inputPrice">מחיר : </label>
-                <input class="form-control" type="number" data-length="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                  pattern="[0-9,.]{3,10}">
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">phone</i>
+                      <input id="icon_telephone" type="number" class="validate"  required data-length="10" placeholder="050-0000000">
+                      <label for="icon_telephone">Telephone</label>
+                      <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    </div>
+                    
+                  </div>
+              </div>
+              <div class="row">
+                  <div  class="col s12">
+
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">
+                          <img src="assets/images/icons/coins/ils.png" />
+                        </i>
+                      <input id="inputPrice" type="number" data-length="10" class="validate" required  
+                      onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9,.]{3,10}"/>
+                      <label for="inputPrice">Price</label>
+                      <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    </div>
+
+                    <div class="input-field col s4">
+                      <i class="material-icons prefix">email</i>
+                      <input id="inputMail" type="number" class="validate" data-length="30" min="10" max="15" required />
+                      <label for="inputMail">Email</label>
+                      <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    </div>
+<!-- TODO: check Any picker date js -->
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">date_range</i>
+                        <input id="inputDate" type="date" class="validate" required />
+                        <label for="inputMail">Date</label>
+                        <span class="helper-text" data-error="wrong" data-success="right"></span>
+                      </div>
+                    
+                  </div>
               </div>
 
-              <div class="form-group col-md-3">
-                <i class="material-icons prefix">email</i>
-                <label for="inputPhone">Email : </label>
-                <input class="form-control" type="email" type="text" data-length="30" min="10" max="15" required/>
-              </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                      <i class="material-icons prefix">create</i>
+                    <textarea id="inputDescription" class="materialize-textarea" data-length="250" ></textarea>
+                    <label for="inputDescription">Description...</label>
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                  </div>
+                </div>
 
-
-              <div class="form-group col-md-6">
-                <i class="material-icons prefix">date_range</i>
-                <label for="inputName">בחר תאריך כניסה : </label>
-                <input class="form-control"  type="text"  required />
-              </div>
-
-            </div>
-
-            <div class="form-row">
-              <div class="input-field col-md-12">
-                <i class="material-icons prefix">create</i>
-                <label for="apartmentInfoDetails">...על הדירה</label>
-                <textarea id="apartmentInfoDetails" data-length="250"  class="form-control" ></textarea>
-              </div>
-            </div>
 
 
             <!-- upload Images -->
-            <div class="form-row">
-              <input type="file" class="uploadFiles" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
+            <div class="form-row imageuploadify">
+                <i class="material-icons prefix"> cloud_upload</i>
+                <span class="imageuploadify-message">
+                    גרור קבצים לכאן
+                </span><button type="button" class="btn uploadBtn" style="background: white; color: rgb(58, 160, 255);"><span>
+                    או בחר קבצים להעלאה
+                </span></button>
+              <input type="file"  accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
             </div>
 
             <!-- advancedFilter -->
             <div class="form-row">
-              <div *ngFor="let filter of advancedFilters" class="advancedFilter col s12">
+              <div *ngFor="let filter of advancedFilters" class="advancedFilters advancedFilter col s2">
                 <div class="switch">
                   <label>
                     <div class="switchIcon">
                       <img src="assets/images/icons/{{filter.filterName}}.png" />
                     </div>
                     <span>{{filter.name}}</span>
-                    <input type="checkbox" (click)="changeFilter($index)">
+                    <input type="checkbox" (click)="changeFilter($index)" >
                     <span class="lever"></span>
                   </label>
                 </div>
