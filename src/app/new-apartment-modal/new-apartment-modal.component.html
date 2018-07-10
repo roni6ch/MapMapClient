@@ -1,0 +1,102 @@
+<!-- Modal Structure -->
+<div id="newApartmentWindowModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
+    <div class="modal-content">
+      <form>
+        <h6>פרסם נכס חדש</h6>
+        <hr>
+        <div class="row">
+          <form class="col s12">
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <i class="material-icons prefix">account_circle</i>
+                <label for="inputName">שם : </label>
+                <input id="inputName" type="text" class="form-control" required>
+              </div>
+              <div class="form-group col-md-3">
+                <i class="material-icons prefix">phone</i>
+                <label for="inputPhone">טלפון : </label>
+                <input id="inputPhone" class="form-control" type="number" type="text" data-length="15" min="10" max="15" required/>
+              </div>
+              <div class="form-group col-md-3">
+                <i class="material-icons prefix">phone</i>
+                <label for="inputPhone2">טלפון 2 : </label>
+                <input id="inputPhone2" class="form-control" type="number" type="text" data-length="15" min="10" max="15" />
+              </div>
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-group col-md-3">
+                <i class="material-icons prefix">
+                  <img src="assets/images/icons/coins/ils.png" />
+                </i>
+                <label for="inputPrice">מחיר : </label>
+                <input class="form-control" type="number" data-length="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                  pattern="[0-9,.]{3,10}">
+              </div>
+
+              <div class="form-group col-md-3">
+                <i class="material-icons prefix">email</i>
+                <label for="inputPhone">Email : </label>
+                <input class="form-control" type="email" type="text" data-length="30" min="10" max="15" required/>
+              </div>
+
+
+              <div class="form-group col-md-6">
+                <i class="material-icons prefix">date_range</i>
+                <label for="inputName">בחר תאריך כניסה : </label>
+                <input class="form-control"  type="text"  required />
+              </div>
+
+            </div>
+
+            <div class="form-row">
+              <div class="input-field col-md-12">
+                <i class="material-icons prefix">create</i>
+                <label for="apartmentInfoDetails">...על הדירה</label>
+                <textarea id="apartmentInfoDetails" data-length="250"  class="form-control" ></textarea>
+              </div>
+            </div>
+
+
+            <!-- upload Images -->
+            <div class="form-row">
+              <input type="file" class="uploadFiles" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
+            </div>
+
+            <!-- advancedFilter -->
+            <div class="form-row">
+              <div *ngFor="let filter of advancedFilters" class="advancedFilter col s12">
+                <div class="switch">
+                  <label>
+                    <div class="switchIcon">
+                      <img src="assets/images/icons/{{filter.filterName}}.png" />
+                    </div>
+                    <span>{{filter.name}}</span>
+                    <input type="checkbox" (click)="changeFilter($index)">
+                    <span class="lever"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="modal-footer">
+              <button class="btn left" type="button">
+                <span style="pointer-events: initial;">
+                  פרסם מודעה
+                </span>
+              </button>
+              <button class="btn left" type="button">
+                <span style="pointer-events: initial;">
+                  ביטול
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

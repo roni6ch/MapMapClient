@@ -63,8 +63,8 @@
         </div>
       </div>
       <div class="modal-footer">
-
-          <div class="col s6"><span>שמירה </span>
+<!-- TODO -->
+        <!--  <div class="col s6"><span>שמירה </span>
             <span class="heart"><img [src]="apartment?.favorite ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'"  /></span>
             <span (click)="calendar(apartment)"><img [src]="assets/images/icons/calendar.png" class="modal-action modal-close waves-effect"></span>
         </div>
@@ -76,7 +76,7 @@
             <span class="hide-on-large-only"><a (click)="openWaze(apartment)"><img [src]="assets/images/icons/waze-icon.png" /></a></span>
             <span (click)="print()"><img [src]="assets/images/icons/printer.png" /></span>
         </div>
-
+    -->
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
@@ -84,73 +84,3 @@
     </div>
   </div>
 </div>
-
-
-<!--
-  <div class="apartmentModalWrapper">
-    <div class="apartmentModal modal modal-fixed-footer">
-        <div class="apartmentModalChatWrapper">
-            <h3>Chat</h3>
-            <div class="apartmentModalChat">
-                <input type='text' class="form-control" placeholder="Write..." />
-            </div>
-        </div>
-        <div class="modal-content">
-            <div class="carousel carousel-slider center inner" data-indicators="true" id="modalImage">
-                <div class="carousel-item white-text list-inline gallery " ng-repeat="apartmentImg in vm.apartment.images">
-                    <img class="ns-img" [src]='apartment.images.length > 0 ? apartment.images[0] : "assets/images/apartments/no_image.jpg"' #img (error)="img.src = 'assets/images/apartments/no_image.jpg'">
-                </div>
-            </div>
-            <div class="markerCarouselDetails row">
-                <div class="col-8">
-                    <h5><span>apartment.apartment.apartmentType</span> , <span>apartment.apartment.price</span> <span><img src="content/images/icons/coins/ils.png" /></span> </h5>
-                    <h6>apartment.apartment.location</h6>
-
-                    <p> <span>תיאור: </span>apartment.apartment.info</p>
-
-                    <p><span>קומה: </span> apartment.apartment.floor <img src="content/images/icons/floor.png" />
-                        <span>חדרים: </span>apartment.apartment.rooms<img src="content/images/icons/rooms.png" />
-                        <span>שירותים: </span>apartment.apartment.toilets<img src="content/images/icons/toilets.png" />
-                    </p>
-
-                    <img src="content/images/icons/size.png" /> <span>גודל: </span>apartment.apartment.size
-                    <img src="content/images/icons/parking.png" /> <span>חניה: </span>apartment.apartment.parking
-                    </p>
-                    <span><span>כניסה: </span>apartment.apartment.entrence_date <img src="content/images/icons/entrence_date.png" /></span>
-                </div>
-
-                <div class="col-4 markerOwnerContact">
-                    <h5><span>צור קשר</span></h5>
-                    <h6><img src="content/images/icons/owner.png" /><span>apartment.name</span></h6>
-                    <h6><img src="content/images/icons/email.png" /><span>apartment.email</span></h6>
-                    <h6><img src="content/images/icons/phone.png" /><p  class="ownerPhone" ng-repeat="apartmentPhone in vm.apartment.phones"><a href="tel:">{{apartmentPhone.split("972")[1]}}</a></p></h6>
-                   
-                    <div class="input-field col s12">
-                        <textarea id="notes" class="materialize-textarea notes" ng-model="vm.note" (blur)="saveNote(apartment.id)"></textarea>
-                        <label for="notes">הערות אישיות</label>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-        <div class="modal-footer row">
-
-            <div class="col s6"><span>שמירה </span>
-                <span class="heart"><img [src]="apartment.favorite ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'}}"
-                                         (click)="favorite(apartment,$event);" /></span>
-                <span ng-click="calendar(apartment)"><img ng-src="content/images/icons/calendar.png" class="modal-action modal-close waves-effect"></span>
-            </div>
-            <div class="col s6 left-align">
-                <span>שיתוף  </span>
-                <span (click)="shareFacebook(vm.apartment)" class="fb-share-button"><img ng-src="content/images/icons/facebook.png" /></span>
-                <span (click)="sendWhatsapp(vm.apartment.phones[0])"><img ng-src="content/images/icons/whatsapp.png" /></span>
-                <span><a (click)="sendMail(vm.apartment)" href="mailto:{{vm.apartment.email}}&subject=This%20is%20the%20subject&body=This%20is%20the%20body"><img [src]="content/images/icons/gmail.png" /></a></span>
-                <span class="hide-on-large-only"><a ng-click="vm.openWaze(vm.apartment)"><img ng-src="content/images/icons/waze-icon.png" /></a></span>
-                <span (click)="print()"><img ng-src="content/images/icons/printer.png" /></span>
-            </div>
-        </div>
-    </div>
-</div>
--->

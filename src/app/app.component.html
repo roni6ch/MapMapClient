@@ -15,7 +15,7 @@
         </a>
       </li>
       <li class="nav-link publishBT ">
-        <button class="btn btn-outline-info my-2 my-sm-0">Publish</button>
+        <button class="btn btn-outline-info my-2 my-sm-0" data-toggle="modal" data-target="#newApartmentWindowModal">Publish</button>
       </li>
       <!-- GOOGLE BT -->
       <li class="">
@@ -23,7 +23,7 @@
         <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) -->
         <div class="GoogleBT">
           <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
-          </google-signin>
+          </google-signin>  
         </div>
         <img class="signOut" [src]="googleIMG" (click)="signOut()" />
 
@@ -37,3 +37,5 @@
 </nav>
 
 <app-map></app-map>
+
+<app-new-apartment-modal></app-new-apartment-modal>

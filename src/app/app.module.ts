@@ -7,6 +7,7 @@ import { AgmCoreModule } from '@agm/core';
 /* SERVICE */
 import { HttpClientModule } from '@angular/common/http';
 import { ApartmentsService } from './apartments.service';
+import { AdvancedFilterService } from './advanced-filter.service';
 
 
 /*  COMPONENTS */
@@ -14,6 +15,7 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { InfowindowComponent } from './infowindow/infowindow.component';
 import { InfowindowModalComponent } from './infowindow-modal/infowindow-modal.component';
+import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { InfowindowModalComponent } from './infowindow-modal/infowindow-modal.co
     MapComponent,
     InfowindowComponent,
     InfowindowModalComponent,
+    NewApartmentModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { InfowindowModalComponent } from './infowindow-modal/infowindow-modal.co
     }),
     HttpClientModule
   ],
-  providers: [ApartmentsService],
+  providers: [ApartmentsService,AdvancedFilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

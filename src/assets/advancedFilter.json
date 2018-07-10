@@ -1,0 +1,81 @@
+[{
+    "name": "חניה",
+    "filterName": "parking",
+    "filter": false
+  },
+    {
+      "name": "מעלית",
+      "filterName": "elevator",
+      "filter": false
+    },
+    {
+      "name": "מרפסת",
+      "filterName": "balcony",
+      "filter": false
+    },
+    {
+      "name": "ממ''ד",
+      "filterName": "mamad",
+      "filter": false
+    },
+    {
+      "name": "מזגן",
+      "filterName": "air_conditioner",
+      "filter":" false"
+    },
+    {
+      "name": "תמ''א",
+      "filterName": "tama",
+      "filter": false
+    },
+    {
+      "name": "משופץ",
+      "filterName": "reconditioned",
+      "filter": false
+    },
+    {
+      "name": "סורגים",
+      "filterName": "bars",
+      "filter": false
+    },
+    {
+      "name": "יחידת הורים",
+      "filterName": "master_room",
+      "filter": false
+    },
+    {
+      "name": "מחסן",
+      "filterName": "storage",
+      "filter": false
+    },
+    {
+      "name": "חדר כושר",
+      "filterName": "gym",
+      "filter": false
+    },
+    {
+      "name": "ריהוט",
+      "filterName": "furniture",
+      "filter": false
+    },
+    {
+      "name": "בע''ח",
+      "filterName": "pets",
+      "filter": false
+    },
+    {
+      "name": "שותפים",
+      "filterName": "roomates",
+      "filter": false
+    },
+    {
+      "name": "כניסה מיידית",
+      "filterName": "immediate_entrance",
+      "filter": false
+    },
+    {
+      "name": "תמונות",
+      "filterName": "apartment_image",
+      "filter": false
+    }
+  ]

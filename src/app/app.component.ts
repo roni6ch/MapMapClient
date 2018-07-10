@@ -8,12 +8,16 @@ import * as $ from 'jquery';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  /* google signin button*/
   googleIMG: string = '';
   private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
-
+  scriptLoaded = false;
 
   constructor() { }
-  ngOnInit() { }
+  ngOnInit() { 
+   this.checkIfUserSignIn();
+  }
+
   checkIfUserSignIn() {
     if (localStorage.getItem('profile') !== null) {
       //change button to Sign-Out
@@ -27,6 +31,7 @@ export class AppComponent {
     }
   }
   onGoogleSignInSuccess(event: GoogleSignInSuccess) {
+    console.log(event);
     let googleUser: gapi.auth2.GoogleUser = event.googleUser;
     let userProfile: gapi.auth2.BasicProfile = googleUser.getBasicProfile();
 
