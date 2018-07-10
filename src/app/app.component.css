@@ -1,18 +1,52 @@
-a{font-weight: 400;font-size: 1rem;}
-a.logo{font-weight: bold;}
-.logo img{width:25px;}
+a {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+a.logo {
+  font-weight: bold;
+}
+
+.logo img {
+  width: 25px;
+}
+
 nav {
-    background: #4c4c4c;
+  height: 5vh;
+  background-color: #4c4c4c;
 }
-nav  .publishBT{
-    padding:0px;}
-nav  .publishBT button{
-    border: 1px solid #fff;
-    color: #fff;
+
+nav .publishBT {
+  padding: 0px;
 }
-.signOut{
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    display:none; margin-left:10px;
+
+nav .publishBT button {
+  border: 1px solid #fff;
+  color: #fff;
 }
+#navbar{width: 100%;}
+
+.signOut {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  display: none;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.publishBT nav i ,  nav i.material-icons {
+  line-height: initial !important;
+  height: 22px  !important;
+  line-height: 1  !important;
+}
+nav .btn:hover{
+    color:#42A5F5 !important;
+    background: #fff !important;
+}
+.logoImg {
+  width: 25px;
+}
+.signOut{cursor: pointer;}
+.publishBT{margin-right:10px;}
+
+.googleBT{ margin-top: 10px;}

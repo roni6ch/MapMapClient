@@ -10,13 +10,22 @@ a:hover {
     text-decoration: none;
     color: #42A5F5 !important;
 }
+
+.btn{
+    background:  #42A5F5 !important;
+    background-color: #42A5F5 !important;
+    color:#fff !important;
+}
 body {
     background-color: #3aa0ff;
     height: 100vh;
 }
 
-nav  {
-    height:5vh;
-    background-color: #4c4c4c;
-}
 hr{    width: 100%;}
+
+.modal-open .modal{
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    background: transparent;
+}

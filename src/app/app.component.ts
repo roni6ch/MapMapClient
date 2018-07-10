@@ -8,6 +8,8 @@ import * as $ from 'jquery';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  search = false;
+
   /* google signin button*/
   googleIMG: string = '';
   private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
@@ -16,7 +18,9 @@ export class AppComponent {
   constructor() { }
   ngOnInit() { 
    this.checkIfUserSignIn();
+   
   }
+  
 
   checkIfUserSignIn() {
     if (localStorage.getItem('profile') !== null) {
@@ -56,6 +60,10 @@ export class AppComponent {
       console.log('User signed out.');
       localStorage.removeItem('profile');
     });
+  }
+
+  openSearchInput(){
+    this.search = true;
   }
 
 }

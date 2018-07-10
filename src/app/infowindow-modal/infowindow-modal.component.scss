@@ -38,3 +38,9 @@ width: auto !important;}
 .modal-header{display:block;}
 .carousel-control-next, .carousel-control-prev{    background: #00000094;
     width: 10%;}
+
+   .modal .carousel .carousel-item{
+        width: 100%;
+    height: 100%;visibility: visible;
+    }
+    .modal .carousel-inner{visibility: visible;height: inherit;}

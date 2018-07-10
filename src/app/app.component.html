@@ -1,41 +1,53 @@
-<nav class="navbar navbar-expand-lg navbar-light">
 
-  <!--hamburger button-->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarTogglerDemo03"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <!-- nav links -->
-  <div class="collapse navbar-collapse" id="navbar">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="logo active">
-        <a class="nav-link" href="#">
-          <img src="assets/images/logo.png" class="logoImg"> MapMap
-        </a>
-      </li>
-      <li class="nav-link publishBT ">
-        <button class="btn btn-outline-info my-2 my-sm-0" data-toggle="modal" data-target="#newApartmentWindowModal">Publish</button>
-      </li>
-      <!-- GOOGLE BT -->
-      <li class="">
 
-        <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) -->
-        <div class="GoogleBT">
-          <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
-          </google-signin>  
-        </div>
-        <img class="signOut" [src]="googleIMG" (click)="signOut()" />
 
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+<nav  *ngIf="search">
+  <div class="nav-wrapper">
+    <form>
+      <div class="input-field">
+        <input id="search" #search type="search" >
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
     </form>
   </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light"  *ngIf="!search">
+
+  <!-- nav links -->
+  <div id="navbar">
+    <div class="logo left">
+      <a href="#"> <img src="assets/images/logo.png" class="logoImg"> MapMap</a>
+    </div>
+
+
+  <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) -->
+  <div class="googleBT right">
+    <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
+    </google-signin>
+  </div>
+
+  <div>
+    <img class="signOut right" [src]="googleIMG" (click)="signOut()" />
+  </div>
+
+  <form class="form-inline my-2 my-lg-0 right">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search location" aria-label="Search" (click)="openSearchInput()">
+  </form>
+
+  {{search}}
+  <div class="right publishBT">
+    <a class="waves-effect waves-light btn  btn-small " data-toggle="modal"  data-target="#newApartmentWindowModal">
+      <i class="material-icons left">cloud</i>Publish
+    </a>
+  </div>
+
+</div>
 </nav>
 
 <app-map></app-map>
 
 <app-new-apartment-modal></app-new-apartment-modal>
+
+
