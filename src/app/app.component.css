@@ -54,7 +54,7 @@ nav .btn:hover{
   text-align: center;
   border-bottom: 1px solid #ccc;
 }
-.userProfile img {
+.userProfile img {  
   width: 40px;
   border-radius: 50px;
 }
@@ -62,3 +62,55 @@ nav .btn:hover{
 .user-view{
   height: 170px;
 }
+.navbar{
+  background-color: #4c4c4c;  -webkit-transition: background-color 1s linear;
+  -ms-transition: background-color 1s linear;
+  transition: background-color 1s linear;
+}
+.searchClicked{ background-color: #fff;
+  -webkit-transition: background-color 1s linear;
+  -ms-transition: background-color 1s linear;
+  transition: background-color 1s linear;}
+nav.searchClicked a{color: #039be5;} 
+input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom: 1px solid #039be5 !important;
+    box-shadow: 0 1px 0 0 #039be5 !important;font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;}
+    .smallSearch{
+      width:85%; 
+    }
+    .smallSearch input{
+      width:20%;color:#fff;
+      -webkit-transition: width 1s ease-out-in;
+      -moz-transition:width 1s ease-in-out;
+      -o-transition: width 1s ease-in-out;
+      transition: width 1s ease-in-out;
+    }
+   .smallSearch input:focus { width:100%;   color:#4c4c4c;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition:width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;}
+
+    .navbar input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color:#fff;
+    }
+    .navbar input::-moz-placeholder { /* Firefox 19+ */
+      color:#fff;
+    }
+    .navbar input:-ms-input-placeholder { /* IE 10+ */
+      color:#fff;
+    }
+    .navbar input:-moz-placeholder { /* Firefox 18- */
+      color:#fff;
+    }
+    .navbar input:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color:#4c4c4c;
+    }
+    .navbar inputfocus::-moz-placeholder { /* Firefox 19+ */
+      color:#4c4c4c;
+    }
+    .navbar inputfocus:-ms-input-placeholder { /* IE 10+ */
+      color:#4c4c4c;
+    }
+    .navbar inputfocus:-moz-placeholder { /* Firefox 18- */
+      color:#4c4c4c;
+    }

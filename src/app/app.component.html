@@ -1,19 +1,6 @@
-<!-- SEARCH NAV -->
-<nav *ngIf="search">
-  <div class="nav-wrapper">
-    <form>
-      <div class="input-field">
-        <input id="search" #search type="search">
-        <label class="label-icon" for="search">
-          <i class="material-icons">search</i>
-        </label>
-        <i class="material-icons">close</i>
-      </div>
-    </form>
-  </div>
-</nav>
+
 <!-- NAV -->
-<nav class="navbar navbar-expand-lg navbar-light" *ngIf="!search">
+<nav class="navbar navbar-expand-lg navbar-light" [ngClass]="{ 'searchClicked': search }">
 
   <a href="#" data-target="slide-out" class="sidenav-trigger">
     <i class="material-icons">menu</i>
@@ -26,13 +13,13 @@
         <img src="assets/images/logo.png" class="logoImg"> MapMap</a>
     </div>
 
-    <form class="form-inline my-2 my-lg-0 right">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search location" aria-label="Search" (click)="openSearchInput()">
-    </form>
+    <div class="form-inline my-2 my-lg-0 right smallSearch">
+      <input class="form-control mr-sm-2 " type="search" placeholder="Search location" aria-label="Search" (click)="openSearchInput()" (focusout)="hide($event)">
+    </div>
 
   </div>
 </nav>
-
+<!-- Hamburger Menu -->
 <ul id="slide-out" class="sidenav">
   <li>
     <div class="user-view">

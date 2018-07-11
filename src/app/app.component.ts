@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , ViewChild  } from '@angular/core';
 import { GoogleSignInSuccess } from 'angular-google-signin';
 import * as $ from 'jquery';
 
@@ -10,6 +10,8 @@ import * as $ from 'jquery';
 export class AppComponent {
   search = false;
   profile = {};
+
+
   /* google signin button*/
   private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
   scriptLoaded = false;
@@ -67,8 +69,11 @@ export class AppComponent {
     });
   }
 
-  openSearchInput(){
+  openSearchInput(input){
     this.search = true;
   }
+  hide(e: any) {
+    this.search = false;
+ }
 
 }
