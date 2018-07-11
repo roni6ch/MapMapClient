@@ -18,6 +18,7 @@ import { MapComponent } from './map/map.component';
 import { InfowindowComponent } from './infowindow/infowindow.component';
 import { InfowindowModalComponent } from './infowindow-modal/infowindow-modal.component';
 import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-modal.component';
+import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 
 /* Image Uploader */
 
@@ -30,6 +31,7 @@ import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-
     InfowindowComponent,
     InfowindowModalComponent,
     NewApartmentModalComponent,
+    ImageUploaderComponent,
   ],
   imports: [
     BrowserModule,
