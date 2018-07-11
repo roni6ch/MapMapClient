@@ -1,9 +1,9 @@
 .input-field .prefix.active{
     color:#3AA0FF;
 }
-.advancedFilters {
-    width: 12%;
-}
 .advancedFilters .switch label {
     text-align: center;
 }
+.switch, .switch *{
+    margin: 0 auto;
+    display: block;}
