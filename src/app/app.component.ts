@@ -9,29 +9,34 @@ import * as $ from 'jquery';
 })
 export class AppComponent {
   search = false;
-
+  profile = {};
   /* google signin button*/
-  googleIMG: string = '';
   private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
   scriptLoaded = false;
 
   constructor() { }
   ngOnInit() { 
    this.checkIfUserSignIn();
-   
   }
+  
   
 
   checkIfUserSignIn() {
     if (localStorage.getItem('profile') !== null) {
-      //change button to Sign-Out
-      this.googleIMG = JSON.parse(localStorage.getItem('profile'))['IMG'];
-      $(".signOut").attr("src",this.googleIMG);
-      $(".GoogleBT").hide();
+
+    this.profile = JSON.parse(localStorage.getItem('profile'));
+      $(".googleBT").hide();
+      $(".name").show();
+      $(".email").show();
+      $(".signOut").attr("src",this.profile['IMG']);
+      $(".name").html(this.profile['NAME']);
+      $(".email").html(this.profile['EMAIL']);
       $(".signOut").show();
     }else{
-      $(".GoogleBT").show();
+      $(".googleBT").show();
       $(".signOut").hide();
+      $(".name").hide();
+      $(".email").hide();
     }
   }
   onGoogleSignInSuccess(event: GoogleSignInSuccess) {
@@ -48,17 +53,17 @@ export class AppComponent {
     }
     console.log(profile);
     localStorage.setItem('profile', JSON.stringify(profile));
+    
     this.checkIfUserSignIn();
 
   }
   signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     console.log(auth2);
-    $(".GoogleBT").show();
-    $(".signOut").hide();
+    localStorage.removeItem('profile');
+    this.checkIfUserSignIn();
     auth2.signOut().then(function () {
       console.log('User signed out.');
-      localStorage.removeItem('profile');
     });
   }
 

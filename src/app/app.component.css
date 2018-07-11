@@ -30,7 +30,6 @@ nav .publishBT button {
   width: 40px;
   height: 40px;
   border-radius: 50px;
-  display: none;
   margin-left: 10px;
   margin-top: 10px;
 }
@@ -50,3 +49,16 @@ nav .btn:hover{
 .publishBT{margin-right:10px;}
 
 .googleBT{ margin-top: 10px;}
+.sidenav li>a{
+  direction: rtl;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+.userProfile img {
+  width: 40px;
+  border-radius: 50px;
+}
+.sidenav-trigger{display:block; height:auto;}
+.user-view{
+  height: 170px;
+}

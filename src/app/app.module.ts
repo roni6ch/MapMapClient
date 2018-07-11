@@ -11,6 +11,7 @@ import { AdvancedFilterService } from './advanced-filter.service';
 
 
 
+
 /*  COMPONENTS */
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
@@ -18,7 +19,7 @@ import { InfowindowComponent } from './infowindow/infowindow.component';
 import { InfowindowModalComponent } from './infowindow-modal/infowindow-modal.component';
 import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-modal.component';
 
-/* Image Uloader */
+/* Image Uploader */
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCG43sbbdLsGywMwY0T7-1yOoKVDGfnbsk'
     }),
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [ApartmentsService,AdvancedFilterService],
   bootstrap: [AppComponent]
