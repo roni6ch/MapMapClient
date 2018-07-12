@@ -1,27 +1,63 @@
-import { Component , ViewChild  } from '@angular/core';
+import { Component ,ElementRef,NgZone,ViewChild  ,OnInit} from '@angular/core';
 import { GoogleSignInSuccess } from 'angular-google-signin';
 import * as $ from 'jquery';
+
+import { } from 'googlemaps';
+import { FormControl } from '@angular/forms';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   search = false;
   profile = {};
-
-
+  latLng = {
+    lat:32.056442,
+    lng:34.772238
+  };
   /* google signin button*/
   private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
   scriptLoaded = false;
 
-  constructor() { }
+  //https://brianflove.com/2016/10/18/angular-2-google-maps-places-autocomplete/
+  public searchControl: FormControl;
+  @ViewChild("searchRef")
+  public searchElementRef: ElementRef;
+
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
   ngOnInit() { 
    this.checkIfUserSignIn();
+   this.initAutoComplete();
   }
   
-  
+  initAutoComplete(){
+  //create search FormControl
+  this.searchControl = new FormControl();
+  //load Places Autocomplete
+  this.mapsAPILoader.load().then(() => {
+    let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+      types: ["address"]
+    });
+    autocomplete.addListener("place_changed", () => {
+      this.ngZone.run(() => {
+        //get the place result
+        let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+        this.latLng = {
+          lat:place.geometry.location.lat(),
+          lng:place.geometry.location.lng()
+        }
+
+        //verify result
+        if (place.geometry === undefined || place.geometry === null) {
+          return;
+        }
+      });
+    });
+  });
+  }
 
   checkIfUserSignIn() {
     if (localStorage.getItem('profile') !== null) {
@@ -69,10 +105,10 @@ export class AppComponent {
     });
   }
 
-  openSearchInput(input){
+  openSearchInput(){
     this.search = true;
   }
-  hide(e: any) {
+  focusOutSearch(e: any) {
     this.search = false;
  }
 

@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { GoogleSignInComponent } from 'angular-google-signin';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 /* MAP */
 import { AgmCoreModule } from '@agm/core';
 /* SERVICE */
@@ -37,9 +39,12 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
     BrowserModule,
     BootstrapModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCG43sbbdLsGywMwY0T7-1yOoKVDGfnbsk'
+      apiKey: 'AIzaSyCG43sbbdLsGywMwY0T7-1yOoKVDGfnbsk',
+      libraries: ['places']
     }),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [ApartmentsService,AdvancedFilterService],
   bootstrap: [AppComponent]
