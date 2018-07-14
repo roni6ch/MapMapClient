@@ -25,12 +25,13 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
 /* Image Uploader */
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     GoogleSignInComponent,
     MapComponent,
-    InfowindowComponent,
+    InfowindowComponent, 
     InfowindowModalComponent,
     NewApartmentModalComponent,
     ImageUploaderComponent,
