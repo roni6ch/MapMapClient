@@ -36,14 +36,14 @@
           </google-signin>
         </div>
 
-        <img [src]="profile['IMG']" class='signOut' (click)="signOut()">
+        <img [src]="profile['picture']" class='signOut' (click)="signOut()">
       </div>
       <div class="navDetails">
         <p>
-          <span class="black-text name">{{profile['NAME']}}</span>
+          <span class="black-text name">{{profile['given_name'] }} {{profile['family_name']}}</span>
         </p>
         <p>
-          <span class="black-text email">{{profile['EMAIL']}}</span>
+          <span class="black-text email">{{profile['email']}}</span>
         </p>
       </div>
     </div>

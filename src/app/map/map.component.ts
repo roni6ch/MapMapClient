@@ -1,5 +1,5 @@
 import { Component,ElementRef, OnInit ,Input } from '@angular/core';
-import { ApartmentsService } from '../apartments.service';
+import { ApartmentsService } from '../services/apartments.service';
 import { IApartments } from '../iapartments';
 
 
@@ -22,7 +22,6 @@ export class MapComponent implements OnInit {
    
    }
    ngOnChanges(changes: any){
-     console.log(changes.latLng);
      this.lat = changes.latLng.currentValue.lat;
      this.lng = changes.latLng.currentValue.lng;
    }
@@ -32,7 +31,6 @@ export class MapComponent implements OnInit {
 
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
-    console.log(this.latLng);
 
   }
   openApartment(apartment){

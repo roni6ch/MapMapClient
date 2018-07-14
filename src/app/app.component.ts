@@ -1,115 +1,113 @@
-import { Component ,ElementRef,NgZone,ViewChild  ,OnInit} from '@angular/core';
-import { GoogleSignInSuccess } from 'angular-google-signin';
-import * as $ from 'jquery';
+  import { Component ,ElementRef,NgZone,ViewChild  ,OnInit} from '@angular/core';
+  import { GoogleSignInSuccess } from 'angular-google-signin';
+  import * as $ from 'jquery';
+  import { HttpClient } from '@angular/common/http';
+  import { HttpRequestsService } from './services/http-requests.service';
 
-import { } from 'googlemaps';
-import { FormControl } from '@angular/forms';
-import { MapsAPILoader } from '@agm/core';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent implements OnInit{
-  search = false;
-  profile = {};
-  latLng = {
-    lat:32.056442,
-    lng:34.772238
-  };
-  /* google signin button*/
-  private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
-  scriptLoaded = false;
+  import { FormControl } from '@angular/forms';
+  import { } from 'googlemaps';
+  import { MapsAPILoader } from '@agm/core';
 
-  //https://brianflove.com/2016/10/18/angular-2-google-maps-places-autocomplete/
-  public searchControl: FormControl;
-  @ViewChild("searchRef")
-  public searchElementRef: ElementRef;
+  @Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+  })
+  export class AppComponent implements OnInit{
+    search = false;
+    profile = {};
+    latLng = {
+      lat:32.056442,
+      lng:34.772238
+    };
+    /* google signin button*/
+    private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
+    scriptLoaded = false;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
-  ngOnInit() { 
-   this.checkIfUserSignIn();
-   this.initAutoComplete();
-  }
-  
-  initAutoComplete(){
-  //create search FormControl
-  this.searchControl = new FormControl();
-  //load Places Autocomplete
-  this.mapsAPILoader.load().then(() => {
-    let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-      types: ["address"]
-    });
-    autocomplete.addListener("place_changed", () => {
-      this.ngZone.run(() => {
-        //get the place result
-        let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-        this.latLng = {
-          lat:place.geometry.location.lat(),
-          lng:place.geometry.location.lng()
-        }
+    public searchControl: FormControl;
+    @ViewChild("searchRef")
+    public searchElementRef: ElementRef;
 
-        //verify result
-        if (place.geometry === undefined || place.geometry === null) {
-          return;
-        }
+    constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private http : HttpClient,private httpReq: HttpRequestsService) { }
+    ngOnInit() { 
+      this.initAutoComplete();
+    }
+    
+    initAutoComplete(){
+    //create search FormControl
+    this.searchControl = new FormControl();
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.latLng = {
+            lat:place.geometry.location.lat(),
+            lng:place.geometry.location.lng()
+          }
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+        });
       });
     });
-  });
+    }
+
+    onGoogleSignInSuccess(event: GoogleSignInSuccess) {
+      let googleUser: gapi.auth2.GoogleUser = event.googleUser;
+      this.httpReq.login(googleUser.getAuthResponse().id_token).subscribe(data => {
+        if (data){
+          console.log(data)
+          this.profile = data;
+          this.showLoginBT(false);
+        }
+        else{
+          this.showLoginBT(true);
+        }
+      });
+    }
+
+    signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      console.log(auth2);
+      this.showLoginBT(true);
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
+
+    openSearchInput(){
+      this.search = true;
+    }
+    focusOutSearch(e: any) {
+      this.search = false;
   }
-
-  checkIfUserSignIn() {
-    if (localStorage.getItem('profile') !== null) {
-
-    this.profile = JSON.parse(localStorage.getItem('profile'));
-      $(".googleBT").hide();
-      $(".name").show();
-      $(".email").show();
-      $(".signOut").attr("src",this.profile['IMG']);
-      $(".name").html(this.profile['NAME']);
-      $(".email").html(this.profile['EMAIL']);
-      $(".signOut").show();
-    }else{
+  showLoginBT(bool : boolean){
+    if (bool){
+      //show login
       $(".googleBT").show();
       $(".signOut").hide();
       $(".name").hide();
       $(".email").hide();
+     
+    }
+    else{
+      //show profile
+      $(".googleBT").hide();
+      $(".name").show();
+      $(".email").show();
+      $(".signOut").attr("src",this.profile['picture']);
+      $(".name").html(this.profile['given_name'] + this.profile['family_name']);
+      $(".email").html(this.profile['email']);
+      $(".signOut").show();
     }
   }
-  onGoogleSignInSuccess(event: GoogleSignInSuccess) {
-    console.log(event);
-    let googleUser: gapi.auth2.GoogleUser = event.googleUser;
-    let userProfile: gapi.auth2.BasicProfile = googleUser.getBasicProfile();
-
-    var profile = {
-      "GOOGLE_USER_ID": googleUser.getAuthResponse().id_token,
-      "ID": userProfile.getId(),
-      "NAME": userProfile.getName(),
-      "IMG": userProfile.getImageUrl(),
-      "EMAIL": userProfile.getEmail()
-    }
-    console.log(profile);
-    localStorage.setItem('profile', JSON.stringify(profile));
-    
-    this.checkIfUserSignIn();
 
   }
-  signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    console.log(auth2);
-    localStorage.removeItem('profile');
-    this.checkIfUserSignIn();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-
-  openSearchInput(){
-    this.search = true;
-  }
-  focusOutSearch(e: any) {
-    this.search = false;
- }
-
-}

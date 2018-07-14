@@ -1,19 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
-import { GoogleSignInComponent } from 'angular-google-signin';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { GoogleSignInComponent } from 'angular-google-signin';
 
 /* MAP */
 import { AgmCoreModule } from '@agm/core';
 /* SERVICE */
-import { HttpClientModule } from '@angular/common/http';
-import { ApartmentsService } from './apartments.service';
-import { AdvancedFilterService } from './advanced-filter.service';
-
-
- 
-
+import { ApartmentsService } from './services/apartments.service';
+import { AdvancedFilterService } from './services/advanced-filter.service';
+import { HttpRequestsService } from './services/http-requests.service';
 /*  COMPONENTS */
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
@@ -47,7 +44,7 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [ApartmentsService,AdvancedFilterService],
+  providers: [ApartmentsService,AdvancedFilterService,HttpRequestsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

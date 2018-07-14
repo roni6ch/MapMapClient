@@ -31,7 +31,7 @@ nav .publishBT button {
   height: 40px;
   border-radius: 50px;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 10px; display:none;
 }
 .publishBT nav i ,  nav i.material-icons {
   line-height: initial !important;

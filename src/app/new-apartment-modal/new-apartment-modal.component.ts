@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdvancedFilterService } from '../advanced-filter.service';
+import { AdvancedFilterService } from '../services/advanced-filter.service';
 import * as $ from 'jquery';
 
 
