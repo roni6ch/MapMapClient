@@ -1,15 +1,22 @@
 <!-- upload Images -->
-<div class="form-row imageuploadify">
+<div class="form-row imageuploadify"  ondrop="drop(event)" ondragover="allowDrop(event)">
+
+    <form action="/"
+      class="dropzone"
+      id="my-awesome-dropzone">
+    
   <i class="material-icons prefix"> cloud_upload</i>
   <span class="imageuploadify-message">
     Drag & Drop...
   </span>
-<!--  <button type="button" class="btn uploadBtn" style="background: white; color: rgb(58, 160, 255);" (click)="fileInput.click()">
+  <button type="button" class="btn uploadBtn" style="background: white; color: rgb(58, 160, 255);" (click)="fileInput.click()">
     <span> Or - Choose files to upload </span>
   </button>
-  <input type="file" #fileInput style="display: none" (change)="onFileChanged($event)" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-    multiple> -->
 
+
+  <input type="file" #fileInput style="display: none" (change)="onFileChanged($event)" accept="image/*,video/*"
+    multiple>
+</form>
 
 
 </div>

@@ -9,22 +9,30 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ImageUploaderComponent implements OnInit {
 
-  selectedFile: File;
+  selectedFiles: [File];
   srcImg: string;
 
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
-  
-  onUpload() {
 
-  // upload code goes here
- /*const uploadData = new FormData();
-  uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
-  this.srcImg = 'assets/images/logo.png';
-  this.http.post('my-backend.com/file-upload', uploadData).subscribe(data => this.srcImg = 'assets/images/logo.png');
-  */
+  onFileChanged(event) {
+    this.selectedFiles = event.target.files;
+    console.log(this.selectedFiles);
   }
+  onUpload() {
+    console.log("onUpload");
+    // upload code goes here
+    const uploadData = new FormData();
+    for (let file in this.selectedFiles) {
+      console.log(this.selectedFiles[file]);
+      uploadData.append('myFile', this.selectedFiles[file], this.selectedFiles[file].name);
+      this.srcImg = 'assets/images/logo.png';
+    }
+    // this.http.post('my-backend.com/file-upload', uploadData).subscribe(data => this.srcImg = 'assets/images/logo.png');
+
+  }
+  
 }

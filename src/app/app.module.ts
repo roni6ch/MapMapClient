@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleSignInComponent } from 'angular-google-signin';
 
@@ -18,8 +18,10 @@ import { InfowindowComponent } from './infowindow/infowindow.component';
 import { InfowindowModalComponent } from './infowindow-modal/infowindow-modal.component';
 import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-modal.component';
 import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
+import { AdvancedFiltersComponent } from './advanced-filters/advanced-filters.component';
 
 /* Image Uploader */
+
 
 
 
@@ -28,10 +30,11 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
     AppComponent,
     GoogleSignInComponent,
     MapComponent,
-    InfowindowComponent, 
+    InfowindowComponent,
     InfowindowModalComponent,
     NewApartmentModalComponent,
     ImageUploaderComponent,
+    AdvancedFiltersComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,8 +46,9 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+
   ],
-  providers: [ApartmentsService,AdvancedFilterService,HttpRequestsService],
+  providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
