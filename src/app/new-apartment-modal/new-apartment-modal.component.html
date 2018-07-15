@@ -1,6 +1,10 @@
 <!-- Modal Structure -->
 <div class="modal fade" id="newApartmentWindowModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
+    <button #btnClose type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document" >
     <div class="modal-content">
       <form>
@@ -85,18 +89,18 @@
                 </div>
               </div>
             </div>
-            <hr>
             <div class="modal-footer">
-              <button class="btn left" type="button">
-                <span style="pointer-events: initial;">
-                  פרסם מודעה
+                
+              <button class="btn left modal-close waves-effect  btn-flat" data-dismiss="modal" type="button">
+                <span >
+                  Cancel
                 </span>
               </button>
-              <button class="btn left" type="button">
-                <span style="pointer-events: initial;">
-                  ביטול
-                </span>
-              </button>
+              <button class="btn left modal-close waves-effect  btn-flat"  type="button" (click)="publishNewApartment()" > 
+                  <span >
+                    Publish!
+                  </span>
+                </button>
             </div>
           </form>
         </div>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ElementRef , ViewChild} from '@angular/core';
 import { AdvancedFilterService } from '../services/advanced-filter.service';
-import * as $ from 'jquery';
+import { HttpRequestsService } from '../services/http-requests.service';
 
 
 @Component({
@@ -11,14 +11,28 @@ import * as $ from 'jquery';
 export class NewApartmentModalComponent implements OnInit {
 
 
+  @ViewChild('btnClose') btnClose : ElementRef 
 
   advancedFilters = [];
 
-  constructor(private advancedFiltersJSON: AdvancedFilterService) { }
+  constructor(private advancedFiltersJSON: AdvancedFilterService,private httpReq: HttpRequestsService) { }
 
   ngOnInit() {
     this.advancedFiltersJSON.getData().subscribe(data => this.advancedFilters = data);
     
+  }
+
+  publishNewApartment(){
+    //close the modal
+    this.btnClose.nativeElement.click();
+    let data = {};
+    console.log("x");
+    this.httpReq.publishNewApartment(data).subscribe(data => {
+      if (data) {
+        console.log(data)
+      }
+    });
+
   }
 
 }

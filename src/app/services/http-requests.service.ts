@@ -22,6 +22,9 @@ export class HttpRequestsService {
     }
     return this.http.post(url,data,this.httpOptions);
   }
+  publishNewApartment(data:any){
+    return true;
+  }
 }
 
 

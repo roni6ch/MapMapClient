@@ -4,9 +4,9 @@ import * as $ from 'jquery';
 import { HttpClient } from '@angular/common/http';
 import { HttpRequestsService } from './services/http-requests.service';
 
-
 import { FormControl } from '@angular/forms';
-import { } from 'googlemaps';
+import { google } from "google-maps";
+declare var google : google;
 import { MapsAPILoader } from '@agm/core';
 
 @Component({
@@ -15,6 +15,7 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  
   search = false;
   profile = {};
   latLng = {

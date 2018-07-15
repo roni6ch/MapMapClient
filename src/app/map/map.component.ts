@@ -1,6 +1,5 @@
 import { Component,ElementRef, OnInit ,Input } from '@angular/core';
 import { ApartmentsService } from '../services/apartments.service';
-import { IApartments } from '../iapartments';
 
 
 @Component({

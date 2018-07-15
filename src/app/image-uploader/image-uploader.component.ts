@@ -11,6 +11,7 @@ export class ImageUploaderComponent implements OnInit {
 
   selectedFiles: [File];
   srcImg: string;
+  imageURL = "myhost.com";
 
 
   constructor(private http: HttpClient) { }

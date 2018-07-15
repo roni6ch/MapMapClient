@@ -7,6 +7,7 @@ import { GoogleSignInComponent } from 'angular-google-signin';
 
 /* MAP */
 import { AgmCoreModule } from '@agm/core';
+
 /* SERVICE */
 import { ApartmentsService } from './services/apartments.service';
 import { AdvancedFilterService } from './services/advanced-filter.service';
@@ -19,10 +20,6 @@ import { InfowindowModalComponent } from './infowindow-modal/infowindow-modal.co
 import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-modal.component';
 import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 import { AdvancedFiltersComponent } from './advanced-filters/advanced-filters.component';
-
-/* Image Uploader */
-
-
 
 
 @NgModule({
