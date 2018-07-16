@@ -25,9 +25,8 @@ export class NewApartmentModalComponent implements OnInit {
   publishNewApartment(){
     //close the modal
     this.btnClose.nativeElement.click();
-    let data = {};
-    console.log("x");
-    this.httpReq.publishNewApartment(data).subscribe(data => {
+    let formData = {};
+    this.httpReq.publishNewApartment(formData).subscribe(data => {
       if (data) {
         console.log(data)
       }

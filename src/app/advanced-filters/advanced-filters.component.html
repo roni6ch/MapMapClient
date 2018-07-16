@@ -1,34 +1,28 @@
-<div class="modal fade bottom-sheet advencedFilterModalWrapper" id="advancedFiltersModal">
-    <div class="modal-dialog">
-  <div class="modal-content">
+<div class="modal fade  advencedFilterModalWrapper" id="advancedFiltersModal" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-content modal-dialog modal-dialog-centered " role="document">
     <h6>סינון מתקדם</h6>
-  </div>
-  <div class="modal-footer">
-    <div class="row container-fluid">
-      <div class="col-sm-8">
 
-        <div *ngFor="let filter of advancedFilter" class="advancedFilter">
-
-          <div class="switch">
-            <label>
-              <div class="switchIcon">
-                <img [src]="assets/images/icons/'+filter.filterName+'.png" />
-              </div>
-              <span>{{filter.name}}</span>
-              <input type="checkbox" (click)="changeFilter(filter)">
-              <span class="lever"></span>
-            </label>
-          </div>
+    <!-- advancedFilter -->
+    <div class="form-row">
+      <div *ngFor="let filter of advancedFilters" class="advancedFilters advancedFilter col s2">
+        <div class="switch">
+          <label>
+            <div class="switchIcon">
+              <img src="assets/images/icons/{{filter.filterName}}.png" />
+            </div>
+            <span>{{filter.name}}</span>
+            <input type="checkbox" (click)="changeFilter(filter)">
+            <span class="lever"></span>
+          </label>
         </div>
-
-      </div>
-      <div class="col-sm-4 lovedApartments">
-        <button (click)="filterFavorites()" class="btn blue lighten-1 hvr-sweep-to-left">
-          <span>הצג מודעות שאהבתי</span>
-          <img [src]="assets/images/icons/heart"+favFilterImg+".png" class="heart" />
-        </button>
       </div>
     </div>
+    <div class="lovedApartments">
+      <button  class="btn blue lighten-1 hvr-sweep-to-left" (click)="toggleFavoriteApartment()" >
+        <span>הצג מודעות שאהבתי</span>
+        <img [src]="favFilterImg ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" class="heart" />
+      </button>
     </div>
   </div>
 </div>

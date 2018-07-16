@@ -22,8 +22,10 @@ export class HttpRequestsService {
     }
     return this.http.post(url,data,this.httpOptions);
   }
-  publishNewApartment(data:any){
-    return true;
+  publishNewApartment(formData:any){
+    let url = "https://mapmapserver.herokuapp.com/publish";
+    let data = formData;
+    return this.http.post(url,data,this.httpOptions);
   }
 }
 

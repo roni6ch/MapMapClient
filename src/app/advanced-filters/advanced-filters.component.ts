@@ -9,7 +9,7 @@ import { AdvancedFilterService } from '../services/advanced-filter.service';
 export class AdvancedFiltersComponent implements OnInit {
 
   advancedFilters = [];
-  favFilterImg = "favorite";
+  favFilterImg = true;
   
   constructor(private advancedFiltersJSON: AdvancedFilterService) { }
 
@@ -20,4 +20,9 @@ export class AdvancedFiltersComponent implements OnInit {
     console.log(filter);
   }
   filterFavorites(){}
+  toggleFavoriteApartment(){
+    this.favFilterImg = !this.favFilterImg;
+    //todo: return only fav apartments
+    
+  }
 }
