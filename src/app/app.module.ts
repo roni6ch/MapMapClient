@@ -21,6 +21,8 @@ import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-
 import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 import { AdvancedFiltersComponent } from './advanced-filters/advanced-filters.component';
 
+import { NouisliderModule } from 'ng2-nouislider';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,7 @@ import { AdvancedFiltersComponent } from './advanced-filters/advanced-filters.co
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    NouisliderModule
   ],
   providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService],
   bootstrap: [AppComponent]

@@ -3,9 +3,11 @@
   <div class="modal-content modal-dialog modal-dialog-centered " role="document">
     <h6>סינון מתקדם</h6>
 
+
+    
     <!-- advancedFilter -->
     <div class="form-row">
-      <div *ngFor="let filter of advancedFilters" class="advancedFilters advancedFilter col s2">
+      <div *ngFor="let filter of advancedFilters" class=" advancedFilter col s2">
         <div class="switch">
           <label>
             <div class="switchIcon">
@@ -24,5 +26,12 @@
         <img [src]="favFilterImg ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" class="heart" />
       </button>
     </div>
+
+
+    <nouislider style="width:100%" [config]="rangeConfig"></nouislider>
+
+    
+    
+
   </div>
 </div>
