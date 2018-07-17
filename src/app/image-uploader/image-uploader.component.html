@@ -10,9 +10,11 @@
     Drag & Drop...
   </span>
 </div>
-  <input type="file" id='fileInput' #fileInput (change)="onFileChanged($event)" accept="image/*,video/*"
+  <input type="file" id='fileInput'  name="images" #fileInput (change)="onFileChanged($event)" accept="image/*,video/*"
     multiple />
 </form>
+
+<!-- todo: send new-apartment-modal the images that have been uploaded with  [(ngModel)]="apartment.images" -->
 
 
 </div>

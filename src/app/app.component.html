@@ -35,7 +35,7 @@
           </google-signin>
         </div>
 
-        <img [src]="profile['picture']" class='signOut' (click)="signOut()">
+        <img [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut' (click)="signOut()">
       </div>
       <div class="navDetails">
         <p>
@@ -54,18 +54,10 @@
 
 
   <li class="navOptions">
-    <a href="#" data-toggle="modal">
+    <a href="#"  data-toggle="modal" data-target="#advancedFiltersModal">
       <i>
         <img src="assets/images/icons/funnel.png" />
       </i> סינון</a>
-  </li>
-
-  <li class="navOptions">
-
-      <a href="#" data-toggle="modal" data-target="#advancedFiltersModal">
-      <i class="material-icons">filter_list</i>סינון מתקדם
-    </a>
-  
   </li>
 
 </ul>
