@@ -11,7 +11,9 @@ import { FiltersPipe } from '../filters.pipe';
 export class MapComponent implements OnInit {
   @Input() latLng: any; 
   @Input() filterFavoritesInput: boolean; 
+  @Input() filtersInput: {}; 
   
+  filtersArr;
   favorites = false;
   apartments = [];
  apartmentModal = {};
@@ -32,6 +34,12 @@ export class MapComponent implements OnInit {
       this.lat = changes.latLng.currentValue.lat;
       this.lng = changes.latLng.currentValue.lng;
     }
+    if (changes.hasOwnProperty('filtersInput')){
+     console.log(changes);
+     this.filtersArr = changes.filtersInput.currentValue;     
+     //todo: pipe filters on ngFor in map 
+    }
+    
    }
 
    changeFavorites(fav){

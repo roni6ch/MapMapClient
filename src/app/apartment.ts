@@ -6,7 +6,7 @@ export class Apartment {
         public email: string,
         public date: Date,
         public description: string,
-        public images?: [string],
-        public filters?: [boolean]
+        public images?: {},
+        public filters?: {}
       ) {  }
 }

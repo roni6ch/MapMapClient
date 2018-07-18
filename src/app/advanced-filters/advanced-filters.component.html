@@ -14,7 +14,7 @@
               <img src="assets/images/icons/{{filter.filterName}}.png" />
             </div>
             <span>{{filter.name}}</span>
-            <input type="checkbox" (click)="changeFilter(filter)">
+            <input type="checkbox"  [(ngModel)]="advancedFilters[filter.name]" name="filter" (click)="changeFilter(filter)">
             <span class="lever"></span>
           </label>
         </div>

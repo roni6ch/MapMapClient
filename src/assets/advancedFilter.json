@@ -21,7 +21,7 @@
     {
       "name": "מזגן",
       "filterName": "air_conditioner",
-      "filter":" false"
+      "filter":false
     },
     {
       "name": "תמ''א",

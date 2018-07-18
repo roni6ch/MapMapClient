@@ -64,8 +64,8 @@
 
 
 
-<app-map [latLng]="latLng" [filterFavoritesInput]="filterFavorites"></app-map>
+<app-map [latLng]="latLng" [filterFavoritesInput]="filterFavorites" [filtersInput]="filtersInput"></app-map>
 
 <app-new-apartment-modal></app-new-apartment-modal>
 
-<app-advanced-filters (favoritesClick)="filterFavorites=$event"></app-advanced-filters>
+<app-advanced-filters (favoritesClick)="filterFavorites=$event" (filters)="filtersInput = $event"></app-advanced-filters>

@@ -1,7 +1,7 @@
 <!-- MAP -->
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="mapOptions.zoom">
   <!-- MARKERS -->
-  <agm-marker *ngFor="let a of apartments" [latitude]="a.apartment.latlng.lat" [longitude]="a.apartment.latlng.lng">
+  <agm-marker *ngFor="let a of apartments | filters:'advancedFilter':filtersArr" [latitude]="a.apartment.latlng.lat" [longitude]="a.apartment.latlng.lng">
      <!-- INFO WINDOW -->
      <agm-info-window>
         <app-infowindow [apartment]="a" (apartmentOBJ)="openApartment($event)"></app-infowindow>
