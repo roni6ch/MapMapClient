@@ -9,7 +9,7 @@
   background-color: #fff;
   color: #3AA0FF;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 20px;min-height: 150px;
 }
 
 .imageuploadify .imageuploadify-overlay {
@@ -60,9 +60,9 @@
     border: 3px dotted #7f7c7c;
     border-style: dotted; cursor:pointer;
 }
-#fileInput{display:none;
-position: absolute;
-top: 0;
+#fileInput{ opacity: 0;
+  position: absolute;
+top: 0;    cursor: pointer;
 left: 0;
 width: 100%;
 height: 204px;
@@ -70,3 +70,5 @@ height: 204px;
 .images{
   width:200px;height:200px;float:left;
 }
+.fileInputLabel{width: 50%;cursor: pointer;
+  margin: 2% auto;}

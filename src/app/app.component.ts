@@ -65,7 +65,6 @@ export class AppComponent implements OnInit {
     let googleUser: gapi.auth2.GoogleUser = event.googleUser;
     this.httpReq.login(googleUser.getAuthResponse().id_token).subscribe(data => {
       if (data) {
-        console.log(data)
         this.profile = data;
         this.showLoginBT(false);
       }

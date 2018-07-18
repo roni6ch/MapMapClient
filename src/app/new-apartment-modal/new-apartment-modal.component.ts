@@ -34,6 +34,9 @@ export class NewApartmentModalComponent implements OnInit {
   }
   publishNewApartment() {
 
+    //remove all false filters
+    
+
     //close the modal
     this.btnClose.nativeElement.click();
     console.log(this.apartment);
@@ -45,9 +48,6 @@ export class NewApartmentModalComponent implements OnInit {
 
 
 
-  }
-  changeFilter(filter) {
-    console.log(filter);
   }
 
 

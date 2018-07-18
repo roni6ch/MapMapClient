@@ -24,8 +24,6 @@ export class MapComponent implements OnInit {
    
    }
    ngOnChanges(changes: any){
-    console.log(changes);
-    console.log(changes);
     if (changes.hasOwnProperty('filterFavoritesInput')){
       this.favorites = changes["filterFavoritesInput"].currentValue;
       //create @pipe that filter the ngFor

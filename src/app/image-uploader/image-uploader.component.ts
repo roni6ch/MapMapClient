@@ -27,9 +27,11 @@ export class ImageUploaderComponent implements OnInit {
     if (fileInput.target.files && fileInput.target.files[0]) {
 
       let uploadData = new FormData();
-      for (let file in fileInput.target.files) {
-        console.log(fileInput.target.files[file]);
-        uploadData.append(fileInput.target.files[file], fileInput.target.files[file].name);
+      for (var i = 0; i < fileInput.target.files.length; i++) {
+        if (fileInput.target.files[i] !== undefined){
+          console.log(fileInput.target.files[i]);
+          uploadData.append("file",fileInput.target.files[i], fileInput.target.files[i].name);
+        }
       }
       this.http.post<[string]>(this.imagesUploadURL, uploadData).subscribe(data => {
         this.srcImages = data; 
