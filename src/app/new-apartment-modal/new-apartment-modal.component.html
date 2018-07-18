@@ -1,11 +1,11 @@
 <!-- Modal Structure -->
 <div class="modal fade" id="newApartmentWindowModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-    <button #btnClose type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+  <button #btnClose type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document" >
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <form>
         <h6>Publish New Apartment!</h6>
@@ -13,66 +13,70 @@
         <div class="row">
           <form class="col s12">
 
-              <div class="row">
-                  <div  class="col s12">
+            <div class="row">
+              <div class="col s12">
 
-                    <div class="input-field col s6">
-                      <i class="material-icons prefix">account_circle</i>
-                      <input  [(ngModel)]="apartment.name" name="name" id="inputFirstName" type="text" class="validate" required data-length="20" materialize="characterCounter">
-                      <label for="inputFirstName">First Name</label>
-                      <span class="helper-text" data-error="wrong" data-success="right"></span>
-                    </div>
-
-                    <div class="input-field col s6">
-                      <i class="material-icons prefix">phone</i>
-                      <input [(ngModel)]="apartment.phone" name="phone" id="icon_telephone" type="number" class="validate"  required data-length="10" placeholder="050-0000000">
-                      <label for="icon_telephone">Telephone</label>
-                      <span class="helper-text" data-error="wrong" data-success="right"></span>
-                    </div>
-                    
-                  </div>
-              </div>
-              <div class="row">
-                  <div  class="col s12">
-
-                    <div class="input-field col s4">
-                        <i class="material-icons prefix">
-                          <img src="assets/images/icons/coins/ils.png" />
-                        </i>
-                      <input [(ngModel)]="apartment.price" name="price" id="inputPrice" type="number" data-length="10" class="validate" required  
-                      onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9,.]{3,10}"/>
-                      <label for="inputPrice">Price</label>
-                      <span class="helper-text" data-error="wrong" data-success="right"></span>
-                    </div>
-
-                    <div class="input-field col s4">
-                      <i class="material-icons prefix">email</i>
-                      <input  [(ngModel)]="apartment.email" name="email" id="inputMail" type="text" class="validate" data-length="30" min="10" max="15" required />
-                      <label for="inputMail">Email</label>
-                      <span class="helper-text" data-error="wrong" data-success="right"></span>
-                    </div>
-<!-- TODO: check Any picker date js -->
-                    <div class="input-field col s4">
-                        <i class="material-icons prefix">date_range</i>
-                        <input  [(ngModel)]="apartment.date" name="date" id="inputDate" type="date" class="validate" required />
-                        <label for="inputMail">Date</label>
-                        <span class="helper-text" data-error="wrong" data-success="right"></span>
-                      </div>
-                    
-                  </div>
-              </div>
-
-              <div class="row">
-                  <div class="input-field col s12">
-                      <i class="material-icons prefix">create</i>
-                    <textarea  [(ngModel)]="apartment.description" name="description" id="inputDescription" class="materialize-textarea" data-length="250" ></textarea>
-                    <label for="inputDescription">Description...</label>
-                    <span class="helper-text" data-error="wrong" data-success="right"></span>
-                  </div>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input [(ngModel)]="apartment.name" name="name" id="inputFirstName" type="text" class="validate" required data-length="20"
+                    materialize="characterCounter">
+                  <label for="inputFirstName">First Name</label>
+                  <span class="helper-text" data-error="wrong" data-success="right"></span>
                 </div>
 
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">phone</i>
+                  <input [(ngModel)]="apartment.phone" name="phone" id="icon_telephone" type="number" class="validate" required data-length="10"
+                    placeholder="050-0000000">
+                  <label for="icon_telephone">Telephone</label>
+                  <span class="helper-text" data-error="wrong" data-success="right"></span>
+                </div>
 
-<app-image-uploader></app-image-uploader>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+
+                <div class="input-field col s4">
+                  <i class="material-icons prefix">
+                    <img src="assets/images/icons/coins/ils.png" />
+                  </i>
+                  <input [(ngModel)]="apartment.price" name="price" id="inputPrice" type="number" data-length="10" class="validate" required
+                    onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9,.]{3,10}" />
+                  <label for="inputPrice">Price</label>
+                  <span class="helper-text" data-error="wrong" data-success="right"></span>
+                </div>
+
+                <div class="input-field col s4">
+                  <i class="material-icons prefix">email</i>
+                  <input [(ngModel)]="apartment.email" name="email" id="inputMail" type="text" class="validate" data-length="30" min="10" max="15"
+                    required />
+                  <label for="inputMail">Email</label>
+                  <span class="helper-text" data-error="wrong" data-success="right"></span>
+                </div>
+                <!-- TODO: check Any picker date js -->
+                <div class="input-field col s4">
+                  <i class="material-icons prefix">date_range</i>
+                  <input [(ngModel)]="apartment.date" name="date" id="inputDate" type="date" class="validate" required />
+                  <label for="inputMail">Date</label>
+                  <span class="helper-text" data-error="wrong" data-success="right"></span>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">create</i>
+                <textarea [(ngModel)]="apartment.description" name="description" id="inputDescription" class="materialize-textarea" data-length="250"></textarea>
+                <label for="inputDescription">Description...</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+              </div>
+            </div>
+
+
+            <app-image-uploader (images)="addImagesToForm($event)"></app-image-uploader>
+            <!-- [(ngModel)]="apartment.images" -->
 
             <!-- advancedFilter -->
             <div class="form-row">
@@ -83,24 +87,24 @@
                       <img src="assets/images/icons/{{filter.filterName}}.png" />
                     </div>
                     <span>{{filter.name}}</span>
-                    <input [(ngModel)]="apartment.filters[filter.name]" name="filter" type="checkbox" (click)="changeFilter(filter)" >
+                    <input [(ngModel)]="apartment.filters[filter.name]" name="filter" type="checkbox" (click)="changeFilter(filter)">
                     <span class="lever"></span>
                   </label>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-                
+
               <button class="btn  modal-close waves-effect  btn-flat" data-dismiss="modal" type="button">
-                <span >
+                <span>
                   Cancel
                 </span>
               </button>
-              <button class="btn left modal-close waves-effect  btn-flat"  type="submit" (click)="publishNewApartment()" > 
-                  <span >
-                    Publish!
-                  </span>
-                </button>
+              <button class="btn left modal-close waves-effect  btn-flat" type="submit" (click)="publishNewApartment()">
+                <span>
+                  Publish!
+                </span>
+              </button>
             </div>
           </form>
         </div>

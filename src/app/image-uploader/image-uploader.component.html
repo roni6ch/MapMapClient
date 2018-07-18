@@ -1,20 +1,21 @@
 <!-- upload Images -->
-<div class="form-row imageuploadify"  ondrop="drop(event)" ondragover="allowDrop(event)">
+<div class="form-row imageuploadify">
 
-    <form [attr.action]="imageURL"
-      class="dropzone"
-      id="my-awesome-dropzone">
+  <form [attr.action]="imageURL" enctype="multipart/form-data" method="post">
     <div>
-  <i class="material-icons prefix"> cloud_upload</i>
-  <span class="imageuploadify-message">
-    Drag & Drop...
-  </span>
-</div>
-  <input type="file" id='fileInput'  name="images" #fileInput (change)="onFileChanged($event)" accept="image/*,video/*"
-    multiple />
-</form>
+      <i class="material-icons prefix"> cloud_upload</i>
+      <span class="imageuploadify-message">
+        Drag & Drop...
+      </span>
+    </div>
+    <input type="file" name="file" id='fileInput' name="images" style="display:block;" (change)="upload($event)" #fileInput accept="image/*,video/*"
+      multiple />
 
-<!-- todo: send new-apartment-modal the images that have been uploaded with  [(ngModel)]="apartment.images" -->
+  </form>
 
+
+  <div *ngFor="let image of srcImages">
+    <img class="images" [src]="image" />
+  </div>
 
 </div>

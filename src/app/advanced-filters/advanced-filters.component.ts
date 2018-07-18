@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AdvancedFilterService } from '../services/advanced-filter.service';
 
 
@@ -10,13 +10,12 @@ import { AdvancedFilterService } from '../services/advanced-filter.service';
 export class AdvancedFiltersComponent implements OnInit {
 
   advancedFilters = [];
-  favFilterImg = true;
+  favFilterImg = false;
+  @Output() favoritesClick = new EventEmitter();
 
-  
   rangeConfig: any = {
     behaviour: 'drag',
     start: [3000, 7000],
-    
     range: {
       'min': [ 1000 ],
       'max': [ 10000 ]
@@ -33,20 +32,16 @@ export class AdvancedFiltersComponent implements OnInit {
 
   ngOnInit() {
     this.advancedFiltersJSON.getData().subscribe(data => {
-      
       this.advancedFilters = data;
     });
-
-    
   }
-  onChange(event){}
+
   changeFilter(filter){
     console.log(filter);
   }
-  filterFavorites(){}
   toggleFavoriteApartment(){
     this.favFilterImg = !this.favFilterImg;
-    //todo: return only fav apartments
+    this.favoritesClick.emit(this.favFilterImg);
     
   }
 }

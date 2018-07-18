@@ -1,5 +1,6 @@
 import { Component,ElementRef, OnInit ,Input } from '@angular/core';
 import { ApartmentsService } from '../services/apartments.service';
+import { FiltersPipe } from '../filters.pipe';
 
 
 @Component({
@@ -9,7 +10,9 @@ import { ApartmentsService } from '../services/apartments.service';
 })
 export class MapComponent implements OnInit {
   @Input() latLng: any; 
-
+  @Input() filterFavoritesInput: boolean; 
+  
+  favorites = false;
   apartments = [];
  apartmentModal = {};
   lat: number;
@@ -21,8 +24,21 @@ export class MapComponent implements OnInit {
    
    }
    ngOnChanges(changes: any){
-     this.lat = changes.latLng.currentValue.lat;
-     this.lng = changes.latLng.currentValue.lng;
+    console.log(changes);
+    console.log(changes);
+    if (changes.hasOwnProperty('filterFavoritesInput')){
+      this.favorites = changes["filterFavoritesInput"].currentValue;
+      //create @pipe that filter the ngFor
+    }
+    if (changes.hasOwnProperty('latLng')){
+      this.lat = changes.latLng.currentValue.lat;
+      this.lng = changes.latLng.currentValue.lng;
+    }
+   }
+
+   changeFavorites(fav){
+     console.log(fav);
+  
    }
   ngOnInit() {
     //get result.json

@@ -22,6 +22,7 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
 import { AdvancedFiltersComponent } from './advanced-filters/advanced-filters.component';
 
 import { NouisliderModule } from 'ng2-nouislider';
+import { FiltersPipe } from './filters.pipe';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { NouisliderModule } from 'ng2-nouislider';
     NewApartmentModalComponent,
     ImageUploaderComponent,
     AdvancedFiltersComponent,
+    FiltersPipe,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { NouisliderModule } from 'ng2-nouislider';
     NouisliderModule
   ],
   providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[FiltersPipe]
 })
 export class AppModule { }
 

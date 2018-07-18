@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-image-uploader',
@@ -10,30 +10,32 @@ import { HttpClient } from '@angular/common/http';
 export class ImageUploaderComponent implements OnInit {
 
   selectedFiles: [File];
-  srcImg: string;
-  imageURL = "myhost.com";
+  srcImages: [string];
+  imagesUploadURL = "https://mapmapserver.herokuapp.com/uploadPicture";
 
+  @Output() images = new EventEmitter();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+  }
 
   ngOnInit() {
   }
 
-  onFileChanged(event) {
-    this.selectedFiles = event.target.files;
-    console.log(this.selectedFiles);
-  }
-  onUpload() {
-    console.log("onUpload");
-    // upload code goes here
-    const uploadData = new FormData();
-    for (let file in this.selectedFiles) {
-      console.log(this.selectedFiles[file]);
-      uploadData.append('myFile', this.selectedFiles[file], this.selectedFiles[file].name);
-      this.srcImg = 'assets/images/logo.png';
-    }
-    // this.http.post('my-backend.com/file-upload', uploadData).subscribe(data => this.srcImg = 'assets/images/logo.png');
 
+  upload(fileInput: any) {
+    if (fileInput.target.files && fileInput.target.files[0]) {
+
+      let uploadData = new FormData();
+      for (let file in fileInput.target.files) {
+        console.log(fileInput.target.files[file]);
+        uploadData.append(fileInput.target.files[file], fileInput.target.files[file].name);
+      }
+      this.http.post<[string]>(this.imagesUploadURL, uploadData).subscribe(data => {
+        this.srcImages = data; 
+        this.images.emit(data);
+      });
+     
+    }
   }
-  
 }
