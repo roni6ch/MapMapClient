@@ -1,4 +1,4 @@
-import { Component,ElementRef, OnInit ,Input } from '@angular/core';
+import { Component, ElementRef, OnInit, Input } from '@angular/core';
 import { ApartmentsService } from '../services/apartments.service';
 import { FiltersPipe } from '../filters.pipe';
 
@@ -9,43 +9,43 @@ import { FiltersPipe } from '../filters.pipe';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  @Input() latLng: any; 
-  @Input() filterFavoritesInput: boolean; 
-  @Input() filtersInput: {}; 
-  
+  @Input() latLng: any;
+  @Input() filterFavoritesInput: boolean;
+  @Input() filtersInput: {};
+
   filtersArr;
   favorites = false;
   apartments = [];
- apartmentModal = {};
+  apartmentModal = {};
   lat: number;
   lng: number;
   mapOptions: object = {
-    zoom:14
+    zoom: 14
   };
-  constructor(private apartmentResults : ApartmentsService) {
-   
-   }
-   ngOnChanges(changes: any){
-    if (changes.hasOwnProperty('filterFavoritesInput')){
+  constructor(private apartmentResults: ApartmentsService) {
+
+  }
+  ngOnChanges(changes: any) {
+    if (changes.hasOwnProperty('filterFavoritesInput')) {
       this.favorites = changes["filterFavoritesInput"].currentValue;
       //create @pipe that filter the ngFor
     }
-    if (changes.hasOwnProperty('latLng')){
+    if (changes.hasOwnProperty('latLng')) {
       this.lat = changes.latLng.currentValue.lat;
       this.lng = changes.latLng.currentValue.lng;
     }
-    if (changes.hasOwnProperty('filtersInput')){
-     console.log(changes);
-     this.filtersArr = changes.filtersInput.currentValue;     
-     //todo: pipe filters on ngFor in map 
+    if (changes.hasOwnProperty('filtersInput')) {
+      console.log(changes.filtersInput.currentValue);
+      this.filtersArr = changes.filtersInput.currentValue;
+      //todo: pipe filters on ngFor in map 
     }
-    
-   }
 
-   changeFavorites(fav){
-     console.log(fav);
-  
-   }
+  }
+
+  changeFavorites(fav) {
+    console.log(fav);
+
+  }
   ngOnInit() {
     //get result.json
     this.apartmentResults.getData().subscribe(data => this.apartments = data['results']);
@@ -54,7 +54,7 @@ export class MapComponent implements OnInit {
     this.lng = this.latLng.lng;
 
   }
-  openApartment(apartment){
+  openApartment(apartment) {
     console.log(apartment);
     this.apartmentModal = apartment;
   }

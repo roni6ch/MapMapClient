@@ -73,7 +73,10 @@ export class AppComponent implements OnInit {
       }
     });
   }
-
+  filtersInput;
+  filtersInputFunc(event){
+    this.filtersInput = event;
+  }
   signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     console.log(auth2);

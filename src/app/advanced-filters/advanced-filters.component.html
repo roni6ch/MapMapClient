@@ -7,14 +7,14 @@
     
     <!-- advancedFilter -->
     <div class="form-row">
-      <div *ngFor="let filter of advancedFilters" class=" advancedFilter col s2">
+      <div *ngFor="let filter of advancedFilters; let i = index" class=" advancedFilter col s2">
         <div class="switch">
           <label>
             <div class="switchIcon">
               <img src="assets/images/icons/{{filter.filterName}}.png" />
             </div>
             <span>{{filter.name}}</span>
-            <input type="checkbox"  [(ngModel)]="advancedFilters[filter.name]" name="filter" (click)="changeFilter(filter)">
+            <input type="checkbox"  [(ngModel)]="advancedFilters[i].filter" [name]="'filter'+i" (click)="changeFilter(filter)">
             <span class="lever"></span>
           </label>
         </div>

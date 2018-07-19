@@ -13,7 +13,7 @@ export class AdvancedFiltersComponent implements OnInit {
 
   favFilterImg = false;
   @Output() favoritesClick = new EventEmitter();
-  @Output() filters = new EventEmitter();
+  @Output() filters  = new EventEmitter();
 
 
   rangeConfig: any = {
@@ -39,16 +39,29 @@ export class AdvancedFiltersComponent implements OnInit {
     });
   }
 
+  filtersArrOutput = [];
   changeFilter(filter) {
-    console.log(filter);
-    var toggleFilter = !filter.filter;
+      console.log(filter);
 
-
-    this.advancedFilters.forEach(function (f, i, advancedFilters) {
-      if (filter.name == f.name)
-        advancedFilters[i].filter = toggleFilter;
-    });
-    this.filters.emit(this.advancedFilters);
+      this.advancedFilters.forEach((f, i,advancedFilters) =>  {
+        if (filter.name == f.name && !filter.filter){
+          advancedFilters[i].filter = !advancedFilters[i].filter;
+          this.filtersArrOutput.push(filter);
+          //https://stackoverflow.com/questions/46702410/ngonchange-not-called-when-value-change
+          this.filtersArrOutput = this.filtersArrOutput.slice();
+          this.filters.emit(this.filtersArrOutput);
+          return;
+        }
+        else if (filter.name == f.name && filter.filter){
+          advancedFilters[i].filter = !advancedFilters[i].filter;
+          this.filtersArrOutput = this.filtersArrOutput.filter(obj => {
+            return obj.name !== filter.name
+          })
+          this.filtersArrOutput = this.filtersArrOutput.slice();
+          this.filters.emit(this.filtersArrOutput);
+          return;
+        }
+      }, this);
 
   }
   toggleFavoriteApartment() {

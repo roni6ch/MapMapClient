@@ -87,12 +87,14 @@
                       <img src="assets/images/icons/{{filter.filterName}}.png" />
                     </div>
                     <span>{{filter.name}}</span>
-                    <input [(ngModel)]="apartment.filters[filter.name]" name="filter" type="checkbox">
+                    <input [(ngModel)]="apartment.filters[filter.name]" name="filter" type="checkbox" > 
                     <span class="lever"></span>
                   </label>
                 </div>
               </div>
             </div>
+            
+
             <div class="modal-footer">
 
               <button class="btn  modal-close waves-effect  btn-flat" data-dismiss="modal" type="button">

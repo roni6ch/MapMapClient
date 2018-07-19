@@ -63,9 +63,11 @@
 </ul>
 
 
-
+<!-- Map -->
 <app-map [latLng]="latLng" [filterFavoritesInput]="filterFavorites" [filtersInput]="filtersInput"></app-map>
 
+<!-- new Apartment -->
 <app-new-apartment-modal></app-new-apartment-modal>
 
-<app-advanced-filters (favoritesClick)="filterFavorites=$event" (filters)="filtersInput = $event"></app-advanced-filters>
+<!-- advanced Filter -->
+<app-advanced-filters (favoritesClick)="filterFavorites=$event" (filters)="filtersInputFunc($event)"></app-advanced-filters>
