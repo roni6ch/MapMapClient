@@ -45,7 +45,7 @@ export class MapComponent implements OnInit {
   }
   ngOnInit() {
     //get result.json
-    this.apartmentResults.getData().subscribe(data => this.apartments = data['results']);
+    this.apartmentResults.getData().subscribe(data => {this.apartments = data; console.log(data)});
 
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;

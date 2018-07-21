@@ -30,23 +30,29 @@ export class NewApartmentModalComponent implements OnInit {
     this.advancedFiltersJSON.getData().subscribe(data => this.advancedFilters = data);
 
     //apartment class must be initialize
-    let location = {
+    let id="";
+    let publisher = {
       name: "",
+      email:"",
+      phone: null
+    }
+    let location = {
+      address: "",
       latlng: {
-        lat: 0,
-        lng: 0
+        lat: null,
+        lng: null
       }
     }
-    let publisher = {
-      user_id: "1234",
-      phone: [""]
-    }
     let details = {
-      apartmentType: ['דירה'],
-      rooms: 4,
-      size: 80,
-      floor: 5,
-      toilets: 2,
+      apartmentType: null,
+      rooms: null,
+      size: null,
+      floor: null,
+      toilets: null,
+      info: "",
+      price: null,
+      entrance_date: "",
+      images: null,
     }
     let filters = {
       parking: false,
@@ -66,12 +72,12 @@ export class NewApartmentModalComponent implements OnInit {
       immediate_entrance: false,
       apartment_image: false,
     }
-    this.apartment = new Apartment("", null, "", publisher, location, null, details, filters);
+    this.apartment = new Apartment(id, publisher,location,details, filters);
+    console.log(this.apartment);
     this.initAutoComplete();
   }
   addImagesToForm(images) {
     console.log('addImagesToForm: ', images);
-    this.apartment['images'] = [];
     //todo: iterate over images
     this.apartment['images'].push(images);
   }

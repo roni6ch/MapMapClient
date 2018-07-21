@@ -6,17 +6,17 @@
 <!-- CAROUSEL -->
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
               <!-- indicators -->
-                <ol class="carousel-indicators" *ngIf="apartment.images?.length > 0" >
+                <ol class="carousel-indicators" *ngIf="apartment.details?.images.length > 0" >
                   <li data-target="#carouselExampleIndicators" [id]="i" #imageNumber (click)="updateIndector(imageNumber.id)" *ngFor="let apartmentImg of apartment.images; let i = index" [attr.data-slide-to]="i" [class.active]="i == indicatorNumber" ></li>
                 </ol>
                 <!-- Images -->
                 <div class="carousel-inner" >
-                  <div  *ngFor="let apartmentImg of apartment.images; let i = index" class="carousel-item" [class.active]="i == 0">
+                  <div  *ngFor="let apartmentImg of apartment.details?.images; let i = index" class="carousel-item" [class.active]="i == 0">
                     <img class="d-block w-100" [src]='apartmentImg'>
                   </div>
                 </div>
                 <!-- RIGHT LEFT BUTTONS -->
-                <div  *ngIf="apartment.images?.length > 1">
+                <div  *ngIf="apartment.details?.images.length > 1">
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
                   <span class="sr-only">Previous</span>
@@ -32,27 +32,26 @@
       <div class="modal-body">
         <div class="markerCarouselDetails row">
             <div class="col-8">
-                <h5><span>{{apartment.apartment?.apartmentType}}</span> , <span>{{apartment.apartment?.price}}</span> <span><img src="assets/images/icons/coins/ils.png" /></span> </h5>
+                <h5><span>{{apartment.details?.apartmentType}}</span> , <span>{{apartment.details?.price}}</span> <span><img src="assets/images/icons/coins/ils.png" /></span> </h5>
                 <h6>{{apartment.apartment?.location}}</h6>
 
-                <p> <span>תיאור: </span>{{apartment.apartment?.info}}</p>
+                <p> <span>תיאור: </span>{{apartment.details?.info}}</p>
 
-                <p><span>קומה: {{apartment.apartment?.floor}}</span>  <img src="assets/images/icons/floor.png" />
-                    <span>חדרים: {{apartment.apartment?.rooms}}</span><img src="assets/images/icons/rooms.png" />
-                    <span>שירותים: {{apartment.apartment?.toilets}}</span><img src="assets/images/icons/toilets.png" />
+                <p><span>קומה: {{apartment.details?.floor}}</span>  <img src="assets/images/icons/floor.png" />
+                    <span>חדרים: {{apartment.details?.rooms}}</span><img src="assets/images/icons/rooms.png" />
+                    <span>שירותים: {{apartment.details?.toilets}}</span><img src="assets/images/icons/toilets.png" />
                 </p>
 
-                <img src="assets/images/icons/size.png" /> <span>גודל: {{apartment.apartment?.size}}</span>
-                <img src="assets/images/icons/parking.png" /> <span>חניה: {{apartment.apartment?.parking}}</span>
+                <img src="assets/images/icons/size.png" /> <span>גודל: {{apartment.details?.size}}</span>
                 
-                <span>כניסה: {{apartment.apartment?.entrence_date}} </span><img src="assets/images/icons/entrence_date.png" />
+                <span>כניסה: {{apartment.details?.entrance_date}} </span><img src="assets/images/icons/entrence_date.png" />
             </div>
 
             <div class="col-4 markerOwnerContact">
                 <h5><span>צור קשר</span></h5>
-                <h6><img src="assets/images/icons/owner.png" /><span>{{apartment.name}}</span></h6>
-                <h6><img src="assets/images/icons/email.png" /><span>{{apartment.email}}</span></h6>
-                <h6><img src="assets/images/icons/phone.png" /><p  class="ownerPhone" *ngFor="let apartmentPhone of apartment.phones"><a href="tel:">{{apartmentPhone.split("972")[1]}}</a></p></h6>
+                <h6><img src="assets/images/icons/owner.png" /><span>{{apartment.publisher?.name}}</span></h6>
+                <h6><img src="assets/images/icons/email.png" /><span>{{apartment.publisher?.email}}</span></h6>
+                <h6><img src="assets/images/icons/phone.png" /><p  class="ownerPhone" *ngFor="let apartmentPhone of apartment.publisher?.phone"><a href="tel:">{{apartmentPhone.split("972")[1]}}</a></p></h6>
                
                 <div class="input-field col s12">
                     <textarea id="notes" class="notes"></textarea>

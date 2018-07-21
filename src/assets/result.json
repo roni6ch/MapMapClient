@@ -1,416 +1,465 @@
-{
-  "results": [
-    {
-      "id": "12221233",
-      "favorite": false,
+[
+  {
+    "id": "12221233",
+    "user": {
+      "favorite": false
+    },
+    "publisher": {
       "name": "roni",
-      "phones": [
+      "email": "fsdsdf@dfsd.com",
+      "phone": [
         "9720502560005",
         "9720547552782"
-      ],
+      ]
+    },
+    "location": {
+      "address": "Florentin, תל אביב יפו, ישראל",
+      "latlng": {
+        "lat": 32.056442,
+        "lng": 34.772238000000016
+      }
+    },
+    "details": {
+      "apartmentType": "יחידת דיור",
+      "rooms": 5,
+      "size": 80,
+      "floor": 2,
+      "toilets": 2,
+      "info": "SDfdsf",
+      "price": 4000,
+      "entrance_date": "18.3.18",
       "images": [
         "https://cdn.cliqueinc.com/posts/212361/-2030969-1483470364.640x0c.jpg",
         "https://media.architecturaldigest.com/photos/58d535e3e34bbc355f09b0a7/master/w_768/modern-living-room-mac-ii-new-york-new-york-201208-4_1000-watermarked.jpg",
         "https://room-matehotels.com/images/img/oscar/rooms.jpg",
         "https://www.citrus11sukhumvit.com/en/gallery/cozy/cozy-1.jpg"
-      ],
-      "email": "fsdsdf@dfsd.com",
-      "apartment": {
-        "id": "232323",
-        "location": "Florentin, תל אביב יפו, ישראל",
-        "info": "דירה עם מזגן משופצת מן היסוד... דירה עם מזגן משופצת מן היסוד... דירה עם מזגן משופצת מן היסוד... דירה עם מזגן משופצת מן היסוד... דירה עם מזגן משופצת מן היסוד... דירה עם מזגן משופצת מן היסוד... דירה עם מזגן משופצת מן היסוד...",
-        "latlng": {
-          "lat": 32.056442,
-          "lng": 34.772238000000016
-        },
-        "apartmentType": "יחידת דיור",
-        "rooms": 5,
-        "parking": 0,
-        "balcony": 0,
-        "mamad": true,
-        "elevator": false,
-        "air_conditioner": false,
-        "tama": false,
-        "reconditioned": false,
-        "bars": true,
-        "master_room": true,
-        "storage": true,
-        "gym": false,
-        "furniture": false,
-        "pets": false,
-        "roomates": false,
-        "immediate_entrance": true,
-        "apartment_image": true,
-        "price": 4000,
-        "size": 80,
-        "floor": 3,
-        "entrence_date": "1/2/2018",
-        "toilets": 2
+      ]
+    },
+    "filters": {
+      "parking": true,
+      "balcony": true,
+      "mamad": true,
+      "elevator": true,
+      "air_conditioner": true,
+      "tama": true,
+      "reconditioned": true,
+      "bars": true,
+      "master_room": true,
+      "storage": true,
+      "gym": false,
+      "furniture": false,
+      "pets": false,
+      "roommates": false,
+      "immediate_entrance": false
+    }
+  },
+  {
+    "id": "123",
+    "user": {
+      "favorite": true
+    },
+    "publisher": {
+      "name": "gonzo",
+      "email": "22dd@dfsd.com",
+      "phone": [
+        "9720502560000",
+        "9720547552222"
+      ]
+    },
+    "location": {
+      "address": "Frishman, תל אביב יפו, ישראל",
+      "latlng": {
+        "lat": 32.0797543,
+        "lng": 34.77358579999998
       }
     },
-    {
-      "id": "333",
-      "favorite": true,
-      "name": "gonzo",
-      "phones": [
-        "9720502560005"
-      ],
+    "details": {
+      "apartmentType": "סטודיו",
+      "rooms": 2,
+      "size": 90,
+      "floor": 3,
+      "toilets": 4,
+      "info": "sdfsdfsdfsdfsdf",
+      "price": 3500,
+      "entrance_date": "17.3.18",
       "images": [
         "https://room-matehotels.com/images/img/oscar/rooms.jpg",
         "https://www.citrus11sukhumvit.com/en/gallery/cozy/cozy-1.jpg"
-      ],
-      "email": "sdf@dfsd.com",
-      "apartment": {
-        "id": "123213",
-        "location": "Frishman, תל אביב יפו, ישראל",
-        "info": "דירה עם מזגן משופצת מן היסוד...",
-        "latlng": {
-          "lat": 32.0797543,
-          "lng": 34.77358579999998
-        },
-        "apartmentType": "סטודיו",
-        "rooms": 4,
-        "parking": 2,
-        "balcony": 1,
-        "mamad": true,
-        "elevator": true,
-        "air_conditioner": false,
-        "tama": false,
-        "reconditioned": false,
-        "bars": false,
-        "master_room": false,
-        "storage": true,
-        "gym": false,
-        "furniture": false,
-        "pets": false,
-        "roomates": false,
-        "immediate_entrance": false,
-        "apartment_image": true,
-        "price": 4000,
-        "size": 90,
-        "floor": 2,
-        "entrence_date": "10/1/2018",
-        "toilets": 1
+      ]
+    },
+    "filters": {
+      "parking": false,
+      "balcony": true,
+      "mamad": false,
+      "elevator": true,
+      "air_conditioner": true,
+      "tama": true,
+      "reconditioned": false,
+      "bars": true,
+      "master_room": true,
+      "storage": true,
+      "gym": false,
+      "furniture": false,
+      "pets": true,
+      "roommates": true,
+      "immediate_entrance": false
+    }
+  },
+  {
+    "id": "22",
+    "user": {
+      "favorite": true
+    },
+    "publisher": {
+      "name": "dafdf",
+      "email": "22edd@dfsd.com",
+      "phone": [
+        "9720502560333",
+        "9720547552222"
+      ]
+    },
+    "location": {
+      "address": "Carlebach, תל אביב יפו, ישראל",
+      "latlng": {
+        "lat": 32.0688943,
+        "lng": 34.78292369999997
       }
     },
-    {
-      "id": "44",
-      "favorite": false,
-      "name": "David",
-      "phones": [
-        "9720502560005"
-      ],
+    "details": {
+      "apartmentType": "סטודיו",
+      "rooms": 2,
+      "size": 90,
+      "floor": 3,
+      "toilets": 2,
+      "info": "דירה עם מזגן משופצת מן היסוד...",
+      "price": 3500,
+      "entrance_date": "19.3.18",
       "images": [
-        "https://thumb.housinganywhere.com/legacy/photos/409308_0.jpg?kind=large&legacy=1&nocrop=1&rotate=0"
-      ],
-      "email": "sdf@dfsd.com",
-      "apartment": {
-        "id": "322243244",
-        "location": "Carlebach, תל אביב יפו, ישראל",
-        "info": "דירה עם מזגן משופצת מן היסוד...",
-        "latlng": {
-          "lat": 32.0688943,
-          "lng": 34.78292369999997
-        },
-        "apartmentType": "סטודיו",
-        "rooms": 2,
-        "parking": 0,
-        "balcony": 0,
-        "mamad": false,
-        "elevator": true,
-        "air_conditioner": true,
-        "tama": false,
-        "reconditioned": false,
-        "bars": false,
-        "master_room": true,
-        "storage": false,
-        "gym": false,
-        "furniture": false,
-        "pets": false,
-        "roomates": false,
-        "immediate_entrance": false,
-        "apartment_image": true,
-        "price": 4000,
-        "size": 83,
-        "floor": 6,
-        "entrence_date": "10/1/2018",
-        "toilets": 1
+        "https://room-matehotels.com/images/img/oscar/rooms.jpg",
+        "https://www.citrus11sukhumvit.com/en/gallery/cozy/cozy-1.jpg"
+      ]
+    },
+    "filters": {
+      "parking": false,
+      "balcony": false,
+      "mamad": true,
+      "elevator": false,
+      "air_conditioner": false,
+      "tama": false,
+      "reconditioned": false,
+      "bars": false,
+      "master_room": true,
+      "storage": true,
+      "gym": false,
+      "furniture": false,
+      "pets": true,
+      "roommates": true,
+      "immediate_entrance": true
+    }
+  },
+  {
+    "id": "22222",
+    "user": {
+      "favorite": true
+    },
+    "publisher": {
+      "name": "dafdf",
+      "email": "22edd@dfsd.com",
+      "phone": [
+        "9720502560333",
+        "9720547552222"
+      ]
+    },
+    "location": {
+      "address": "Chaim Levanon, תל אביב יפו, ישראל",
+      "latlng": {
+        "lat": 32.112268,
+        "lng": 34.8014455
       }
     },
-    {
-      "id": "221",
-      "favorite": false,
-      "name": "Moshe",
-      "phones": [
-        "9720547552782"
-      ],
+    "details": {
+      "apartmentType": "דירה",
+      "rooms": 2,
+      "size": 90,
+      "floor": 3,
+      "toilets": 2,
+      "info": "דירה עם מזגן משופצת מן היסוד...",
+      "price": 3500,
+      "entrance_date": "19.3.18",
       "images": [
         "assets/images/apartments/1.jpg",
         "assets/images/apartments/2.jpg",
         "assets/images/apartments/3.jpg",
         "assets/images/apartments/4.jpg",
         "assets/images/apartments/5.jpg"
-      ],
-      "email": "sdf@dfsd.com",
-      "apartment": {
-        "id": "324324324",
-        "location": "Chaim Levanon, תל אביב יפו, ישראל",
-        "info": "דירה עם מזגן משופצת מן היסוד...",
-        "latlng": {
-          "lat": 32.112268,
-          "lng": 34.8014455
-        },
-        "apartmentType": "דירה",
-        "rooms": 4,
-        "parking": 2,
-        "balcony": 0,
-        "mamad": true,
-        "elevator": true,
-        "air_conditioner": true,
-        "tama": false,
-        "reconditioned": false,
-        "bars": false,
-        "master_room": false,
-        "storage": false,
-        "gym": false,
-        "furniture": false,
-        "pets": false,
-        "roomates": false,
-        "immediate_entrance": false,
-        "apartment_image": true,
-        "price": 5000,
-        "size": 90,
-        "floor": 2,
-        "entrence_date": "20/4/2018",
-        "toilets": 4
-      }
+      ]
     },
-    {
-      "id": "123332444",
-      "favorite": true,
+    "filters": {
+      "parking": false,
+      "balcony": false,
+      "mamad": true,
+      "elevator": false,
+      "air_conditioner": false,
+      "tama": false,
+      "reconditioned": false,
+      "bars": false,
+      "master_room": true,
+      "storage": true,
+      "gym": false,
+      "furniture": false,
+      "pets": true,
+      "roommates": true,
+      "immediate_entrance": true
+    }
+  },
+  {
+    "id": "123332444",
+    "user": {
+      "favorite": true
+    },
+    "publisher": {
       "name": "Dana",
-      "phones": [
+      "email": "22edd@dfsd.com",
+      "phone": [
         "9720502560005"
-      ],
-      "images": [
-        
-      ],
-      "email": "sdf@dfsd.com",
-      "apartment": {
-        "id": "324324",
-        "location": "תל אביב סבידור מרכז, תל אביב יפו, ישראל",
-        "info": "דירה עם מזגן משופצת מן היסוד...",
-        "latlng": {
-          "lat": 32.0837128,
-          "lng": 34.79691409999998
-        },
-        "apartmentType": "דירה",
-        "rooms": 5,
-        "parking": 0,
-        "balcony": 1,
-        "mamad": false,
-        "elevator": false,
-        "air_conditioner": false,
-        "tama": false,
-        "reconditioned": false,
-        "bars": true,
-        "master_room": false,
-        "storage": true,
-        "gym": false,
-        "furniture": false,
-        "pets": false,
-        "roomates": false,
-        "immediate_entrance": false,
-        "apartment_image": true,
-        "price": 3000,
-        "size": 20,
-        "floor": 5,
-        "entrence_date": "30/1/2018",
-        "toilets": 2
+      ]
+    },
+    "location": {
+      "address": "תל אביב סבידור מרכז, תל אביב יפו, ישראל",
+      "latlng": {
+        "lat": 32.0837128,
+        "lng": 34.79691409999998
       }
     },
-    {
-      "id": "1214444233",
-      "favorite": false,
+    "details": {
+      "apartmentType": "דירה",
+      "rooms": 2,
+      "size": 90,
+      "floor": 3,
+      "toilets": 2,
+      "info": "דירה עם מזגן משופצת מן היסוד...",
+      "price": 3500,
+      "entrance_date": "19.3.18",
+      "images": []
+    },
+    "filters": {
+      "parking": false,
+      "balcony": false,
+      "mamad": false,
+      "elevator": true,
+      "air_conditioner": true,
+      "tama": false,
+      "reconditioned": false,
+      "bars": false,
+      "master_room": true,
+      "storage": true,
+      "gym": false,
+      "furniture": false,
+      "pets": true,
+      "roommates": true,
+      "immediate_entrance": true
+    }
+  },
+  {
+    "id": "1214444233",
+    "user": {
+      "favorite": false
+    },
+    "publisher": {
       "name": "roni",
-      "phones": [
-        "9720502560005",
-        "9720547552782"
-      ],
+      "email": "sdfdsf@dfsd.com",
+      "phone": [
+        "9720502560005"
+      ]
+    },
+    "location": {
+      "address": "תל אביב ההגנה, תל אביב יפו, ישראל",
+      "latlng": {
+        "lat": 32.054124,
+        "lng": 34.784780700000056
+      }
+    },
+    "details": {
+      "apartmentType": "דירה",
+      "rooms": 2,
+      "size": 90,
+      "floor": 3,
+      "toilets": 2,
+      "info": "דירה עם מזגן משופצת מן היסוד...",
+      "price": 3500,
+      "entrance_date": "19.3.18",
       "images": [
         "https://cdn.cliqueinc.com/posts/212361/-2030969-1483470364.640x0c.jpg",
         "https://media.architecturaldigest.com/photos/58d535e3e34bbc355f09b0a7/master/w_768/modern-living-room-mac-ii-new-york-new-york-201208-4_1000-watermarked.jpg"
-      ],
-      "email": "fsdsdf@dfsd.com",
-      "apartment": {
-        "id": "232323",
-        "location": "תל אביב ההגנה, תל אביב יפו, ישראל",
-        "info": "דירה עם מזגן משופצת מן היסוד...",
-        "latlng": {
-          "lat": 32.054124,
-          "lng": 34.784780700000056
-        },
-        "apartmentType": "דירת גן",
-        "rooms": 6,
-        "parking": 3,
-        "balcony": 0,
-        "mamad": false,
-        "elevator": true,
-        "air_conditioner": false,
-        "tama": false,
-        "reconditioned": true,
-        "bars": false,
-        "master_room": true,
-        "storage": true,
-        "gym": false,
-        "furniture": false,
-        "pets": false,
-        "roomates": false,
-        "immediate_entrance": true,
-        "apartment_image": false,
-        "price": 4000,
-        "size": 80,
-        "floor": 3,
-        "entrence_date": "1/2/2018",
-        "toilets": 2
+      ]
+    },
+    "filters": {
+      "parking": false,
+      "balcony": false,
+      "mamad": false,
+      "elevator": true,
+      "air_conditioner": true,
+      "tama": false,
+      "reconditioned": false,
+      "bars": false,
+      "master_room": true,
+      "storage": true,
+      "gym": false,
+      "furniture": false,
+      "pets": true,
+      "roommates": true,
+      "immediate_entrance": true
+    }
+  },
+  {
+    "id": "33",
+    "user": {
+      "favorite": false
+    },
+    "publisher": {
+      "name": "dfsdf",
+      "email": "dsff@dfsd.com",
+      "phone": [
+        "9720502560003"
+      ]
+    },
+    "location": {
+      "address": "Xoho, גורדון, תל אביב יפו, ישראל",
+      "latlng": {
+        "lat": 32.0823678,
+        "lng": 34.771479099999965
       }
     },
-    {
-      "id": "555",
-      "favorite": false,
-      "name": "Tomer",
-      "phones": [
-        "9720502560005"
-      ],
+    "details": {
+      "apartmentType": "דירת גן",
+      "rooms": 2,
+      "size": 90,
+      "floor": 3,
+      "toilets": 2,
+      "info": "דירה עם מזגן משופצת מן היסוד...",
+      "price": 5000,
+      "entrance_date": "19.5.18",
       "images": [
-        "https://img.huffingtonpost.com/asset/58406f761700002600e7d4ec.jpeg?ops=scalefit_720_noupscale",
-        "http://webbkyrkan.com/img/63054/39f6e0639465c7e01eaa79e26ada2a48--house-plans-with-porches-breezeway-house-plans.jpg"
-      ],
-      "email": "sdf@dfsd.com",
-      "apartment": {
-        "id": "123213",
-        "location": "Xoho, גורדון, תל אביב יפו, ישראל",
-        "info": "דירה עם מזגן משופצת מן היסוד...",
-        "latlng": {
-          "lat": 32.0823678,
-          "lng": 34.771479099999965
-        },
-        "apartmentType": "דירת גן",
-        "rooms": 1,
-        "parking": 0,
-        "balcony": 0,
-        "mamad": false,
-        "elevator": false,
-        "air_conditioner": false,
-        "tama": false,
-        "reconditioned": false,
-        "bars": false,
-        "master_room": false,
-        "storage": false,
-        "gym": false,
-        "furniture": true,
-        "pets": true,
-        "roomates": true,
-        "immediate_entrance": false,
-        "apartment_image": false,
-        "price": 4000,
-        "size": 90,
-        "floor": 2,
-        "entrence_date": "10/1/2018",
-        "toilets": 1
+        "https://cdn.cliqueinc.com/posts/212361/-2030969-1483470364.640x0c.jpg",
+        "https://media.architecturaldigest.com/photos/58d535e3e34bbc355f09b0a7/master/w_768/modern-living-room-mac-ii-new-york-new-york-201208-4_1000-watermarked.jpg"
+      ]
+    },
+    "filters": {
+      "parking": true,
+      "balcony": true,
+      "mamad": true,
+      "elevator": true,
+      "air_conditioner": true,
+      "tama": true,
+      "reconditioned": false,
+      "bars": true,
+      "master_room": true,
+      "storage": true,
+      "gym": true,
+      "furniture": true,
+      "pets": true,
+      "roommates": true,
+      "immediate_entrance": true
+    }
+  },
+  {
+    "id": "33",
+    "user": {
+      "favorite": false
+    },
+    "publisher": {
+      "name": "dfsdf",
+      "email": "dsff@dfsd.com",
+      "phone": [
+        "9720502560003"
+      ]
+    },
+    "location": {
+      "address": "Zamenhof, תל אביב יפו, ישראל",
+      "latlng": {
+        "lat": 32.0774435,
+        "lng": 34.77739650000001
       }
     },
-    {
-      "id": "12336662444",
-      "favorite": true,
-      "name": "David",
-      "phones": [
-        "9720502560005"
-      ],
+    "details": {
+      "apartmentType": "דירה",
+      "rooms": 2,
+      "size": 90,
+      "floor": 3,
+      "toilets": 2,
+      "info": "דירה עם מזגן משופצת מן היסוד...",
+      "price": 5000,
+      "entrance_date": "19.5.18",
       "images": [
         "https://thumb.housinganywhere.com/legacy/photos/409308_0.jpg?kind=large&legacy=1&nocrop=1&rotate=0"
-      ],
-      "email": "sdf@dfsd.com",
-      "apartment": {
-        "id": "3243244",
-        "location": "Zamenhof, תל אביב יפו, ישראל",
-        "info": "דירה עם מזגן משופצת מן היסוד...",
-        "latlng": {
-          "lat": 32.0774435,
-          "lng": 34.77739650000001
-        },
-        "apartmentType": "דירה",
-        "rooms": 3,
-        "parking": 2,
-        "balcony": 2,
-        "mamad": true,
-        "elevator": false,
-        "air_conditioner": false,
-        "tama": true,
-        "reconditioned": true,
-        "bars": false,
-        "master_room": false,
-        "storage": false,
-        "gym": false,
-        "furniture": false,
-        "pets": false,
-        "roomates": true,
-        "immediate_entrance": true,
-        "apartment_image": false,
-        "price": 4000,
-        "size": 83,
-        "floor": 6,
-        "entrence_date": "10/1/2018",
-        "toilets": 1
+      ]
+    },
+    "filters": {
+      "parking": true,
+      "balcony": true,
+      "mamad": true,
+      "elevator": true,
+      "air_conditioner": true,
+      "tama": false,
+      "reconditioned": false,
+      "bars": true,
+      "master_room": false,
+      "storage": true,
+      "gym": true,
+      "furniture": true,
+      "pets": true,
+      "roommates": true,
+      "immediate_entrance": true
+    }
+  },
+  {
+    "id": "33",
+    "user": {
+      "favorite": false
+    },
+    "publisher": {
+      "name": "dfsdf",
+      "email": "dsff@dfsd.com",
+      "phone": [
+        "9720502560003"
+      ]
+    },
+    "location": {
+      "address": "Vegan Ice Cream, שדרות רוטשילד, תל אביב יפו, ישראל",
+      "latlng": {
+        "lat": 32.0634363,
+        "lng": 34.773211100000026
       }
     },
-    {
-      "id": "1233222444",
-      "favorite": true,
-      "name": "Moshe",
-      "phones": [
-        "9720502560005"
-      ],
+    "details": {
+      "apartmentType": "דירה",
+      "rooms": 4,
+      "size": 50,
+      "floor": 3,
+      "toilets": 1,
+      "info": "דירה עם מזגן משופצת מן היסוד...",
+      "price": 6000,
+      "entrance_date": "19.5.18",
       "images": [
-        "assets/images/apartments/1.jpg",
-        "assets/images/apartments/2.jpg",
-        "assets/images/apartments/3.jpg",
-        "assets/images/apartments/4.jpg"
-      ],
-      "email": "sdf@dfsd.com",
-      "apartment": {
-        "id": "324324324",
-        "location": "Vegan Ice Cream, שדרות רוטשילד, תל אביב יפו, ישראל",
-        "info": "דירה עם מזגן משופצת מן היסוד...",
-        "latlng": {
-          "lat": 32.0634363,
-          "lng": 34.773211100000026
-        },
-        "apartmentType": "דירה",
-        "rooms": 2,
-        "parking": 0,
-        "balcony": 1,
-        "mamad": true,
-        "elevator": false,
-        "air_conditioner": true,
-        "tama": false,
-        "reconditioned": false,
-        "bars": false,
-        "master_room": false,
-        "storage": true,
-        "gym": false,
-        "furniture": false,
-        "pets": false,
-        "roomates": true,
-        "immediate_entrance": false,
-        "apartment_image": false,
-        "price": 5000,
-        "size": 90,
-        "floor": 2,
-        "entrence_date": "20/4/2018",
-        "toilets": 4
-      }
+        "https://thumb.housinganywhere.com/legacy/photos/409308_0.jpg?kind=large&legacy=1&nocrop=1&rotate=0"
+      ]
+    },
+    "filters": {
+      "parking": false,
+      "balcony": true,
+      "mamad": false,
+      "elevator": true,
+      "air_conditioner": false,
+      "tama": false,
+      "reconditioned": false,
+      "bars": true,
+      "master_room": false,
+      "storage": true,
+      "gym": true,
+      "furniture": false,
+      "pets": true,
+      "roommates": true,
+      "immediate_entrance": true
     }
-    
-  ]
-}
+  }
+]

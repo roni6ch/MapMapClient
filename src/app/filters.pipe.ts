@@ -11,8 +11,8 @@ export class FiltersPipe implements PipeTransform {
     let apratmentsArr = [];
     let apratmentsArrAdvancedFilters = [];
     apartments.filter(function (a) {
-      if (Number(filtersArr.range[0]) <= a.apartment.price && a.apartment.price <= Number(filtersArr.range[1])
-        && filtersArr.favorites == a.favorite) {
+      if (Number(filtersArr.range[0]) <= a.details.price && a.details.price <= Number(filtersArr.range[1])
+        && filtersArr.favorites == a.user.favorite) {
         apratmentsArr.push(a);
       }
     });
@@ -20,7 +20,7 @@ export class FiltersPipe implements PipeTransform {
       apratmentsArr.filter(function (a) {
         let passAllFilters = true;
         filtersArr.advanced_filters.forEach((f, i) => {
-          if (a.apartment[f.filterName] == false)
+          if (a.filters[f.filterName] == false)
               passAllFilters = false;
         })
         if (passAllFilters)
