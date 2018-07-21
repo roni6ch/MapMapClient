@@ -68,8 +68,42 @@ width: 100%;
 min-height: 150px;
 }
 .images{
-  width:200px;height:200px;float:left; margin:10px;
+  width:200px;height:200px;float:left; margin:10px;    max-height: 150px;
 }
 .fileInputLabel{width: 50%;cursor: pointer;display: block;
   margin: 2% auto;}
   .images img{width:100%;}
+
+
+  
+/*LOADER*/
+.loaders{width: 200px;
+  height: 200px;    float: left;}
+.lds-dual-ring {
+  display: inline-block;
+  width: 64px;
+  height: 64px;    margin: 68px auto;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #000;
+  border-color: #000 transparent #000 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*LOADER END */
+  

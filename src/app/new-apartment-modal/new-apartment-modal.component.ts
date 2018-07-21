@@ -9,6 +9,7 @@ import { MapsAPILoader } from '@agm/core';
 import { Apartment } from '../apartment';
 import * as $ from 'jquery';
 
+import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-new-apartment-modal',
@@ -27,6 +28,9 @@ export class NewApartmentModalComponent implements OnInit {
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) { }
 
   ngOnInit() {
+    
+    var instances = M.FormSelect.init($("select"));
+
     this.advancedFiltersJSON.getData().subscribe(data => this.advancedFilters = data);
 
     //apartment class must be initialize
@@ -39,20 +43,20 @@ export class NewApartmentModalComponent implements OnInit {
     let location = {
       address: "",
       latlng: {
-        lat: null,
-        lng: null
+        lat: 0,
+        lng: 0
       }
     }
     let details = {
-      apartmentType: null,
-      rooms: null,
-      size: null,
-      floor: null,
-      toilets: null,
+      apartmentType: [],
+      rooms: 0,
+      size: 0,
+      floor: 0,
+      toilets: 0,
       info: "",
-      price: null,
+      price: 0,
       entrance_date: "",
-      images: null,
+      images: [],
     }
     let filters = {
       parking: false,
@@ -79,7 +83,7 @@ export class NewApartmentModalComponent implements OnInit {
   addImagesToForm(images) {
     console.log('addImagesToForm: ', images);
     //todo: iterate over images
-    this.apartment['images'].push(images);
+    this.apartment.details.images = images;
   }
   publishNewApartment() {
     console.log(this.apartment);
@@ -100,9 +104,7 @@ export class NewApartmentModalComponent implements OnInit {
     });
 
 
-
   }
-
 
   @ViewChild("date") date: ElementRef;
   changeDate(){
@@ -127,6 +129,7 @@ export class NewApartmentModalComponent implements OnInit {
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng()
           }
+          this.apartment.location.address =  place.formatted_address;
           this.apartment.location.latlng.lat = this.latLng.lat;
           this.apartment.location.latlng.lng = this.latLng.lng;
 

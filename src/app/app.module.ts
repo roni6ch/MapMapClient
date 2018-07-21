@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule , NO_ERRORS_SCHEMA } from '@angular/core';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +24,8 @@ import { AdvancedFiltersComponent } from './advanced-filters/advanced-filters.co
 import { NouisliderModule } from 'ng2-nouislider';
 import { FiltersPipe } from './filters.pipe';
 
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 @NgModule({
   declarations: [
@@ -47,8 +49,10 @@ import { FiltersPipe } from './filters.pipe';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NouisliderModule
+    NouisliderModule,
+    MDBBootstrapModule.forRoot()
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService],
   bootstrap: [AppComponent],
   exports:[FiltersPipe]

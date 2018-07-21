@@ -9,7 +9,6 @@
     <div class="modal-content">
       <form #apartmentForm="ngForm">
         <h6>Publish New Apartment!</h6>
-        {{apartment |json}}
         <hr>
         <div class="row">
           <div class="col s12">
@@ -60,7 +59,8 @@
             <div class="input-field col s4">
               <i class="material-icons prefix">date_range</i>
 
-              <input type="text" class="datepicker" [(ngModel)]="apartment.details.entrance_date" name="date" id="inputDate" #date required (change)="changeDate()" />
+              <input type="text" class="datepicker" [(ngModel)]="apartment.details.entrance_date" name="date" id="inputDate" #date required
+                (change)="changeDate()" />
 
               <!--  <input [(ngModel)]="apartment.details.entrance_date" name="date" id="inputDate" type="date" class="validate" required />-->
               <label for="inputMail">Date</label>
@@ -79,16 +79,25 @@
           <label for="inputLocation">Location</label>
         </div>
 
-
         <!-- info -->
         <div class="row">
-          <div class="input-field col s6">
+          <div class="input-field col s10">
             <i class="material-icons prefix">create</i>
             <textarea [(ngModel)]="apartment.details.info" name="description" id="inputDescription" class="materialize-textarea" data-length="250"></textarea>
             <label for="inputDescription">Description...</label>
             <span class="helper-text" data-error="wrong" data-success="right"></span>
           </div>
+          
+        <!-- size -->
+          <div class="input-field col-s2">
+              <input [(ngModel)]="apartment.details.size" name="size" id="inputSize" type="number" class="validate apartmentSize" required />
+              <label for="inputSize">Size</label>
+              <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
         </div>
+
+
+
 
 
         <!-- Images -->
@@ -111,7 +120,57 @@
             </div>
           </div>
         </div>
-
+        
+<div class="row">
+        <!-- apartmentType -->
+        <div class="input-field col s3 apartmentType">
+          <select [(ngModel)]="apartment.details.apartmentType" name="apartmentType" required>
+            <option value="" disabled selected>Type</option>
+            <option value="דירה">דירה</option>
+            <option value="דירת גן">דירת גן</option>
+            <option value="פרטי">פרטי</option>
+          </select>
+        </div>
+        <!--apartmentRooms-->
+        <div class="input-field col s3 apartmentRooms">
+          <select [(ngModel)]="apartment.details.rooms" name="apartmentRooms" required>
+            <option value="" disabled selected>Rooms</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8+</option>
+          </select>
+        </div>
+        <!--apartmentFloor-->
+        <div class="input-field col s3 apartmentFloor">
+          <select [(ngModel)]="apartment.details.floor" name="apartmentFloor" required>
+            <option value="" disabled selected>Floor</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="10">10+</option>
+            <option value="20">20+</option>
+            <option value="30">30+</option>
+          </select>
+        </div>
+        <!--apartmentToilets-->
+        <div class="input-field col s3 apartmentToilets">
+          <select [(ngModel)]="apartment.details.toilets" name="apartmentToilets" required>
+            <option value="" disabled selected>Toilets</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        </div>
 
         <div class="modal-footer">
           <button class="btn  modal-close waves-effect  btn-flat" data-dismiss="modal" type="button">
@@ -126,13 +185,8 @@
           </button>
         </div>
 
-        <!-- TODO -->
-        <input type="hidden" [(ngModel)]="apartment.details.apartmentType" name="apartmentType" value="דירה" />
-        <input type="hidden" [(ngModel)]="apartment.details.rooms" name="rooms" value="2" />
-        <input type="hidden" [(ngModel)]="apartment.details.size" name="size" value="80" />
-        <input type="hidden" [(ngModel)]="apartment.details.floor" name="floor" value="5" />
-        <input type="hidden" [(ngModel)]="apartment.details.toilets" name="toilets" value="2" />
 
+        <!-- TODO -->
         <input type="hidden" [(ngModel)]="apartment.id" name="publisher_user_id" value="123" />
       </form>
     </div>

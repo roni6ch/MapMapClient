@@ -26,17 +26,24 @@ export class ImageUploaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  loaders = [];
   upload(fileInput: any) {
     if (fileInput.target.files && fileInput.target.files[0]) {
       for (var i = 0; i < fileInput.target.files.length; i++) {
         if (fileInput.target.files[i] !== undefined){
           this.uploadData.append("imageFile",fileInput.target.files[i], fileInput.target.files[i].name);
+          this. loaders.push(i);
         }
       }
-     
+      
+      $(".loaders").show();
     }
+
     this.httpReq.uploadImages(this.uploadData).subscribe(data => {
       if (data) {
+
+        $(".loaders").hide();
+        
        this.srcImages = data; 
    console.log("image uploaded: " , data);
       this.images.emit(data);

@@ -11,6 +11,9 @@
       multiple />
     </label>
 
+    <div *ngFor="let loader of loaders" class="loaders" >
+        <div class="lds-dual-ring"></div>
+    </div>
   <div *ngFor="let image of srcImages" class="images" >
     <img [src]="image" />
   </div>
