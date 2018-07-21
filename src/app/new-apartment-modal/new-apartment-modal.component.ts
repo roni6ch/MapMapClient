@@ -104,8 +104,10 @@ export class NewApartmentModalComponent implements OnInit {
   }
 
 
-
-  
+  @ViewChild("date") date: ElementRef;
+  changeDate(){
+    this.apartment.details.entrance_date = this.date.nativeElement.value;
+  }
   @ViewChild("search") searchElementRef: ElementRef;
   latLng = {
     lat: 32.056442,
