@@ -2,7 +2,7 @@
   aria-hidden="true">
   <div class="modal-content modal-dialog modal-dialog-centered" role="document">
     <h6>סינון מתקדם</h6>
-
+<form (ngSubmit)="submitFilters()" #advancedFiltersForm>
 
     
     <!-- advancedFilter -->
@@ -14,7 +14,7 @@
               <img src="assets/images/icons/{{filter.filterName}}.png" />
             </div>
             <span>{{filter.name}}</span>
-            <input type="checkbox"  [(ngModel)]="advancedFilters[i].filter" [name]="'filter'+i" (click)="changeFilter(filter)">
+            <input type="checkbox"  [(ngModel)]="advancedFilters[i].filter" [name]="'filter'+i">
             <span class="lever"></span>
           </label>
         </div>
@@ -22,16 +22,24 @@
     </div>
 
     <div class="lovedApartments">
-      <button  class="btn blue lighten-1 hvr-sweep-to-left" (click)="toggleFavoriteApartment()" >
+      <div  class="btn blue lighten-1 hvr-sweep-to-left" name="favFilterImg"  (click)="favFilterImg = !favFilterImg" >
         <span>הצג מודעות שאהבתי</span>
         <img [src]="favFilterImg ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" class="heart" />
-      </button>
+      </div>
     </div>
 
 
-    <nouislider style="width:100%" [config]="rangeConfig"></nouislider>
+    <nouislider #sliderRef style="width:100%" [config]="rangeConfig"></nouislider>
 
+
+    <!-- room number -->
+
+    <!-- apartment type -->
     
+
+    <button type="submit" class="btn btn-success" >Filter!</button>
+
+  </form>
     
 
   </div>

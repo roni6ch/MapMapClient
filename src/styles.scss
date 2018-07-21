@@ -42,3 +42,10 @@ hr{    width: 100%;}
     min-height: 100%;
     background: transparent;
 }
+
+ .pac-container, .pac-item{
+    z-index: 2147483647 !important;
+    
+    text-align: left;
+ }
+ .pac-logo:after{display:none;}

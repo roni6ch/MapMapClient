@@ -26,18 +26,15 @@ export class MapComponent implements OnInit {
 
   }
   ngOnChanges(changes: any) {
-    if (changes.hasOwnProperty('filterFavoritesInput')) {
-      this.favorites = changes["filterFavoritesInput"].currentValue;
-      //create @pipe that filter the ngFor
-    }
-    if (changes.hasOwnProperty('latLng')) {
+
+
+    //send to pipe in order to filter the results on map
+    if (changes.hasOwnProperty('filtersInput') !==undefined && changes.hasOwnProperty('filtersInput') !== false)
+    this.filtersArr = changes.filtersInput.currentValue;
+
+    else if (changes.hasOwnProperty('latLng') !== undefined && changes.hasOwnProperty('latLng') !== false) {
       this.lat = changes.latLng.currentValue.lat;
       this.lng = changes.latLng.currentValue.lng;
-    }
-    if (changes.hasOwnProperty('filtersInput')) {
-      console.log(changes.filtersInput.currentValue);
-      this.filtersArr = changes.filtersInput.currentValue;
-      //todo: pipe filters on ngFor in map 
     }
 
   }

@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
   private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
   scriptLoaded = false;
 
-  public searchControl: FormControl;
   @ViewChild("searchRef")
   public searchElementRef: ElementRef;
 
@@ -36,8 +35,6 @@ export class AppComponent implements OnInit {
   }
 
   initAutoComplete() {
-    //create search FormControl
-    this.searchControl = new FormControl();
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -73,10 +70,6 @@ export class AppComponent implements OnInit {
       }
     });
   }
-  filtersInput;
-  filtersInputFunc(event){
-    this.filtersInput = event;
-  }
   signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     console.log(auth2);
@@ -85,7 +78,10 @@ export class AppComponent implements OnInit {
       console.log('User signed out.');
     });
   }
-
+  filtersInput = [];
+  filtersInputFunc(event){
+    this.filtersInput = event; 
+  }
   openSearchInput() {
     this.search = true;
   }

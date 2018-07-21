@@ -1,5 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,ViewChild } from '@angular/core';
 import { AdvancedFilterService } from '../services/advanced-filter.service';
+import { Filters } from '../filters';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -10,11 +12,11 @@ import { AdvancedFilterService } from '../services/advanced-filter.service';
 export class AdvancedFiltersComponent implements OnInit {
 
   advancedFilters = [];
-
+  filtersObj:any;
   favFilterImg = false;
+  @ViewChild('sliderRef') sliderRef;
   @Output() favoritesClick = new EventEmitter();
   @Output() filters  = new EventEmitter();
-
 
   rangeConfig: any = {
     behaviour: 'drag',
@@ -31,42 +33,32 @@ export class AdvancedFiltersComponent implements OnInit {
 
   };
 
-  constructor(private advancedFiltersJSON: AdvancedFilterService) { }
+  constructor(private advancedFiltersJSON: AdvancedFilterService) {
+    //init filters
+    this.filtersObj = new Filters(false, {} ,["3000","7000"]);
+   }
 
   ngOnInit() {
     this.advancedFiltersJSON.getData().subscribe(data => {
       this.advancedFilters = data;
     });
   }
-
-  filtersArrOutput = [];
-  changeFilter(filter) {
-      console.log(filter);
-
-      this.advancedFilters.forEach((f, i,advancedFilters) =>  {
-        if (filter.name == f.name && !filter.filter){
-          advancedFilters[i].filter = !advancedFilters[i].filter;
-          this.filtersArrOutput.push(filter);
-          //https://stackoverflow.com/questions/46702410/ngonchange-not-called-when-value-change
-          this.filtersArrOutput = this.filtersArrOutput.slice();
-          this.filters.emit(this.filtersArrOutput);
-          return;
-        }
-        else if (filter.name == f.name && filter.filter){
-          advancedFilters[i].filter = !advancedFilters[i].filter;
-          this.filtersArrOutput = this.filtersArrOutput.filter(obj => {
-            return obj.name !== filter.name
-          })
-          this.filtersArrOutput = this.filtersArrOutput.slice();
-          this.filters.emit(this.filtersArrOutput);
-          return;
-        }
-      }, this);
-
-  }
   toggleFavoriteApartment() {
     this.favFilterImg = !this.favFilterImg;
     this.favoritesClick.emit(this.favFilterImg);
-
+  }
+  submitFilters(){
+    this.filtersObj.favorites = this.favFilterImg;
+    this.filtersObj.advanced_filters = this.advancedFilters.filter(obj => {
+      return obj.filter;
+    })
+    this.filtersObj.range = this.sliderRef.slider.get();
+    console.log(this.filtersObj);
+    //HELP FOR NGCHANGE
+    //https://stackoverflow.com/questions/46702410/ngonchange-not-called-when-value-change
+    this.filtersObj.status = !this.filtersObj.status
+    this.filtersObj = Object.assign({}, this.filtersObj);
+    
+    this.filters.emit(this.filtersObj);
   }
 }

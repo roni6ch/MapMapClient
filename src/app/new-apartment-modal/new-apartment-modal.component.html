@@ -7,12 +7,10 @@
 
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <form>
+      <form #apartmentForm="ngForm">
         <h6>Publish New Apartment!</h6>
+        {{apartment |json}}
         <hr>
-        <div class="row">
-          <form class="col s12">
-
             <div class="row">
               <div class="col s12">
 
@@ -20,13 +18,13 @@
                   <i class="material-icons prefix">account_circle</i>
                   <input [(ngModel)]="apartment.name" name="name" id="inputFirstName" type="text" class="validate" required data-length="20"
                     materialize="characterCounter">
-                  <label for="inputFirstName">First Name</label>
+                  <label for="inputFirstName" >First Name</label>
                   <span class="helper-text" data-error="wrong" data-success="right"></span>
                 </div>
 
                 <div class="input-field col s6">
                   <i class="material-icons prefix">phone</i>
-                  <input [(ngModel)]="apartment.phone" name="phone" id="icon_telephone" type="number" class="validate" required data-length="10"
+                  <input [(ngModel)]="apartment.publisher.phone" name="phone" id="icon_telephone" type="number" class="validate" required data-length="10"
                     placeholder="050-0000000">
                   <label for="icon_telephone">Telephone</label>
                   <span class="helper-text" data-error="wrong" data-success="right"></span>
@@ -39,7 +37,7 @@
 
                 <div class="input-field col s4">
                   <i class="material-icons prefix">
-                    <img src="assets/images/icons/coins/ils.png" />
+                    <img src="assets/images/icons/coins/ils.png"/>
                   </i>
                   <input [(ngModel)]="apartment.price" name="price" id="inputPrice" type="number" data-length="10" class="validate" required
                     onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9,.]{3,10}" />
@@ -57,7 +55,10 @@
                 <!-- TODO: check Any picker date js -->
                 <div class="input-field col s4">
                   <i class="material-icons prefix">date_range</i>
-                  <input [(ngModel)]="apartment.date" name="date" id="inputDate" type="date" class="validate" required />
+                  
+            <!--      <input type="text" class="datepicker validate"  [(ngModel)]="apartment.entrance_date" name="date" id="inputDate" required > -->
+                  
+                  <input [(ngModel)]="apartment.entrance_date" name="date" id="inputDate" type="date" class="validate" required />
                   <label for="inputMail">Date</label>
                   <span class="helper-text" data-error="wrong" data-success="right"></span>
                 </div>
@@ -65,10 +66,22 @@
               </div>
             </div>
 
+            <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+
+                
+                <input #search    name="location" [(ngModel)]="apartment.location.name"  
+                autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control mr-sm-2 "
+                type="search" id="inputLocation"  placeholder="Search for location" aria-label="Search" >
+                
+                
+                <label for="inputLocation">Location</label>
+              </div>
+
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s6">
                 <i class="material-icons prefix">create</i>
-                <textarea [(ngModel)]="apartment.description" name="description" id="inputDescription" class="materialize-textarea" data-length="250"></textarea>
+                <textarea [(ngModel)]="apartment.info" name="description" id="inputDescription" class="materialize-textarea" data-length="250"></textarea>
                 <label for="inputDescription">Description...</label>
                 <span class="helper-text" data-error="wrong" data-success="right"></span>
               </div>
@@ -87,7 +100,8 @@
                       <img src="assets/images/icons/{{filter.filterName}}.png" />
                     </div>
                     <span>{{filter.name}}</span>
-                    <input [(ngModel)]="apartment.filters[filter.name]" name="filter" type="checkbox" > 
+
+                    <input [(ngModel)]="apartment.filters[filter.filterName]"  name="filter" type="checkbox" > 
                     <span class="lever"></span>
                   </label>
                 </div>
@@ -108,8 +122,15 @@
                 </span>
               </button>
             </div>
-          </form>
-        </div>
+
+            <!-- TODO -->
+            <input type="hidden" [(ngModel)]="apartment.details.apartmentType"  name="apartmentType" />
+            <input type="hidden" [(ngModel)]="apartment.details.rooms"  name="rooms" />
+            <input type="hidden" [(ngModel)]="apartment.details.size"  name="size"  />
+            <input type="hidden" [(ngModel)]="apartment.details.floor"  name="floor"  />
+            <input type="hidden" [(ngModel)]="apartment.details.toilets"  name="toilets"  />
+
+            <input type="hidden" [(ngModel)]="apartment.publisher.user_id"  name="publisher_user_id" value="123" />
       </form>
     </div>
   </div>
