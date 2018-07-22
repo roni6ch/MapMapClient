@@ -68,21 +68,25 @@ width: 100%;
 min-height: 150px;
 }
 .images{
-  width:200px;height:200px;float:left; margin:10px;    max-height: 150px;
+  width:21%;float:left; margin:2%;        max-height: 110px;
+  overflow: hidden;display: flex;    pointer-events: none;
 }
 .fileInputLabel{width: 50%;cursor: pointer;display: block;
   margin: 2% auto;}
   .images img{width:100%;}
 
-
+.hoverInputBox{
+  background: #000;
+  opacity:0.5;
+}
   
 /*LOADER*/
 .loaders{width: 200px;
-  height: 200px;    float: left;}
+  height: 110px;    float: left;}
 .lds-dual-ring {
   display: inline-block;
   width: 64px;
-  height: 64px;    margin: 68px auto;
+  height: 64px;       margin: 31px auto;
 }
 
 .lds-dual-ring:after {

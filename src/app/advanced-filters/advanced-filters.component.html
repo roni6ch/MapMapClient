@@ -28,13 +28,68 @@
       </div>
     </div>
 
+    <div class="imageApartments">
+        <div  class="btn blue lighten-1 hvr-sweep-to-left" name="imgFilterImg"  (click)="imgFilterImg = !imgFilterImg" >
+          <span>הצג מודעות עם תמונות בלבד</span>
+          <img [src]="imgFilterImg ? 'assets/images/icons/apartment_image-full.png' : 'assets/images/icons/apartment_image.png'" class="heart" />
+        </div>
+      </div>
+
 
     <nouislider #sliderRef style="width:100%" [config]="rangeConfig"></nouislider>
 
 
-    <!-- room number -->
+<div class="row">
+    <!-- apartmentType -->
+    <div class="input-field col s3 apartmentType">
+      <select [(ngModel)]="filtersObj.apartmentType" name="apartmentType" required>
+        <option value="all" selected>הכל</option>
+        <option value="דירה">דירה</option>
+        <option value="דירת גן">דירת גן</option>
+        <option value="פרטי">פרטי</option>
+      </select>
+    </div>
+    <!--apartmentRooms-->
+    <div class="input-field col s3 apartmentRooms">
+      <select [(ngModel)]="filtersObj.rooms" name="apartmentRooms" required>
+        <option value="" disabled selected>Rooms</option>
+        <option value="1">1</option>
+        <option value="2">2+</option>
+        <option value="3">3+</option>
+        <option value="4">4+</option>
+        <option value="5">5+</option>
+        <option value="6">6+</option>
+        <option value="7">7+</option>
+        <option value="8">8+</option>
+      </select>
+    </div>
+    <!--apartmentFloor-->
+    <div class="input-field col s3 apartmentFloor">
+      <select [(ngModel)]="filtersObj.floor" name="apartmentFloor" required>
+        <option value="" disabled selected>Floor</option>
+        <option value="0">0</option>
+        <option value="1">1+</option>
+        <option value="2">2+</option>
+        <option value="3">3+</option>
+        <option value="4">4+</option>
+        <option value="5">5+</option>
+        <option value="10">10+</option>
+        <option value="20">20+</option>
+        <option value="30">30+</option>
+      </select>
+    </div>
+    <!--apartmentToilets-->
+    <div class="input-field col s3 apartmentToilets">
+      <select [(ngModel)]="filtersObj.toilets" name="apartmentToilets" required>
+        <option value="" disabled selected>Toilets</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+    </div>
 
-    <!-- apartment type -->
     
 
     <button type="submit" class="btn btn-success" >Filter!</button>

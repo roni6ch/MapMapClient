@@ -88,24 +88,21 @@ export class AppComponent implements OnInit {
   focusOutSearch(e: any) {
     this.search = false;
   }
+  connect = false;
   showLoginBT(bool: boolean) {
     if (bool) {
       //show login
+      this.connect = true;
       $(".googleBT").show();
-      $(".signOut").hide();
-      $(".name").hide();
-      $(".email").hide();
-
     }
     else {
       //show profile
+      this.connect = false;
       $(".googleBT").hide();
-      $(".name").show();
-      $(".email").show();
+      $(".signOut").show();
       $(".signOut").attr("src", this.profile['picture']);
       $(".name").html(this.profile['given_name'] + this.profile['family_name']);
       $(".email").html(this.profile['email']);
-      $(".signOut").show();
     }
   }
 

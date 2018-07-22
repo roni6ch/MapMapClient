@@ -30,19 +30,19 @@
       <div class="userProfile">
 
         <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) -->
-        <div class="googleBT">
+        <div class="googleBT" >
           <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
           </google-signin>
         </div>
 
-        <img [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut' (click)="signOut()">
+        <img [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut' [hidden]="connect" (click)="signOut()">
       </div>
       <div class="navDetails">
         <p>
-          <span class="black-text name">{{profile['given_name'] }} {{profile['family_name']}}</span>
+          <span class="black-text name" [hidden]="connect" >{{profile['given_name'] }} {{profile['family_name']}}</span>
         </p>
         <p>
-          <span class="black-text email">{{profile['email']}}</span>
+          <span class="black-text email" [hidden]="connect" >{{profile['email']}}</span>
         </p>
       </div>
     </div>
