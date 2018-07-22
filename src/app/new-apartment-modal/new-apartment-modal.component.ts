@@ -54,7 +54,7 @@ export class NewApartmentModalComponent implements OnInit {
       floor: 0,
       toilets: 0,
       info: "",
-      price: 0,
+      price: null,
       entrance_date: "",
       images: [],
     }
@@ -113,7 +113,10 @@ export class NewApartmentModalComponent implements OnInit {
 
   @ViewChild("date") date: ElementRef;
   changeDate(){
-    this.apartment.details.entrance_date = this.date.nativeElement.value;
+    if (this.date.nativeElement)
+      this.apartment.details.entrance_date = this.date.nativeElement.value;
+    else if(this.date)
+      this.apartment.details.entrance_date =  this.date['value'];
   }
   @ViewChild("search") searchElementRef: ElementRef;
   latLng = {

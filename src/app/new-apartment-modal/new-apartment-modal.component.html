@@ -16,39 +16,44 @@
             <!-- Name -->
             <div class="input-field col s6">
               <i class="material-icons prefix">account_circle</i>
-              <input [(ngModel)]="apartment.publisher.name" #name="ngModel" name="name" id="inputFirstName" 
-               minlength="2" type="text" class="validate" required data-length="20"
-                materialize="characterCounter" (focus)="submittedError = false">
+              <input [(ngModel)]="apartment.publisher.name" #name="ngModel" name="name" id="inputFirstName" minlength="2" maxlength="20" type="text" class="validate"
+                required data-length="20" materialize="characterCounter" (focus)="submittedError = false">
               <label for="inputFirstName">First Name</label>
               <span class="helper-text" data-error="wrong" data-success="right"></span>
-              
+
 
               <div *ngIf="name.invalid && (name.dirty || name.touched) ||  submittedError">
-                <div *ngIf="name.errors.required"  class="alert alert-danger">
+                <div *ngIf="name.errors?.required" class="alert alert-danger">
                   Name is required.
                 </div>
-                <div *ngIf="name.errors.minlength"  class="alert alert-danger">
+                <div *ngIf="name.errors?.minlength" class="alert alert-danger">
                   Name must be at least 2 characters long.
                 </div>
-            </div>
+                <div *ngIf="name.errors?.maxlength" class="alert alert-danger">
+                    Name must be at Max 20 characters long.
+                  </div>
+              </div>
 
             </div>
             <!-- Phone -->
             <div class="input-field col s6">
               <i class="material-icons prefix">phone</i>
-              <input [(ngModel)]="apartment.publisher.phone" #phone="ngModel" name="phone" id="icon_telephone" type="number" class="validate" 
-               minlength="9" required data-length="10" (focus)="submittedError = false"  placeholder="050-0000000">
+              <input [(ngModel)]="apartment.publisher.phone" #phone="ngModel" name="phone" id="icon_telephone" type="number" class="validate"
+                minlength="9"  maxlength="15" required data-length="10" (focus)="submittedError = false" placeholder="050-0000000">
               <label for="icon_telephone">Telephone</label>
               <span class="helper-text" data-error="wrong" data-success="right"></span>
-              
-          <div *ngIf="phone.invalid && (phone.dirty || phone.touched) ||  submittedError" >
-              <div *ngIf="phone.errors.required"  class="alert alert-danger">
+
+              <div *ngIf="phone.invalid && (phone.dirty || phone.touched) ||  submittedError">
+                <div *ngIf="phone.errors?.required" class="alert alert-danger">
                   Phone is required.
+                </div>
+                <div *ngIf="phone.errors?.minlength" class="alert alert-danger">
+                  Phone must be at least 9 digits.
+                </div>
+                <div *ngIf="phone.errors?.maxlength" class="alert alert-danger">
+                    Phone must be at Max of 15 digits.
+                  </div>
               </div>
-              <div *ngIf="phone.errors.minlength"  class="alert alert-danger">
-                Phone must be at least 9 digits.
-              </div>
-          </div>
             </div>
           </div>
         </div>
@@ -60,10 +65,23 @@
               <i class="material-icons prefix">
                 <img src="assets/images/icons/coins/ils.png" />
               </i>
-              <input [(ngModel)]="apartment.details.price" name="price" id="inputPrice" type="number" data-length="10" class="validate"
+              <input [(ngModel)]="apartment.details.price" #price="ngModel" name="price" id="inputPrice" type="number" data-length="10" class="validate"
                 required onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9,.]{3,10}" />
               <label for="inputPrice">Price</label>
               <span class="helper-text" data-error="wrong" data-success="right"></span>
+
+              <div *ngIf="price.invalid && (price.dirty || price.touched) ||  submittedError">
+                  <div *ngIf="price.errors?.required" class="alert alert-danger">
+                    Price is required.
+                  </div>
+                  <div *ngIf="price.errors?.minlength" class="alert alert-danger">
+                      Price must be at least 3 characters long.
+                  </div>
+                  <div *ngIf="price.errors?.maxlength" class="alert alert-danger">
+                      Price must be at most 10 characters long.
+                  </div>
+                </div>
+
             </div>
             <!-- Email -->
             <div class="input-field col s4">
@@ -78,13 +96,18 @@
             <div class="input-field col s4">
               <i class="material-icons prefix">date_range</i>
 
-              <input type="text" class="datepicker" [(ngModel)]="apartment.details.entrance_date" name="date" id="inputDate" #date required
+              <input type="text" class="datepicker" #date="ngModel" [(ngModel)]="apartment.details.entrance_date" name="date" id="inputDate" required
                 (change)="changeDate()" />
 
               <label for="inputMail">Date</label>
               <span class="helper-text" data-error="wrong" data-success="right"></span>
-            </div>
 
+              <div *ngIf="date.invalid && (date.dirty || date.touched) ||  submittedError">
+                  <div *ngIf="date.errors?.required" class="alert alert-danger">
+                      Date is required.
+                  </div>
+                </div>
+            </div>
           </div>
         </div>
 
@@ -92,7 +115,7 @@
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
 
-          <input #search name="location" [(ngModel)]="apartment.location.address" autocorrect="off" autocapitalize="off" spellcheck="off"
+          <input #search name="location" [(ngModel)]="apartment.location.address" autocorrect="off" autocapitalize="off" spellcheck="off" required
             class="form-control mr-sm-2 " type="search" id="inputLocation" placeholder="Search for location" aria-label="Search">
           <label for="inputLocation">Location</label>
         </div>
@@ -108,16 +131,11 @@
 
           <!-- size -->
           <div class="input-field col-s2">
-            <input [(ngModel)]="apartment.details.size" name="size" id="inputSize" type="number" class="validate apartmentSize" 
-            />
+            <input [(ngModel)]="apartment.details.size" name="size" id="inputSize" type="number" class="validate apartmentSize" />
             <label for="inputSize">Size</label>
             <span class="helper-text" data-error="wrong" data-success="right"></span>
           </div>
         </div>
-
-
-
-
 
         <!-- Images -->
         <app-image-uploader (images)="addImagesToForm($event)"></app-image-uploader>
@@ -143,7 +161,7 @@
         <div class="row">
           <!-- apartmentType -->
           <div class="input-field col s3 apartmentType">
-            <select [(ngModel)]="apartment.details.apartmentType" name="apartmentType" >
+            <select [(ngModel)]="apartment.details.apartmentType" name="apartmentType">
               <option value="" disabled selected>Type</option>
               <option value="דירה">דירה</option>
               <option value="דירת גן">דירת גן</option>
@@ -152,7 +170,7 @@
           </div>
           <!--apartmentRooms-->
           <div class="input-field col s3 apartmentRooms">
-            <select [(ngModel)]="apartment.details.rooms" name="apartmentRooms" >
+            <select [(ngModel)]="apartment.details.rooms" name="apartmentRooms">
               <option value="" disabled selected>Rooms</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -166,7 +184,7 @@
           </div>
           <!--apartmentFloor-->
           <div class="input-field col s3 apartmentFloor">
-            <select [(ngModel)]="apartment.details.floor" name="apartmentFloor" >
+            <select [(ngModel)]="apartment.details.floor" name="apartmentFloor">
               <option value="" disabled selected>Floor</option>
               <option value="0">0</option>
               <option value="1">1</option>
@@ -181,7 +199,7 @@
           </div>
           <!--apartmentToilets-->
           <div class="input-field col s3 apartmentToilets">
-            <select [(ngModel)]="apartment.details.toilets" name="apartmentToilets" >
+            <select [(ngModel)]="apartment.details.toilets" name="apartmentToilets">
               <option value="" disabled selected>Toilets</option>
               <option value="1">1</option>
               <option value="2">2</option>
