@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild ,NgZone } from '@angular/core';
 import { AdvancedFilterService } from '../services/advanced-filter.service';
 import { HttpRequestsService } from '../services/http-requests.service';
-import { FormControl } from '@angular/forms';
+import { FormControl , NgForm  } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { google } from "google-maps";
 declare var google : google;
@@ -85,7 +85,12 @@ export class NewApartmentModalComponent implements OnInit {
     //todo: iterate over images
     this.apartment.details.images = images;
   }
-  publishNewApartment() {
+  submittedError = false;
+  publishNewApartment(myForm: NgForm) {
+    if (!myForm.valid) {
+      this.submittedError=true;
+      return false;
+    }
     console.log(this.apartment);
     var trueFilters = {};
     for (var key in this.apartment.filters) {
