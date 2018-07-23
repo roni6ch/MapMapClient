@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpClient , HttpHeaders } from '@angular/common/http';
+import { IApartments } from '../iapartments';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,11 @@ export class HttpRequestsService {
     })
   };
   
+  getData(data:any): Observable<IApartments[]>{
+    let url = "../assets/result.json";
+    return this.http.get<IApartments[]>(url, { params: data });
+  }
+
   login(google_user_id:string){
     let url = "https://mapmapserver.herokuapp.com/login";
     let data = {

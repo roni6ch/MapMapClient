@@ -8,11 +8,7 @@ import { IApartments } from '../iapartments';
 })
 export class ApartmentsService {
 
-  private _url = "../assets/result.json";
-  
+  // can delete this file
   constructor(private http : HttpClient) { }
 
-  getData(): Observable<IApartments[]>{
-    return this.http.get<IApartments[]>(this._url);
-  }
 }

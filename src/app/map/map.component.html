@@ -1,5 +1,5 @@
 <!-- MAP -->
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="mapOptions.zoom">
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="mapOptions.zoom" [minZoom]="mapOptions.zoom"  [maxZoom]="mapOptions.zoom"  (boundsChange)="boundsChange($event)">
   <!-- MARKERS -->
   <agm-marker *ngFor="let a of apartments | filters:filtersArr" [latitude]="a.location.latlng.lat" [longitude]="a.location.latlng.lng"   (markerClick)="openMarker(a,infowindow)" >
      <!-- INFO WINDOW -->

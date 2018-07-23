@@ -1,9 +1,8 @@
-import { Component, OnInit, Output, EventEmitter,ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { AdvancedFilterService } from '../services/advanced-filter.service';
 import { Filters } from '../filters';
 import * as $ from 'jquery';
 import * as M from 'materialize-css';
-
 
 @Component({
   selector: 'app-advanced-filters',
@@ -13,12 +12,12 @@ import * as M from 'materialize-css';
 export class AdvancedFiltersComponent implements OnInit {
 
   advancedFilters = [];
-  filtersObj:any;
+  filtersObj: any;
   favFilterImg = false;
   imgFilterImg = false;
   @ViewChild('sliderRef') sliderRef;
   @Output() favoritesClick = new EventEmitter();
-  @Output() filters  = new EventEmitter();
+  @Output() filters = new EventEmitter();
 
   rangeConfig: any = {
     behaviour: 'drag',
@@ -37,9 +36,8 @@ export class AdvancedFiltersComponent implements OnInit {
 
   constructor(private advancedFiltersJSON: AdvancedFilterService) {
     //init filters
-    this.filtersObj = new Filters(false, {} ,["3000","7000"],"all",0,0,0,false);
-    
-   }
+    this.filtersObj = new Filters(false, {}, ["3000", "7000"], "all", 0, 0, 0, false);
+  }
 
   ngOnInit() {
     this.advancedFiltersJSON.getData().subscribe(data => {
@@ -51,7 +49,7 @@ export class AdvancedFiltersComponent implements OnInit {
     this.favFilterImg = !this.favFilterImg;
     this.favoritesClick.emit(this.favFilterImg);
   }
-  submitFilters(){
+  submitFilters() {
     this.filtersObj.favorites = this.favFilterImg;
     this.filtersObj.images = this.imgFilterImg;
     this.filtersObj.advanced_filters = this.advancedFilters.filter(obj => {
@@ -64,7 +62,7 @@ export class AdvancedFiltersComponent implements OnInit {
     //https://stackoverflow.com/questions/46702410/ngonchange-not-called-when-value-change
     this.filtersObj.status = !this.filtersObj.status
     this.filtersObj = Object.assign({}, this.filtersObj);
-    
+
     this.filters.emit(this.filtersObj);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Input } from '@angular/core';
-import { ApartmentsService } from '../services/apartments.service';
+import { HttpRequestsService } from '../services/http-requests.service';
 import { FiltersPipe } from '../filters.pipe';
 
 
@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   mapOptions: object = {
     zoom: 14
   };
-  constructor(private apartmentResults: ApartmentsService) {
+  constructor(private httpReq: HttpRequestsService) {
   }
   ngOnChanges(changes: any) {
 
@@ -41,9 +41,13 @@ export class MapComponent implements OnInit {
   }
   ngOnInit() {
     //get result.json
-    this.apartmentResults.getData().subscribe(data => { this.apartments = data; console.log(data) });
+    //this.httpReq.getData().subscribe(data => { this.apartments = data; console.log(data) });
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
+  } 
+  boundsChange(bounds){
+    console.log(bounds);
+    this.httpReq.getData(bounds).subscribe(data => { this.apartments = data; console.log(data) });
   }
 
   infoWindow: any;
@@ -63,4 +67,5 @@ export class MapComponent implements OnInit {
     this.apartmentModal = apartment;
     console.log(apartment);
   }
+ 
 }

@@ -105,8 +105,4 @@ export class AppComponent implements OnInit {
       $(".email").html(this.profile['email']);
     }
   }
-
-  
-
-
 }

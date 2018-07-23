@@ -36,31 +36,31 @@ export class ImageUploaderComponent implements OnInit {
   upload(fileInput: any) {
     this.loaders = [];
     let files;
-    
-   if (fileInput.target && fileInput.target.files && fileInput.target.files[0]) {
-      files =  fileInput.target.files;
+
+    if (fileInput.target && fileInput.target.files && fileInput.target.files[0]) {
+      files = fileInput.target.files;
     }
 
     if (files)
-    for (var i = 0; i < files.length; i++) {
-      if (files[i] !== undefined) {
-      this.loaders.push(i);
-      this.uploadData.append("imageFile", files[i], files[i].name);
+      for (var i = 0; i < files.length; i++) {
+        if (files[i] !== undefined) {
+          this.loaders.push(i);
+          this.uploadData.append("imageFile", files[i], files[i].name);
+        }
       }
-    }
 
     $(".loaders").show();
     this.hoverInputBox = false;
 
     if (this.uploadData !== undefined)
-    this.httpReq.uploadImages(this.uploadData).subscribe(data => {
-      if (data) {
-        $(".loaders").hide();
-        this.srcImages = data;
-        console.log("image uploaded: ", data);
-        this.images.emit(data);
-      }
-    });
+      this.httpReq.uploadImages(this.uploadData).subscribe(data => {
+        if (data) {
+          $(".loaders").hide();
+          this.srcImages = data;
+          console.log("image uploaded: ", data);
+          this.images.emit(data);
+        }
+      });
   }
 
 }
