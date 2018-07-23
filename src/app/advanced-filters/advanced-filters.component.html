@@ -1,7 +1,7 @@
 <div class="modal fade  advencedFilterModalWrapper" id="advancedFiltersModal" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-content modal-dialog modal-dialog-centered" role="document">
-    <h6>סינון מתקדם</h6>
+    <h6>סינון</h6>
 <form (ngSubmit)="submitFilters()" #advancedFiltersForm>
 
     
@@ -21,20 +21,24 @@
       </div>
     </div>
 
+    <div class="row">
+        <div class="col s6">
     <div class="lovedApartments">
       <div  class="btn blue lighten-1 hvr-sweep-to-left" name="favFilterImg"  (click)="favFilterImg = !favFilterImg" >
         <span>הצג מודעות שאהבתי</span>
         <img [src]="favFilterImg ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" class="heart" />
       </div>
     </div>
-
+</div>
+<div class="col s6">
     <div class="imageApartments">
         <div  class="btn blue lighten-1 hvr-sweep-to-left" name="imgFilterImg"  (click)="imgFilterImg = !imgFilterImg" >
           <span>הצג מודעות עם תמונות בלבד</span>
           <img [src]="imgFilterImg ? 'assets/images/icons/apartment_image-full.png' : 'assets/images/icons/apartment_image.png'" class="heart" />
         </div>
       </div>
-
+      </div>
+</div>
 
     <nouislider #sliderRef style="width:100%" [config]="rangeConfig"></nouislider>
 
@@ -43,7 +47,8 @@
     <!-- apartmentType -->
     <div class="input-field col s3 apartmentType">
       <select [(ngModel)]="filtersObj.apartmentType" name="apartmentType" required>
-        <option value="all" selected>הכל</option>
+        <option value="all" selected disabled>Type</option>
+        <option value="all">הכל</option>
         <option value="דירה">דירה</option>
         <option value="דירת גן">דירת גן</option>
         <option value="פרטי">פרטי</option>

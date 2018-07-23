@@ -1,10 +1,10 @@
 <!-- MAP -->
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="mapOptions.zoom">
   <!-- MARKERS -->
-  <agm-marker *ngFor="let a of apartments | filters:filtersArr" [latitude]="a.location.latlng.lat" [longitude]="a.location.latlng.lng">
+  <agm-marker *ngFor="let a of apartments | filters:filtersArr" [latitude]="a.location.latlng.lat" [longitude]="a.location.latlng.lng"   (markerClick)="openMarker(a,infowindow)" >
      <!-- INFO WINDOW -->
-     <agm-info-window>
-        <app-infowindow [apartment]="a" (apartmentOBJ)="openApartment($event)"></app-infowindow>
+     <agm-info-window  #infowindow>
+        <app-infowindow  [apartment]="a"></app-infowindow>
      </agm-info-window>
   </agm-marker>
 </agm-map>

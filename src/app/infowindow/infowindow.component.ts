@@ -11,15 +11,11 @@ import { IApartments } from '../iapartments';
 export class InfowindowComponent implements OnInit {
 
   @Input() apartment: any; 
-  @Output() apartmentOBJ = new EventEmitter();
   constructor() { 
   }
 
   ngOnInit() {
   }
 
-  infoWindowClick(){
-    this.apartmentOBJ.emit(this.apartment);
-  }
 
 }
