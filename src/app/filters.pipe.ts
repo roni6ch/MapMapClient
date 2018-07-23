@@ -14,7 +14,7 @@ export class FiltersPipe implements PipeTransform {
       //filter by range
       if (Number(filtersArr.range[0]) <= a.details.price && a.details.price <= Number(filtersArr.range[1])
         && ( filtersArr.favorites == a.user.favorite  || !filtersArr.favorites )
-        && ( filtersArr.apartmentType == a.details.apartmentType || filtersArr.apartmentType == 'all')
+        && ( filtersArr.apartment_type == a.details.apartment_type || filtersArr.apartment_type == 'all')
         && Number(a.details.rooms) >= filtersArr.rooms 
         && Number(a.details.floor) >= filtersArr.floor
         && Number(a.details.toilets) >= filtersArr.toilets) {

@@ -38,7 +38,7 @@ export class NewApartmentModalComponent implements OnInit {
     let publisher = {
       name: "",
       email:"",
-      phone: null
+      phones: null
     }
     let location = {
       address: "",
@@ -48,7 +48,7 @@ export class NewApartmentModalComponent implements OnInit {
       }
     }
     let details = {
-      apartmentType: [],
+      apartment_type: [],
       rooms: 0,
       size: 0,
       floor: 0,

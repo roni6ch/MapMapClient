@@ -47,7 +47,11 @@ export class MapComponent implements OnInit {
   }
   boundsChange(bounds) {
     console.log(bounds);
-    this.httpReq.getData(bounds).subscribe(data => { this.apartments = data; console.log(data) });
+    let boundsTemp = {
+      "lat": bounds.b.b,
+	    "long": bounds.b.f,
+    }
+    this.httpReq.getData(boundsTemp).subscribe(data => { this.apartments = data; console.log(data) });
   }
 
   infoWindow: any;

@@ -17,8 +17,9 @@ export class HttpRequestsService {
   };
   
   getData(data:any): Observable<IApartments[]>{
-    let url = "../assets/result.json";
-    return this.http.get<IApartments[]>(url, { params: data });
+  //  let url = "../assets/result.json";
+    let url = "https://mapmapserver.herokuapp.com/getApartments";
+    return this.http.post<IApartments[]>(url, { params: data });
   }
 
   login(google_user_id:string){

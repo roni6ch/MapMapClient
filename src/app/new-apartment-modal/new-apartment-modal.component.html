@@ -96,7 +96,7 @@
             <div class="input-field col s4">
               <i class="material-icons prefix">date_range</i>
 
-              <input type="text" class="datepicker" #date="ngModel" [(ngModel)]="apartment.details.entrance_date" name="date" id="inputDate" required
+              <input type="text" class="datepicker" #date="ngModel" [(ngModel)]="apartment.details.entrance_date" name="date" id="inputDate" 
                 (change)="changeDate()" />
 
               <label for="inputMail">Date</label>
@@ -161,7 +161,7 @@
         <div class="row">
           <!-- apartmentType -->
           <div class="input-field col s3 apartmentType">
-            <select [(ngModel)]="apartment.details.apartmentType" name="apartmentType">
+            <select [(ngModel)]="apartment.details.apartment_type" name="apartmentType">
               <option value="" disabled selected>Type</option>
               <option value="דירה">דירה</option>
               <option value="דירת גן">דירת גן</option>
