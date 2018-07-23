@@ -44,28 +44,14 @@ export class MapComponent implements OnInit {
     //this.httpReq.getData().subscribe(data => { this.apartments = data; console.log(data) });
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
-  } 
-  boundsChange(bounds){
+  }
+  boundsChange(bounds) {
     console.log(bounds);
     this.httpReq.getData(bounds).subscribe(data => { this.apartments = data; console.log(data) });
   }
 
   infoWindow: any;
-  lastApartmentModal = {};
+  lastApartmentModal: any;
 
-  openMarker(apartment, infowindow) {
-    if (this.apartmentModal === apartment)
-      return;
-    if (this.infoWindow) {
-      this.infoWindow.close();
-      this.infoWindow = infowindow;
-    }
-    else {
-      this.infoWindow = infowindow;
-      this.infoWindow.open();
-    }
-    this.apartmentModal = apartment;
-    console.log(apartment);
-  }
- 
+
 }

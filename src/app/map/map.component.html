@@ -1,9 +1,9 @@
 <!-- MAP -->
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="mapOptions.zoom" [minZoom]="mapOptions.zoom"  [maxZoom]="mapOptions.zoom"  (boundsChange)="boundsChange($event)">
   <!-- MARKERS -->
-  <agm-marker *ngFor="let a of apartments | filters:filtersArr" [latitude]="a.location.latlng.lat" [longitude]="a.location.latlng.lng"   (markerClick)="openMarker(a,infowindow)" >
+  <agm-marker *ngFor="let a of apartments | filters:filtersArr" [latitude]="a.location.latlng.lat" [longitude]="a.location.latlng.lng">
      <!-- INFO WINDOW -->
-     <agm-info-window  #infowindow>
+     <agm-info-window  >
         <app-infowindow  [apartment]="a"></app-infowindow>
      </agm-info-window>
   </agm-marker>
