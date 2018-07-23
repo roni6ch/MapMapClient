@@ -12,6 +12,9 @@ import { HttpRequestsService } from '../services/http-requests.service';
 export class InfowindowComponent implements OnInit {
 
   @Input() apartment: any; 
+  @Output() apartmentOBJ = new EventEmitter();
+
+
   constructor(private httpReq: HttpRequestsService) { 
   }
   markerHeart(event){
@@ -32,6 +35,10 @@ export class InfowindowComponent implements OnInit {
     event.stopPropagation();
   }
   ngOnInit() {
+  }
+
+  infoWindowClick(){
+    this.apartmentOBJ.emit(this.apartment);
   }
 
 

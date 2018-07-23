@@ -45,3 +45,11 @@ width: auto !important;}
     }
     .modal .carousel-inner{visibility: visible;height: inherit;}
     .modal-footer{display:block;}
+    #panorama{
+        width: 100% !important;
+        height: 400px;
+        float: left;
+        position: absolute;
+    }
+    .widget-scene-canvas{    width: 100%!important;
+        height: 100%!important;}

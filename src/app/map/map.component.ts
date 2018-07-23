@@ -52,6 +52,11 @@ export class MapComponent implements OnInit {
 
   infoWindow: any;
   lastApartmentModal: any;
+  openApartment(apartment){
+    console.log(apartment);
+    this.apartmentModal = apartment;
+  }
+
 
 
 }

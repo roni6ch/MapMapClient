@@ -41,7 +41,7 @@ export class HttpRequestsService {
   }
   favorite(data:any){
     let url = "https://mapmapserver.herokuapp.com/favorite";
-    return this.http.post(url,DataCue);
+    return this.http.post(url,data);
   }
 }
 
