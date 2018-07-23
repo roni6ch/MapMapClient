@@ -32,6 +32,10 @@ export class HttpRequestsService {
     let url = "https://mapmapserver.herokuapp.com/uploadPicture";
     return this.http.post(url,files);
   }
+  favorite(data:any){
+    let url = "https://mapmapserver.herokuapp.com/favorite";
+    return this.http.post(url,DataCue);
+  }
 }
 
 
