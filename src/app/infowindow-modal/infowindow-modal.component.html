@@ -91,19 +91,17 @@
       </div>
       <div class="modal-footer">
         <!-- TODO -->
-        <!--  <div class="col s6"><span>שמירה </span>
-            <span class="heart"><img [src]="apartment?.favorite ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'"  /></span>
-            <span (click)="calendar(apartment)"><img [src]="assets/images/icons/calendar.png" class="modal-action modal-close waves-effect"></span>
+         <div class="col s12">
+            <span class="heart" (click)="markerHeart($event)"><img [src]="apartment?.active ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'"  /></span>
+            <span (click)="calendar(apartment)"><img src="assets/images/icons/calendar.png" class="modal-action modal-close waves-effect"></span>
         </div>
-        <div class="col s6 left-align">
-            <span>שיתוף  </span>
-            <span (click)="shareFacebook(apartment)" class="fb-share-button"><img [src]="assets/images/icons/facebook.png" /></span>
-            <span (click)="sendWhatsapp(apartment.phones[0])"><img [src]="assets/images/icons/whatsapp.png" /></span>
+        
+            <span (click)="shareFacebook(apartment)" class="fb-share-button"><img src="assets/images/icons/facebook.png" /></span>
+          <!--  <span (click)="sendWhatsapp(apartment.phones[0])"><img [src]="assets/images/icons/whatsapp.png" /></span>
             <span><a (click)="sendMail(apartment)" href="mailto:{{apartment.email}}&subject=This%20is%20the%20subject&body=This%20is%20the%20body"><img [src]="assets/images/icons/gmail.png" /></a></span>
             <span class="hide-on-large-only"><a (click)="openWaze(apartment)"><img [src]="assets/images/icons/waze-icon.png" /></a></span>
             <span (click)="print()"><img [src]="assets/images/icons/printer.png" /></span>
-        </div>
-    -->
+          -->
         <button type="button" class="btn btn-primary left">Save changes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
