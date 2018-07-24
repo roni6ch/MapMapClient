@@ -35,7 +35,7 @@
         <div class="markerCarouselDetails row">
           <div class="col-8">
             <h5>
-              <span>{{apartment.details?.apartment_type}}</span> ,
+              <span>{{apartment.details?.apartment_type !== "" ? apartment.details?.apartment_type : 'דירה'}}</span> ,
               <span>{{apartment.details?.price}}</span>
               <span>
                 <img src="assets/images/icons/coins/ils.png" />
