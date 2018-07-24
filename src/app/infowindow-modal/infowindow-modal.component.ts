@@ -4,6 +4,7 @@ import * as $ from 'jquery';
 import { } from '../../../node_modules/protractor';
 import { HttpRequestsService } from '../services/http-requests.service';
 declare var google: google;
+declare var FB: any;
 
 @Component({
   selector: 'app-infowindow-modal',
@@ -43,20 +44,48 @@ export class InfowindowModalComponent implements OnInit {
     console.log(apartment);
        //works only live
        var url = window.location.href;
-       //TODO: CHANGE URL TO ID
-      /* FB.ui({
+       //TODO: CHANGE URL TO ID and check if it is work online
+       FB.ui({
            method: 'share_open_graph',
            action_type: 'og.shares',
            action_properties: JSON.stringify({
                object: {
                    'og:url': url,
-                   'og:title': 'MapMap - ' + apartment.apartment.location,
-                   'og:description': apartment.apartment.apartmentType + " כניסה: " + apartment.apartment.entrence_date + " מידע נוסף: " + apartment.apartment.info,
-                   'og:image': apartment.images[0]
+                   'og:title': 'MapMap - ' + apartment.location.ADDRESS,
+                   'og:description': apartment.details.apartmentType + " כניסה: " + apartment.details.entrance_date + " מידע נוסף: " + apartment.details.info,
+                   'og:image': apartment.details.images[0] ? apartment.details.images[0] : ''
                }
            })
-       })*/
+       })
 
+  }
+  sendWhatsapp(phone){
+    var data = {
+      title: "הודעה חדשה מ-MAPMAP: ",
+      content: "שלום ברצוני לבוא לראות את הדירה",
+      info: "רוני, טלפון: 0502560005 , תודה!"
+  }
+    window.open("https://api.whatsapp.com/send?phone=" + (phone) + "&text=" + data.title + " " + data.content + " " + data.info);
+
+  }
+  sendMail(apartment){
+    var mail = {
+      title: "הודעה חדשה מ  MAPMAP",
+      content: "שלום ברצוני לבוא לראות את הדירה",
+      emailTo: "Roni6ch@gmail.com",
+      emailCC: "Roni691986@gmail.com",
+      info: "רוני , טלפון 032434 ..."
+  }
+  window.open("mailto:"+mail.emailTo+'?cc='+mail.emailCC+'&subject='+mail.title+'&body='+mail.content, '_self');
+
+  }
+  openWaze(apartment){
+      window.open('http://waze.to/?ll=' + apartment.location.latlng.lat + ',' + apartment.location.latlng.lng + '&navigate=yes');
+  
+  }
+  print(){
+    $("#hiddenPrint").html($(".markerCarouselDetails").html());
+    window.print();
   }
 
   markerHeart(event){

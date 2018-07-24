@@ -91,20 +91,41 @@
       </div>
       <div class="modal-footer">
         <!-- TODO -->
-         <div class="col s12">
-            <span class="heart" (click)="markerHeart($event)"><img [src]="apartment?.active ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'"  /></span>
-            <span (click)="calendar(apartment)"><img src="assets/images/icons/calendar.png" class="modal-action modal-close waves-effect"></span>
+        <div class="col s12">
+          <span class="heart" (click)="markerHeart($event)">
+            <img [src]="apartment?.active ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" />
+          </span>
+          <span (click)="calendar(apartment)">
+            <img src="assets/images/icons/calendar.png" class="modal-action modal-close waves-effect">
+          </span>
         </div>
-        
-            <span (click)="shareFacebook(apartment)" class="fb-share-button"><img src="assets/images/icons/facebook.png" /></span>
-          <!--  <span (click)="sendWhatsapp(apartment.phones[0])"><img [src]="assets/images/icons/whatsapp.png" /></span>
-            <span><a (click)="sendMail(apartment)" href="mailto:{{apartment.email}}&subject=This%20is%20the%20subject&body=This%20is%20the%20body"><img [src]="assets/images/icons/gmail.png" /></a></span>
-            <span class="hide-on-large-only"><a (click)="openWaze(apartment)"><img [src]="assets/images/icons/waze-icon.png" /></a></span>
-            <span (click)="print()"><img [src]="assets/images/icons/printer.png" /></span>
-          -->
+
+        <span (click)="shareFacebook(apartment)" class="fb-share-button">
+          <img src="assets/images/icons/facebook.png" />
+        </span>
+        <span *ngIf="apartment.publisher?.phones !== null" (click)="sendWhatsapp(apartment.publisher.phones[0])">
+          <img src="assets/images/icons/whatsapp.png" />
+        </span>
+        <span>
+          <a *ngIf="apartment.publisher?.email  !== null" (click)="sendMail(apartment)">
+            <img src="assets/images/icons/gmail.png" />
+          </a>
+        </span>
+        <span class="hide-on-large-only">
+          <a (click)="openWaze(apartment)">
+            <img src="assets/images/icons/waze_icon.png" />
+          </a>
+        </span>
+        <span (click)="print()">
+          <img src="assets/images/icons/printer.png" />
+        </span>
+
         <button type="button" class="btn btn-primary left">Save changes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<div [hidden] id="hiddenPrint"></div>
