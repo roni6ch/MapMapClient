@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, Input } from '@angular/core';
 import { HttpRequestsService } from '../services/http-requests.service';
-import { FiltersPipe } from '../filters.pipe';
 
 
 @Component({

@@ -1,12 +1,12 @@
 <div class="modal fade  advencedFilterModalWrapper" id="advancedFiltersModal" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
-  <div class="modal-content modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content modal-dialog modal-dialog-centered  modal-lg" role="document">
     <h6>סינון</h6>
     <form (ngSubmit)="submitFilters()" #advancedFiltersForm>
 
       <!-- advancedFilter -->
-      <div class="form-row">
-        <div *ngFor="let filter of advancedFilters; let i = index" class=" advancedFilter col s2">
+      <div class="row filters">
+        <div *ngFor="let filter of advancedFilters; let i = index" class=" advancedFilter col s2 right">
           <div class="switch">
             <label>
               <div class="switchIcon">
@@ -23,16 +23,16 @@
       <div class="row">
         <div class="col s6">
           <div class="lovedApartments">
-            <div class="btn blue lighten-1 hvr-sweep-to-left" name="favFilterImg" (click)="favFilterImg = !favFilterImg">
-              <span>הצג מודעות שאהבתי</span>
+            <div class="btn blue lighten-1 hvr-sweep-to-left w-100" name="favFilterImg" (click)="favFilterImg = !favFilterImg">
+              <span> מודעות שאהבתי </span>
               <img [src]="favFilterImg ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" class="heart" />
             </div>
           </div>
         </div>
         <div class="col s6">
           <div class="imageApartments">
-            <div class="btn blue lighten-1 hvr-sweep-to-left" name="imgFilterImg" (click)="imgFilterImg = !imgFilterImg">
-              <span>הצג מודעות עם תמונות בלבד</span>
+            <div class="btn blue lighten-1 hvr-sweep-to-left w-100" name="imgFilterImg" (click)="imgFilterImg = !imgFilterImg">
+              <span>  תמונות בלבד </span>
               <img [src]="imgFilterImg ? 'assets/images/icons/apartment_image-full.png' : 'assets/images/icons/apartment_image.png'" class="heart"
               />
             </div>

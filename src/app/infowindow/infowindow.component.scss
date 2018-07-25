@@ -1,42 +1,7 @@
-.markerWrapper {
-    position: relative;
-    width: 400px;
-    height: 150px;
-    cursor: pointer;
-    overflow: hidden;
-}
-.markerWrapper .markerImgWrapper p {
-    background: #ffffffb3;
-    right: 0;
-    left: 0;
-    text-align: center;
-    margin-bottom: 0px;
-    bottom: 0;
-    position: absolute;
-}
-.markerWrapper .markerDetails {
-    position: absolute;
-    text-align: right;
-    right: 210px;
-}
-.markerWrapper .markerImgWrapper {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-.markerWrapper .markerImgWrapper .markerImg {
-    width: 200px;
-    height: 150px;
-}
-#streetImg{
-    width: 200px;
-    height: 150px;
-    display: none;
-}
-.markerWrapper .markerImgWrapper .markerHeart {
-    position: absolute;
-    right: 5%;
-    top: 5%;
-    cursor: pointer;
-}
-
+.markerWrapper{position:relative;width:400px;height:150px;cursor:pointer;overflow:hidden;}
+.markerWrapper .markerImgWrapper p{background:#ffffffb3;right:0;left:0;text-align:center;margin-bottom:0px;bottom:0;position:absolute;}
+.markerWrapper .markerDetails{position:absolute;text-align:right;right:210px;}
+.markerWrapper .markerImgWrapper{position:absolute;right:0;top:0;}
+.markerWrapper .markerImgWrapper .markerImg{width:200px;height:150px;}
+#streetImg{width:200px;height:150px;display:none;}
+.markerWrapper .markerImgWrapper .markerHeart{position:absolute;right:5%;top:5%;cursor:pointer;}

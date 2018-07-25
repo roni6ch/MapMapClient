@@ -36,7 +36,7 @@
           <div class="col-8">
             <h5>
               <span>{{apartment.details?.apartment_type !== "" ? apartment.details?.apartment_type : 'דירה'}}</span> ,
-              <span>{{apartment.details?.price}}</span>
+              <span>{{apartment.details?.price}} </span>
               <span>
                 <img src="assets/images/icons/coins/ils.png" />
               </span>
@@ -44,22 +44,22 @@
             <h6>{{apartment?.location?.address}}</h6>
 
             <p>
-              <span>תיאור: </span>{{apartment.details?.info}}</p>
+              <span><b>תיאור: </b></span>{{apartment.details?.info}}</p>
 
             <p>
-              <span>קומה: {{apartment.details?.floor}}</span>
-              <img src="assets/images/icons/floor.png" />
-              <span>חדרים: {{apartment.details?.rooms}}</span>
-              <img src="assets/images/icons/rooms.png" />
-              <span>שירותים: {{apartment.details?.toilets}}</span>
-              <img src="assets/images/icons/toilets.png" />
-            </p>
+                <img src="assets/images/icons/floor.png" />
+              <span> קומה: {{apartment.details?.floor}}</span> </p>
+              <p><img src="assets/images/icons/rooms.png" />
+              <span> חדרים: {{apartment.details?.rooms}}</span> </p>
+              <p>  <img src="assets/images/icons/toilets.png" />
+              <span> שירותים: {{apartment.details?.toilets}}</span> </p>
+           
 
-            <img src="assets/images/icons/size.png" />
-            <span>גודל: {{apartment.details?.size}}</span>
+              <p> <img src="assets/images/icons/size.png" />
+            <span> גודל: {{apartment.details?.size}}</span></p>
 
-            <span>כניסה: {{apartment.details?.entrance_date | date}} </span>
-            <img src="assets/images/icons/entrence_date.png" />
+            <p>  <img src="assets/images/icons/entrence_date.png" />
+            <span> כניסה: {{apartment.details?.entrance_date | date}} </span></p>
           </div>
 
           <div class="col-4 markerOwnerContact">
@@ -76,9 +76,9 @@
             </h6>
             <h6>
               <img src="assets/images/icons/phone.png" />
-              <p class="ownerPhone" *ngFor="let apartmentPhone of apartment.publisher?.phones">
+              <span class="ownerPhone" *ngFor="let apartmentPhone of apartment.publisher?.phones">
                 <a href="tel:{{apartmentPhone}}">{{apartmentPhone}}</a>
-              </p>
+              </span>
             </h6>
 
             <div class="input-field col s12">
@@ -90,7 +90,6 @@
         </div>
       </div>
       <div class="modal-footer">
-        <!-- TODO -->
         <div class="col s12">
           <span class="heart" (click)="markerHeart($event)">
             <img [src]="apartment?.active ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" />
@@ -98,7 +97,6 @@
           <span (click)="calendar(apartment)">
             <img src="assets/images/icons/calendar.png" class="modal-action modal-close waves-effect">
           </span>
-        </div>
 
         <span (click)="shareFacebook(apartment)" class="fb-share-button">
           <img src="assets/images/icons/facebook.png" />
@@ -120,12 +118,12 @@
           <img src="assets/images/icons/printer.png" />
         </span>
 
-        <button type="button" class="btn btn-primary left">Save changes</button>
+        <button type="button" class="btn btn-primary ">Save changes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 
-<div [hidden] id="hiddenPrint"></div>

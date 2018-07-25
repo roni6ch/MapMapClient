@@ -1,6 +1,4 @@
 import { Component, EventEmitter , OnInit ,Input , Output   } from '@angular/core';
-import { InfowindowModalComponent } from '../infowindow-modal/infowindow-modal.component';
-import { IApartments } from '../iapartments';
 import { HttpRequestsService } from '../services/http-requests.service';
 
 

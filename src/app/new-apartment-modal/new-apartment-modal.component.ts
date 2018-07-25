@@ -1,8 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild ,NgZone } from '@angular/core';
 import { AdvancedFilterService } from '../services/advanced-filter.service';
 import { HttpRequestsService } from '../services/http-requests.service';
-import { FormControl , NgForm  } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
+import {  NgForm  } from '@angular/forms';
 import { google } from "google-maps";
 declare var google : google;
 import { MapsAPILoader } from '@agm/core';

@@ -72,10 +72,5 @@
       "name": "כניסה מיידית",
       "filterName": "immediate_entrance",
       "filter": false
-    },
-    {
-      "name": "תמונות",
-      "filterName": "apartment_image",
-      "filter": false
     }
   ]

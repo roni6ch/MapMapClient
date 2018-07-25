@@ -1,11 +1,8 @@
-
-.switch, .switch *{
-    margin: 0 auto;
-    display: block;    text-align: center;
+.switch, .switch *{margin:0 auto;display:block;text-align:center;}
+.advancedFilter.col.s2{    margin: 1% 0%; padding:0;}
+.ng2-nouislider{margin:50px 0px 20px;}
+.switch img {
+    width: 24px;
+    height: 24px;
 }
-.advancedFilter.col.s2{
-    margin: 10px 24px;
-}
-.ng2-nouislider{
-    margin:50px 0px 20px;
-}
+.filters{display:block;width:100%;}
