@@ -1,5 +1,7 @@
-import { Component, ElementRef, OnInit, Input } from '@angular/core';
+import { Component, ElementRef, OnInit, Input ,ViewChild} from '@angular/core';
 import { HttpRequestsService } from '../services/http-requests.service';
+import { InfoWindowManager } from '../../../node_modules/@agm/core';
+
 
 
 @Component({
@@ -19,7 +21,7 @@ export class MapComponent implements OnInit {
   lat: number;
   lng: number;
   mapOptions: object = {
-    zoom: 14
+    zoom: 14,
   };
   constructor(private httpReq: HttpRequestsService) {
   }
@@ -44,19 +46,23 @@ export class MapComponent implements OnInit {
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
   }
-  boundsChange(bounds) {
-    console.log(bounds);
-    let boundsTemp = {
-      "lat": bounds.b.b,
-	    "long": bounds.b.f,
+  boundsChange(lng,lat) {
+    console.log(lng," " ,lat);
+   let boundsTemp = {
+      "lat": lng,
+	    "long": lat,
     }
-    this.httpReq.getData(boundsTemp).subscribe(data => { this.apartments = data; console.log(data) });
+    this.httpReq.getData(boundsTemp).subscribe(data => { this.apartments = data; console.log(data); this.lastInfoWindow = null });
   }
 
   infoWindow: any;
-  lastApartmentModal: any;
-  openApartment(apartment){
+  lastInfoWindow : any;
+  openApartment(apartment,infowindow){
     console.log(apartment);
+    if (this.lastInfoWindow) {
+      this.lastInfoWindow.close();
+  }
+  this.lastInfoWindow = infowindow;
     this.apartmentModal = apartment;
   }
 

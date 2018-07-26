@@ -12,8 +12,9 @@ export class FiltersPipe implements PipeTransform {
     let apratmentsArrAdvancedFilters = [];
     apartments.filter(function (a) {
       //filter by range
+      //todo: change active to favorites
       if (Number(filtersArr.range[0]) <= a.details.price && a.details.price <= Number(filtersArr.range[1])
-        && ( filtersArr.favorites == a.user.favorite  || !filtersArr.favorites )
+        && ( filtersArr.favorites == a.active  || !filtersArr.favorites )
         && ( filtersArr.apartment_type == a.details.apartment_type || filtersArr.apartment_type == 'all')
         && Number(a.details.rooms) >= filtersArr.rooms 
         && Number(a.details.floor) >= filtersArr.floor
@@ -21,7 +22,7 @@ export class FiltersPipe implements PipeTransform {
           //filter by apartments with images
           if (filtersArr.images && a.details.images.length > 0 )
             apratmentsArr.push(a);
-          if (!filtersArr.images)
+          else if (!filtersArr.images )
             apratmentsArr.push(a);
       }
     });
