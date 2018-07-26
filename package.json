@@ -38,6 +38,7 @@
     "materialize-css": "^1.0.0-rc.2",
     "ng2-fancy-image-uploader": "^2.0.1",
     "ng2-nouislider": "^1.7.11",
+    "ngc-float-button": "^1.2.1",
     "ngx-bootstrap": "^3.0.1",
     "nouislider": "^11.1.0",
     "popper.js": "^1.14.3",

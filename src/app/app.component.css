@@ -24,6 +24,7 @@ nav .publishBT button {
   border: 1px solid #fff;
   color: #fff;
 }
+.sidenav{width:250px;}
 #navbar{width: 100%;}
 
 .signOut {
@@ -113,4 +114,16 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
     }
     .navbar inputfocus:-moz-placeholder { /* Firefox 18- */
       color:#4c4c4c;
+    }
+
+
+
+    @media only screen and (max-width: 600px) {
+nav{height: 6vh;}
+#navbar{    width: 90%;}
+.smallSearch inbput{width:auto;}
+nav .sidenav-trigger{  margin: 0;}
+agm-map{    height: 94vh;}
+.smallSearch{width:auto; float:left !important; margin-left:3%}
+.smallSearch input{width:auto; margin-left:3%}
     }
