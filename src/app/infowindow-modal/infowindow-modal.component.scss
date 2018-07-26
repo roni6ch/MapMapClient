@@ -1,17 +1,20 @@
 .gallery{width:100px;height:100px;}
 .gallery img{width:100px;height:100px;}
 .markerCarouselDetails{text-align:right;direction:rtl;width:100%;}
-.markerOwnerContact .ownerPhone{width:130px;float:left;margin-top:5px;}
-.markerOwnerContact h6 img{margin:0px 0px 0px 10px;}
+.markerOwnerContact .ownerPhone{width:130px;float:left;margin-top:5px;float: right;}
+.markerOwnerContact h6 img{margin:0px 0px 0px 10px;float: right;}
 .apartmentModalWrapper .notes+label{text-align:right;direction:rtl;right:12px;}
 .markerOwnerContact textarea{overflow-y:hidden;padding:.8rem 0 1.6rem 0;resize:none;min-height:3rem;width:100px;}
 .carousel-item > img{margin:0 auto;height:400px;width:auto !important;}
 .modal-header{display:block;}
-.carousel-control-next, .carousel-control-prev{background:#00000094;width:10%;}
+.modal-header,.modal-body,.modal-footer, .modal .modal-content{padding:0px;}
+.carousel-control-next, .carousel-control-prev{background:#00000094;width:50px;}
  .modal .carousel .carousel-item{width:100%;height:100%;visibility:visible;}
  .modal .carousel-inner{visibility:visible;height:inherit;}
- .modal-footer{display:block;}
+ .modal-footer{display:block;background-color:transparent;    padding: 4px 6px;text-align:left;    height: 56px;}
  #panorama{width:100% !important;height:400px;float:left;position:absolute;}
  .widget-scene-canvas{width:100%!important;height:100%!important;}
- .modal-footer span{float:left;margin:10px;cursor:pointer;}
+ .modal-footer span{margin:3%;cursor:pointer; display: inline-block;}
  .modal-footer .btn-primary{margin-right:2%;}
+ .modal .modal-footer{height:auto;}
+

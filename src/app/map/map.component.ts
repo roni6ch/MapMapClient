@@ -1,6 +1,5 @@
-import { Component, ElementRef, OnInit, Input ,ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, Input, ViewChild } from '@angular/core';
 import { HttpRequestsService } from '../services/http-requests.service';
-import { InfoWindowManager } from '../../../node_modules/@agm/core';
 
 
 
@@ -46,23 +45,23 @@ export class MapComponent implements OnInit {
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
   }
-  boundsChange(lng,lat) {
-    console.log(lng," " ,lat);
-   let boundsTemp = {
+  boundsChange(lng, lat) {
+    console.log(lng, " ", lat);
+    let boundsTemp = {
       "lat": lng,
-	    "long": lat,
+      "long": lat,
     }
     this.httpReq.getData(boundsTemp).subscribe(data => { this.apartments = data; console.log(data); this.lastInfoWindow = null });
   }
 
-  infoWindow: any;
-  lastInfoWindow : any;
-  openApartment(apartment,infowindow){
+  lastInfoWindow: any;
+  // close last info-window https://stackblitz.com/edit/agm-close-infowindow?file=app%2Fapp.component.html
+  openApartment(apartment, infowindow) {
     console.log(apartment);
     if (this.lastInfoWindow) {
       this.lastInfoWindow.close();
-  }
-  this.lastInfoWindow = infowindow;
+    }
+    this.lastInfoWindow = infowindow;
     this.apartmentModal = apartment;
   }
 

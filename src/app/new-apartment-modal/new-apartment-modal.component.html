@@ -120,7 +120,7 @@
           <div class="input-field col s12">
             <i class="material-icons prefix">create</i>
             <textarea #description="ngModel" [(ngModel)]="apartment.details.info" name="description" id="inputDescription" class="materialize-textarea" 
-            data-length="30"  class="materialize-textarea" minlength="30"  maxlength="250" ></textarea>
+            data-length="250"  class="materialize-textarea" minlength="30"  maxlength="250" ></textarea>
             <label for="inputDescription" [ngClass]="description.invalid && description.dirty  ? 'blue-text' : 'grey-text'" >Description...</label>
             <span data-error="" data-success="right" *ngIf="description.invalid && (description.dirty || description.touched) ||  submittedError">
                 <span *ngIf="description.errors?.minlength" class="helper-text blue-text"> Please type Description at least 30 characters long.</span>
@@ -136,8 +136,8 @@
         <!-- [(ngModel)]="apartment.images" -->
 
         <!-- advancedFilter -->
-        <div class="form-row">
-          <div *ngFor="let filter of advancedFilters" class="advancedFilters advancedFilter col s2">
+        <div class="form-row row">
+          <div *ngFor="let filter of advancedFilters" class="advancedFilters advancedFilter col-sm-4 col-md-2">
             <div class="switch">
               <label>
                 <div class="switchIcon">

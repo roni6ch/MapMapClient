@@ -14,3 +14,10 @@ hr{width:100%;}
  @media print{agm-map{display:none }
  #infowindowmodal .modal-dialog{width:100%;margin:0 !important;max-width:none;}
 }
+
+
+@media only screen and (max-width: 600px) {
+#newApartmentWindowModal .loaders{    margin: 0 auto;width:auto;}
+#newApartmentWindowModal .images{width:100%;max-height:none; display: block;}
+.gm-style-iw > div{float:right}
+}

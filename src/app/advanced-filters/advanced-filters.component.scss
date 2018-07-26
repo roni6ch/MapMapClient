@@ -6,3 +6,8 @@
     height: 24px;
 }
 .filters{display:block;width:100%;}
+.advencedFilterModalWrapper h6{text-align: center}
+
+@media only screen and (max-width: 600px) {
+.modal.show .modal-dialog{    padding: 2%; margin:2% 0%;}
+}
