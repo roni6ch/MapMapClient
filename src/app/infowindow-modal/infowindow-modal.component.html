@@ -33,7 +33,7 @@
       </div>
       <div class="modal-body">
         <div class="markerCarouselDetails row">
-          <div class="col-8">
+          <div class="col s4 col m2">
             <h5>
               <span>{{apartment.details?.apartment_type !== "" ? apartment.details?.apartment_type : 'דירה'}}</span> ,
               <span>{{apartment.details?.price}} </span>
@@ -44,25 +44,36 @@
             <h6>{{apartment?.location?.address}}</h6>
 
             <p>
-              <span><b>תיאור: </b></span>{{apartment.details?.info}}</p>
+              <span>
+                <b>תיאור: </b>
+              </span>{{apartment.details?.info}}</p>
 
             <p>
-                <img src="assets/images/icons/floor.png" />
-              <span> קומה: {{apartment.details?.floor}}</span> </p>
-              <p><img src="assets/images/icons/rooms.png" />
-              <span> חדרים: {{apartment.details?.rooms}}</span> </p>
-              <p>  <img src="assets/images/icons/toilets.png" />
-              <span> שירותים: {{apartment.details?.toilets}}</span> </p>
-           
+              <img src="assets/images/icons/floor.png" />
+              <span> קומה: {{apartment.details?.floor}}</span>
+            </p>
+            <p>
+              <img src="assets/images/icons/rooms.png" />
+              <span> חדרים: {{apartment.details?.rooms}}</span>
+            </p>
+            <p>
+              <img src="assets/images/icons/toilets.png" />
+              <span> שירותים: {{apartment.details?.toilets}}</span>
+            </p>
 
-              <p> <img src="assets/images/icons/size.png" />
-            <span> גודל: {{apartment.details?.size}}</span></p>
 
-            <p>  <img src="assets/images/icons/entrence_date.png" />
-            <span> כניסה: {{apartment.details?.entrance_date | date}} </span></p>
+            <p>
+              <img src="assets/images/icons/size.png" />
+              <span> גודל: {{apartment.details?.size}}</span>
+            </p>
+
+            <p>
+              <img src="assets/images/icons/entrence_date.png" />
+              <span> כניסה: {{apartment.details?.entrance_date | date}} </span>
+            </p>
           </div>
 
-          <div class="col-4 markerOwnerContact">
+          <div class="col-sm-12 col-md-4 markerOwnerContact">
             <h5>
               <span>צור קשר</span>
             </h5>
@@ -82,8 +93,7 @@
             </h6>
 
             <div class="input-field col s12">
-              <textarea id="notes" class="notes"></textarea>
-              <label for="notes">הערות אישיות</label>
+              <textarea id="notes" class="notes red-text" placeholder="הערות אישיות"></textarea>
             </div>
           </div>
 
@@ -98,32 +108,31 @@
             <img src="assets/images/icons/calendar.png" class="modal-action modal-close waves-effect">
           </span>
 
-        <span (click)="shareFacebook(apartment)" class="fb-share-button">
-          <img src="assets/images/icons/facebook.png" />
-        </span>
-        <span *ngIf="apartment.publisher?.phones !== null" (click)="sendWhatsapp(apartment.publisher.phones[0])">
-          <img src="assets/images/icons/whatsapp.png" />
-        </span>
-        <span>
-          <a *ngIf="apartment.publisher?.email  !== null" (click)="sendMail(apartment)">
-            <img src="assets/images/icons/gmail.png" />
-          </a>
-        </span>
-        <span class="hide-on-large-only">
-          <a (click)="openWaze(apartment)">
-            <img src="assets/images/icons/waze_icon.png" />
-          </a>
-        </span>
-        <span (click)="print()">
-          <img src="assets/images/icons/printer.png" />
-        </span>
-
-        <button type="button" class="btn btn-primary ">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <span (click)="shareFacebook(apartment)" class="fb-share-button">
+            <img src="assets/images/icons/facebook.png" />
+          </span>
+          <span *ngIf="apartment.publisher?.phones !== null" (click)="sendWhatsapp(apartment.publisher.phones[0])">
+            <img src="assets/images/icons/whatsapp.png" />
+          </span>
+          <span>
+            <a *ngIf="apartment.publisher?.email  !== null" (click)="sendMail(apartment)">
+              <img src="assets/images/icons/gmail.png" />
+            </a>
+          </span>
+          <span class="hide-on-large-only">
+            <a (click)="openWaze(apartment)">
+              <img src="assets/images/icons/waze_icon.png" />
+            </a>
+          </span>
+          <span (click)="print()">
+            <img src="assets/images/icons/printer.png" />
+          </span>
+        </div>
+        <div class="col s12">
+          <button type="button" class="btn btn-primary ">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-

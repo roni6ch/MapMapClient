@@ -125,7 +125,7 @@ export class InfowindowModalComponent implements OnInit {
           visible: true,
           zoom: 1
         };
-        var panorama = new google.maps.StreetViewPanorama(document.getElementById('panorama'), panoramaOptions);
+        setTimeout(function(){ new google.maps.StreetViewPanorama(document.getElementById('panorama'), panoramaOptions);}, 1000);
       }
     });
   }
