@@ -116,9 +116,35 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
       color:#4c4c4c;
     }
 
+    .fixed-action-btn{
+      right: 50px; 
+    }
+    .fixed-action-btn ul{
+     width:250px; left:-190px;
+    }
+    .fixed-action-btn ul li { position: relative;}
+.floatingText{
+  float: left;
+  position: absolute;
+  border-radius: 10px;
+  background: #ccc;
+  display: block;
+  height: 35px;
+  top: 3px;
+  width: 170px;
+  left: -167px;
+  z-index: -1;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12);
+}
+.floatingText:hover{
+  color:#ccc;
+}
+.fixed-action-btn ul a.btn-floating{
+  overflow: inherit;    left: 94px;
+}
 
 
-    @media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
 nav{height: 6vh;}
 #navbar{    width: 90%;}
 .smallSearch inbput{width:auto;}

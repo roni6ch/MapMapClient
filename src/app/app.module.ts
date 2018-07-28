@@ -25,6 +25,7 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { FiltersPipe } from './filters.pipe';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ContractsComponent } from './contracts/contracts.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     ImageUploaderComponent,
     AdvancedFiltersComponent,
     FiltersPipe,
+    ContractsComponent,
   ],
   imports: [
     BrowserModule,

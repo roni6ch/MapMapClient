@@ -1,4 +1,18 @@
 *{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;padding:0;margin:0;border:0;outline:0;}
+::-webkit-scrollbar
+{ width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
+}
 input{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
 ::-webkit-input-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
 ::-moz-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}

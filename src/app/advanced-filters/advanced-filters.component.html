@@ -1,8 +1,13 @@
 <div class="modal fade  advencedFilterModalWrapper" id="advancedFiltersModal" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
+
+  <button #btnClose type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
   <div class="modal-content modal-dialog modal-lg" role="document">
     <h6>סינון</h6>
-    <form (ngSubmit)="submitFilters()" #advancedFiltersForm>
+    <form (ngSubmit)="submitFilters()" #advancedFiltersForm="ngForm">
 
       <!-- advancedFilter -->
       <div class="row filters">
@@ -39,6 +44,17 @@
           </div>
         </div>
       </div>
+
+      <div class="row">
+          <div class="col s6">
+            <div class="blackListApartments">
+              <div class="btn blue lighten-1 hvr-sweep-to-left w-100" name="blackListFilter" (click)="blackListFilter = !blackListFilter">
+                <span> הצג מודעות שהסתרתי </span>
+                <img [src]="blackListFilter ? 'assets/images/icons/eye-full.png' : 'assets/images/icons/eye.png'" class="heart" />
+              </div>
+            </div>
+          </div>
+          </div>
 
       <nouislider #sliderRef style="width:100%" [config]="rangeConfig"></nouislider>
 

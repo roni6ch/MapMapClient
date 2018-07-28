@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild , ElementRef } from '@angular/core';
 import { AdvancedFilterService } from '../services/advanced-filter.service';
 import { Filters } from '../filters';
 import * as $ from 'jquery';
 import * as M from 'materialize-css';
+import {  NgForm  } from '@angular/forms';
 
 @Component({
   selector: 'app-advanced-filters',
@@ -12,31 +13,24 @@ import * as M from 'materialize-css';
 export class AdvancedFiltersComponent implements OnInit {
 
   advancedFilters = [];
+  favFilterImg;
+  imgFilterImg;
+  blackListFilter;
+  rangeConfig: any;
+
   filtersObj: any;
-  favFilterImg = false;
-  imgFilterImg = false;
+
+
   @ViewChild('sliderRef') sliderRef;
+  @ViewChild('btnClose') btnClose: ElementRef
   @Output() favoritesClick = new EventEmitter();
   @Output() filters = new EventEmitter();
 
-  rangeConfig: any = {
-    behaviour: 'drag',
-    start: [3000, 7000],
-    range: {
-      'min': [1000],
-      'max': [10000]
-    },
-    tooltips: [true, true],
-    connect: [false, true, false],
-    step: 500,
-    keyboard: true,  // same as [keyboard]="true"
-    animate: true,
-
-  };
 
   constructor(private advancedFiltersJSON: AdvancedFilterService) {
     //init filters
     this.filtersObj = new Filters(false, {}, ["3000", "7000"], "all", 0, 0, 0, false);
+    this.initFilters();
   }
 
   ngOnInit() {
@@ -45,12 +39,32 @@ export class AdvancedFiltersComponent implements OnInit {
     });
     var instances = M.FormSelect.init($("select"));
   }
+  initFilters(){
+    this.favFilterImg = false;
+    this.imgFilterImg = false;
+    this.blackListFilter = false;
+    this.rangeConfig = {
+      behaviour: 'drag',
+      start: [3000, 7000],
+      range: {
+        'min': [1000],
+        'max': [10000]
+      },
+      tooltips: [true, true],
+      connect: [false, true, false],
+      step: 500,
+      keyboard: true,  // same as [keyboard]="true"
+      animate: true,
+  
+    };
+  }
   toggleFavoriteApartment() {
     this.favFilterImg = !this.favFilterImg;
     this.favoritesClick.emit(this.favFilterImg);
   }
   submitFilters() {
     this.filtersObj.favorites = this.favFilterImg;
+    this.filtersObj.blackListFilter = this.blackListFilter;
     this.filtersObj.images = this.imgFilterImg;
     this.filtersObj.advanced_filters = this.advancedFilters.filter(obj => {
       return obj.filter;
@@ -64,5 +78,7 @@ export class AdvancedFiltersComponent implements OnInit {
     this.filtersObj = Object.assign({}, this.filtersObj);
 
     this.filters.emit(this.filtersObj);
+    
+    this.btnClose.nativeElement.click();
   }
 }

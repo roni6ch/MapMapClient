@@ -24,11 +24,16 @@ export class NewApartmentModalComponent implements OnInit {
 
   apartment: any;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) { }
-
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) {
+    
+   }
+   ngAfterViewChecked(){
+   }
   ngOnInit() {
     
-    M.FormSelect.init($("select"));
+    M.FormSelect.init($("select")); 
+    M.CharacterCounter.init($('#inputDescription'));
+
 
 
     this.advancedFiltersJSON.getData().subscribe(data => this.advancedFilters = data);
