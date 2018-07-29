@@ -27,18 +27,22 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/materialize-css/dist/css/materialize.min.css",
               "node_modules/dropzone/dist/dropzone.css",
+              "node_modules/nouislider/distribute/nouislider.min.css",
               "src/styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/hammerjs/hammer.js",
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/hammerjs/hammer.min.js",
               "node_modules/dropzone/dist/dropzone.js",
               "node_modules/materialize-css/dist/js/materialize.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/nouislider/distribute/nouislider.min.js"
             ]
           },
           "configurations": {
