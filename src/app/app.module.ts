@@ -33,6 +33,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ContractsComponent } from './contracts/contracts.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
