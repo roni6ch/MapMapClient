@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleSignInComponent } from 'angular-google-signin';
 
+
 /* MAP */
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction'   // agm-direction
@@ -17,6 +18,8 @@ import { HttpRequestsService } from './services/http-requests.service';
 /*  COMPONENTS */
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
+import { TableComponent } from './table/table.component';
+
 import { InfowindowComponent } from './infowindow/infowindow.component';
 import { InfowindowModalComponent } from './infowindow-modal/infowindow-modal.component';
 import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-modal.component';
@@ -35,6 +38,7 @@ import { ContractsComponent } from './contracts/contracts.component';
     AppComponent,
     GoogleSignInComponent,
     MapComponent,
+    TableComponent,
     InfowindowComponent,
     InfowindowModalComponent,
     NewApartmentModalComponent,
@@ -55,7 +59,7 @@ import { ContractsComponent } from './contracts/contracts.component';
     FormsModule,
     ReactiveFormsModule,
     NouisliderModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService],

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Input, ViewChild , Output , EventEmitter } from '@angular/core';
 import { HttpRequestsService } from '../services/http-requests.service';
 
 
@@ -45,6 +45,7 @@ export class MapComponent implements OnInit {
     console.log(fav);
   }
   ngOnInit() {
+
     //get result.json
     //this.httpReq.getData().subscribe(data => { this.apartments = data; console.log(data) });
     this.lat = this.latLng.lat;
@@ -70,6 +71,7 @@ export class MapComponent implements OnInit {
     this.lastInfoWindow = infowindow;
     this.apartmentModal = apartment;
   }
+  showMap = true;
   clickEven = false;
   mapRightClick(event){
     console.log(event.coords);

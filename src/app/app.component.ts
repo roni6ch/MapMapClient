@@ -7,6 +7,7 @@ import { HttpRequestsService } from './services/http-requests.service';
 
 import { google } from "google-maps";
 declare var google : google;
+
 import { MapsAPILoader } from '@agm/core';
 
 @Component({
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
   /* google signin button*/
   private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
   scriptLoaded = false;
+  showMap = true;
 
   @ViewChild("searchRef")
   public searchElementRef: ElementRef;
@@ -63,7 +65,6 @@ export class AppComponent implements OnInit {
       });
     });
   }
-
   onGoogleSignInSuccess(event: GoogleSignInSuccess) {
     let googleUser: gapi.auth2.GoogleUser = event.googleUser;
     this.httpReq.login(googleUser.getAuthResponse().id_token).subscribe(data => {
@@ -111,4 +112,5 @@ export class AppComponent implements OnInit {
       $(".email").html(this.profile['email']);
     }
   }
+
 }
