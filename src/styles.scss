@@ -25,6 +25,15 @@ hr{width:100%;}
 .modal-open .modal{margin:0;width:100%;min-height:100%;background:transparent;}
  .pac-container, .pac-item{z-index:2147483647 !important;text-align:left;}
  .pac-logo:after{display:none;}
+
+
+ #toast-container{
+  left: 0;
+  right: 0 !important;
+  margin: 0 auto;
+  width: 400px !important;
+  }
+
  @media print{agm-map{display:none }
  #infowindowmodal .modal-dialog{width:100%;margin:0 !important;max-width:none;}
 }

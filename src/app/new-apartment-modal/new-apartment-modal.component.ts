@@ -97,7 +97,17 @@ export class NewApartmentModalComponent implements OnInit {
   onSelectionDone(event){
     console.log(event);
   }
-  
+  confirmPhoneByToast(phone){
+    if (phone.valid){
+      M.toast({html: 'Confirm Message sent to your Phone , please write the code : <input type="text" id="phoneActivation" class="text-white" maxlength="5"  />'
+      , classes: 'rounded',displayLength:1000000000
+      , completeCallback: function(){ console.log("TODO: send to server user input in order to compare: " , $("#phoneActivation").val()); }
+    });
+    }
+  }
+  submitPhone(number){
+    console.log(number);
+  }
   submittedError = false;
   publishNewApartment(myForm: NgForm) {
 
