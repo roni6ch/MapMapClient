@@ -7,6 +7,8 @@ import { GoogleSignInComponent } from 'angular-google-signin';
 
 /* MAP */
 import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction'   // agm-direction
+
 
 /* SERVICE */
 import { ApartmentsService } from './services/apartments.service';
@@ -48,6 +50,7 @@ import { ContractsComponent } from './contracts/contracts.component';
       apiKey: 'AIzaSyCG43sbbdLsGywMwY0T7-1yOoKVDGfnbsk',
       libraries: ['places']
     }),
+    AgmDirectionModule,      // agm-direction
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

@@ -23,6 +23,7 @@
     "@angular/router": "^6.0.3",
     "@types/chart.js": "^2.7.28",
     "@types/google-maps": "^3.2.0",
+    "agm-direction": "^0.6.0",
     "angular-bootstrap-md": "^6.2.0",
     "angular-es6": "^3.2.1",
     "angular-google-signin": "^0.1.5",

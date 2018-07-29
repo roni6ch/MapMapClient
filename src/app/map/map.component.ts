@@ -21,7 +21,12 @@ export class MapComponent implements OnInit {
   lng: number;
   mapOptions: object = {
     zoom: 14,
+    minZoom:12
   };
+   
+
+ origin = undefined;
+ destination = undefined;
   constructor(private httpReq: HttpRequestsService) {
   }
   ngOnChanges(changes: any) {
@@ -44,6 +49,7 @@ export class MapComponent implements OnInit {
     //this.httpReq.getData().subscribe(data => { this.apartments = data; console.log(data) });
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
+
   }
   boundsChange(lng, lat) {
     console.log(lng, " ", lat);
@@ -64,7 +70,15 @@ export class MapComponent implements OnInit {
     this.lastInfoWindow = infowindow;
     this.apartmentModal = apartment;
   }
+  clickEven = false;
+  mapRightClick(event){
+    console.log(event.coords);
+    if (!this.clickEven)
+      this.origin = event.coords;
+    else
+      this.destination = event.coords;
 
-
+    this.clickEven = !this.clickEven;
+  }
 
 }

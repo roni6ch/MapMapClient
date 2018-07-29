@@ -1,6 +1,6 @@
 <!-- MAP -->
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="mapOptions.zoom" [minZoom]="mapOptions.zoom"  [maxZoom]="mapOptions.zoom"  
-  
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="mapOptions.zoom" [minZoom]="mapOptions.minZoom"  [maxZoom]="mapOptions.zoom"  
+  (mapRightClick)="mapRightClick($event)"
   (idle)="boundsChange(lng,lat)">
   <!-- MARKERS -->
   <agm-marker *ngFor="let a of apartments | filters:filtersArr" [latitude]="a.location.latlng.lat" [longitude]="a.location.latlng.lng" (markerClick)="openApartment(a,infowindow)">
@@ -9,6 +9,10 @@
         <app-infowindow  [apartment]="a"  (apartmentOBJ)="openApartment($event)"></app-infowindow>
      </agm-info-window>
   </agm-marker>
+
+ <agm-direction *ngIf="origin && destination" [origin]="origin" [destination]="destination" >
+    </agm-direction>
+  
 </agm-map>
 
 
