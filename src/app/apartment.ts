@@ -4,7 +4,7 @@ constructor(
     public publisher: {
         name:string,
         email:string,
-        phone: Array<string>
+        phones: Array<string>
     },
     public location: {
         address: string,
@@ -14,7 +14,7 @@ constructor(
         }
     },
     public details?: {
-        apartmentType: Array<string>,
+        apartment_type: Array<string>,
         rooms: number,
         size: number,
         floor: number,

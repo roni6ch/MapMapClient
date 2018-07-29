@@ -1,33 +1,25 @@
-.input-field .prefix.active{
-    color:#3AA0FF;
-}
-.advancedFilters .switch label {
-    text-align: center;
-}
-.switch, .switch *{    margin: 0 auto;
-
-    display: block;}
-
-.advancedFilters{
-
-    display: contents;
-  }
-.switchIcon img{
-width:24px;
-}
-  .modal .modal-footer{background-color:transparent; display:block;margin: 30px 0px 0px;}
-  .modal{
-      box-shadow:none !important;
-  }
- .pac-container, .pac-item{
-    z-index: 2147483647 !important;
-    
-    text-align: left;
- }
+.input-field .prefix.active{color:#3AA0FF;}
+.advancedFilters .switch label{text-align:center;}
+.switch, .switch *{margin:0 auto;display:block;}
+.advancedFilters{    display: inline-block;
+    width: 25%;
+    margin: 2% 0%;}
+.switchIcon img{width:24px;}
+ .modal .modal-footer{background-color:transparent;display:block;margin:30px 0px 0px;}
+ .modal{box-shadow:none !important;}
+ .pac-container, .pac-item{z-index:2147483647 !important;text-align:left;}
  .pac-logo:after{display:none;}
- #newApartmentWindowModal{
-     
-    overflow-y: scroll;
- }
- .select-wrapper input.select-dropdown, .dropdown-content li>span{text-align: center;}
- .validate.apartmentSize{    margin-top: 12px;}
+ #newApartmentWindowModal{overflow-y:scroll;}
+ .select-wrapper input.select-dropdown, .dropdown-content li>span{text-align:center;}
+ .ng-invalid:not(.ng-untouched){border-bottom:1px solid #F44336 !important;box-shadow:0 1px 0 0 #F44336 !important;}
+ .helper-text{margin-left:40px;}
+
+
+@media only screen and (max-width: 600px) {
+    .modal .modal-content{ padding: 2%;}
+    .row{margin-bottom:0px;}
+    .helper-text{margin-left:0px;}
+    #newApartmentWindowModal .row .col ,#newApartmentWindowModal .input-field{padding:1%;}
+    .input-field{margin:0 !important;}
+   }
+   

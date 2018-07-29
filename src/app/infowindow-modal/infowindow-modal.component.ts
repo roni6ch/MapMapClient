@@ -1,4 +1,9 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { google } from "google-maps";
+import { } from '../../../node_modules/protractor';
+import { HttpRequestsService } from '../services/http-requests.service';
+declare var google: google;
+declare var FB: any;
 
 @Component({
   selector: 'app-infowindow-modal',
@@ -6,17 +11,122 @@ import { Component, OnInit , Input } from '@angular/core';
   styleUrls: ['./infowindow-modal.component.scss']
 })
 export class InfowindowModalComponent implements OnInit {
-  
-  @Input() apartment: any; 
+
+  @Input() apartment: any;
   indicatorNumber = 0;
-  constructor() { }
+  constructor(private httpReq: HttpRequestsService) { }
 
-  ngOnInit() {
-  }
-
-  updateIndector(id:number){
+  ngOnInit() { }
+  updateIndector(id: number) {
     console.log(id);
     this.indicatorNumber = id;
   }
 
+  ngOnChanges(changes: any) {
+    if (changes.hasOwnProperty('apartment') !== undefined && changes.apartment.currentValue.location !== undefined)
+      this.panorama(changes.apartment.currentValue.location.latlng);
+  }
+
+  calendar(apartment) {
+    console.log(apartment);
+    var calendar = {
+      title: "MAPMAP - פגישה לדירה",
+      info: apartment.details.info,
+      location: apartment.location.address,
+      owner: apartment.publisher.email
+    }
+    window.open("http://www.google.com/calendar/event?action=TEMPLATE&sprop=website:www.mapmap.co.il&text=" + calendar.title + "&location=" + calendar.location + "&details=" + calendar.info + "&add=" + calendar.owner, "MsgWindow", "width=800,height=800");
+    return false;
+  }
+
+  shareFacebook(apartment) {
+    console.log(apartment);
+    //works only live
+    var url = window.location.href;
+    //TODO: CHANGE URL TO ID and check if it is work online
+    FB.ui({
+      method: 'share_open_graph',
+      action_type: 'og.shares',
+      action_properties: JSON.stringify({
+        object: {
+          'og:url': url,
+          'og:title': 'MapMap - ' + apartment.location.ADDRESS,
+          'og:description': apartment.details.apartmentType + " כניסה: " + apartment.details.entrance_date + " מידע נוסף: " + apartment.details.info,
+          'og:image': apartment.details.images[0] ? apartment.details.images[0] : ''
+        }
+      })
+    })
+
+  }
+  sendWhatsapp(phone) {
+    var data = {
+      title: "הודעה חדשה מ-MAPMAP: ",
+      content: "שלום ברצוני לבוא לראות את הדירה",
+      info: "רוני, טלפון: 0502560005 , תודה!"
+    }
+    window.open("https://api.whatsapp.com/send?phone=" + (phone) + "&text=" + data.title + " " + data.content + " " + data.info);
+
+  }
+  sendMail(apartment) {
+    var mail = {
+      title: "הודעה חדשה מ  MAPMAP",
+      content: "שלום ברצוני לבוא לראות את הדירה",
+      emailTo: "Roni6ch@gmail.com",
+      emailCC: "Roni691986@gmail.com",
+      info: "רוני , טלפון 032434 ..."
+    }
+    window.open("mailto:" + mail.emailTo + '?cc=' + mail.emailCC + '&subject=' + mail.title + '&body=' + mail.content, '_self');
+
+  }
+  openWaze(apartment) {
+    window.open('http://waze.to/?ll=' + apartment.location.latlng.lat + ',' + apartment.location.latlng.lng + '&navigate=yes');
+
+  }
+  print() {
+    window.print();
+  }
+
+  markerHeart(event) {
+    this.apartment.user.favorite = !this.apartment.user.favorite;
+    // TODO: change sendData user id
+    let sendData = {
+      user_id: this.apartment,
+      apartment_id: this.apartment.id,
+      favorite: this.apartment.user.favorite
+    }
+    //send favorite ajax
+    this.httpReq.favorite(sendData).subscribe(data => {
+      if (data) {
+        console.log(data)
+      }
+    });
+
+    event.stopPropagation();
+  }
+  panorama(latLng) {
+    var streetViewService = new google.maps.StreetViewService();
+    var radius = 100;
+    streetViewService.getPanoramaByLocation(latLng, radius, function (data, status) {
+      if (status == google.maps.StreetViewStatus.OK) {
+        var nearStreetViewLocation = data.location.latLng;
+        var lat = nearStreetViewLocation.lat();
+        var lng = nearStreetViewLocation.lng();
+        latLng = {
+          lat: lat,
+          lng: lng
+        };
+        //get google street image
+        var panoramaOptions = {
+          position: latLng,
+          pov: {
+            heading: 165,
+            pitch: 0
+          },
+          visible: true,
+          zoom: 1
+        };
+        setTimeout(function(){ new google.maps.StreetViewPanorama(document.getElementById('panorama'), panoramaOptions);}, 1000);
+      }
+    });
+  }
 }

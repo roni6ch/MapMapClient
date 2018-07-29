@@ -15,7 +15,7 @@ export interface IApartments{
         string
     ],
     phones: [string],
-    apartmentType: string,
+    apartment_type: string,
     rooms: number,
     parking: number,
     balcony: number,

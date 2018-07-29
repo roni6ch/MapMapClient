@@ -1,8 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild ,NgZone } from '@angular/core';
 import { AdvancedFilterService } from '../services/advanced-filter.service';
 import { HttpRequestsService } from '../services/http-requests.service';
-import { FormControl , NgForm  } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
+import {  NgForm  } from '@angular/forms';
 import { google } from "google-maps";
 declare var google : google;
 import { MapsAPILoader } from '@agm/core';
@@ -25,11 +24,17 @@ export class NewApartmentModalComponent implements OnInit {
 
   apartment: any;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) { }
-
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) {
+    
+   }
+   ngAfterViewChecked(){
+   }
   ngOnInit() {
     
-    var instances = M.FormSelect.init($("select"));
+    M.FormSelect.init($("select")); 
+    M.CharacterCounter.init($('#inputDescription'));
+
+
 
     this.advancedFiltersJSON.getData().subscribe(data => this.advancedFilters = data);
 
@@ -38,7 +43,7 @@ export class NewApartmentModalComponent implements OnInit {
     let publisher = {
       name: "",
       email:"",
-      phone: null
+      phones: null
     }
     let location = {
       address: "",
@@ -48,9 +53,9 @@ export class NewApartmentModalComponent implements OnInit {
       }
     }
     let details = {
-      apartmentType: [],
+      apartment_type: [],
       rooms: 0,
-      size: 0,
+      size: null,
       floor: 0,
       toilets: 0,
       info: "",
@@ -85,12 +90,23 @@ export class NewApartmentModalComponent implements OnInit {
     //todo: iterate over images
     this.apartment.details.images = images;
   }
+
+  onActiveDateChange(event){
+    console.log(event);
+  }
+  onSelectionDone(event){
+    console.log(event);
+  }
+  
   submittedError = false;
   publishNewApartment(myForm: NgForm) {
+
+    
     if (!myForm.valid) {
       this.submittedError=true;
       return false;
     }
+
     console.log(this.apartment);
     var trueFilters = {};
     for (var key in this.apartment.filters) {
@@ -111,13 +127,7 @@ export class NewApartmentModalComponent implements OnInit {
 
   }
 
-  @ViewChild("date") date: ElementRef;
-  changeDate(){
-    if (this.date.nativeElement)
-      this.apartment.details.entrance_date = this.date.nativeElement.value;
-    else if(this.date)
-      this.apartment.details.entrance_date =  this.date['value'];
-  }
+  
   @ViewChild("search") searchElementRef: ElementRef;
   latLng = {
     lat: 32.056442,
@@ -126,7 +136,8 @@ export class NewApartmentModalComponent implements OnInit {
   initAutoComplete() {
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+      
+      let autocomplete = new google.maps.places.Autocomplete(<HTMLInputElement>document.getElementById("inputLocation"), {
         types: ["address"]
       });
       autocomplete.addListener("place_changed", () => {

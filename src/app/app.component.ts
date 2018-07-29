@@ -1,10 +1,10 @@
 import { Component, ElementRef, NgZone, ViewChild, OnInit } from '@angular/core';
 import { GoogleSignInSuccess } from 'angular-google-signin';
 import * as $ from 'jquery';
+import * as M from 'materialize-css';
 import { HttpClient } from '@angular/common/http';
 import { HttpRequestsService } from './services/http-requests.service';
 
-import { FormControl } from '@angular/forms';
 import { google } from "google-maps";
 declare var google : google;
 import { MapsAPILoader } from '@agm/core';
@@ -29,9 +29,15 @@ export class AppComponent implements OnInit {
   @ViewChild("searchRef")
   public searchElementRef: ElementRef;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) { }
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) { 
+
+    
+  }
   ngOnInit() {
     this.initAutoComplete();
+    M.Sidenav.init($('.sidenav'));
+    M.FloatingActionButton.init($('.fixed-action-btn'));
+
   }
 
   initAutoComplete() {
@@ -105,8 +111,4 @@ export class AppComponent implements OnInit {
       $(".email").html(this.profile['email']);
     }
   }
-
-  
-
-
 }

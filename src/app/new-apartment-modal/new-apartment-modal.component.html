@@ -16,44 +16,29 @@
             <!-- Name -->
             <div class="input-field col s6">
               <i class="material-icons prefix">account_circle</i>
-              <input [(ngModel)]="apartment.publisher.name" #name="ngModel" name="name" id="inputFirstName" minlength="2" maxlength="20" type="text" class="validate"
-                required data-length="20" materialize="characterCounter" (focus)="submittedError = false">
-              <label for="inputFirstName">First Name</label>
-              <span class="helper-text" data-error="wrong" data-success="right"></span>
-
-
-              <div *ngIf="name.invalid && (name.dirty || name.touched) ||  submittedError">
-                <div *ngIf="name.errors?.required" class="alert alert-danger">
-                  Name is required.
-                </div>
-                <div *ngIf="name.errors?.minlength" class="alert alert-danger">
-                  Name must be at least 2 characters long.
-                </div>
-                <div *ngIf="name.errors?.maxlength" class="alert alert-danger">
-                    Name must be at Max 20 characters long.
-                  </div>
-              </div>
+              <input  type="text" [(ngModel)]="apartment.publisher.name" #name="ngModel" name="name" id="inputFirstName" minlength="2" maxlength="20"
+              (focus)="submittedError = false" 
+                required >
+              <label for="inputFirstName" [ngClass]="name.invalid && name.dirty  ? 'red-text' : 'grey-text'" >First Name</label>
+              <span data-error="" data-success="right" *ngIf="name.invalid && (name.dirty || name.touched) ||  submittedError">
+                  <span *ngIf="name.errors?.required" class="helper-text red-text"> Name is required.</span>
+                  <span *ngIf="name.errors?.minlength" class="helper-text red-text" >   Name must be at least 2 characters long.</span>
+                  <span *ngIf="name.errors?.maxlength" class="helper-text red-text" >  Name must be at Max 20 characters long.</span>
+              </span>
 
             </div>
             <!-- Phone -->
             <div class="input-field col s6">
               <i class="material-icons prefix">phone</i>
-              <input [(ngModel)]="apartment.publisher.phone" #phone="ngModel" name="phone" id="icon_telephone" type="number" class="validate"
-                minlength="9"  maxlength="15" required data-length="10" (focus)="submittedError = false" placeholder="050-0000000">
-              <label for="icon_telephone">Telephone</label>
-              <span class="helper-text" data-error="wrong" data-success="right"></span>
-
-              <div *ngIf="phone.invalid && (phone.dirty || phone.touched) ||  submittedError">
-                <div *ngIf="phone.errors?.required" class="alert alert-danger">
-                  Phone is required.
-                </div>
-                <div *ngIf="phone.errors?.minlength" class="alert alert-danger">
-                  Phone must be at least 9 digits.
-                </div>
-                <div *ngIf="phone.errors?.maxlength" class="alert alert-danger">
-                    Phone must be at Max of 15 digits.
-                  </div>
-              </div>
+              <input type="number" [(ngModel)]="apartment.publisher.phones" #phone="ngModel" name="phone" id="icon_telephone" 
+              (focus)="submittedError = false" 
+              pattern=".{9,15}" required  (focus)="submittedError = false" placeholder="050-0000000">
+              <label for="icon_telephone" [ngClass]="phone.invalid && phone.dirty  ? 'red-text' : 'grey-text'" >Telephone</label>
+              <span data-error="" data-success="right" *ngIf="phone.invalid && (phone.dirty || phone.touched) ||  submittedError">
+                  <span *ngIf="phone.errors?.required" class="helper-text red-text"> Phone is required.</span>
+                  <span *ngIf="phone.errors?.pattern" class="helper-text red-text"> Phone must be at least 9-15 digits.</span>
+              </span>
+              
             </div>
           </div>
         </div>
@@ -61,80 +46,89 @@
           <div class="col s12">
 
             <!-- Price -->
-            <div class="input-field col s4">
+            <div class="input-field col s6">
               <i class="material-icons prefix">
                 <img src="assets/images/icons/coins/ils.png" />
               </i>
-              <input [(ngModel)]="apartment.details.price" #price="ngModel" name="price" id="inputPrice" type="number" data-length="10" class="validate"
-                required onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9,.]{3,10}" />
-              <label for="inputPrice">Price</label>
-              <span class="helper-text" data-error="wrong" data-success="right"></span>
-
-              <div *ngIf="price.invalid && (price.dirty || price.touched) ||  submittedError">
-                  <div *ngIf="price.errors?.required" class="alert alert-danger">
-                    Price is required.
-                  </div>
-                  <div *ngIf="price.errors?.minlength" class="alert alert-danger">
-                      Price must be at least 3 characters long.
-                  </div>
-                  <div *ngIf="price.errors?.maxlength" class="alert alert-danger">
-                      Price must be at most 10 characters long.
-                  </div>
-                </div>
+              <input [(ngModel)]="apartment.details.price" #price="ngModel" name="price" id="inputPrice" type="number" data-length="10"
+                class="validate" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9,.]{3,10}"
+                (focus)="submittedError = false" 
+              />
+              <label for="inputPrice" [ngClass]="price.invalid && price.dirty  ? 'red-text' : 'grey-text'" >Price</label>
+              <span data-error="" data-success="right" *ngIf="price.invalid && (price.dirty || price.touched) ||  submittedError">
+                  <span *ngIf="price.errors?.required" class="helper-text red-text"> Price is required.</span>
+                  <span *ngIf="price.errors?.pattern" class="helper-text red-text"> Price must be at least 3-10 characters long.</span>
+              </span>
 
             </div>
             <!-- Email -->
-            <div class="input-field col s4">
+            <div class="input-field col s6">
               <i class="material-icons prefix">email</i>
-              <input [(ngModel)]="apartment.publisher.email" name="email" id="inputMail" type="email" class="validate" data-length="30"
-                min="10" max="15" />
-              <label for="inputMail">Email</label>
-              <span class="helper-text" data-error="wrong" data-success="right"></span>
+              <input [(ngModel)]="apartment.publisher.email" name="email" id="inputMail" type="email"  data-length="30"
+              (focus)="submittedError = false" 
+                min="10" max="15"  #email="ngModel"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+              <label for="inputMail" [ngClass]="email.invalid && email.dirty  ? 'red-text' : 'grey-text'" >Email</label>
+              <span data-error="" data-success="right" *ngIf="email.invalid && (email.dirty || email.touched)||  submittedError">
+                  <span *ngIf="email.errors?.required" class="helper-text red-text"> Email's is required.</span>
+                  <span *ngIf="email.errors?.pattern" class="helper-text red-text"> Email's not valid.</span>
+              </span>
             </div>
 
-            <!-- Date -->
-            <div class="input-field col s4">
-              <i class="material-icons prefix">date_range</i>
-
-              <input type="text" class="datepicker" #date="ngModel" [(ngModel)]="apartment.details.entrance_date" name="date" id="inputDate" required
-                (change)="changeDate()" />
-
-              <label for="inputMail">Date</label>
-              <span class="helper-text" data-error="wrong" data-success="right"></span>
-
-              <div *ngIf="date.invalid && (date.dirty || date.touched) ||  submittedError">
-                  <div *ngIf="date.errors?.required" class="alert alert-danger">
-                      Date is required.
-                  </div>
-                </div>
-            </div>
+            
           </div>
         </div>
 
-        <!-- Location -->
-        <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>
-
-          <input #search name="location" [(ngModel)]="apartment.location.address" autocorrect="off" autocapitalize="off" spellcheck="off" required
-            class="form-control mr-sm-2 " type="search" id="inputLocation" placeholder="Search for location" aria-label="Search">
-          <label for="inputLocation">Location</label>
-        </div>
-
-        <!-- info -->
         <div class="row">
-          <div class="input-field col s10">
-            <i class="material-icons prefix">create</i>
-            <textarea [(ngModel)]="apartment.details.info" name="description" id="inputDescription" class="materialize-textarea" data-length="250"></textarea>
-            <label for="inputDescription">Description...</label>
-            <span class="helper-text" data-error="wrong" data-success="right"></span>
+            <div class="col s12">
+        <!-- Date -->
+        <div class="input-field col s6">
+            <i class="material-icons prefix">date_range</i>
+            <input type="date" #date="ngModel" [(ngModel)]="apartment.details.entrance_date" name="date" id="inputDate" required   (focus)="submittedError = false"  />
+            <label for="inputMail" [ngClass]="date.invalid && date.dirty  ? 'red-text' : 'grey-text'" >Date</label>
+            <span data-error="" data-success="right" *ngIf="date.invalid && (date.dirty || date.touched) ||  submittedError">
+                <span *ngIf="date.errors?.required" class="helper-text red-text"> Date is required.</span>
+            </span>
           </div>
 
           <!-- size -->
-          <div class="input-field col-s2">
-            <input [(ngModel)]="apartment.details.size" name="size" id="inputSize" type="number" class="validate apartmentSize" />
-            <label for="inputSize">Size</label>
-            <span class="helper-text" data-error="wrong" data-success="right"></span>
+          <div class="input-field col s6">
+              <input #size="ngModel" [(ngModel)]="apartment.details.size" name="size" id="inputSize" type="number" class="validate apartmentSize" pattern=".{2,10000}"/>
+              <label for="inputSize" [ngClass]="name.invalid && name.dirty  ? 'red-text' : 'grey-text'" >Size</label>
+              <span data-error="" data-success="right" *ngIf="size.invalid && (size.dirty || size.touched) ||  submittedError">
+                  <span *ngIf="size.errors?.pattern" class="helper-text red-text"> Size must be at least 2 digits.</span>
+              </span>
+            </div>
+    </div>
+    </div>
+
+
+
+
+        <!-- Location -->
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input #search="ngModel" name="location" [(ngModel)]="apartment.location.address" autocorrect="off" autocapitalize="off" spellcheck="off"
+            required class="form-control mr-sm-2 " type="search" id="inputLocation" placeholder="Search for location" aria-label="Search">
+          <label for="inputLocation" [ngClass]="search.invalid && search.dirty  ? 'red-text' : ''" >Location</label>
+          <span data-error="" data-success="right" *ngIf="search.invalid && (search.dirty || search.touched) || submittedError">
+              <span *ngIf="search.errors?.required" class="helper-text red-text"> Location is required.</span>
+          </span>
+        </div>
+
+        <!-- Description info -->
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">create</i>
+            <textarea #description="ngModel" [(ngModel)]="apartment.details.info" name="description" id="inputDescription" class="materialize-textarea" 
+            data-length="250"  class="materialize-textarea" minlength="30"  maxlength="250" ></textarea>
+            <label for="inputDescription" [ngClass]="description.invalid && description.dirty  ? 'blue-text' : 'grey-text'" >Description...</label>
+            <span data-error="" data-success="right" *ngIf="description.invalid && (description.dirty || description.touched) ||  submittedError">
+                <span *ngIf="description.errors?.minlength" class="helper-text blue-text"> Please type Description at least 30 characters long.</span>
+                <span *ngIf="description.errors?.maxlength" class="helper-text red-text"> Description must be at max of 250 characters long.</span>
+            </span>
           </div>
+
+       
         </div>
 
         <!-- Images -->
@@ -142,8 +136,8 @@
         <!-- [(ngModel)]="apartment.images" -->
 
         <!-- advancedFilter -->
-        <div class="form-row">
-          <div *ngFor="let filter of advancedFilters" class="advancedFilters advancedFilter col s2">
+        <div class="form-row row">
+          <div *ngFor="let filter of advancedFilters" class="advancedFilters advancedFilter col-sm-4 col-md-2">
             <div class="switch">
               <label>
                 <div class="switchIcon">
@@ -161,7 +155,7 @@
         <div class="row">
           <!-- apartmentType -->
           <div class="input-field col s3 apartmentType">
-            <select [(ngModel)]="apartment.details.apartmentType" name="apartmentType">
+            <select [(ngModel)]="apartment.details.apartment_type" name="apartmentType">
               <option value="" disabled selected>Type</option>
               <option value="דירה">דירה</option>
               <option value="דירת גן">דירת גן</option>

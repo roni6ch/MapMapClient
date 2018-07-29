@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, Input } from '@angular/core';
-import { ApartmentsService } from '../services/apartments.service';
-import { FiltersPipe } from '../filters.pipe';
+import { Component, ElementRef, OnInit, Input, ViewChild } from '@angular/core';
+import { HttpRequestsService } from '../services/http-requests.service';
+
 
 
 @Component({
@@ -20,9 +20,9 @@ export class MapComponent implements OnInit {
   lat: number;
   lng: number;
   mapOptions: object = {
-    zoom: 14
+    zoom: 14,
   };
-  constructor(private apartmentResults: ApartmentsService) {
+  constructor(private httpReq: HttpRequestsService) {
   }
   ngOnChanges(changes: any) {
 
@@ -41,26 +41,30 @@ export class MapComponent implements OnInit {
   }
   ngOnInit() {
     //get result.json
-    this.apartmentResults.getData().subscribe(data => { this.apartments = data; console.log(data) });
+    //this.httpReq.getData().subscribe(data => { this.apartments = data; console.log(data) });
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
   }
-
-  infoWindow: any;
-  lastApartmentModal = {};
-
-  openMarker(apartment, infowindow) {
-    if (this.apartmentModal === apartment)
-      return;
-    if (this.infoWindow) {
-      this.infoWindow.close();
-      this.infoWindow = infowindow;
+  boundsChange(lng, lat) {
+    console.log(lng, " ", lat);
+    let boundsTemp = {
+      "lat": lng,
+      "long": lat,
     }
-    else {
-      this.infoWindow = infowindow;
-      this.infoWindow.open();
-    }
-    this.apartmentModal = apartment;
-    console.log(apartment);
+    this.httpReq.getData(boundsTemp).subscribe(data => { this.apartments = data; console.log(data); this.lastInfoWindow = null });
   }
+
+  lastInfoWindow: any;
+  // close last info-window https://stackblitz.com/edit/agm-close-infowindow?file=app%2Fapp.component.html
+  openApartment(apartment, infowindow) {
+    console.log(apartment);
+    if (this.lastInfoWindow) {
+      this.lastInfoWindow.close();
+    }
+    this.lastInfoWindow = infowindow;
+    this.apartmentModal = apartment;
+  }
+
+
+
 }

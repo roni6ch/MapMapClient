@@ -20,7 +20,7 @@
       }
     },
     "details": {
-      "apartmentType": "יחידת דיור",
+      "apartment_type": "יחידת דיור",
       "rooms": 5,
       "size": 80,
       "floor": 2,
@@ -74,7 +74,7 @@
       }
     },
     "details": {
-      "apartmentType": "סטודיו",
+      "apartment_type": "סטודיו",
       "rooms": 2,
       "size": 90,
       "floor": 3,
@@ -126,7 +126,7 @@
       }
     },
     "details": {
-      "apartmentType": "סטודיו",
+      "apartment_type": "סטודיו",
       "rooms": 2,
       "size": 90,
       "floor": 3,
@@ -178,7 +178,7 @@
       }
     },
     "details": {
-      "apartmentType": "דירה",
+      "apartment_type": "דירה",
       "rooms": 2,
       "size": 90,
       "floor": 3,
@@ -232,7 +232,7 @@
       }
     },
     "details": {
-      "apartmentType": "דירה",
+      "apartment_type": "דירה",
       "rooms": 2,
       "size": 90,
       "floor": 3,
@@ -280,7 +280,7 @@
       }
     },
     "details": {
-      "apartmentType": "דירה",
+      "apartment_type": "דירה",
       "rooms": 2,
       "size": 90,
       "floor": 3,
@@ -331,7 +331,7 @@
       }
     },
     "details": {
-      "apartmentType": "דירת גן",
+      "apartment_type": "דירת גן",
       "rooms": 2,
       "size": 90,
       "floor": 3,
@@ -382,7 +382,7 @@
       }
     },
     "details": {
-      "apartmentType": "דירה",
+      "apartment_type": "דירה",
       "rooms": 2,
       "size": 90,
       "floor": 3,
@@ -432,7 +432,7 @@
       }
     },
     "details": {
-      "apartmentType": "דירה",
+      "apartmentTyapartment_typepe": "דירה",
       "rooms": 4,
       "size": 50,
       "floor": 3,

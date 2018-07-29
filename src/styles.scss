@@ -1,52 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
-*{
-    font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    outline:0;
-}
-input{font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;}
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;
-  }
-  ::-moz-placeholder { /* Firefox 19+ */
-    font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;
-  }
-  :-ms-input-placeholder { /* IE 10+ */
-    font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;
-  }
-  :-moz-placeholder { /* Firefox 18- */
-    font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;
-  }
-a:hover {
-    text-decoration: none;
-    color: #42A5F5 !important;
+*{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;padding:0;margin:0;border:0;outline:0;}
+::-webkit-scrollbar
+{ width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
 }
 
-.btn{
-    background:  #42A5F5 !important;
-    background-color: #42A5F5 !important;
-    color:#fff !important;
-}
-body {
-    background-color: #3aa0ff;
-    height: 100vh;
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
 }
 
-hr{    width: 100%;}
-
-.modal-open .modal{
-    margin: 0;
-    width: 100%;
-    min-height: 100%;
-    background: transparent;
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
 }
-
- .pac-container, .pac-item{
-    z-index: 2147483647 !important;
-    
-    text-align: left;
- }
+input{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
+::-webkit-input-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
+::-moz-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
+:-ms-input-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
+:-moz-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
+a:hover{text-decoration:none;color:#42A5F5 !important;}
+.btn{background:#42A5F5 !important;background-color:#42A5F5 !important;color:#fff !important;}
+body{width:100%;background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./assets/images/bg.jpg) center center;height:100vh;}
+hr{width:100%;}
+.modal-open .modal{margin:0;width:100%;min-height:100%;background:transparent;}
+ .pac-container, .pac-item{z-index:2147483647 !important;text-align:left;}
  .pac-logo:after{display:none;}
- 
+ @media print{agm-map{display:none }
+ #infowindowmodal .modal-dialog{width:100%;margin:0 !important;max-width:none;}
+}
+
+
+@media only screen and (max-width: 600px) {
+#newApartmentWindowModal .loaders{    margin: 0 auto;width:auto;}
+#newApartmentWindowModal .images{width:100%;max-height:none; display: block;}
+.gm-style-iw > div{float:right}
+}

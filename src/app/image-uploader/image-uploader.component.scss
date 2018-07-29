@@ -1,113 +1,28 @@
-.imageuploadify {
-  border: 2px dashed #d2d2d2;
-  position: relative;
-  margin: auto;
-  display: inline-block;
-  padding: 0;
-  flex-direction: column;
-  text-align: center;
-  background-color: #fff;
-  color: #3AA0FF;
-  width: 100%;
-  margin-bottom: 20px;min-height: 150px;
+.imageuploadify{border:2px dashed #d2d2d2;position:relative;margin:auto;display:inline-block;padding:0;flex-direction:column;text-align:center;background-color:#fff;color:#3AA0FF;width:100%;margin-bottom:20px;min-height:150px;}
+.imageuploadify .imageuploadify-overlay{z-index:10;width:100%;height:100%;position:absolute;flex-direction:column;top:0;left:0;display:none;font-size:7em;background-color:rgba(242, 242, 242, .7);text-align:center;pointer-events:none;}
+.imageuploadify .imageuploadify-overlay i{z-index:10;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);pointer-events:none;}
+.imageuploadify .imageuploadify-images-list{padding:9px;}
+.imageuploadify .imageuploadify-images-list i{display:block;font-size:2em;text-align:center;margin-top:.5em;padding-bottom:0px;}
+.uploadBtn{background:white;color:rgb(58, 160, 255);display:block;text-align:center;margin:20px auto;}
+.imageuploadify:hover{border:3px dotted #7f7c7c;border-style:dotted;cursor:pointer;}
+#fileInput{opacity:0;position:absolute;top:0;cursor:pointer;left:0;width:100%;min-height:150px;}
+.images{width:21%;float:left;margin:2%;max-height:110px;display:flex;pointer-events:none;position:relative;}
+.fileInputLabel{width:50%;cursor:pointer;display:block;margin:2% auto;}
+ .images img{width:100%;}
+ .images > span{
+    position: absolute;
+    left: -8px;
+    font-size: 30px;
+    cursor: pointer;
+    pointer-events: auto;
+    color: red;
+    z-index: 1111111;
+    top: -22px;
+ }
+.hoverInputBox{background:#000;opacity:0.5;}
+ .loaders{width:200px;height:110px;float:left;}
+.lds-dual-ring{display:inline-block;width:64px;height:64px;margin:31px auto;}
+.lds-dual-ring:after{content:" ";display:block;width:46px;height:46px;margin:1px;border-radius:50%;border:5px solid #000;border-color:#000 transparent #000 transparent;animation:lds-dual-ring 1.2s linear infinite;}
+@keyframes lds-dual-ring{0%{transform:rotate(0deg);}
+ 100%{transform:rotate(360deg);}
 }
-
-.imageuploadify .imageuploadify-overlay {
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  flex-direction: column;
-  top: 0;
-  left: 0;
-  display: none;
-  font-size: 7em;
-  background-color: rgba(242, 242, 242, .7);
-  text-align: center;
-  pointer-events: none;
-}
-
-.imageuploadify .imageuploadify-overlay i {
-  z-index: 10;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.imageuploadify .imageuploadify-images-list {
-  padding: 9px;
-}
-
-.imageuploadify .imageuploadify-images-list i {
-  display: block;
-  font-size: 2em;
-  text-align: center;
-  margin-top: .5em;
-  padding-bottom: 0px;
-}
-
-.uploadBtn {
-  background: white;
-  color: rgb(58, 160, 255);
-  display: block;
-  text-align: center;
-  margin: 20px auto;
-}
-
-.imageuploadify:hover {
-    border: 3px dotted #7f7c7c;
-    border-style: dotted; cursor:pointer;
-}
-#fileInput{ opacity: 0;
-  position: absolute;
-top: 0;    cursor: pointer;
-left: 0;
-width: 100%;
-min-height: 150px;
-}
-.images{
-  width:21%;float:left; margin:2%;        max-height: 110px;
-  overflow: hidden;display: flex;    pointer-events: none;
-}
-.fileInputLabel{width: 50%;cursor: pointer;display: block;
-  margin: 2% auto;}
-  .images img{width:100%;}
-
-.hoverInputBox{
-  background: #000;
-  opacity:0.5;
-}
-  
-/*LOADER*/
-.loaders{width: 200px;
-  height: 110px;    float: left;}
-.lds-dual-ring {
-  display: inline-block;
-  width: 64px;
-  height: 64px;       margin: 31px auto;
-}
-
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 46px;
-  height: 46px;
-  margin: 1px;
-  border-radius: 50%;
-  border: 5px solid #000;
-  border-color: #000 transparent #000 transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
-}
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/*LOADER END */
-  
