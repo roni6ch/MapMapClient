@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule , NO_ERRORS_SCHEMA } from '@angular/core';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,6 +7,7 @@ import { GoogleSignInComponent } from 'angular-google-signin';
 
 /* MAP */
 import { AgmCoreModule } from '@agm/core';
+
 /* SERVICE */
 import { ApartmentsService } from './services/apartments.service';
 import { AdvancedFilterService } from './services/advanced-filter.service';
@@ -20,9 +21,11 @@ import { NewApartmentModalComponent } from './new-apartment-modal/new-apartment-
 import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 import { AdvancedFiltersComponent } from './advanced-filters/advanced-filters.component';
 
-/* Image Uploader */
+import { NouisliderModule } from 'ng2-nouislider';
+import { FiltersPipe } from './filters.pipe';
 
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ContractsComponent } from './contracts/contracts.component';
 
 
 @NgModule({
@@ -35,6 +38,8 @@ import { AdvancedFiltersComponent } from './advanced-filters/advanced-filters.co
     NewApartmentModalComponent,
     ImageUploaderComponent,
     AdvancedFiltersComponent,
+    FiltersPipe,
+    ContractsComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,10 +51,13 @@ import { AdvancedFiltersComponent } from './advanced-filters/advanced-filters.co
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    NouisliderModule,
+    MDBBootstrapModule.forRoot()
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[FiltersPipe]
 })
 export class AppModule { }
 

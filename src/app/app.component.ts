@@ -1,12 +1,12 @@
 import { Component, ElementRef, NgZone, ViewChild, OnInit } from '@angular/core';
 import { GoogleSignInSuccess } from 'angular-google-signin';
 import * as $ from 'jquery';
+import * as M from 'materialize-css';
 import { HttpClient } from '@angular/common/http';
 import { HttpRequestsService } from './services/http-requests.service';
 
-
-import { FormControl } from '@angular/forms';
-import { } from 'googlemaps';
+import { google } from "google-maps";
+declare var google : google;
 import { MapsAPILoader } from '@agm/core';
 
 @Component({
@@ -15,6 +15,7 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  
   search = false;
   profile = {};
   latLng = {
@@ -25,18 +26,21 @@ export class AppComponent implements OnInit {
   private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
   scriptLoaded = false;
 
-  public searchControl: FormControl;
   @ViewChild("searchRef")
   public searchElementRef: ElementRef;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) { }
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) { 
+
+    
+  }
   ngOnInit() {
     this.initAutoComplete();
+    M.Sidenav.init($('.sidenav'));
+    M.FloatingActionButton.init($('.fixed-action-btn'));
+
   }
 
   initAutoComplete() {
-    //create search FormControl
-    this.searchControl = new FormControl();
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -64,7 +68,6 @@ export class AppComponent implements OnInit {
     let googleUser: gapi.auth2.GoogleUser = event.googleUser;
     this.httpReq.login(googleUser.getAuthResponse().id_token).subscribe(data => {
       if (data) {
-        console.log(data)
         this.profile = data;
         this.showLoginBT(false);
       }
@@ -73,7 +76,6 @@ export class AppComponent implements OnInit {
       }
     });
   }
-
   signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     console.log(auth2);
@@ -82,32 +84,31 @@ export class AppComponent implements OnInit {
       console.log('User signed out.');
     });
   }
-
+  filtersInput = [];
+  filtersInputFunc(event){
+    this.filtersInput = event; 
+  }
   openSearchInput() {
     this.search = true;
   }
   focusOutSearch(e: any) {
     this.search = false;
   }
+  connect = false;
   showLoginBT(bool: boolean) {
     if (bool) {
       //show login
+      this.connect = true;
       $(".googleBT").show();
-      $(".signOut").hide();
-      $(".name").hide();
-      $(".email").hide();
-
     }
     else {
       //show profile
+      this.connect = false;
       $(".googleBT").hide();
-      $(".name").show();
-      $(".email").show();
+      $(".signOut").show();
       $(".signOut").attr("src", this.profile['picture']);
       $(".name").html(this.profile['given_name'] + this.profile['family_name']);
       $(".email").html(this.profile['email']);
-      $(".signOut").show();
     }
   }
-
 }

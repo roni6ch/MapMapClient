@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpRequestsService } from '../services/http-requests.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-image-uploader',
@@ -10,29 +11,62 @@ import { HttpClient } from '@angular/common/http';
 export class ImageUploaderComponent implements OnInit {
 
   selectedFiles: [File];
-  srcImg: string;
+  srcImages;
 
 
-  constructor(private http: HttpClient) { }
+  @Output() images = new EventEmitter();
+  imagesArr: any;
+  uploadData = new FormData();
+
+  constructor(private http: HttpClient, private httpReq: HttpRequestsService) {
+
+  }
 
   ngOnInit() {
   }
-
-  onFileChanged(event) {
-    this.selectedFiles = event.target.files;
-    console.log(this.selectedFiles);
+  removePicture(image){
+    console.log(image);
+    this.httpReq.removePicture(image).subscribe(data => {
+      if (data) {
+        this.srcImages = data;
+      }
+    });
   }
-  onUpload() {
-    console.log("onUpload");
-    // upload code goes here
-    const uploadData = new FormData();
-    for (let file in this.selectedFiles) {
-      console.log(this.selectedFiles[file]);
-      uploadData.append('myFile', this.selectedFiles[file], this.selectedFiles[file].name);
-      this.srcImg = 'assets/images/logo.png';
+  hoverInputBox = false;
+  allowDrop(ev) {
+    ev.preventDefault();
+    this.hoverInputBox = true;
+  }
+
+  loaders = [];
+  upload(fileInput: any) {
+    this.loaders = [];
+    let files;
+
+    if (fileInput.target && fileInput.target.files && fileInput.target.files[0]) {
+      files = fileInput.target.files;
     }
-    // this.http.post('my-backend.com/file-upload', uploadData).subscribe(data => this.srcImg = 'assets/images/logo.png');
 
+    if (files)
+      for (var i = 0; i < files.length; i++) {
+        if (files[i] !== undefined) {
+          this.loaders.push(i);
+          this.uploadData.append("imageFile", files[i], files[i].name);
+        }
+      }
+
+    $(".loaders").show();
+    this.hoverInputBox = false;
+
+    if (this.uploadData !== undefined)
+      this.httpReq.uploadImages(this.uploadData).subscribe(data => {
+        if (data) {
+          $(".loaders").hide();
+          this.srcImages = data;
+          console.log("image uploaded: ", data);
+          this.images.emit(data);
+        }
+      });
   }
-  
+
 }

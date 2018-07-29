@@ -21,7 +21,7 @@
     {
       "name": "מזגן",
       "filterName": "air_conditioner",
-      "filter":" false"
+      "filter":false
     },
     {
       "name": "תמ''א",
@@ -71,11 +71,6 @@
     {
       "name": "כניסה מיידית",
       "filterName": "immediate_entrance",
-      "filter": false
-    },
-    {
-      "name": "תמונות",
-      "filterName": "apartment_image",
       "filter": false
     }
   ]

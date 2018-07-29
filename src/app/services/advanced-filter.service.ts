@@ -7,8 +7,7 @@ import { IAdvancedFilter } from '../i-advanced-filter';
   providedIn: 'root'
 })
 export class AdvancedFilterService {
-
-
+  
   private _url = "./assets/advancedFilter.json";
   
   constructor(private http : HttpClient) { }

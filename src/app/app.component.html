@@ -1,4 +1,3 @@
-
 <!-- NAV -->
 <nav class="navbar navbar-expand-lg navbar-light" [ngClass]="{ 'searchClicked': search }">
 
@@ -12,13 +11,15 @@
       <a href="#">
         <img src="assets/images/logo.png" class="logoImg"> MapMap</a>
     </div>
-      
-    <div class="form-inline my-2 my-lg-0 right smallSearch">
-      <input #searchRef [formControl]="searchControl" autocorrect="off" autocapitalize="off" spellcheck="off"
-      class="form-control mr-sm-2 " type="search" placeholder="Search for location" aria-label="Search" (click)="openSearchInput()" (focusout)="focusOutSearch($event)">
-    </div>
-     
 
+    <div class="form-inline my-2 my-lg-0 right smallSearch">
+      <input #searchRef autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control mr-sm-2 "
+        type="search" placeholder="Search for location" aria-label="Search" (click)="openSearchInput()" (focusout)="focusOutSearch($event)">
+    </div>
+
+
+
+    
   </div>
 </nav>
 <!-- Hamburger Menu -->
@@ -31,19 +32,19 @@
       <div class="userProfile">
 
         <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) -->
-        <div class="googleBT">
+        <div class="googleBT" >
           <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
           </google-signin>
         </div>
 
-        <img [src]="profile['picture']" class='signOut' (click)="signOut()">
+        <img [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut' [hidden]="connect" (click)="signOut()">
       </div>
       <div class="navDetails">
         <p>
-          <span class="black-text name">{{profile['given_name'] }} {{profile['family_name']}}</span>
+          <span class="black-text name" [hidden]="connect" >{{profile['given_name'] }} {{profile['family_name']}}</span>
         </p>
         <p>
-          <span class="black-text email">{{profile['email']}}</span>
+          <span class="black-text email" [hidden]="connect" >{{profile['email']}}</span>
         </p>
       </div>
     </div>
@@ -55,44 +56,38 @@
 
 
   <li class="navOptions">
-    <a  href="#"  data-toggle="modal">
+    <a href="#"  data-toggle="modal" data-target="#advancedFiltersModal">
       <i>
         <img src="assets/images/icons/funnel.png" />
       </i> סינון</a>
   </li>
 
-  <li class="navOptions">
-    <a class=" modal-trigger advancedFilterBT" href="#advancedFiltersModal">
-      <i class="material-icons">filter_list</i>סינון מתקדם</a>
-  </li>
-
-
-
-<li>
-  
-  <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
-</li>
-
-
 </ul>
 
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal bottom-sheet">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
+<!-- Floating Action Button -->
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red" data-toggle="modal" data-target="#newApartmentWindowModal"><span class="floatingText red">Add new Apartment</span><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating yellow darken-1"  data-toggle="modal" data-target="#advancedFiltersModal"><span  class="floatingText yellow darken-1">Filters</span> <img src="assets/images/icons/funnel.png" /></a></li>
+      <li><a class="btn-floating green"><span class="floatingText green">Table View</span><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue" data-toggle="modal" data-target="#contracts"><span class="floatingText blue">Contracts</span><i class="material-icons">attach_file</i></a></li>
+    </ul>
   </div>
 
 
-<app-map [latLng]="latLng"></app-map>
+<!-- Map -->
+<app-map [latLng]="latLng" [filterFavoritesInput]="filterFavorites" [filtersInput]="filtersInput"  ></app-map>
 
+<!-- new Apartment -->
 <app-new-apartment-modal></app-new-apartment-modal>
 
-<app-advanced-filters></app-advanced-filters>
+<!-- advanced Filter -->
+<app-advanced-filters (favoritesClick)="filterFavorites=$event" (filters)="filtersInputFunc($event)"></app-advanced-filters>
+
+
+<!-- Contracts Modal -->
+<app-contracts></app-contracts>

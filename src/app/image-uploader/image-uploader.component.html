@@ -1,22 +1,24 @@
 <!-- upload Images -->
-<div class="form-row imageuploadify"  ondrop="drop(event)" ondragover="allowDrop(event)">
+<div class="form-row imageuploadify" [ngClass]="hoverInputBox? 'hoverInputBox' : ''" (dragover)="allowDrop($event)">
+  <div>
+    <i class="material-icons prefix"> cloud_upload</i>
+    <span class="imageuploadify-message">
+      Drag & Drop...
+    </span>
+  </div>
+  <label class="btn btn-info fileInputLabel" for="upload-photo">Or Browse...
+    <input type="file" name="file" id='fileInput' name="images" (change)="upload($event)" #fileInput accept="image/*,video/*"
+      multiple />
+  </label>
+</div>
 
-    <form action="/"
-      class="dropzone"
-      id="my-awesome-dropzone">
-    
-  <i class="material-icons prefix"> cloud_upload</i>
-  <span class="imageuploadify-message">
-    Drag & Drop...
-  </span>
-  <button type="button" class="btn uploadBtn" style="background: white; color: rgb(58, 160, 255);" (click)="fileInput.click()">
-    <span> Or - Choose files to upload </span>
-  </button>
-
-
-  <input type="file" #fileInput style="display: none" (change)="onFileChanged($event)" accept="image/*,video/*"
-    multiple>
-</form>
-
+<div class="row">
+  <div *ngFor="let loader of loaders" class="loaders">
+    <div class="lds-dual-ring"></div>
+  </div>
+  <div *ngFor="let image of srcImages" class="images">
+    <span (click)="removePicture(image)">X</span>
+    <img [src]="image" />
+  </div>
 
 </div>
