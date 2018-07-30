@@ -1,7 +1,9 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform ,NgModule} from '@angular/core';
+
+
 
 @Pipe({
-  name: 'filters'
+  name: 'filters',
 })
 export class FiltersPipe implements PipeTransform {
 
@@ -15,7 +17,7 @@ export class FiltersPipe implements PipeTransform {
       //todo: change active to favorites
       if (Number(filtersArr.range[0]) <= a.details.price && a.details.price <= Number(filtersArr.range[1])
         && ( filtersArr.favorites == a.active  || !filtersArr.favorites )
-        && ( filtersArr.apartment_type == a.details.apartment_type || filtersArr.apartment_type == 'all')
+        && ( filtersArr.apartment_type == a.details.apartment_type || a.details.apartment_type == '' || a.details.apartment_type == undefined || filtersArr.apartment_type == 'all')
         && Number(a.details.rooms) >= filtersArr.rooms 
         && Number(a.details.floor) >= filtersArr.floor
         && Number(a.details.toilets) >= filtersArr.toilets) {

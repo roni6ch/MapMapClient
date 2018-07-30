@@ -34,6 +34,11 @@ hr{width:100%;}
   width: 400px !important;
   }
 
+  .ng2-smart-filter input{padding:0 !important;}
+
+  nav.ng2-smart-pagination-nav{background-color: transparent !important;}
+  .ng2-smart-page-item{    margin: 0px 1% !important;}
+
  @media print{agm-map{display:none }
  #infowindowmodal .modal-dialog{width:100%;margin:0 !important;max-width:none;}
 }

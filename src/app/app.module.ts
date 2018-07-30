@@ -32,6 +32,7 @@ import { FiltersPipe } from './filters.pipe';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ContractsComponent } from './contracts/contracts.component';
 
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 
@@ -52,6 +53,7 @@ import { ContractsComponent } from './contracts/contracts.component';
   imports: [
     BrowserModule,
     BootstrapModule,
+    Ng2SmartTableModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCG43sbbdLsGywMwY0T7-1yOoKVDGfnbsk',
       libraries: ['places']
@@ -64,7 +66,7 @@ import { ContractsComponent } from './contracts/contracts.component';
     MDBBootstrapModule.forRoot(),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService],
+  providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService,FiltersPipe],
   bootstrap: [AppComponent],
   exports:[FiltersPipe]
 })
