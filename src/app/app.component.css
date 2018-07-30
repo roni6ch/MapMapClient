@@ -144,6 +144,50 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
 }
 
 
+/*search*/
+.searchField{
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 100px;
+  width: 30%;
+  -webkit-transition: width .3s linear;
+  transition: width .3s linear;
+  background: #ffffff9c;
+  padding: 0px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.resultsInfo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100px;
+}
+.searchField > input {
+  display: block;
+  width: 70% !important;
+  direction: rtl;
+  margin-top: 1% !important;
+  margin-bottom: 2% !important;
+  text-align: right;
+  margin: 0 25%;
+}
+.btn-search {
+  position: absolute;
+  top: 4px;
+  left: 15px;
+}
+.searchField:focus-within{background:#fff;
+  -webkit-transition: width .3s linear ; /* For Safari 3.1 to 6.0 */
+  transition: width .3s linear ;
+width:40%;
+}
+
+.blurSection{width:100%; height:100%;}
+
 @media only screen and (max-width: 600px) {
 nav{height: 6vh;}
 #navbar{    width: 90%;}

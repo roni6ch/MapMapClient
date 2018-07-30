@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Input, ViewChild , Output , EventEmitter } from '@angular/core';
+import { Component, ElementRef, OnInit, Input, ViewChild ,ViewChildren, Output , EventEmitter } from '@angular/core';
 import { HttpRequestsService } from '../services/http-requests.service';
 
 
@@ -12,6 +12,11 @@ export class MapComponent implements OnInit {
   @Input() latLng: any;
   @Input() filterFavoritesInput: boolean;
   @Input() filtersInput: {};
+  @Input() resultsLength: number;
+  
+  @ViewChildren('markers') markers;
+
+  @Output() apartmentsResults = new EventEmitter();
 
   filtersArr;
   favorites = false;
@@ -32,13 +37,16 @@ export class MapComponent implements OnInit {
   ngOnChanges(changes: any) {
 
     //send to pipe in order to filter the results on map
-    if (changes.hasOwnProperty('filtersInput') !== undefined && changes.hasOwnProperty('filtersInput') !== false)
+    if (changes.hasOwnProperty('filtersInput') !== undefined && changes.hasOwnProperty('filtersInput') !== false){
       this.filtersArr = changes.filtersInput.currentValue;
-
+    }
     else if (changes.hasOwnProperty('latLng') !== undefined && changes.hasOwnProperty('latLng') !== false) {
       this.lat = changes.latLng.currentValue.lat;
       this.lng = changes.latLng.currentValue.lng;
     }
+
+  }
+  ngAfterViewInit() {
   }
 
   changeFavorites(fav) {
@@ -50,6 +58,7 @@ export class MapComponent implements OnInit {
     //this.httpReq.getData().subscribe(data => { this.apartments = data; console.log(data) });
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
+   // this.apartmentsResults.emit(this.markers.length);
 
   }
   boundsChange(lng, lat) {
@@ -58,7 +67,11 @@ export class MapComponent implements OnInit {
       "lat": lng,
       "long": lat,
     }
-    this.httpReq.getData(boundsTemp).subscribe(data => { this.apartments = data; console.log(data); this.lastInfoWindow = null });
+    this.httpReq.getData(boundsTemp).subscribe(data => { 
+      this.apartments = data; 
+      console.log(data); 
+      this.lastInfoWindow = null;
+    });
   }
 
   lastInfoWindow: any;
