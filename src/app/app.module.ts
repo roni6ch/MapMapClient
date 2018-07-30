@@ -39,7 +39,6 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 @NgModule({
   declarations: [
     AppComponent,
-    GoogleSignInComponent,
     MapComponent,
     TableComponent,
     InfowindowComponent,
@@ -49,6 +48,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     AdvancedFiltersComponent,
     FiltersPipe,
     ContractsComponent,
+    GoogleSignInComponent
   ],
   imports: [
     BrowserModule,

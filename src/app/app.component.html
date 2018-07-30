@@ -1,7 +1,7 @@
 <!-- NAV -->
 <nav class="navbar navbar-expand-lg navbar-light" [ngClass]="{ 'searchClicked': search }">
 
-  <a href="#" data-target="slide-out" class="sidenav-trigger" [hidden]="!mobile" >
+  <a href="#" data-target="slide-out" class="sidenav-trigger" *ngIf="mobile" >
     <i class="material-icons">menu</i>
   </a>
   
@@ -19,7 +19,7 @@
         type="search" placeholder="Search for location" aria-label="Search" (click)="openSearchInput()" (focusout)="focusOutSearch($event)">
     </div>
   -->
-  <div class="userProfile" [hidden]="mobile" [ngClass]="{ 'webProfile': !mobile }">
+  <div class="userProfile webProfile" *ngIf="!mobile" >
       <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) -->
       <div class="googleBT">
         <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
@@ -91,7 +91,7 @@
 
 
 <!-- Floating Action Button -->
-<div class="fixed-action-btn"  [hidden]="mobile">
+<div class="fixed-action-btn"  *ngIf="!mobile">
   <a class="btn-floating btn-large red">
     <i class="large material-icons">mode_edit</i>
   </a>
