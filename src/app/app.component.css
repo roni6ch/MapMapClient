@@ -31,9 +31,9 @@ nav .publishBT button {
   width: 40px;
   height: 40px;
   border-radius: 50px;
-  margin-left: 10px;
-  margin-top: 10px; display:none;
+  margin-left: 10px; display:none;
 }
+
 .publishBT nav i ,  nav i.material-icons {
   line-height: initial !important;
   height: 22px  !important;
@@ -69,9 +69,9 @@ nav .btn:hover{
   transition: background-color 1s linear;
 }
 .searchClicked{ background-color: #fff;
-  -webkit-transition: background-color 1s linear;
-  -ms-transition: background-color 1s linear;
-  transition: background-color 1s linear;}
+  -webkit-transition: background-color .3s linear;
+  -ms-transition: background-color .3s linear;
+  transition: background-color .3s linear;}
 nav.searchClicked a{color: #039be5;} 
 input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom: 1px solid #039be5 !important;
     box-shadow: 0 1px 0 0 #039be5 !important;font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;}
@@ -151,7 +151,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
   left: 0;
   right: 0;
   top: 100px;
-  width: 30%;
+  width: 320px;
   -webkit-transition: width .3s linear;
   transition: width .3s linear;
   background: #ffffff9c;
@@ -183,10 +183,11 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
 .searchField:focus-within{background:#fff;
   -webkit-transition: width .3s linear ; /* For Safari 3.1 to 6.0 */
   transition: width .3s linear ;
-width:40%;
+width:350px;
 }
+.webProfile{float:right;}
 
-.blurSection{width:100%; height:100%;}
+.blurSection{width:100%; height:95vh;}
 
 @media only screen and (max-width: 600px) {
 nav{height: 6vh;}

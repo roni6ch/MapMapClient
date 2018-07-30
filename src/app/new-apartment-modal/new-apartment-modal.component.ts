@@ -82,7 +82,6 @@ export class NewApartmentModalComponent implements OnInit {
       apartment_image: false,
     }
     this.apartment = new Apartment(id, publisher,location,details, filters);
-    console.log(this.apartment);
     this.initAutoComplete();
   }
   addImagesToForm(images) {

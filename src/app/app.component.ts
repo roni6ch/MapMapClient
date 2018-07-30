@@ -16,8 +16,8 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
-  search = false;
+  mobile = false;
+  search = true;
   profile = {};
   latLng = {
     lat: 32.056442,
@@ -29,9 +29,14 @@ export class AppComponent implements OnInit {
   showMap = true;
 
   @ViewChild("searchRef")
-  public searchElementRef: ElementRef;
+  public searchRef: ElementRef;
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) { 
+
+    var ua = navigator.userAgent;
+
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua))
+    this.mobile = true;
 
     
   }
@@ -40,12 +45,18 @@ export class AppComponent implements OnInit {
     M.Sidenav.init($('.sidenav'));
     M.FloatingActionButton.init($('.fixed-action-btn'));
 
+    setTimeout(()=>{
+      this.searchRef.nativeElement.focus();
+    },100);
+
   }
+  AfterViewInit() {
+   }
 
   initAutoComplete() {
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchRef.nativeElement, {
         types: ["(cities)"]
         //types: ["address"]
       });
@@ -95,6 +106,15 @@ export class AppComponent implements OnInit {
   }
   focusOutSearch(e: any) {
     this.search = false;
+  }
+  apartmentsResults;
+  apartmentsResultsInput(e){
+    this.apartmentsResults = e;
+  }
+  keyDownEnter(event){
+    if(event.keyCode == 13) {
+      this.search = false;
+    }
   }
   connect = false;
   showLoginBT(bool: boolean) {

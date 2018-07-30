@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Input, ViewChild ,ViewChildren, Output , EventEmitter } from '@angular/core';
 import { HttpRequestsService } from '../services/http-requests.service';
+import { FiltersPipe } from '../filters.pipe';
 
 
 
@@ -12,11 +13,9 @@ export class MapComponent implements OnInit {
   @Input() latLng: any;
   @Input() filterFavoritesInput: boolean;
   @Input() filtersInput: {};
-  @Input() resultsLength: number;
-  
-  @ViewChildren('markers') markers;
-
   @Output() apartmentsResults = new EventEmitter();
+  
+  @ViewChildren('markers') markersLength;
 
   filtersArr;
   favorites = false;
@@ -32,7 +31,7 @@ export class MapComponent implements OnInit {
 
  origin = undefined;
  destination = undefined;
-  constructor(private httpReq: HttpRequestsService) {
+  constructor(private httpReq: HttpRequestsService, private filterPipe: FiltersPipe) {
   }
   ngOnChanges(changes: any) {
 
@@ -44,9 +43,11 @@ export class MapComponent implements OnInit {
       this.lat = changes.latLng.currentValue.lat;
       this.lng = changes.latLng.currentValue.lng;
     }
-
+    //todo: get apartments length and emit to apartmentsResults
   }
   ngAfterViewInit() {
+   // this.apartmentsResults.emit(this.markers.length);
+
   }
 
   changeFavorites(fav) {
@@ -58,18 +59,18 @@ export class MapComponent implements OnInit {
     //this.httpReq.getData().subscribe(data => { this.apartments = data; console.log(data) });
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
-   // this.apartmentsResults.emit(this.markers.length);
 
   }
   boundsChange(lng, lat) {
-    console.log(lng, " ", lat);
     let boundsTemp = {
       "lat": lng,
       "long": lat,
     }
     this.httpReq.getData(boundsTemp).subscribe(data => { 
       this.apartments = data; 
-      console.log(data); 
+      //todo: change this to get filtered pipe apartments length
+      let filteredData = this.filterPipe.transform(data, this.filtersArr);
+      this.apartmentsResults.emit(filteredData.length);
       this.lastInfoWindow = null;
     });
   }

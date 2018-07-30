@@ -40,6 +40,11 @@ hr{width:100%;}
   width: 400px !important;
   }
 
+  .abcRioButtonContents > span{    position: absolute;
+    left: 0;
+    right: -28px;
+    margin: 0 auto;}
+
   .ng2-smart-filter input{padding:0 !important;}
 
   nav.ng2-smart-pagination-nav{background-color: transparent !important;}
