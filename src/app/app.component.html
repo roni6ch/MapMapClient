@@ -91,7 +91,7 @@
 
 
   <!-- Tap Target Structure -->
-  <div class="tap-target" data-target="menu">
+  <div class="tap-target" data-target="menu"  *ngIf="!mobile">
       <div class="tap-target-content">
         <h5>MapMap</h5>
         <p>Have fun!</p>
@@ -118,7 +118,7 @@
     </li>
     <li>
       <a class="btn-floating green" (click)="changeView()">
-        <span class="floatingText green">{{view}} View</span>
+        <span class="floatingText green">{{nextView}} View</span>
         <i class="material-icons">pageview</i>
       </a>
     </li>
@@ -133,7 +133,7 @@
 
 
 <!-- Search -->
-<div class="searchField" [hidden]="view != 'Map'">
+<div class="searchField" [hidden]="view == 'Table'">
   <p class="resultsInfo">
     <span>מציג </span>
     <span>
@@ -149,14 +149,14 @@
 
 <div class="blurSection" [ngClass]="{ 'blur': search }">
   <!-- Map -->
-  <app-map [hidden]="view !== 'Map'" (apartmentsResults)="apartmentsResultsInput($event)" [latLng]="latLng" [filterFavoritesInput]="filterFavorites"
+  <app-map *ngIf="view == 'Map'" (apartmentsResults)="apartmentsResultsInput($event)" [latLng]="latLng" [filterFavoritesInput]="filterFavorites"
     [filtersInput]="filtersInput"></app-map>
 
   <!-- Table views go here -->
-  <app-table [hidden]="view !== 'Table'" [latLng]="latLng" [filtersInput]="filtersInput"></app-table>
+  <app-table *ngIf="view == 'Table'" [filtersInput]="filtersInput"></app-table>
 
   <!-- Cards views go here -->
-  <app-cards [hidden]="view !== 'Cards'"></app-cards>
+  <app-cards *ngIf="view == 'Cards'" [filtersInput]="filtersInput"></app-cards>
 
 
   <!-- new Apartment -->

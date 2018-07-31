@@ -151,7 +151,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
   z-index: 1;
   left: 0;
   right: 0;
-  top: 100px;
+  top: 50px;
   width: 320px;
   -webkit-transition: width .3s linear;
   transition: width .3s linear;
@@ -184,7 +184,10 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
 .searchField:focus-within{background:#fff;
   -webkit-transition: width .3s linear ; /* For Safari 3.1 to 6.0 */
   transition: width .3s linear ;
-width:350px;
+width:520px;
+
+background: #ffffff;
+border: 1px solid #000;
 }
 .webProfile{float:right;}
 

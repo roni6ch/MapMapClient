@@ -1,4 +1,4 @@
-.card{height:300px;    margin: 5px;    padding: 0px;}
+.card{height:300px;           max-height: 300px;    margin: 0.2rem;   padding: 0px;}
 .card .card-image {
     min-height: 170px;
     height: 170px;
@@ -6,4 +6,11 @@
 .card .card-image img{
 height: 100%;
 }
-.cardInfo{height:100px;}
+.cardsWrapper{    margin: 5% auto;}
+.card .card-title{    font-size: 13px;  text-align: right;   font-weight: bold;}
+.card .card-content , .card .card-reveal{padding:10px;}
+.card .card-content p {
+    text-align: right;
+}
+.cardInfo{text-align: right}
+.activator{    cursor: pointer;}

@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   search = true;
   cardsView = false;
   view = 'Map';
+  nextView = 'Table';
   profile = {};
   latLng = {
     lat: 32.056442,
@@ -33,12 +34,15 @@ export class AppComponent implements OnInit {
   changeView(){
     if (this.view == 'Map'){
       this.view = 'Table'
+      this.nextView = 'Cards';
     }
     else if (this.view == 'Table'){
       this.view = 'Cards'
+      this.nextView = 'Map';
     }
     else if (this.view == 'Cards'){
       this.view = 'Map'
+      this.nextView = 'Table';
     }
   }
   @ViewChild("searchRef")

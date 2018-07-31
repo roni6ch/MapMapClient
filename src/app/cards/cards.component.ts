@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
 import { HttpRequestsService } from '../services/http-requests.service';
 import { FiltersPipe } from '../filters.pipe';
 
@@ -9,6 +9,7 @@ import { FiltersPipe } from '../filters.pipe';
 })
 export class CardsComponent implements OnInit {
 
+  @Input() filtersInput: {};
   constructor(private httpReq: HttpRequestsService, private filterPipe: FiltersPipe) { }
 
   ngOnInit() {
