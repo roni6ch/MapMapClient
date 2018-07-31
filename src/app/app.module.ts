@@ -33,6 +33,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ContractsComponent } from './contracts/contracts.component';
 
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { CardsComponent } from './cards/cards.component';
 
 
 
@@ -48,7 +49,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     AdvancedFiltersComponent,
     FiltersPipe,
     ContractsComponent,
-    GoogleSignInComponent
+    GoogleSignInComponent,
+    CardsComponent
   ],
   imports: [
     BrowserModule,

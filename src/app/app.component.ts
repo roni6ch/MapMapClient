@@ -18,6 +18,8 @@ import { MapsAPILoader } from '@agm/core';
 export class AppComponent implements OnInit {
   mobile = false;
   search = true;
+  cardsView = false;
+  view = 'Map';
   profile = {};
   latLng = {
     lat: 32.056442,
@@ -28,6 +30,17 @@ export class AppComponent implements OnInit {
   scriptLoaded = false;
   showMap = true;
 
+  changeView(){
+    if (this.view == 'Map'){
+      this.view = 'Table'
+    }
+    else if (this.view == 'Table'){
+      this.view = 'Cards'
+    }
+    else if (this.view == 'Cards'){
+      this.view = 'Map'
+    }
+  }
   @ViewChild("searchRef")
   public searchRef: ElementRef;
 

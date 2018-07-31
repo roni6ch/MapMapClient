@@ -117,8 +117,8 @@
       </a>
     </li>
     <li>
-      <a class="btn-floating green" (click)="showMap = !showMap">
-        <span class="floatingText green">{{showMap ? 'Table View' : 'Map View'}}</span>
+      <a class="btn-floating green" (click)="changeView()">
+        <span class="floatingText green">{{view}} View</span>
         <i class="material-icons">pageview</i>
       </a>
     </li>
@@ -133,7 +133,7 @@
 
 
 <!-- Search -->
-<div class="searchField" [hidden]="!showMap">
+<div class="searchField" [hidden]="view != 'Map'">
   <p class="resultsInfo">
     <span>מציג </span>
     <span>
@@ -149,11 +149,14 @@
 
 <div class="blurSection" [ngClass]="{ 'blur': search }">
   <!-- Map -->
-  <app-map [hidden]="!showMap" (apartmentsResults)="apartmentsResultsInput($event)" [latLng]="latLng" [filterFavoritesInput]="filterFavorites"
+  <app-map [hidden]="view !== 'Map'" (apartmentsResults)="apartmentsResultsInput($event)" [latLng]="latLng" [filterFavoritesInput]="filterFavorites"
     [filtersInput]="filtersInput"></app-map>
 
   <!-- Table views go here -->
-  <app-table [hidden]="showMap" [latLng]="latLng" [filtersInput]="filtersInput"></app-table>
+  <app-table [hidden]="view !== 'Table'" [latLng]="latLng" [filtersInput]="filtersInput"></app-table>
+
+  <!-- Cards views go here -->
+  <app-cards [hidden]="view !== 'Cards'"></app-cards>
 
 
   <!-- new Apartment -->
