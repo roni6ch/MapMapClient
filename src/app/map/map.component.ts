@@ -43,7 +43,19 @@ export class MapComponent implements OnInit {
       this.lat = changes.latLng.currentValue.lat;
       this.lng = changes.latLng.currentValue.lng;
     }
-    //todo: get apartments length and emit to apartmentsResults
+
+    //todo: get apartments by boundsTemp
+    let boundsTemp = {
+      "lat": this.latLng.lat,
+      "long": this.latLng.lng,
+    }
+    this.httpReq.getData(boundsTemp).subscribe(data => { 
+      this.apartments = this.filterPipe.transform(data, this.filtersArr);
+      console.log(this.apartments);
+      this.apartmentsResults.emit(this.apartments.length);
+      //close the last info window
+      this.lastInfoWindow = null;
+    });
   }
   ngAfterViewInit() {
    // this.apartmentsResults.emit(this.markers.length);
@@ -67,10 +79,10 @@ export class MapComponent implements OnInit {
       "long": lat,
     }
     this.httpReq.getData(boundsTemp).subscribe(data => { 
-      this.apartments = data; 
+      this.apartments = this.filterPipe.transform(data, this.filtersArr);
       //todo: change this to get filtered pipe apartments length
-      let filteredData = this.filterPipe.transform(data, this.filtersArr);
-      this.apartmentsResults.emit(filteredData.length);
+    //  let filteredData = this.filterPipe.transform(data, this.filtersArr);
+      this.apartmentsResults.emit(this.apartments.length);
       this.lastInfoWindow = null;
     });
   }

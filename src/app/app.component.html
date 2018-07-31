@@ -91,7 +91,7 @@
 
 
 <!-- Floating Action Button -->
-<div class="fixed-action-btn"  *ngIf="!mobile">
+<div class="fixed-action-btn"  [hidden]="mobile">
   <a class="btn-floating btn-large red">
     <i class="large material-icons">mode_edit</i>
   </a>
@@ -125,7 +125,7 @@
 
 
 <!-- Search -->
-<div class="searchField">
+<div class="searchField" [hidden]="!showMap">
   <p class="resultsInfo">
     <span>מציג </span>
     <span>

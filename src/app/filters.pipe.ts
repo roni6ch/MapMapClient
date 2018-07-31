@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform ,NgModule} from '@angular/core';
 
 
-
 @Pipe({
   name: 'filters',
 })
@@ -40,7 +39,6 @@ export class FiltersPipe implements PipeTransform {
         if (passAllFilters)
          apratmentsArrAdvancedFilters.push(a);
       });
-      
       return apratmentsArrAdvancedFilters;
     }
     return apratmentsArr;
