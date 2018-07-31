@@ -44,14 +44,13 @@ export class AppComponent implements OnInit {
     this.initAutoComplete();
     M.Sidenav.init($('.sidenav'));
     M.FloatingActionButton.init($('.fixed-action-btn'));
+   
 
     setTimeout(()=>{
       this.searchRef.nativeElement.focus();
     },100);
 
   }
-  AfterViewInit() {
-   }
 
   initAutoComplete() {
     //load Places Autocomplete

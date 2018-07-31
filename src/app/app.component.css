@@ -118,6 +118,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
 
     .fixed-action-btn{
       right: 50px; 
+      bottom: 41px !important;
     }
     .fixed-action-btn ul{
      width:250px; left:-190px;

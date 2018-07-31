@@ -49,7 +49,11 @@ hr{width:100%;}
 
   nav.ng2-smart-pagination-nav{background-color: transparent !important;}
   .ng2-smart-page-item{    margin: 0px 1% !important;}
-
+  .tap-target-wrapper .tap-target-origin{
+    top: 33%;
+    right: 0 !important;
+    margin: 0 auto;
+  }
  @media print{agm-map{display:none }
  #infowindowmodal .modal-dialog{width:100%;margin:0 !important;max-width:none;}
 }
