@@ -4,7 +4,7 @@ import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleSignInComponent } from 'angular-google-signin';
-
+import { RouterModule , Routes} from "@angular/router";
 
 /* MAP */
 import { AgmCoreModule } from '@agm/core';
@@ -36,8 +36,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CardsComponent } from './cards/cards.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 
-
-
+const routes: Routes = [];
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +54,7 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
     EditModalComponent
   ],
   imports: [
+    RouterModule.forRoot(routes, { useHash: false }),  // remove second argument
     BrowserModule,
     BootstrapModule,
     Ng2SmartTableModule,

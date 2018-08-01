@@ -16,32 +16,28 @@ export class HttpRequestsService {
     })
   };
   
-  getData(data:any): Observable<IApartments[]>{
-  //  let url = "../assets/result.json";
-    let url = "https://mapmapserver.herokuapp.com/getApartments";
-    return this.http.post<IApartments[]>(url, { params: data });
-  }
-
   login(google_user_id:string){
-    let url = "https://mapmapserver.herokuapp.com/login";
+    let url = "https://mapmapserver.herokuapp.com/login/google";
     let data = {
       "google_user_id": google_user_id
-      ,"login_type": "google"
     }
     return this.http.post(url,data,this.httpOptions);
   }
+  getData(data:any): Observable<IApartments[]>{
+  //  let url = "../assets/result.json";
+    let url = "https://mapmapserver.herokuapp.com/apartments";
+    return this.http.get<IApartments[]>(url, { params: data });
+  }
   publishNewApartment(formData:any){
-    let url = "https://mapmapserver.herokuapp.com/addApartment";
+    let url = "https://mapmapserver.herokuapp.com/apartments";
     let data = formData;
-    return this.http.post(url,data,this.httpOptions);
+    return this.http.put(url,data,this.httpOptions);
   }
   uploadImages(files:any){
-   
     let url = "https://mapmapserver.herokuapp.com/uploadPicture";
     return this.http.post(url,files);
   }
   removePicture(files:any){
-   
     let url = "https://mapmapserver.herokuapp.com/removePicture";
     return this.http.post(url,files);
   }
