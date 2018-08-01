@@ -31,7 +31,7 @@ export class NewApartmentModalComponent implements OnInit {
    ngOnChanges(changes: any) {
 
     //send to pipe in order to filter the results on map
-    if (changes.hasOwnProperty('editApartment') !== undefined && changes.hasOwnProperty('editApartment') !== false){
+    if (changes.hasOwnProperty('editApartment') !== undefined && changes.hasOwnProperty('editApartment').currentValue !== null && changes.hasOwnProperty('editApartment') !== false){
       console.log(this.editApartment);
       this.apartment = this.editApartment;
     }
