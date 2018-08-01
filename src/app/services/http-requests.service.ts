@@ -66,9 +66,9 @@ var userApartmentTempData = [
       "favorite": false
     },
     "publisher": {
-      "name": "roni",
-      "email": "fsdsdf@dfsd.com",
-      "phone": [
+      "name": "",
+      "email": "",
+      "phones": [
         "9720502560005",
         "9720547552782"
       ]
@@ -122,7 +122,7 @@ var userApartmentTempData = [
     "publisher": {
       "name": "gonzo",
       "email": "22dd@dfsd.com",
-      "phone": [
+      "phones": [
         "9720502560000",
         "9720547552222"
       ]

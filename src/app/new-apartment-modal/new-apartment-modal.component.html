@@ -16,9 +16,9 @@
             <!-- Name -->
             <div class="input-field col s6">
               <i class="material-icons prefix">account_circle</i>
+              <label for="inputFirstName" [ngClass]="name.invalid && name.dirty  ? 'red-text' : ' grey-text '">First Name</label>
               <input type="text" [(ngModel)]="apartment.publisher.name" #name="ngModel" name="name" id="inputFirstName" minlength="2" maxlength="20"
                 (focus)="submittedError = false" required>
-              <label for="inputFirstName" [ngClass]="name.invalid && name.dirty  ? 'red-text' : 'grey-text'">First Name</label>
               <span data-error="" data-success="right" *ngIf="name.invalid && (name.dirty || name.touched) ||  submittedError">
                 <span *ngIf="name.errors?.required" class="helper-text red-text"> Name is required.</span>
                 <span *ngIf="name.errors?.minlength" class="helper-text red-text"> Name must be at least 2 characters long.</span>
@@ -146,7 +146,7 @@
                 </div>
                 <span>{{filter.name}}</span>
 
-                <input [(ngModel)]="apartment.filters[filter.filterName]" name="filter" type="checkbox">
+                <input [(ngModel)]="apartment.filters[filter.filterName]" [name]="filter.name"  type="checkbox">
                 <span class="lever"></span>
               </label>
             </div>
