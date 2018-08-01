@@ -100,20 +100,26 @@
 
 <!-- Floating Action Button -->
 <div class="fixed-action-btn"  [hidden]="mobile" id="menu">
-  <a class="btn-floating btn-large red">
+  <a class="btn-floating btn-large blueColor">
     <i class="large material-icons">menu</i>
   </a>
   <ul>
     <li>
-      <a class="btn-floating red" data-toggle="modal" data-target="#newApartmentWindowModal">
+      <a class="btn-floating red" data-toggle="modal" data-target="#newApartmentWindowModal" #apartmentModal>
         <span class="floatingText red">Add new Apartment</span>
         <i class="material-icons">publish</i>
       </a>
     </li>
     <li>
+        <a class="btn-floating purple lighten-3" data-toggle="modal" data-target="#editModal">
+          <span class="floatingText purple lighten-3">Edit Panel</span>
+          <i class="material-icons">person</i>
+        </a>
+      </li>
+    <li>
       <a class="btn-floating yellow darken-1" data-toggle="modal" data-target="#advancedFiltersModal">
         <span class="floatingText yellow darken-1">Filters</span>
-        <img src="assets/images/icons/funnel.png" />
+        <i class="material-icons">filter</i>
       </a>
     </li>
     <li>
@@ -147,7 +153,7 @@
   <button class="btn-search btn  blue lighten-1 hvr-sweep-to-left">חפש</button>
 </div>
 
-<div class="blurSection" [ngClass]="{ 'blur': search }">
+<div class="blurSection" [ngClass]="{ 'blur': search }" (click)="search = false">
   <!-- Map -->
   <app-map *ngIf="view == 'Map'" (apartmentsResults)="apartmentsResultsInput($event)" [latLng]="latLng" [filterFavoritesInput]="filterFavorites"
     [filtersInput]="filtersInput"></app-map>
@@ -160,7 +166,7 @@
 
 
   <!-- new Apartment -->
-  <app-new-apartment-modal></app-new-apartment-modal>
+  <app-new-apartment-modal [editApartment]="editApartment"></app-new-apartment-modal>
 
   <!-- advanced Filter -->
   <app-advanced-filters (favoritesClick)="filterFavorites=$event" (filters)="filtersInputFunc($event)"></app-advanced-filters>
@@ -168,3 +174,7 @@
 
   <!-- Contracts Modal -->
   <app-contracts></app-contracts>
+
+
+  <!-- new Apartment -->
+  <app-edit-modal (openEditOutput)="editApartmentInput($event)"></app-edit-modal>

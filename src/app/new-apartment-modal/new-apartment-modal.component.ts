@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild ,NgZone } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild ,NgZone,Input } from '@angular/core';
 import { AdvancedFilterService } from '../services/advanced-filter.service';
 import { HttpRequestsService } from '../services/http-requests.service';
 import {  NgForm  } from '@angular/forms';
@@ -19,6 +19,7 @@ export class NewApartmentModalComponent implements OnInit {
 
 
   @ViewChild('btnClose') btnClose: ElementRef
+  @Input() editApartment: any;
 
   advancedFilters = [];
 
@@ -27,8 +28,14 @@ export class NewApartmentModalComponent implements OnInit {
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) {
     
    }
-   ngAfterViewChecked(){
-   }
+   ngOnChanges(changes: any) {
+
+    //send to pipe in order to filter the results on map
+    if (changes.hasOwnProperty('editApartment') !== undefined && changes.hasOwnProperty('editApartment') !== false){
+      console.log(this.editApartment);
+      this.apartment = this.editApartment;
+    }
+  }
   ngOnInit() {
     
     M.FormSelect.init($("select")); 

@@ -1,0 +1,33 @@
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <button #btnClose type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <h6>Edit your Apartment!</h6>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Address</th>
+            <th>Price</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of data" (click)="openEditModalOutput(d)">
+            <td>{{d.location.address}}</td>
+            <td>{{d.details.price}}</td>
+            <td>
+              <span *ngFor="let phone of d.publisher.phone">
+                {{phone}}
+                <br />
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

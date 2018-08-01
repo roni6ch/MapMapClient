@@ -5,7 +5,12 @@
 .markerWrapper .markerImgWrapper .markerImg{width:200px;height:150px;}
 #streetImg{width:200px;height:150px;display:none;}
 .markerWrapper .markerImgWrapper .markerHeart{position:absolute;right:5%;top:5%;cursor:pointer;}
-
+.markerBlackList{
+position: absolute;
+right: 5%;
+top: 40px;
+cursor: pointer;
+}
 @media only screen and (max-width: 600px) {
     .markerWrapper .markerImgWrapper .markerImg{width:150px;height:100px;}
     .markerWrapper .markerDetails{right:160px;    width: 160px;}

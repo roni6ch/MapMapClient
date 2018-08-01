@@ -1,7 +1,7 @@
 
 <div class="cardsWrapper">
   <div class="row justify-content-center">
-  <div *ngFor="let a of filteredData " class="card  col-sm-6 col-md-3 col-lg-2 ">
+  <div *ngFor="let a of filteredData " class="card  col-sm-6 col-md-3 col-lg-2 z-depth-5 materialboxed">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" [src]='a.details.images.length > 0 ? a.details.images[0] : "assets/images/apartments/no_image.jpg"' #img (error)="img.src = 'assets/images/apartments/no_image.jpg'">
     </div>

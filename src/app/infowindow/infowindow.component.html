@@ -9,6 +9,7 @@
     <div id='streetImg'></div>
 <!--TODO: change here to favorite-->
     <img [src]="apartment.active ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png' " class='markerHeart' (click)="markerHeart($event)" />
+    <img [src]="apartment.active ? 'assets/images/icons/black-list-full.png' : 'assets/images/icons/heart.png' " class='markerBlackList' (click)="markerBlackList($event)" />
   </div>
 
   <div class='markerDetails'>

@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   mobile = false;
   search = true;
   cardsView = false;
+  editApartment = null;
   view = 'Map';
   nextView = 'Table';
   profile = {};
@@ -30,19 +31,22 @@ export class AppComponent implements OnInit {
   private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
   scriptLoaded = false;
   showMap = true;
+  @ViewChild('apartmentModal') apartmentModal: ElementRef;
 
   changeView(){
-    if (this.view == 'Map'){
-      this.view = 'Table'
-      this.nextView = 'Cards';
-    }
-    else if (this.view == 'Table'){
-      this.view = 'Cards'
-      this.nextView = 'Map';
-    }
-    else if (this.view == 'Cards'){
-      this.view = 'Map'
-      this.nextView = 'Table';
+    switch (this.view){
+      case 'Map':
+        this.view = 'Table'
+        this.nextView = 'Cards';
+      break;
+      case 'Cards':
+        this.view = 'Map'
+        this.nextView = 'Table';
+      break;
+      case 'Table':
+        this.view = 'Cards'
+        this.nextView = 'Map';
+      break;
     }
   }
   @ViewChild("searchRef")
@@ -148,6 +152,11 @@ export class AppComponent implements OnInit {
       $(".name").html(this.profile['given_name'] + this.profile['family_name']);
       $(".email").html(this.profile['email']);
     }
+  }
+
+  editApartmentInput(apartment){
+    this.editApartment = apartment;
+    this.apartmentModal.nativeElement.click();
   }
 
 }

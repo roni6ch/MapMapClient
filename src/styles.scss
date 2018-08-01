@@ -14,7 +14,7 @@
   background: rgba(0, 0, 0, 0.5);
 }
 input{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
-::-webkit-input-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
+::-webkit-input-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;  }
 ::-moz-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
 :-ms-input-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
 :-moz-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
@@ -39,7 +39,6 @@ hr{width:100%;}
   margin: 0 auto;
   width: 400px !important;
   }
-
   .abcRioButtonContents > span{    position: absolute;
     left: 0;
     right: -28px;
@@ -53,6 +52,10 @@ hr{width:100%;}
     top: 33%;
     right: 0 !important;
     margin: 0 auto;
+  }
+
+  .blueColor{
+    background-color:#42A5F5 !important;
   }
 
  @media print{agm-map{display:none }

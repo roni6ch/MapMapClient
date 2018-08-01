@@ -116,9 +116,24 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
       color:#4c4c4c;
     }
 
-    .fixed-action-btn{
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #fff;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: #fff;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: #fff;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      color: #fff;
+    }
+
+
+  .fixed-action-btn{
       right: 50px; 
-      bottom: 41px !important;
+      bottom: 37px !important;
     }
     .fixed-action-btn ul{
      width:250px; left:-190px;
@@ -151,7 +166,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
   z-index: 1;
   left: 0;
   right: 0;
-  top: 50px;
+  top: 60px;
   width: 320px;
   -webkit-transition: width .3s linear;
   transition: width .3s linear;
@@ -192,6 +207,9 @@ border: 1px solid #000;
 .webProfile{float:right;}
 
 .blurSection{width:100%; height:95vh;}
+.tap-target{
+  background-color:#42A5F5;
+}
 
 @media only screen and (max-width: 600px) {
 nav{height: 6vh;}
@@ -201,4 +219,6 @@ nav .sidenav-trigger{  margin: 0;}
 agm-map{    height: 94vh;}
 .smallSearch{width:auto; float:left !important; margin-left:3%}
 .smallSearch input{width:auto; margin-left:3%}
+.searchField:focus-within{width:320px;
+}
     }
