@@ -105,7 +105,7 @@
   </a>
   <ul>
     <li>
-      <a class="btn-floating red" data-toggle="modal" data-target="#newApartmentWindowModal" #apartmentModal>
+      <a class="btn-floating red" data-toggle="modal" data-target="#newApartmentWindowModal" (click)="apartmentObj=null" #apartmentModal>
         <span class="floatingText red">Add new Apartment</span>
         <i class="material-icons">publish</i>
       </a>
@@ -166,7 +166,7 @@
 
 
   <!-- new Apartment -->
-  <app-new-apartment-modal [editApartment]="editApartment"></app-new-apartment-modal>
+  <app-new-apartment-modal [apartmentObj]="apartmentObj"></app-new-apartment-modal>
 
   <!-- advanced Filter -->
   <app-advanced-filters (favoritesClick)="filterFavorites=$event" (filters)="filtersInputFunc($event)"></app-advanced-filters>

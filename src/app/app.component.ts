@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   mobile = false;
   search = true;
   cardsView = false;
-  editApartment = null;
+  apartmentObj = null;
   view = 'Map';
   nextView = 'Table';
   profile = {};
@@ -155,8 +155,7 @@ export class AppComponent implements OnInit {
   }
 
   editApartmentInput(apartment){
-    this.editApartment = apartment;
     this.apartmentModal.nativeElement.click();
+    this.apartmentObj = apartment;
   }
-
 }

@@ -19,7 +19,7 @@ export class NewApartmentModalComponent implements OnInit {
 
 
   @ViewChild('btnClose') btnClose: ElementRef
-  @Input() editApartment: any;
+  @Input() apartmentObj: any;
 
   advancedFilters = [];
 
@@ -28,12 +28,21 @@ export class NewApartmentModalComponent implements OnInit {
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) {
     
    }
+   
    ngOnChanges(changes: any) {
 
     //send to pipe in order to filter the results on map
-    if (changes.hasOwnProperty('editApartment') !== undefined && changes.hasOwnProperty('editApartment').currentValue !== null && changes.hasOwnProperty('editApartment') !== false){
-      console.log(this.editApartment);
-      this.apartment = this.editApartment;
+    if (changes.hasOwnProperty('apartmentObj') !== undefined && changes['apartmentObj'].currentValue !== undefined && changes['apartmentObj'].currentValue !== null && changes.hasOwnProperty('apartmentObj') !== false){
+      console.log(this.apartmentObj);
+      this.apartment = this.apartmentObj;
+
+
+    setTimeout(()=>{
+      M.updateTextFields();
+    },100);
+    }
+    else{
+      this.initApartment();
     }
   }
   ngOnInit() {
@@ -44,6 +53,10 @@ export class NewApartmentModalComponent implements OnInit {
 
 
     this.advancedFiltersJSON.getData().subscribe(data => this.advancedFilters = data);
+    this.initApartment();
+    this.initAutoComplete();
+  }
+  initApartment(){
 
     //apartment class must be initialize
     let id="";
@@ -89,8 +102,8 @@ export class NewApartmentModalComponent implements OnInit {
       apartment_image: false,
     }
     this.apartment = new Apartment(id, publisher,location,details, filters);
-    this.initAutoComplete();
   }
+ 
   addImagesToForm(images) {
     console.log('addImagesToForm: ', images);
     //todo: iterate over images
