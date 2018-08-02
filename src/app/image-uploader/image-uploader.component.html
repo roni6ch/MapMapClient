@@ -13,6 +13,8 @@
 </div>
 
 <div class="row">
+
+
   <div *ngFor="let loader of loaders" class="loaders">
     <div class="lds-dual-ring"></div>
   </div>
@@ -20,5 +22,4 @@
     <span (click)="removePicture(image)">X</span>
     <img [src]="image" />
   </div>
-
 </div>

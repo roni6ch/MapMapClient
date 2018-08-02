@@ -25,12 +25,20 @@ export class ImageUploaderComponent implements OnInit {
   ngOnInit() {
   }
   removePicture(image){
+    console.log(this.uploadData);
     console.log(image);
-    this.httpReq.removePicture(image).subscribe(data => {
+    
+    let imageArr = image.split("/");
+    let imageName = imageArr[imageArr.length-1];
+    this.uploadData.delete(imageName);
+
+    this.srcImages.splice(image,1);
+   
+    /*this.httpReq.removePicture(image).subscribe(data => {
       if (data) {
         this.srcImages = data;
       }
-    });
+    });*/
   }
   hoverInputBox = false;
   allowDrop(ev) {
