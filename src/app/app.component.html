@@ -153,7 +153,7 @@
   <button class="btn-search btn  blue lighten-1 hvr-sweep-to-left">חפש</button>
 </div>
 
-<div class="blurSection" [ngClass]="{ 'blur': search }" (click)="search = false">
+<div class="blurSection" [ngClass]="{ 'blur': search }" >
   <!-- Map -->
   <app-map *ngIf="view == 'Map'" (apartmentsResults)="apartmentsResultsInput($event)" [latLng]="latLng" [filterFavoritesInput]="filterFavorites"
     [filtersInput]="filtersInput"></app-map>
