@@ -14,7 +14,12 @@ export class InfowindowModalComponent implements OnInit {
 
   @Input() apartment: any;
   indicatorNumber = 0;
-  constructor(private httpReq: HttpRequestsService) { }
+  mobile = false;
+  constructor(private httpReq: HttpRequestsService) { 
+    
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
+      this.mobile = true;
+  }
 
   ngOnInit() { }
   updateIndector(id: number) {
@@ -43,6 +48,22 @@ export class InfowindowModalComponent implements OnInit {
     console.log(apartment);
     //works only live
     var url = window.location.href;
+
+    let date;
+    if (apartment.details.entrance_date){
+      date = new Date(apartment.details.entrance_date);
+      date = date.toLocaleDateString();
+    }
+    var aDetails = {
+      address : apartment.location.address,
+      type : apartment.details.apartment_type,
+      date : date,
+      info : apartment.details.info,
+      price : apartment.details.price,
+      image: apartment.details.images.length > 0 ? apartment.details.images[0] : "https://res.cloudinary.com/sharedmoments/image/upload/v1533336239/MapMap/UploadImages/logo.png"
+    }
+
+
     //TODO: CHANGE URL TO ID and check if it is work online
     FB.ui({
       method: 'share_open_graph',
@@ -50,9 +71,9 @@ export class InfowindowModalComponent implements OnInit {
       action_properties: JSON.stringify({
         object: {
           'og:url': url,
-          'og:title': 'MapMap - ' + apartment.location.ADDRESS,
-          'og:description': apartment.details.apartmentType + " כניסה: " + apartment.details.entrance_date + " מידע נוסף: " + apartment.details.info,
-          'og:image': apartment.details.images[0] ? apartment.details.images[0] : ''
+          'og:title': 'MapMap - ' + aDetails.address,
+          'og:description': aDetails.type + " ,מחיר: " + aDetails.price + " כניסה: "  + aDetails.date + " מידע נוסף: " + aDetails.info,
+          'og:image': aDetails.image
         }
       })
     })

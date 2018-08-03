@@ -31,7 +31,7 @@
   </div>
 </nav>
 <!-- Hamburger Menu -->
-<ul id="slide-out" class="sidenav" *ngIf="mobile">
+<ul id="slide-out" class="sidenav">
   <li>
     <div class="user-view">
       <div class="background">
@@ -40,7 +40,7 @@
       <div class="userProfile">
 
         <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) -->
-        <div class="googleBT">
+        <div class="googleBT"  *ngIf="mobile">
           <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
           </google-signin>
         </div>
@@ -59,7 +59,7 @@
   </li>
   <li class="navOptions">
     <a href="#" data-toggle="modal" data-target="#newApartmentWindowModal">
-      <i class="material-icons">publish</i>Publish</a>
+      <i class="material-icons">publish</i>פירסום מודעה חדשה</a>
   </li>
 
 
@@ -67,24 +67,25 @@
     <a href="#" data-toggle="modal" data-target="#advancedFiltersModal">
       <i>
         <img src="assets/images/icons/funnel.png" />
-      </i> Filters</a>
+      </i> פילטרים</a>
   </li>
 
   <li class="navOptions">
       <a href="#" (click)="showMap = !showMap">
         <i class="material-icons">list</i>
-        {{showMap ? 'Table View' : 'Map View'}}</a>
+        {{showMap ? 'תצוגת טבלה' : 'תצוגת מפה'}}</a>
   </li>
+  
 
     <li class="navOptions">
         <a href="#" data-toggle="modal" data-target="#contracts">
-            <i class="material-icons">attach_file</i> Contracts</a>
+            <i class="material-icons">attach_file</i> חוזים</a>
       </li>
 
   <li class="navOptions">
     <a href="#" [hidden]="connect" (click)="signOut()">
       <i class="material-icons">exit_to_app</i>
-      Log Out</a>
+     יציאה</a>
       </li>
 
 </ul>
@@ -106,31 +107,31 @@
   <ul>
     <li>
       <a class="btn-floating red" data-toggle="modal" data-target="#newApartmentWindowModal" (click)="apartmentObj=null" #apartmentModal>
-        <span class="floatingText red">Add new Apartment</span>
+        <span class="floatingText red">הוספת דירה חדשה</span>
         <i class="material-icons">publish</i>
       </a>
     </li>
     <li>
         <a class="btn-floating purple lighten-3" data-toggle="modal" data-target="#editModal">
-          <span class="floatingText purple lighten-3">Edit Panel</span>
+          <span class="floatingText purple lighten-3">פאנל עריכה</span>
           <i class="material-icons">person</i>
         </a>
       </li>
     <li>
       <a class="btn-floating yellow darken-1" data-toggle="modal" data-target="#advancedFiltersModal">
-        <span class="floatingText yellow darken-1">Filters</span>
+        <span class="floatingText yellow darken-1">פילטרים</span>
         <i class="material-icons">filter</i>
       </a>
     </li>
     <li>
       <a class="btn-floating green" (click)="changeView()">
-        <span class="floatingText green">{{nextView}} View</span>
+        <span class="floatingText green">{{nextView}} תצוגת</span>
         <i class="material-icons">pageview</i>
       </a>
     </li>
     <li>
       <a class="btn-floating blue" data-toggle="modal" data-target="#contracts">
-        <span class="floatingText blue">Contracts</span>
+        <span class="floatingText blue">חוזים</span>
         <i class="material-icons">attach_file</i>
       </a>
     </li>
