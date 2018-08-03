@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpRequestsService } from '../services/http-requests.service';
 import * as $ from 'jquery';
@@ -15,8 +15,10 @@ export class ImageUploaderComponent implements OnInit {
 
 
   @Output() images = new EventEmitter();
+  @Input() addImagesToFormInput: any;
+  
   imagesArr: any;
-  uploadData = new FormData();
+  uploadData;
 
   constructor(private http: HttpClient, private httpReq: HttpRequestsService) {
 
@@ -24,21 +26,24 @@ export class ImageUploaderComponent implements OnInit {
 
   ngOnInit() {
   }
-  removePicture(image){
-    console.log(this.uploadData);
-    console.log(image);
-    
-    let imageArr = image.split("/");
-    let imageName = imageArr[imageArr.length-1];
-    this.uploadData.delete(imageName);
 
-    this.srcImages.splice(image,1);
-   
-    /*this.httpReq.removePicture(image).subscribe(data => {
-      if (data) {
-        this.srcImages = data;
-      }
-    });*/
+  ngOnChanges(changes: any) {
+    this.srcImages = [];
+    this.uploadData = new FormData();
+    //send to pipe in order to filter the results on map
+    if (changes.hasOwnProperty('addImagesToFormInput') !== undefined && changes['addImagesToFormInput'].currentValue !== undefined 
+     && changes['addImagesToFormInput'].currentValue !== null && changes.hasOwnProperty('addImagesToFormInput') !== false){
+      this.srcImages = changes['addImagesToFormInput'].currentValue;
+    }
+  
+  }
+
+  removePicture(image){
+    var index =  this.srcImages.indexOf(image);    // <-- Not supported in <IE9
+    if (index !== -1) {
+      this.srcImages.splice(index, 1);
+      this.images.emit(this.srcImages);
+    }
   }
   hoverInputBox = false;
   allowDrop(ev) {
@@ -70,11 +75,17 @@ export class ImageUploaderComponent implements OnInit {
       this.httpReq.uploadImages(this.uploadData).subscribe(data => {
         if (data) {
           $(".loaders").hide();
-          this.srcImages = data;
+          for (var image of Object.values(data)) {
+            this.srcImages.push(image);
+          }
           console.log("image uploaded: ", data);
-          this.images.emit(data);
+          this.images.emit(this.srcImages);
         }
       });
+  }
+
+  addImagesToForm(){
+    ///input
   }
 
 }

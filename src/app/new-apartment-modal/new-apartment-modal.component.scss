@@ -13,7 +13,9 @@
  .select-wrapper input.select-dropdown, .dropdown-content li>span{text-align:center;}
  .ng-invalid:not(.ng-untouched){border-bottom:1px solid #F44336 !important;box-shadow:0 1px 0 0 #F44336 !important;}
  .helper-text{margin-left:40px;}
+.phones{margin-left: 3rem !important;  width: calc(100% - 3rem) !important;}
 
+.addPhone{float:right !important; clear:right;}
 
 @media only screen and (max-width: 600px) {
     .modal .modal-content{ padding: 2%;}

@@ -7,13 +7,13 @@ import { IApartments } from '../iapartments';
   providedIn: 'root'
 })
 export class HttpRequestsService {
-
+  token:string;
   constructor(private http : HttpClient) { }
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      //'Authorization':"token id"
+      // 'Authorization':this.token
     })
   };
   
@@ -23,6 +23,10 @@ export class HttpRequestsService {
       "google_user_id": google_user_id
     }
     return this.http.post(url,data,this.httpOptions);
+  }
+  setToken(token:string){
+    console.log("todo: set token to http req " , token);
+    this.token = token;
   }
   getData(data:any): Observable<IApartments[]>{
   //  let url = "../assets/result.json";
@@ -60,7 +64,8 @@ var userApartmentTempData = [
   {
     "id": "1",
     "user": {
-      "favorite": false
+      "favorite": false,
+      "black_list": false
     },
     "publisher": {
       "name": "",
@@ -68,7 +73,8 @@ var userApartmentTempData = [
       "phones": [
         "9720502560005",
         "9720547552782"
-      ]
+      ],
+      "type":"broker"
     },
     "location": {
       "address": "Florentin, תל אביב יפו, ישראל",
@@ -85,7 +91,7 @@ var userApartmentTempData = [
       "toilets": 2,
       "info": "SDfdsf",
       "price": 4000,
-      "entrance_date": "18.3.18",
+      "entrance_date": new Date(),
       "images": [
         "https://cdn.cliqueinc.com/posts/212361/-2030969-1483470364.640x0c.jpg",
         "https://media.architecturaldigest.com/photos/58d535e3e34bbc355f09b0a7/master/w_768/modern-living-room-mac-ii-new-york-new-york-201208-4_1000-watermarked.jpg",
@@ -114,7 +120,8 @@ var userApartmentTempData = [
   {
     "id": "2",
     "user": {
-      "favorite": true
+      "favorite": true,
+      "black_list": true,
     },
     "publisher": {
       "name": "gonzo",
@@ -122,7 +129,8 @@ var userApartmentTempData = [
       "phones": [
         "9720502560000",
         "9720547552222"
-      ]
+      ],
+      "type":"private"
     },
     "location": {
       "address": "Frishman, תל אביב יפו, ישראל",
@@ -139,7 +147,7 @@ var userApartmentTempData = [
       "toilets": 4,
       "info": "sdfsdfsdfsdfsdf",
       "price": 3500,
-      "entrance_date": "17.3.18",
+      "entrance_date": new Date(),
       "images": [
         "https://room-matehotels.com/images/img/oscar/rooms.jpg",
         "https://www.citrus11sukhumvit.com/en/gallery/cozy/cozy-1.jpg"

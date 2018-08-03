@@ -24,7 +24,7 @@
       </span>
     </p>
     <p>
-      <span>{{apartment.details.entrance_date | date }}
+      <span *ngIf="apartment.details.entrance_date">{{apartment.details.entrance_date | datePipe }}
         <img src='assets/images/icons/entrence_date.png' />
       </span>
     </p>

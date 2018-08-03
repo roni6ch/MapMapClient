@@ -58,6 +58,16 @@ hr{width:100%;}
     background-color:#42A5F5 !important;
   }
 
+  
+ul.dropdown-content.select-dropdown{    direction: rtl;
+  text-align: right;}
+  .input-field .select-wrapper input.select-dropdown{  direction: rtl;}
+  ul.dropdown-content.select-dropdown li  {
+    min-height:auto !important;    direction: rtl;
+    text-align: right;
+}
+.input-field .select-wrapper .caret{    left: 0;  right: auto;}
+ul.dropdown-content.select-dropdown li span{    padding: 5%;}
  @media print{agm-map{display:none }
  #infowindowmodal .modal-dialog{width:100%;margin:0 !important;max-width:none;}
 }
