@@ -16,7 +16,6 @@ export class InfowindowModalComponent implements OnInit {
   indicatorNumber = 0;
   mobile = false;
   constructor(private httpReq: HttpRequestsService) { 
-    
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
   }
@@ -146,7 +145,7 @@ export class InfowindowModalComponent implements OnInit {
           visible: true,
           zoom: 1
         };
-        setTimeout(function(){ new google.maps.StreetViewPanorama(document.getElementById('panorama'), panoramaOptions);}, 1000);
+        setTimeout(function(){ new google.maps.StreetViewPanorama(document.getElementById('panorama'), panoramaOptions);});
       }
     });
   }

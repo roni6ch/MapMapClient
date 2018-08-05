@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   cardsView = false;
   apartmentObj = null;
   view = 'Map';
-  nextView = 'Table';
+  nextView = 'טבלה';
   profile = {};
   latLng = {
     lat: 32.056442,
@@ -37,15 +37,15 @@ export class AppComponent implements OnInit {
     switch (this.view){
       case 'Map':
         this.view = 'Table'
-        this.nextView = 'Cards';
+        this.nextView = 'כרטיסיות';
       break;
       case 'Cards':
         this.view = 'Map'
-        this.nextView = 'Table';
+        this.nextView = 'טבלה';
       break;
       case 'Table':
         this.view = 'Cards'
-        this.nextView = 'Map';
+        this.nextView = 'מפה';
       break;
     }
   }

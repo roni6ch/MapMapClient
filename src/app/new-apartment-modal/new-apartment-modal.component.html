@@ -110,7 +110,7 @@
           <div class="input-field col s12">
             <i class="material-icons prefix">account_circle</i>
             <input #search="ngModel" name="location" [(ngModel)]="apartment.location.address" autocorrect="off" autocapitalize="off"
-              spellcheck="off" required class="form-control mr-sm-2 " type="search" id="inputLocation" placeholder="Search for location"
+              spellcheck="off" required class="form-control mr-sm-2 " type="search" id="inputLocation" placeholder="חפש מיקום..."
               aria-label="Search">
             <label for="inputLocation" [ngClass]="search.invalid && search.dirty  ? 'red-text' : ''">Location</label>
             <span data-error="" data-success="right" *ngIf="search.invalid && (search.dirty || search.touched) || submittedError">
