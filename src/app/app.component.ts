@@ -114,11 +114,13 @@ export class AppComponent implements OnInit {
 
   logindata(data){
     if (data !== false){
-    console.log(data);
+
+      console.log(data);
     this.profile = data;
     this.showLoginBT(false);
     //pass data.token to serices
     this.httpReq.setToken(data['token']);
+    M.Tooltip.init($(".tooltipped"));
     }else{
 
     this.showLoginBT(true);

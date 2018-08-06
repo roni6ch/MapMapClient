@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <button #btnClose type="button" class="close" data-dismiss="modal" aria-hidden="true">
                 ×</button>
             <h4 class="modal-title" id="myModalLabel">
                 
@@ -94,12 +94,12 @@
                         </div>
                         <div class="col-md-12">
 
-                                <div class="googleBT" #google >
+                                <div class="googleBT" [hidden]="true">
                                         <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [hidden] [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
                                         </google-signin>
                                       </div>
 
-                            <div class="btn-group btn-group-justified"><a href="#" class="btn red" (click)="google.click()">
+                            <div class="btn-group btn-group-justified"><a href="#" class="btn red" (click)="googleConnect()">
                                 Google</a>
                                 <a href="#" class="btn btn-primary" >Facebook</a> 
                             </div>

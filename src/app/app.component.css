@@ -187,7 +187,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
   margin-top: 1% !important;
   margin-bottom: 2% !important;
   text-align: right;
-  margin: 0 25%;
+  margin: 0 27%;
 }
 .btn-search {
   position: absolute;
@@ -208,7 +208,6 @@ border: 1px solid #000;
 .tap-target{
   background-color:#42A5F5;
 }
-
 @media only screen and (max-width: 600px) {
 nav{height: 6vh;}
 #navbar{    width: 90%;}
