@@ -8,7 +8,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <form #apartmentForm="ngForm" (ngSubmit)="publishNewApartment(apartmentForm)">
-          <h6>Publish New Apartment!</h6>
+          <h6>פרסם נכס חדש!</h6>
           <hr>
           <div class="row">
             <div class="col s12">
@@ -16,13 +16,13 @@
               <!-- Name -->
               <div class="input-field col s6">
                 <i class="material-icons prefix">account_circle</i>
-                <label for="inputFirstName" [ngClass]="name.invalid && name.dirty  ? 'red-text' : ' grey-text '">First Name</label>
+                <label for="inputFirstName" [ngClass]="name.invalid && name.dirty  ? 'red-text' : ' grey-text '">שם מלא</label>
                 <input type="text" [(ngModel)]="apartment.publisher.name" #name="ngModel" name="name" id="inputFirstName" minlength="2" maxlength="20"
                   (focus)="submittedError = false" required>
                 <span data-error="" data-success="right" *ngIf="name.invalid && (name.dirty || name.touched) ||  submittedError">
-                  <span *ngIf="name.errors?.required" class="helper-text red-text"> Name is required.</span>
-                  <span *ngIf="name.errors?.minlength" class="helper-text red-text"> Name must be at least 2 characters long.</span>
-                  <span *ngIf="name.errors?.maxlength" class="helper-text red-text"> Name must be at Max 20 characters long.</span>
+                  <span *ngIf="name.errors?.required" class="helper-text red-text"> אנא מלא שם</span>
+                  <span *ngIf="name.errors?.minlength" class="helper-text red-text"> אנא הזן לפחות 2 תווים</span>
+                  <span *ngIf="name.errors?.maxlength" class="helper-text red-text"> אנא הזן עד 20 תווים</span>
                 </span>
 
               </div>
@@ -31,17 +31,17 @@
                     <i class="material-icons prefix">phone</i>
                         <input type="number" class="phones" [(ngModel)]="apartment.publisher.phones[i]" #phone="ngModel" [name]="'phone-'+i" id="icon_telephone-{{i}}"
                         pattern=".{9,15}" required (focus)="submittedError = false">
-                        <label for="icon_telephone-{{i}}" [ngClass]="phone.invalid && phone.dirty  ? 'red-text' : 'grey-text'">Telephone</label>
+                        <label for="icon_telephone-{{i}}" [ngClass]="phone.invalid && phone.dirty  ? 'red-text' : 'grey-text'">טלפון</label>
                         <span data-error="" data-success="right" *ngIf="phone.invalid && (phone.dirty || phone.touched) ||  submittedError">
-                            <span *ngIf="phone.errors?.required" class="helper-text red-text"> Phone is required.</span>
-                            <span *ngIf="phone.errors?.pattern" class="helper-text red-text"> Phone must be at least 9-15 digits.</span>
+                            <span *ngIf="phone.errors?.required" class="helper-text red-text"> אנא מלא טלפון</span>
+                            <span *ngIf="phone.errors?.pattern" class="helper-text red-text"> הטלפון חייב להיות בין 9-15 ספרות</span>
                           </span>
-                          <button class="btn left modal-close waves-effect  btn-flat" (click)="confirmPhoneByToast(phone)" type="button">Check!</button>
+                          <button class="btn left modal-close waves-effect  btn-flat" (click)="confirmPhoneByToast(phone)" type="button">בדוק!</button>
                 
                   
               </div>
               
-              <button class="btn left modal-close waves-effect  btn-flat addPhone" (click)="addPhone()" type="button">Add Phone!</button>
+              <button class="btn left modal-close waves-effect  btn-flat addPhone" (click)="addPhone()" type="button">הוסף!</button>
             </div>
           </div>
           <div class="row">
@@ -55,10 +55,10 @@
                 <input [(ngModel)]="apartment.details.price" #price="ngModel" name="price" id="inputPrice" type="number" data-length="10"
                   class="validate" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9,.]{3,10}"
                   (focus)="submittedError = false" />
-                <label for="inputPrice" [ngClass]="price.invalid && price.dirty  ? 'red-text' : 'grey-text'">Price</label>
+                <label for="inputPrice" [ngClass]="price.invalid && price.dirty  ? 'red-text' : 'grey-text'">מחיר</label>
                 <span data-error="" data-success="right" *ngIf="price.invalid && (price.dirty || price.touched) ||  submittedError">
-                  <span *ngIf="price.errors?.required" class="helper-text red-text"> Price is required.</span>
-                  <span *ngIf="price.errors?.pattern" class="helper-text red-text"> Price must be at least 3-10 characters long.</span>
+                  <span *ngIf="price.errors?.required" class="helper-text red-text"> אנא הזן מחיר</span>
+                  <span *ngIf="price.errors?.pattern" class="helper-text red-text"> המחיר חייב להיות בן 3-10 ספרות</span>
                 </span>
 
               </div>
@@ -67,10 +67,10 @@
                 <i class="material-icons prefix">email</i>
                 <input [(ngModel)]="apartment.publisher.email" name="email" id="inputMail" type="email" data-length="30" (focus)="submittedError = false"
                   min="10" max="15" #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
-                <label for="inputMail" [ngClass]="email.invalid && email.dirty  ? 'red-text' : 'grey-text'">Email</label>
+                <label for="inputMail" [ngClass]="email.invalid && email.dirty  ? 'red-text' : 'grey-text'">אימייל</label>
                 <span data-error="" data-success="right" *ngIf="email.invalid && (email.dirty || email.touched)||  submittedError">
-                  <span *ngIf="email.errors?.required" class="helper-text red-text"> Email's is required.</span>
-                  <span *ngIf="email.errors?.pattern" class="helper-text red-text"> Email's not valid.</span>
+                  <span *ngIf="email.errors?.required" class="helper-text red-text"> אנא רשום אימייל</span>
+                  <span *ngIf="email.errors?.pattern" class="helper-text red-text"> אימייל לא חוקי</span>
                 </span>
               </div>
 
@@ -85,9 +85,9 @@
                 <i class="material-icons prefix">date_range</i>
                 <input type="date" #date="ngModel" [(ngModel)]="apartment.details.entrance_date" name="date" id="inputDate" required (focus)="submittedError = false"
                 />
-                <label for="inputMail" [ngClass]="date.invalid && date.dirty  ? 'red-text' : 'grey-text'">Date</label>
+                <label for="inputMail" [ngClass]="date.invalid && date.dirty  ? 'red-text' : 'grey-text'">תאריך</label>
                 <span data-error="" data-success="right" *ngIf="date.invalid && (date.dirty || date.touched) ||  submittedError">
-                  <span *ngIf="date.errors?.required" class="helper-text red-text"> Date is required.</span>
+                  <span *ngIf="date.errors?.required" class="helper-text red-text"> אנא הזן תאריך</span>
                 </span>
               </div>
 
@@ -95,9 +95,9 @@
               <div class="input-field col s6">
                 <input #size="ngModel" [(ngModel)]="apartment.details.size" name="size" id="inputSize" type="number" class="validate apartmentSize"
                   pattern=".{2,10000}" />
-                <label for="inputSize" [ngClass]="name.invalid && name.dirty  ? 'red-text' : 'grey-text'">Size</label>
+                <label for="inputSize" [ngClass]="name.invalid && name.dirty  ? 'red-text' : 'grey-text'">גודל</label>
                 <span data-error="" data-success="right" *ngIf="size.invalid && (size.dirty || size.touched) ||  submittedError">
-                  <span *ngIf="size.errors?.pattern" class="helper-text red-text"> Size must be at least 2 digits.</span>
+                  <span *ngIf="size.errors?.pattern" class="helper-text red-text"> גודל הדירה חייב להיות מעל 2 תווים</span>
                 </span>
               </div>
             </div>
@@ -112,9 +112,9 @@
             <input #search="ngModel" name="location" [(ngModel)]="apartment.location.address" autocorrect="off" autocapitalize="off"
               spellcheck="off" required class="form-control mr-sm-2 " type="search" id="inputLocation" placeholder="חפש מיקום..."
               aria-label="Search">
-            <label for="inputLocation" [ngClass]="search.invalid && search.dirty  ? 'red-text' : ''">Location</label>
+            <label for="inputLocation" [ngClass]="search.invalid && search.dirty  ? 'red-text' : ''">מיקום</label>
             <span data-error="" data-success="right" *ngIf="search.invalid && (search.dirty || search.touched) || submittedError">
-              <span *ngIf="search.errors?.required" class="helper-text red-text"> Location is required.</span>
+              <span *ngIf="search.errors?.required" class="helper-text red-text"> אנא הזן מיקום</span>
             </span>
           </div>
 
@@ -124,10 +124,10 @@
               <i class="material-icons prefix">create</i>
               <textarea #description="ngModel" [(ngModel)]="apartment.details.info" name="description" id="inputDescription" class="materialize-textarea"
                 data-length="250" class="materialize-textarea" minlength="30" maxlength="250"></textarea>
-              <label for="inputDescription" [ngClass]="description.invalid && description.dirty  ? 'blue-text' : 'grey-text'">Description...</label>
+              <label for="inputDescription" [ngClass]="description.invalid && description.dirty  ? 'blue-text' : 'grey-text'">מידע נוסף...</label>
               <span data-error="" data-success="right" *ngIf="description.invalid && (description.dirty || description.touched) ||  submittedError">
-                <span *ngIf="description.errors?.minlength" class="helper-text blue-text"> Please type Description at least 30 characters long.</span>
-                <span *ngIf="description.errors?.maxlength" class="helper-text red-text"> Description must be at max of 250 characters long.</span>
+                <span *ngIf="description.errors?.minlength" class="helper-text blue-text"> אנא הזן לפחות 30 תווים</span>
+                <span *ngIf="description.errors?.maxlength" class="helper-text red-text"> מידע נוסף מוגבל עד 250 תווים</span>
               </span>
             </div>
 
@@ -191,16 +191,18 @@
           </div>
 
           <div class="modal-footer">
+              <button class="btn left modal-close waves-effect  btn-flat" type="submit">
+                  <span>
+                    !פרסם
+                  </span>
+                </button>
+                
             <button class="btn  modal-close waves-effect  btn-flat" data-dismiss="modal" type="button">
               <span>
-                Cancel
+                בטל
               </span>
             </button>
-            <button class="btn left modal-close waves-effect  btn-flat" type="submit">
-              <span>
-                Publish!
-              </span>
-            </button>
+           
           </div>
 
 

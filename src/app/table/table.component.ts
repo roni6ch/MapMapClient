@@ -20,17 +20,17 @@ export class TableComponent implements OnInit {
     actions: false,
     columns: {
       address: {
-        title: 'Address'
+        title: 'כתובת'
       },
       price: {
-        title: 'Price',
+        title: 'מחיר',
         type: 'number'
       },
       apartment_type: {
         title: 'Type'
       },
       entrance_date: {
-        title: 'Date',
+        title: 'תאריך',
         type: 'html',
         valuePrepareFunction: (data) => {
           if (data) {
@@ -41,7 +41,7 @@ export class TableComponent implements OnInit {
 
       },
       rooms: {
-        title: 'Rooms',
+        title: 'חדרים',
         type: 'number'
       }
     }

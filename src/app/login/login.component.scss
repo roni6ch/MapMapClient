@@ -5,9 +5,8 @@
 .nav-tabs a{
 color:#ccc;
 }
-.nav-tabs .show a{
-    color:#039be5 !important;
-}
+.nav-tabs a.active.show{
+    color: #42A5F5 !important;}
 
 .sign-with {
     margin-top: 25px;

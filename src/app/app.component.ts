@@ -96,7 +96,7 @@ export class AppComponent implements OnInit {
       });
     });
   }
-  onGoogleSignInSuccess(event: GoogleSignInSuccess) {
+  /*onGoogleSignInSuccess(event: GoogleSignInSuccess) {
     let googleUser: gapi.auth2.GoogleUser = event.googleUser;
     this.httpReq.login(googleUser.getAuthResponse().id_token).subscribe(data => {
       if (data) {
@@ -110,6 +110,19 @@ export class AppComponent implements OnInit {
         this.showLoginBT(true);
       }
     });
+  }*/
+
+  logindata(data){
+    if (data !== false){
+    console.log(data);
+    this.profile = data;
+    this.showLoginBT(false);
+    //pass data.token to serices
+    this.httpReq.setToken(data['token']);
+    }else{
+
+    this.showLoginBT(true);
+    }
   }
   signOut() {
     var auth2 = gapi.auth2.getAuthInstance();

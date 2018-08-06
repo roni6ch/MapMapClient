@@ -49,7 +49,6 @@ nav .btn:hover{
 .signOut{cursor: pointer;}
 .publishBT{margin-right:10px;}
 
-.googleBT{ margin-top: 10px;}
 .sidenav li>a{
   direction: rtl;
   text-align: center;
@@ -145,7 +144,6 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
   border-radius: 10px;
   background: #ccc;
   display: block;
-  height: 35px;
   top: 3px;
   width: 170px;
   left: -167px;

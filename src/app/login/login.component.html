@@ -14,7 +14,7 @@
                 <div class="col-md-8" style="border-left: 1px dotted #C2C2C2;padding-right: 30px;">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs">
-                        <li  class="active"><a href="#Login" data-toggle="tab">התחבר</a></li>
+                        <li><a href="#Login" data-toggle="tab" class="active show">התחבר</a></li>
                         <li> / </li>
                         <li><a href="#Registration" data-toggle="tab">הירשם</a></li>
                       </ul>
@@ -93,9 +93,15 @@
                                 היכנס באמצעות</h3>
                         </div>
                         <div class="col-md-12">
-                            <div class="btn-group btn-group-justified"><a href="#" class="btn red">
+
+                                <div class="googleBT" #google >
+                                        <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [hidden] [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
+                                        </google-signin>
+                                      </div>
+
+                            <div class="btn-group btn-group-justified"><a href="#" class="btn red" (click)="google.click()">
                                 Google</a>
-                                <a href="#" class="btn btn-primary">Facebook</a> 
+                                <a href="#" class="btn btn-primary" >Facebook</a> 
                             </div>
                         </div>
                     </div>

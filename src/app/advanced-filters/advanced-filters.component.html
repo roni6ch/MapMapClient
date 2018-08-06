@@ -63,7 +63,7 @@
         <!-- apartmentType -->
         <div class="input-field col s3 apartmentType">
           <select [(ngModel)]="filtersObj.apartment_type" name="apartmentType" required>
-            <option value="all" selected disabled>Type</option>
+            <option value="all" selected disabled>סוג נכס</option>
             <option value="all">הכל</option>
             <option value="דירה">דירה</option>
             <option value="דירת גן">דירת גן</option>
@@ -73,7 +73,7 @@
         <!--apartmentRooms-->
         <div class="input-field col s3 apartmentRooms">
           <select [(ngModel)]="filtersObj.rooms" name="apartmentRooms" required>
-            <option value="" disabled selected>Rooms</option>
+            <option value="" disabled selected>מספר חדרים</option>
             <option value="1">1</option>
             <option value="2">2+</option>
             <option value="3">3+</option>
@@ -87,7 +87,7 @@
         <!--apartmentFloor-->
         <div class="input-field col s3 apartmentFloor">
           <select [(ngModel)]="filtersObj.floor" name="apartmentFloor" required>
-            <option value="" disabled selected>Floor</option>
+            <option value="" disabled selected>קומה</option>
             <option value="0">0</option>
             <option value="1">1+</option>
             <option value="2">2+</option>
@@ -102,7 +102,7 @@
         <!--apartmentToilets-->
         <div class="input-field col s3 apartmentToilets">
           <select [(ngModel)]="filtersObj.toilets" name="apartmentToilets" required>
-            <option value="" disabled selected>Toilets</option>
+            <option value="" disabled selected>שירותים</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

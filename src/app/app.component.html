@@ -20,14 +20,14 @@
     </div>
   -->
   <div class="userProfile webProfile" *ngIf="!mobile" >
-      <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) -->
+      <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) 
       <div class="googleBT">
         <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
         </google-signin>
-      </div>
+      </div>-->
       <img [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut' [hidden]="connect" (click)="signOut()">
 
-      <button class="btn btn-info" data-toggle="modal" data-target="#login">Login</button>
+      <button class="btn btn-info googleBT" data-toggle="modal" data-target="#login" >כניסה</button>
     </div>
 
   </div>
@@ -164,7 +164,7 @@
 
 
   <!-- Login -->
-  <app-login></app-login>
+  <app-login (logindata)="logindata($event)"></app-login>
 
   <!-- Map -->
   <app-map *ngIf="view == 'Map'" (apartmentsResults)="apartmentsResultsInput($event)" [latLng]="latLng" [filterFavoritesInput]="filterFavorites"
