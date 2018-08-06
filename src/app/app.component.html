@@ -26,6 +26,8 @@
         </google-signin>
       </div>
       <img [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut' [hidden]="connect" (click)="signOut()">
+
+      <button class="btn btn-info" data-toggle="modal" data-target="#login">Login</button>
     </div>
 
   </div>
@@ -159,6 +161,11 @@
 </div>
 
 <div class="blurSection" [ngClass]="{ 'blur': search }" >
+
+
+  <!-- Login -->
+  <app-login></app-login>
+
   <!-- Map -->
   <app-map *ngIf="view == 'Map'" (apartmentsResults)="apartmentsResultsInput($event)" [latLng]="latLng" [filterFavoritesInput]="filterFavorites"
     [filtersInput]="filtersInput"></app-map>

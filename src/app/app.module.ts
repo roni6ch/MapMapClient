@@ -36,6 +36,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CardsComponent } from './cards/cards.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { DatePipePipe } from './date-pipe.pipe';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [];
 @NgModule({
@@ -53,7 +54,8 @@ const routes: Routes = [];
     GoogleSignInComponent,
     CardsComponent,
     EditModalComponent,
-    DatePipePipe
+    DatePipePipe,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(routes, { useHash: false }),  // remove second argument

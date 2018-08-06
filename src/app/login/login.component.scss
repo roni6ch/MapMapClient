@@ -1,0 +1,36 @@
+.nav-tabs  {
+ 
+    margin-bottom: 15px;
+}
+.nav-tabs a{
+color:#ccc;
+}
+.nav-tabs .show a{
+    color:#039be5 !important;
+}
+
+.sign-with {
+    margin-top: 25px;
+}
+div#OR {
+    height: 30px;
+    width: 30px;
+    border: 1px solid #C2C2C2;
+    border-radius: 50%;
+    font-weight: bold;
+    line-height: 28px;
+    text-align: center;
+    font-size: 12px;
+    float: right;
+    position: absolute;
+    left: -16px;
+    top: 40%;
+    z-index: 1;
+    background: #DFDFDF;
+}
+.modal-body , .modal-header{direction: rtl}
+.modal-content .close{display:none;}
+.sendDiv .btn{margin:0px;}
+.btn.red{background-color: #F44336 !important;}
+.btn:hover{color:#fff !important; opacity:0.8;}
+.btn{margin:0px;}

@@ -66,6 +66,7 @@ export class AppComponent implements OnInit {
    
 
     setTimeout(()=>{
+      //check whar happend to login button if i remove comment
       this.searchRef.nativeElement.focus();
     },100);
 
