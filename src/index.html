@@ -1,62 +1,65 @@
 <!doctype html>
-<html lang="en"> 
+<html lang="en">
+
 <head>
   <title>MapMap!</title>
   <base href="/">
 
-	<!-- Facebook Share-->
-	<meta property="og:url" content="http://roni.pe.hu/mapmap6/" />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="MapMap" />
-	<meta property="og:description" content="Find your home!" />
+  <!-- Facebook Share-->
+  <meta property="og:url" content="http://roni.pe.hu/mapmap6/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="MapMap" />
+  <meta property="og:description" content="Find your home!" />
   <meta property="og:image" content="content/images/icons/icon.png" />
-  
+
   <link rel="icon" href="assets/images/icons/icon.png">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Assistant|Gloria+Hallelujah" rel="stylesheet">
 
   <!-- Google Tag Manager -->
-	<script>
-      (function(w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-          'gtm.start': new Date().getTime(),
-          event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-MVG6SJL');
-    </script>
-    <!-- End Google Tag Manager -->
-  
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-MVG6SJL');
+  </script>
+  <!-- End Google Tag Manager -->
+
   <!-- GOOGLE Login Button-->
   <meta name="google-signin-client_id">
   <script src="https://apis.google.com/js/platform.js"></script>
   <!-- GOOGLE Login Button END -->
 
-  	<!-- Google Analytics -->
-	<script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  
-      ga('create', 'UA-112419434-1', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <!-- End Google Analytics -->
+  <!-- Google Analytics -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-112419434-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <!-- End Google Analytics -->
 </head>
 
 <body>
-  
-<!-- Google Tag Manager (noscript) -->
-<noscript>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVG6SJL" height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
@@ -65,16 +68,17 @@
 
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&amp;language=he&amp;key=AIzaSyCG43sbbdLsGywMwY0T7-1yOoKVDGfnbsk"></script>
   <div [hidden] id="hiddenPrint"></div>
+  <div id="fb-root"></div>
 </body>
 
 </html>
 
 <script>
   //tap-target circle
-   M.TapTarget.init(document.querySelectorAll('.tap-target'));
-   $('.tap-target').tapTarget('open');
+  M.TapTarget.init(document.querySelectorAll('.tap-target'));
+  $('.tap-target').tapTarget('open');
 </script>
-<!-- Facebook Share -->
+<!-- Facebook Share 
 <script>
     window.fbAsyncInit = function() {
       FB.init({
@@ -94,6 +98,71 @@
     }(document, 'script', 'facebook-jssdk'));
   
   </script>
+-->
+
+<!-- Facebook Login Button -->
+<script>
+  // Load the SDK asynchronously
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=333762270434028&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: '333762270434028',
+      cookie: true,  // enable cookies to allow the server to access  the session
+      xfbml: true,  // parse social plugins on this page
+      version: 'v2.8' // use graph api version 2.8
+    });
+    FB.getLoginStatus(function (response) {
+      statusChangeCallback(response);
+    });
+  };
+
+  function checkLoginState() {
+    FB.getLoginStatus(function (response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log("facebook connected userID: " , response.authResponse.userID);
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      console.log('connected');
+    } else {
+      // The person is not logged into your app or we are unable to tell.
+      console.log('Please log into this app.');
+    }
+  }
+
+  function facebookLogin() {
+    FB.login(function (response) {
+      FB.api('/me', function (response) {
+        console.log(response);
+      });
+    });
+  }
+
+  function facebookLogout() {
+    FB.logout(function (response) {
+      // user is now logged out
+      console.log(response);
+    });
+  }
+
+
+
+
+</script>
+
+
 
 <!-- shift+alt+f = indent -->
 <!--
@@ -113,4 +182,5 @@ TODO:
 5. agm direction: https://github.com/explooosion/Agm-Direction-Docs
 6. smart table : https://akveo.github.io/ng2-smart-table/#/
 7. login : https://bootsnipp.com/snippets/VElzQ
+8. facebook login: https://gist.github.com/heldrida/6232556
 -->

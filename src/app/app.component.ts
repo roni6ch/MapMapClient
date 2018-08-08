@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpRequestsService } from './services/http-requests.service';
 
 import { google } from "google-maps";
-declare var google : google;
+declare var google: google;
 
 import { MapsAPILoader } from '@agm/core';
 
@@ -33,42 +33,42 @@ export class AppComponent implements OnInit {
   showMap = true;
   @ViewChild('apartmentModal') apartmentModal: ElementRef;
 
-  changeView(){
-    switch (this.view){
+  changeView() {
+    switch (this.view) {
       case 'Map':
         this.view = 'Table'
         this.nextView = 'כרטיסיות';
-      break;
+        break;
       case 'Cards':
         this.view = 'Map'
         this.nextView = 'טבלה';
-      break;
+        break;
       case 'Table':
         this.view = 'Cards'
         this.nextView = 'מפה';
-      break;
+        break;
     }
   }
   @ViewChild("searchRef")
   public searchRef: ElementRef;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) { 
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) {
 
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
 
-    
+
   }
   ngOnInit() {
     this.initAutoComplete();
     M.Sidenav.init($('.sidenav'));
     M.FloatingActionButton.init($('.fixed-action-btn'));
-   
 
-    setTimeout(()=>{
+
+    setTimeout(() => {
       //check whar happend to login button if i remove comment
       this.searchRef.nativeElement.focus();
-    },100);
+    }, 100);
 
   }
 
@@ -112,31 +112,37 @@ export class AppComponent implements OnInit {
     });
   }*/
 
-  logindata(data){
-    if (data !== false){
+  logindata(data) {
+    if (data !== false) {
 
       console.log(data);
-    this.profile = data;
-    this.showLoginBT(false);
-    //pass data.token to serices
-    this.httpReq.setToken(data['token']);
-    M.Tooltip.init($(".tooltipped"));
-    }else{
+      this.profile = data;
+      this.showLoginBT(false);
+      //pass data.token to serices
+      this.httpReq.setToken(data['token']);
+      M.Tooltip.init($(".tooltipped"));
+    } else {
 
-    this.showLoginBT(true);
+      this.showLoginBT(true);
     }
   }
   signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    console.log(auth2);
-    this.showLoginBT(true);
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
+    if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+      //disconnect from google
+      var auth2 = gapi.auth2.getAuthInstance();
+      console.log(auth2);
+      this.showLoginBT(true);
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    } else {
+      //disconnect from facebook
+      (window as any).facebookLogout();
+    }
   }
   filtersInput = [];
-  filtersInputFunc(event){
-    this.filtersInput = event; 
+  filtersInputFunc(event) {
+    this.filtersInput = event;
   }
   openSearchInput() {
     this.search = true;
@@ -145,11 +151,11 @@ export class AppComponent implements OnInit {
     this.search = false;
   }
   apartmentsResults;
-  apartmentsResultsInput(e){
+  apartmentsResultsInput(e) {
     this.apartmentsResults = e;
   }
-  keyDownEnter(event){
-    if(event.keyCode == 13) {
+  keyDownEnter(event) {
+    if (event.keyCode == 13) {
       this.search = false;
     }
   }
@@ -171,7 +177,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  editApartmentInput(apartment){
+  editApartmentInput(apartment) {
     this.apartmentModal.nativeElement.click();
     this.apartmentObj = apartment;
   }
