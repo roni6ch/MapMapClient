@@ -5,6 +5,8 @@ import * as M from 'materialize-css';
 import { HttpClient } from '@angular/common/http';
 import { HttpRequestsService } from './services/http-requests.service';
 
+import { AuthService } from "angular2-social-login";
+
 import { google } from "google-maps";
 declare var google: google;
 
@@ -28,7 +30,7 @@ export class AppComponent implements OnInit {
     lng: 34.772238
   };
   /* google signin button*/
-  private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
+  //private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
   scriptLoaded = false;
   showMap = true;
   @ViewChild('apartmentModal') apartmentModal: ElementRef;
@@ -52,7 +54,7 @@ export class AppComponent implements OnInit {
   @ViewChild("searchRef")
   public searchRef: ElementRef;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) {
+  constructor(private mapsAPILoader: MapsAPILoader, public _auth: AuthService,private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) {
 
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
@@ -113,19 +115,29 @@ export class AppComponent implements OnInit {
   }*/
 
   logindata(data) {
-    if (data !== false) {
-
+    if (data !== false && gapi.auth2.getAuthInstance().isSignedIn.get()) {
+      //google connection
       console.log(data);
       this.profile = data;
+      this.profile['picture']  = data['picture'];
       this.showLoginBT(false);
+
       //pass data.token to serices
       this.httpReq.setToken(data['token']);
       M.Tooltip.init($(".tooltipped"));
-    } else {
+    } else if(data !== false && this._auth != null){
+      //facebook connection
+      this.showLoginBT(false);
+      this.profile = data;
+      this.profile['picture']  = data['image'];
+      this.httpReq.setToken(data['token']);
 
+      M.Tooltip.init($(".tooltipped"));
+    }else {
       this.showLoginBT(true);
     }
   }
+  
   signOut() {
     if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
       //disconnect from google
@@ -133,11 +145,18 @@ export class AppComponent implements OnInit {
       console.log(auth2);
       this.showLoginBT(true);
       auth2.signOut().then(function () {
-        console.log('User signed out.');
+        console.log('google user signed out.');
       });
     } else {
       //disconnect from facebook
-      (window as any).facebookLogout();
+      this.showLoginBT(true);
+      this._auth.logout().subscribe(
+        (data)=>{
+          //return a boolean value.
+          console.log(data);
+          console.log('facebook User signed out.');
+        }
+      )
     }
   }
   filtersInput = [];
@@ -165,6 +184,7 @@ export class AppComponent implements OnInit {
       //show login
       this.connect = true;
       $(".googleBT").show();
+      $(".signOut").hide();
     }
     else {
       //show profile
@@ -181,4 +201,8 @@ export class AppComponent implements OnInit {
     this.apartmentModal.nativeElement.click();
     this.apartmentObj = apartment;
   }
+
+
+
+
 }

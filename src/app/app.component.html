@@ -25,9 +25,8 @@
         <google-signin [clientId]="myClientId" [width]="myWidth" theme="dark" [scope]="myScope" [longTitle]="myLongTitle" (googleSignInSuccess)="onGoogleSignInSuccess($event);">
         </google-signin>
       </div>-->
-      <img data-position="left" data-tooltip="לחץ ליציאה" [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut tooltipped' [hidden]="connect" (click)="signOut()" >
-
-
+      <img data-position="left" data-tooltip="לחץ ליציאה" [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut tooltipped' (click)="signOut()" >
+      
       <button class="btn btn-info googleBT" data-toggle="modal" data-target="#login" >כניסה</button>
 
 

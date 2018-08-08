@@ -37,6 +37,15 @@ import { CardsComponent } from './cards/cards.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { DatePipePipe } from './date-pipe.pipe';
 import { LoginComponent } from './login/login.component';
+import { Angular2SocialLoginModule } from "angular2-social-login";
+
+
+let providers = {
+  "facebook": {
+    "clientId": "333762270434028",
+    "apiVersion": "v2.8" //like v2.4
+  }
+};
 
 const routes: Routes = [];
 @NgModule({
@@ -60,6 +69,7 @@ const routes: Routes = [];
   imports: [
     RouterModule.forRoot(routes, { useHash: false }),  // remove second argument
     BrowserModule,
+    Angular2SocialLoginModule,
     BootstrapModule,
     Ng2SmartTableModule,
     AgmCoreModule.forRoot({
@@ -78,8 +88,10 @@ const routes: Routes = [];
   bootstrap: [AppComponent],
   exports:[FiltersPipe]
 })
+
 export class AppModule { }
 
+Angular2SocialLoginModule.loadProvidersScripts(providers);
 
 
 //indent: shift+alt+f
