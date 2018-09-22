@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform ,NgModule} from '@angular/core';
 
-
+//TODO: CHANGE THIS PIPE TO SWITH-CASE
 @Pipe({
   name: 'filters',
 })

@@ -16,6 +16,7 @@ export class InfowindowComponent implements OnInit {
   constructor(private httpReq: HttpRequestsService) { 
   }
   markerHeart(event){
+    console.log(this.apartment);
     this.apartment.user.favorite = !this.apartment.user.favorite;
     // TODO: change sendData user id
     let sendData = {
@@ -33,6 +34,7 @@ export class InfowindowComponent implements OnInit {
     event.stopPropagation();
   }
   markerBlackList(event){
+    console.log(this.apartment);
     this.apartment.user.favorite = !this.apartment.user.favorite;
      // TODO: change sendData user id
      let sendData = {

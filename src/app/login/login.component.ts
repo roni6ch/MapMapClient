@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   onGoogleSignInSuccess(event: GoogleSignInSuccess) {
     let googleUser: gapi.auth2.GoogleUser = event.googleUser;
     this.httpReq.login(googleUser.getAuthResponse().id_token).subscribe(data => {
+      console.log("onGoogleSignInSuccess: " , data);
       if (data) {
         this.logindata.emit(data);
       }

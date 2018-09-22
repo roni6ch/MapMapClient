@@ -7,14 +7,13 @@ import { IApartments } from '../iapartments';
   providedIn: 'root'
 })
 export class HttpRequestsService {
-  token:string;
+  token:string = "";
   constructor(private http : HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      // 'Authorization':this.token
-    })
+   httpOptions = {
+    headers: {
+      'Content-Type':  'application/json'
+    }
   };
   
   login(google_user_id:string){
@@ -27,6 +26,7 @@ export class HttpRequestsService {
   setToken(token:string){
     console.log("todo: set token to http req " , token);
     this.token = token;
+    this.httpOptions.headers['Authorization'] =   "JWT " + token;
   }
   getData(data:any): Observable<IApartments[]>{
   //  let url = "../assets/result.json";
@@ -36,24 +36,29 @@ export class HttpRequestsService {
   publishNewApartment(formData:any){
     let url = "https://mapmapserver.herokuapp.com/apartments";
     let data = formData;
-    return this.http.put(url,data,this.httpOptions);
+    return this.http.post(url,data,this.httpOptions);
   }
   uploadImages(files:any){
     let url = "https://mapmapserver.herokuapp.com/uploadPicture";
-    return this.http.post(url,files);
+    let httpOptions = {
+      headers: {
+        'Authorization':  "JWT " + this.token
+      }
+    };
+    return this.http.post(url,files,httpOptions);
   }
   removePicture(files:any){
     let url = "https://mapmapserver.herokuapp.com/removePicture";
-    return this.http.post(url,files);
+    return this.http.post(url,files,this.httpOptions);
   }
   favorite(data:any){
     let url = "https://mapmapserver.herokuapp.com/favorite";
-    return this.http.post(url,data);
+    return this.http.post(url,data,this.httpOptions);
   }
   getUserApartments(){
     let url = "https://mapmapserver.herokuapp.com/getUserApartments";
     return userApartmentTempData;
-  // return this.http.post(url,{});
+  // return this.http.post(url,{},this.httpOptions);
   }
 }
 

@@ -100,7 +100,7 @@ export class AppComponent implements OnInit {
   }
   /*onGoogleSignInSuccess(event: GoogleSignInSuccess) {
     let googleUser: gapi.auth2.GoogleUser = event.googleUser;
-    this.httpReq.login(googleUser.getAuthResponse().id_token).subscribe(data => {
+    this.httpReq.(googleUser.getAuthloginResponse().id_token).subscribe(data => {
       if (data) {
         console.log(data);
         this.profile = data;
@@ -115,13 +115,13 @@ export class AppComponent implements OnInit {
   }*/
 
   logindata(data) {
+    console.log('data',data);
     if (data !== false && gapi.auth2.getAuthInstance().isSignedIn.get()) {
       //google connection
       console.log(data);
       this.profile = data;
       this.profile['picture']  = data['picture'];
       this.showLoginBT(false);
-
       //pass data.token to serices
       this.httpReq.setToken(data['token']);
       M.Tooltip.init($(".tooltipped"));

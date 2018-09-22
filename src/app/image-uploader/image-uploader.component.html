@@ -18,7 +18,7 @@
   <div *ngFor="let loader of loaders" class="loaders">
     <div class="lds-dual-ring"></div>
   </div>
-  <div *ngFor="let image of srcImages" class="images">
+  <div *ngFor="let image of srcImages; let i = index" class="images">
     <span (click)="removePicture(image)">X</span>
     <img [src]="image" />
   </div>
