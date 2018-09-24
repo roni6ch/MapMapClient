@@ -4,7 +4,8 @@ constructor(
     public publisher: {
         name:string,
         email:string,
-        phones: Array<string>
+        phones: Array<string>,
+        type:string
     },
     public location: {
         address: string,

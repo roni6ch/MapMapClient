@@ -29,6 +29,7 @@
       apartment_rooms = [1,2,3,4,5,6,7,8];
       apartment_floor = [0,1,2,3,4,5,6,7,8,9,10,20,30];
       apartment_toilets = [1,2,3,4];
+      apartment_publisherType = ["פרטי","תיווך"];
 
       apartment: any;
 
@@ -36,7 +37,7 @@
       
       
       }
-      
+      ngOnInit(){}
       ngOnChanges(changes: any) {
 
         //send to pipe in order to filter the results on map
@@ -65,7 +66,7 @@
 
         }
       }
-      ngOnInit() {
+      ngAfterViewInit() {
         
         M.FormSelect.init($("select")); 
         M.CharacterCounter.init($('#inputDescription'));
@@ -86,7 +87,8 @@
         let publisher = {
           name: "",
           email:"",
-          phones: [""]
+          phones: [""],
+          type:""
         }
         let location = {
           address: "",

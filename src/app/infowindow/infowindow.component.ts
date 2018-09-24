@@ -17,15 +17,11 @@ export class InfowindowComponent implements OnInit {
   }
   markerHeart(event){
     console.log(this.apartment);
-    this.apartment.user.favorite = !this.apartment.user.favorite;
-    // TODO: change sendData user id
-    let sendData = {
-      user_id:this.apartment,
-      apartment_id:this.apartment.id,
-      favorite : this.apartment.user.favorite
-    }
+    this.apartment.active = !this.apartment.active;
+    var apartment_id = this.apartment._id;
+    var favorite = this.apartment.active;
     //send favorite ajax
-    this.httpReq.favorite(sendData).subscribe(data => {
+    this.httpReq.favoritesAddRemove(apartment_id,favorite).subscribe(data => {
       if (data) {
         console.log(data)
       }
@@ -35,15 +31,13 @@ export class InfowindowComponent implements OnInit {
   }
   markerBlackList(event){
     console.log(this.apartment);
-    this.apartment.user.favorite = !this.apartment.user.favorite;
-     // TODO: change sendData user id
-     let sendData = {
-      user_id:this.apartment,
-      apartment_id:this.apartment.id,
-      favorite : this.apartment.user.favorite
-    }
-    //send favorite ajax
-    this.httpReq.favorite(sendData).subscribe(data => {
+
+    this.apartment.active = !this.apartment.active;
+    var apartment_id = this.apartment._id;
+    var favorite = this.apartment.active;
+
+    //send blackListAddRemove ajax
+    this.httpReq.blackListAddRemove(apartment_id,favorite).subscribe(data => {
       if (data) {
         console.log(data)
       }

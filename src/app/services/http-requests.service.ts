@@ -23,8 +23,60 @@ export class HttpRequestsService {
     }
     return this.http.post(url,data,this.httpOptions);
   }
+
+  register(user){
+    let url = "https://mapmapserver.herokuapp.com/register";
+    //----PASSWORD VALIDATIONS----
+    // Minimum length 8
+    // Maximum length 15
+    // Must have uppercase letters
+    // Must have lowercase letters
+    // Must have digits
+    // Should not have spaces
+    return this.http.post(url,user,this.httpOptions);
+  }
+  customLogin(user){
+    let url = "https://mapmapserver.herokuapp.com/login/custom";
+    return this.http.post(url,user,this.httpOptions);
+  }
+
+  
+  favoritesAddRemove(apartment_id,bool){
+    let url = "https://mapmapserver.herokuapp.com/apartments/" + apartment_id + "/favorite/" + bool;
+    return this.http.put(url,this.httpOptions);
+  }
+
+  getFavorites(){
+    let url = "https://mapmapserver.herokuapp.com/apartments/favorites";
+    return this.http.get(url,this.httpOptions);
+  }
+
+  blackListAddRemove(apartment_id,bool){
+    let url = "https://mapmapserver.herokuapp.com/apartments/" + apartment_id + "/blacklist/" + bool;
+    return this.http.put(url,this.httpOptions);
+  }
+
+  getBlackList(){
+    let url = "https://mapmapserver.herokuapp.com/apartments/blacklist";
+    return this.http.get(url,this.httpOptions);
+  }
+
+
+  deleteApartment(apartment_id){
+    let url = "https://mapmapserver.herokuapp.com/deleteApartment";
+    var apartment = {
+      'apartment_id':apartment_id
+    }
+    return this.http.post(url,apartment,this.httpOptions);
+  }
+
+  
+
+
+
+
+
   setToken(token:string){
-    console.log("todo: set token to http req " , token);
     this.token = token;
     this.httpOptions.headers['Authorization'] =   "JWT " + token;
   }
@@ -50,10 +102,6 @@ export class HttpRequestsService {
   removePicture(files:any){
     let url = "https://mapmapserver.herokuapp.com/removePicture";
     return this.http.post(url,files,this.httpOptions);
-  }
-  favorite(data:any){
-    let url = "https://mapmapserver.herokuapp.com/favorite";
-    return this.http.post(url,data,this.httpOptions);
   }
   getUserApartments(){
     let url = "https://mapmapserver.herokuapp.com/getUserApartments";

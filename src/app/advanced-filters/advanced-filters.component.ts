@@ -4,6 +4,7 @@ import { Filters } from '../filters';
 import * as $ from 'jquery';
 import * as M from 'materialize-css';
 import {  NgForm  } from '@angular/forms';
+import { HttpRequestsService } from '../services/http-requests.service';
 
 @Component({
   selector: 'app-advanced-filters',
@@ -27,7 +28,7 @@ export class AdvancedFiltersComponent implements OnInit {
   @Output() filters = new EventEmitter();
 
 
-  constructor(private advancedFiltersJSON: AdvancedFilterService) {
+  constructor(private advancedFiltersJSON: AdvancedFilterService,private httpReq: HttpRequestsService) {
     //init filters
     this.filtersObj = new Filters(false, {}, ["3000", "7000"], "all", 0, 0, 0, false);
     this.initFilters();
@@ -58,9 +59,23 @@ export class AdvancedFiltersComponent implements OnInit {
   
     };
   }
-  toggleFavoriteApartment() {
+  getFavorites(){
+    //todo: check if it working
     this.favFilterImg = !this.favFilterImg;
-    this.favoritesClick.emit(this.favFilterImg);
+    this.httpReq.getFavorites().subscribe(data => {
+      if (data) {
+        console.log(data)
+      }
+    });
+  }
+  getBlackList(){
+    //todo: check if it working
+    this.blackListFilter = !this.blackListFilter;
+    this.httpReq.getBlackList().subscribe(data => {
+      if (data) {
+        console.log(data)
+      }
+    });
   }
   submitFilters() {
     this.filtersObj.favorites = this.favFilterImg;

@@ -116,6 +116,9 @@
           <span class="heart" (click)="markerHeart($event)">
             <img [src]="apartment?.active ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" />
           </span>
+          <span class="blackList" (click)="markerBlackList($event)">
+              <img [src]="apartment?.active ? 'assets/images/icons/black-list-full.png' : 'assets/images/icons/black-list.png'" />
+            </span>
           <span (click)="calendar(apartment)">
             <img src="assets/images/icons/calendar.png" class="modal-action modal-close waves-effect">
           </span>

@@ -115,17 +115,17 @@ export class AppComponent implements OnInit {
   }*/
 
   logindata(data) {
-    console.log('data',data);
     if (data !== false && gapi.auth2.getAuthInstance().isSignedIn.get()) {
       //google connection
-      console.log(data);
       this.profile = data;
       this.profile['picture']  = data['picture'];
       this.showLoginBT(false);
       //pass data.token to serices
       this.httpReq.setToken(data['token']);
       M.Tooltip.init($(".tooltipped"));
-    } else if(data !== false && this._auth != null){
+    } 
+    //TODO: open and fix facebook login
+    /*else if(data !== false && this._auth != null){
       //facebook connection
       this.showLoginBT(false);
       this.profile = data;
@@ -133,7 +133,16 @@ export class AppComponent implements OnInit {
       this.httpReq.setToken(data['token']);
 
       M.Tooltip.init($(".tooltipped"));
-    }else {
+    }*/
+    else if (data !== false){
+      //custom login
+      this.httpReq.setToken(data);
+      this.showLoginBT(false);
+      this.profile = [];
+      this.profile['picture'] = "../assets/images/apartments/no_image.jpg";
+      M.Tooltip.init($(".tooltipped"));
+    }
+    else {
       this.showLoginBT(true);
     }
   }

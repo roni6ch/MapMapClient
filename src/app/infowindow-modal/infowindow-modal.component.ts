@@ -107,20 +107,34 @@ export class InfowindowModalComponent implements OnInit {
   }
 
   markerHeart(event) {
-    this.apartment.user.favorite = !this.apartment.user.favorite;
-    // TODO: change sendData user id
-    let sendData = {
-      user_id: this.apartment,
-      apartment_id: this.apartment.id,
-      favorite: this.apartment.user.favorite
-    }
+//todo: fix to fav
+    this.apartment.active = !this.apartment.active;
+    var apartment_id = this.apartment._id;
+    var favorite = this.apartment.active;
     //send favorite ajax
-    this.httpReq.favorite(sendData).subscribe(data => {
+    this.httpReq.favoritesAddRemove(apartment_id,favorite).subscribe(data => {
       if (data) {
         console.log(data)
       }
     });
 
+    event.stopPropagation();
+  }
+  markerBlackList(event){
+    //todo: fix to blacklist
+    console.log(this.apartment);
+
+    this.apartment.active = !this.apartment.active;
+    var apartment_id = this.apartment._id;
+    var favorite = this.apartment.active;
+
+    //send blackListAddRemove ajax
+    this.httpReq.blackListAddRemove(apartment_id,favorite).subscribe(data => {
+      if (data) {
+        console.log(data)
+      }
+    });
+    
     event.stopPropagation();
   }
   panorama(latLng) {

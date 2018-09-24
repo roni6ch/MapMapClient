@@ -157,14 +157,14 @@
 
           <div class="row">
             <!-- apartmentType -->
-            <div class="input-field col s3 apartmentType">
+            <div class="input-field col s2 apartmentType">
             <select [(ngModel)]="apartment.details.apartment_type" name="apartmentType">
                   <option value="" disabled>סוג נכס</option>
                   <option *ngFor="let type of apartment_types" [value]="type" [selected]="type==apartment.details.apartment_type">{{type}}</option>
               </select>
             </div>
             <!--apartmentRooms-->
-            <div class="input-field col s3 apartmentRooms">
+            <div class="input-field col s2 apartmentRooms">
 
                 <select [(ngModel)]="apartment.details.rooms" name="apartmentRooms">
                     <option value="" disabled>מספר חדרים</option>
@@ -172,7 +172,7 @@
                 </select>
             </div>
             <!--apartmentFloor-->
-            <div class="input-field col s3 apartmentFloor">
+            <div class="input-field col s2 apartmentFloor">
 
                 <select [(ngModel)]="apartment.details.floor" name="apartmentFloor">
                     <option value="" disabled>קומה</option>
@@ -180,7 +180,7 @@
                 </select>
             </div>
             <!--apartmentToilets-->
-            <div class="input-field col s3 apartmentToilets">
+            <div class="input-field col s2 apartmentToilets">
                 <select [(ngModel)]="apartment.details.toilets" name="apartmentToilets">
                     <option value="" disabled>שירותים</option>
                     <option *ngFor="let toilets of apartment_toilets" [value]="toilets" [selected]="toilets==apartment.details.toilets">{{toilets}} שירותים</option>
@@ -188,6 +188,15 @@
 
             
             </div>
+             <!--apartmentToilets-->
+             <div class="input-field col s2 apartmentPublisherType">
+              <select [(ngModel)]="apartment.publisher.type" name="apartmentPublisherType">
+                  <option value="" disabled>בעלות</option>
+                  <option *ngFor="let publisherType of apartment_publisherType" [value]="publisherType" [selected]="publisherType==apartment.publisher.type">{{publisherType}}</option>
+              </select>
+
+          
+          </div>
           </div>
 
           <div class="modal-footer">

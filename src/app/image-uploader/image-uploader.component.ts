@@ -42,7 +42,6 @@ export class ImageUploaderComponent implements OnInit {
     var index =  this.srcImages.indexOf(image);    // <-- Not supported in <IE9
     if (index !== -1) {
       this.srcImages.splice(index, 1);
-      this.uploadData.delete(image);
       this.images.emit(this.srcImages);
     }
   }
@@ -54,6 +53,7 @@ export class ImageUploaderComponent implements OnInit {
 
   loaders = [];
   upload(fileInput: any) {
+    this.uploadData = new FormData();
     this.loaders = [];
     let files;
 
@@ -65,7 +65,7 @@ export class ImageUploaderComponent implements OnInit {
       for (var i = 0; i < files.length; i++) {
         if (files[i] !== undefined) {
           this.loaders.push(i);
-          this.uploadData.append(files[i].name, files[i], files[i].name);
+          this.uploadData.append('imageUpload', files[i], files[i].name);
         }
       }
 
@@ -79,7 +79,7 @@ export class ImageUploaderComponent implements OnInit {
          /* for (var image of Object.values(data)) {
             this.srcImages.push(image);
           }*/
-          this.srcImages = data;
+          this.srcImages =  this.srcImages.concat(data)
           console.log("image uploaded: ", data);
           this.images.emit(this.srcImages);
         }

@@ -34,7 +34,6 @@ export class MapComponent implements OnInit {
   constructor(private httpReq: HttpRequestsService, private filterPipe: FiltersPipe) {
   }
   ngOnChanges(changes: any) {
-
     //send to pipe in order to filter the results on map
     if (changes.hasOwnProperty('filtersInput') !== undefined && changes.hasOwnProperty('filtersInput') !== false){
       this.filtersArr = changes.filtersInput.currentValue;
