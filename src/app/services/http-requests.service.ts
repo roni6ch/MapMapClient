@@ -62,13 +62,13 @@ export class HttpRequestsService {
   }
 
 
-  deleteApartment(apartment_id){
-    let url = "https://mapmapserver.herokuapp.com/deleteApartment";
-    var apartment = {
-      'apartment_id':apartment_id
-    }
-    return this.http.post(url,apartment,this.httpOptions);
-  }
+
+
+
+
+
+
+
 
   
 
@@ -103,12 +103,26 @@ export class HttpRequestsService {
     let url = "https://mapmapserver.herokuapp.com/removePicture";
     return this.http.post(url,files,this.httpOptions);
   }
-  getUserApartments(){
-    let url = "https://mapmapserver.herokuapp.com/getUserApartments";
-    return userApartmentTempData;
+  getUserApartments(): Observable<IApartments[]>{
+    //let url = "https://mapmapserver.herokuapp.com/getUserApartments";
+    let url = "https://mapmapserver.herokuapp.com/apartments";
+    return this.http.get<IApartments[]>(url, this.httpOptions);
+    
+   // return userApartmentTempData;
   // return this.http.post(url,{},this.httpOptions);
   }
+
+
+  deleteApartment(apartment_id){
+    let url = "https://mapmapserver.herokuapp.com/deleteApartment";
+    var apartment = {
+      'apartment_id':apartment_id
+    }
+    return this.http.post(url,apartment,this.httpOptions);
+  }
+  
 }
+
 
 
 

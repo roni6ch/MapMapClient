@@ -10,9 +10,11 @@
       <table class="table table-hover">
         <thead>
           <tr>
+
             <th>כתובת</th>
             <th>מחיר</th>
             <th>טלפון</th>
+            <th>מחק נכס</th>
           </tr>
         </thead>
         <tbody>
@@ -25,6 +27,7 @@
                 <br />
               </span>
             </td>
+            <td (click)="deleteApartment(d._id,$event)">X</td>
           </tr>
         </tbody>
       </table>

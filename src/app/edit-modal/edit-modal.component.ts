@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef , Output , EventEmitter} from '@angular/core';
 import { HttpRequestsService } from '../services/http-requests.service';
+import { IApartments } from '../iapartments';
 
 @Component({
   selector: 'app-edit-modal',
@@ -14,10 +15,17 @@ export class EditModalComponent implements OnInit {
   constructor(private httpReq: HttpRequestsService) { }
 
   ngOnInit() {
-    this.data = this.httpReq.getUserApartments();
+    this.httpReq.getUserApartments().subscribe(result => {
+      this.data = result;
+    });
   };
 
-
+  deleteApartment(apartment_id,ev){
+    ev.stopPropagation();
+    this.httpReq.deleteApartment(apartment_id).subscribe(result => {
+     console.log("deleted");
+    });
+  }
   openEditModalOutput(apartment) {
     this.btnClose.nativeElement.click();
     setTimeout(()=>{
