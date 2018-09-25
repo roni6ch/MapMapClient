@@ -9,10 +9,16 @@ import { IAdvancedFilter } from '../pipes/i-advanced-filter';
 export class AdvancedFilterService {
   
   private _url = "./assets/advancedFilter.json";
-  
+  public filtersData = [];
   constructor(private http : HttpClient) { }
 
-  getData(): Observable<IAdvancedFilter[]>{
+  getAllFilters(): Observable<IAdvancedFilter[]>{
     return this.http.get<IAdvancedFilter[]>(this._url);
+  }
+  getData(){
+    return this.filtersData;
+  }
+  setData(filtersData){
+    this.filtersData = filtersData; 
   }
 }

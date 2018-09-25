@@ -23,10 +23,7 @@ export class MapComponent implements OnInit {
   apartmentModal = {};
   lat: number;
   lng: number;
-  mapOptions: object = {
-    zoom: 14,
-    minZoom:12
-  };
+  zoom = 14;
    
 
  origin = undefined;

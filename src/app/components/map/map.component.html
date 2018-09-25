@@ -1,5 +1,5 @@
 <!-- MAP -->
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="mapOptions.zoom" [minZoom]="mapOptions.minZoom"  [maxZoom]="mapOptions.zoom"  
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" 
   (mapRightClick)="mapRightClick($event)"
   (idle)="boundsChange(lng,lat)">
   <!-- MARKERS -->

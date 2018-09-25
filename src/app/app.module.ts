@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule , NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, Component } from '@angular/core';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,7 +20,7 @@ import { MapComponent } from './components/map/map.component';
 import { TableComponent } from './components/table/table.component';
 
 /*  LIBRERIES */
-import { GoogleSignInComponent } from 'angular-google-signin';
+//import { GoogleSignInComponent } from 'angular-google-signin';
 import { NouisliderModule } from 'ng2-nouislider';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -41,10 +41,11 @@ import { LoginComponent } from './components/login/login.component';
 
 
 
-//import { Angular2SocialLoginModule } from "angular2-social-login";
 
+const routes: Routes = [
+  { path : '**', redirectTo : ''  },
 
-const routes: Routes = [];
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,6 @@ const routes: Routes = [];
     AdvancedFiltersComponent,
     FiltersPipe,
     ContractsComponent,
-    GoogleSignInComponent,
     CardsComponent,
     EditModalComponent,
     DatePipePipe,
@@ -66,7 +66,6 @@ const routes: Routes = [];
   imports: [
     RouterModule.forRoot(routes, { useHash: false }),  // remove second argument
     BrowserModule,
-  // Angular2SocialLoginModule,
     BootstrapModule,
     Ng2SmartTableModule,
     AgmCoreModule.forRoot({
@@ -87,15 +86,3 @@ const routes: Routes = [];
 })
 
 export class AppModule { }
-
-
-/*
-let providers = {
-  "facebook": {
-    "clientId": "333762270434028",
-    "apiVersion": "v2.8" //like v2.4
-  }
-};
-*/
-
-//Angular2SocialLoginModule.loadProvidersScripts(providers);

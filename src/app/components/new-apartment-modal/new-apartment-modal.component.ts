@@ -73,7 +73,7 @@
 
 
 
-        this.advancedFiltersJSON.getData().subscribe(data => this.advancedFilters = data);
+        this.advancedFiltersJSON.getAllFilters().subscribe(data => this.advancedFilters = data);
         this.initApartment();
         this.initAutoComplete();
       }

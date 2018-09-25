@@ -67,11 +67,6 @@ nav .btn:hover{
   -ms-transition: background-color 1s linear;
   transition: background-color 1s linear;
 }
-.searchClicked{ background-color: #fff;
-  -webkit-transition: background-color .3s linear;
-  -ms-transition: background-color .3s linear;
-  transition: background-color .3s linear;}
-nav.searchClicked a{color: #039be5;} 
 input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom: 1px solid #039be5 !important;
     box-shadow: 0 1px 0 0 #039be5 !important;font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;}
     .smallSearch{

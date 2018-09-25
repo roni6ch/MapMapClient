@@ -28,14 +28,14 @@ export class AdvancedFiltersComponent implements OnInit {
   @Output() filters = new EventEmitter();
 
 
-  constructor(private advancedFiltersJSON: AdvancedFilterService,private httpReq: HttpRequestsService) {
+  constructor(private advancedFilterService: AdvancedFilterService,private httpReq: HttpRequestsService) {
     //init filters
     this.filtersObj = new Filters(false, {}, ["3000", "7000"], "all", 0, 0, 0, false);
     this.initFilters();
   }
 
   ngOnInit() {
-    this.advancedFiltersJSON.getData().subscribe(data => {
+    this.advancedFilterService.getAllFilters().subscribe(data => {
       this.advancedFilters = data;
     });
     var instances = M.FormSelect.init($("select"));
@@ -92,6 +92,8 @@ export class AdvancedFiltersComponent implements OnInit {
     this.filtersObj.status = !this.filtersObj.status
     this.filtersObj = Object.assign({}, this.filtersObj);
 
+    
+    this.advancedFilterService.setData(this.filtersObj);
     this.filters.emit(this.filtersObj);
     
     this.btnClose.nativeElement.click();

@@ -147,7 +147,7 @@
                                     היכנס באמצעות</h3>
                             </div>
                             <div class="col-md-12">
-                                <div class="googleBT" [hidden]="true">
+                                <!--<div class="googleBT" [hidden]="true">
                                     <google-signin
                                         [clientId]="myClientId"
                                         [width]="myWidth"
@@ -157,10 +157,10 @@
                                         [longTitle]="myLongTitle"
                                         (googleSignInSuccess)="onGoogleSignInSuccess($event);"></google-signin>
                                 </div>
-
+                            -->
                                 <div class="btn-group btn-group-justified">
-                                    <a href="#" class="btn red" (click)="googleConnect()">Google</a>
-                                    <a href="#" class="btn btn-primary" (click)="facebookSignIn('facebook')">Facebook</a>
+                                    <div class="btn red g-signin2" data-onsuccess="onSignIn">Google</div>
+                                    <a href="#" class="btn btn-primary">Facebook</a>
                                 </div>
                             </div>
                         </div>
