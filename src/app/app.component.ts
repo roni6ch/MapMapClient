@@ -5,7 +5,7 @@ import * as M from 'materialize-css';
 import { HttpClient } from '@angular/common/http';
 import { HttpRequestsService } from './services/http-requests.service';
 
-import { AuthService } from "angular2-social-login";
+//import { AuthService } from "angular2-social-login";
 
 import { google } from "google-maps";
 declare var google: google;
@@ -54,7 +54,9 @@ export class AppComponent implements OnInit {
   @ViewChild("searchRef")
   public searchRef: ElementRef;
 
-  constructor(private mapsAPILoader: MapsAPILoader, public _auth: AuthService,private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) {
+  constructor(private mapsAPILoader: MapsAPILoader,
+     //public _auth: AuthService,
+     private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) {
 
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
@@ -159,13 +161,13 @@ export class AppComponent implements OnInit {
     } else {
       //disconnect from facebook
       this.showLoginBT(true);
-      this._auth.logout().subscribe(
+      /*this._auth.logout().subscribe(
         (data)=>{
           //return a boolean value.
           console.log(data);
           console.log('facebook User signed out.');
         }
-      )
+      )*/
     }
   }
   filtersInput = [];

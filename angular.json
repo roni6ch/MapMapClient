@@ -42,8 +42,7 @@
               "node_modules/materialize-css/dist/js/materialize.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/nouislider/distribute/nouislider.min.js",
-              "node_modules/angular2-social-login/dist/bundles/angular2-social-login.min.js"
+              "node_modules/nouislider/distribute/nouislider.min.js"
 
             ]
           },

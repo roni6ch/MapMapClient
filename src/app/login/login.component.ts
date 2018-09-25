@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import {HttpRequestsService} from '../services/http-requests.service';
 import * as $ from 'jquery';
-import {AuthService} from "angular2-social-login";
+//import {AuthService} from "angular2-social-login";
 import {GoogleSignInSuccess} from 'angular-google-signin';
 @Component({selector: 'app-login', templateUrl: './login.component.html', styleUrls: ['./login.component.scss']})
 export class LoginComponent implements OnInit {
@@ -17,7 +17,9 @@ export class LoginComponent implements OnInit {
     @Output()logindata = new EventEmitter();
     @Output()login = new EventEmitter();
     private myClientId : string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
-    constructor(private httpReq : HttpRequestsService, public _auth : AuthService) {}
+    constructor(private httpReq : HttpRequestsService, 
+        //public _auth : AuthService
+    ) {}
 
     @ViewChild('btnClose')btnClose : ElementRef
     ngOnInit() {
@@ -81,24 +83,16 @@ export class LoginComponent implements OnInit {
             });
     }
 
-    facebookSignIn(provider) {
-        this
-            ._auth
-            .login(provider)
-            .subscribe((data) => {
+   /* facebookSignIn(provider) {
+        this._auth.login(provider).subscribe((data) => {
                 console.log(data);
-                this
-                    .logindata
-                    .emit(data);
-                this
-                    .btnClose
-                    .nativeElement
-                    .click();
+                this.logindata.emit(data);
+                this.btnClose.nativeElement.click();
                 // user data name, image, uid, provider, uid, email, token (accessToken for
                 // Facebook & google, no token for linkedIn), idToken(only for google)
             })
     }
-    /*
+   
   facebookLogout(){
     this._auth.logout().subscribe(
       (data)=>{
