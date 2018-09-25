@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef , Output , EventEmitter} from '@angular/core';
-import { HttpRequestsService } from '../services/http-requests.service';
-import { IApartments } from '../iapartments';
+import { HttpRequestsService } from '../../services/http-requests.service';
+import { IApartments } from '../../shared/iapartments';
 
 @Component({
   selector: 'app-edit-modal',

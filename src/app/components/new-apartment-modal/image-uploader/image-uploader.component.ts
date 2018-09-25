@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HttpRequestsService } from '../services/http-requests.service';
+import { HttpRequestsService } from '../../../services/http-requests.service';
 import * as $ from 'jquery';
 
 @Component({

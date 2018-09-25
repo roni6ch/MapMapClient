@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, Input, ViewChild ,ViewChildren, Output , EventEmitter } from '@angular/core';
-import { HttpRequestsService } from '../services/http-requests.service';
-import { FiltersPipe } from '../filters.pipe';
+import { HttpRequestsService } from '../../services/http-requests.service';
+import { FiltersPipe } from '../../pipes/filters.pipe';
 
 
 

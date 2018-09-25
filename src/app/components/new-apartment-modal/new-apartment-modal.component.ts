@@ -1,11 +1,11 @@
     import { Component, OnInit, ElementRef, ViewChild ,NgZone,Input,Output,EventEmitter } from '@angular/core';
-    import { AdvancedFilterService } from '../services/advanced-filter.service';
-    import { HttpRequestsService } from '../services/http-requests.service';
+    import { AdvancedFilterService } from '../../services/advanced-filter.service';
+    import { HttpRequestsService } from '../../services/http-requests.service';
     import {  NgForm  } from '@angular/forms';
     import { google } from "google-maps";
     declare var google : google;
     import { MapsAPILoader } from '@agm/core';
-    import { Apartment } from '../apartment';
+    import { Apartment } from '../../shared/apartment';
     import * as $ from 'jquery';
 
     import * as M from 'materialize-css';

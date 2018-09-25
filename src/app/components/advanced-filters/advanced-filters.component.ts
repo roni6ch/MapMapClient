@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild , ElementRef } from '@angular/core';
-import { AdvancedFilterService } from '../services/advanced-filter.service';
-import { Filters } from '../filters';
+import { AdvancedFilterService } from '../../services/advanced-filter.service';
+import { Filters } from '../../pipes/filters';
 import * as $ from 'jquery';
 import * as M from 'materialize-css';
 import {  NgForm  } from '@angular/forms';
-import { HttpRequestsService } from '../services/http-requests.service';
+import { HttpRequestsService } from '../../services/http-requests.service';
 
 @Component({
   selector: 'app-advanced-filters',

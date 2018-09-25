@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { google } from "google-maps";
-import { } from '../../../node_modules/protractor';
-import { HttpRequestsService } from '../services/http-requests.service';
+import { HttpRequestsService } from '../../../services/http-requests.service';
 declare var google: google;
 declare var FB: any;
 

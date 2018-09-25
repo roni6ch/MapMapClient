@@ -1,5 +1,5 @@
 import { Component, EventEmitter , OnInit ,Input , Output   } from '@angular/core';
-import { HttpRequestsService } from '../services/http-requests.service';
+import { HttpRequestsService } from '../../../services/http-requests.service';
 
 
 @Component({
