@@ -65,10 +65,16 @@ export class HttpRequestsService {
     this.httpOptions.headers['Authorization'] =   "JWT " + token;
   }
   //get apartments data
-  getData(data:any): Observable<IApartments[]>{
+  getMarkers(data:any): Observable<IApartments[]>{
   //  let url = "../assets/result.json";
     let url = "https://mapmapserver.herokuapp.com/apartments";
     return this.http.get<IApartments[]>(url, { params: data });
+  }
+
+  //get aprtment
+  getApartmentData(id): Observable<IApartments[]>{
+    let url = "https://mapmapserver.herokuapp.com/apartments/" + id;
+    return this.http.get<IApartments[]>(url);
   }
   //publish new apartment
   publishNewApartment(formData:any){
@@ -92,7 +98,16 @@ export class HttpRequestsService {
     return this.http.post(url,files,this.httpOptions);
   }
   //get user apartments for edit purpose
-  getUserApartments(): Observable<IApartments[]>{
+  getUserApartments(){
+    //let url = "https://mapmapserver.herokuapp.com/getUserApartments";
+    let url = "https://mapmapserver.herokuapp.com/apartments";
+  //  return this.http.get<IApartments[]>(url, this.httpOptions);
+    
+   return userApartmentTempData;
+  // return this.http.post(url,{},this.httpOptions);
+  }
+  //todo: open this insted of the top one
+  getUserApartments2(): Observable<IApartments[]>{
     //let url = "https://mapmapserver.herokuapp.com/getUserApartments";
     let url = "https://mapmapserver.herokuapp.com/apartments";
     return this.http.get<IApartments[]>(url, this.httpOptions);

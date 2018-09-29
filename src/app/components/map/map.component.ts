@@ -19,8 +19,9 @@ export class MapComponent implements OnInit {
 
   filtersArr;
   favorites = false;
-  apartments = [];
+  markers = [];
   apartmentModal = {};
+  apartmentInfo = {};
   lat: number;
   lng: number;
   zoom = 14;
@@ -41,17 +42,8 @@ export class MapComponent implements OnInit {
     }
 
     //todo: get apartments by boundsTemp
-    let boundsTemp = {
-      "lat": this.latLng.lat,
-      "long": this.latLng.lng,
-    }
-    this.httpReq.getData(boundsTemp).subscribe(data => { 
-      this.apartments = this.filterPipe.transform(data, this.filtersArr);
-      console.log(this.apartments);
-      this.apartmentsResults.emit(this.apartments.length);
-      //close the last info window
-      this.lastInfoWindow = null;
-    });
+    this.boundsChange(this.latLng.lng, this.latLng.lat)
+    
   }
   ngAfterViewInit() {
    // this.apartmentsResults.emit(this.markers.length);
@@ -64,7 +56,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
 
     //get result.json
-    //this.httpReq.getData().subscribe(data => { this.apartments = data; console.log(data) });
+    //this.httpReq.getMarkers().subscribe(data => { this.markers = data; console.log(data) });
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
 
@@ -74,11 +66,14 @@ export class MapComponent implements OnInit {
       "lat": lng,
       "long": lat,
     }
-    this.httpReq.getData(boundsTemp).subscribe(data => { 
-      this.apartments = this.filterPipe.transform(data, this.filtersArr);
-      //todo: change this to get filtered pipe apartments length
+    this.httpReq.getMarkers(boundsTemp).subscribe(data => { 
+      ///todo - open this filters
+     // this.markers = this.filterPipe.transform(data, this.filtersArr);
+      //todo: change this to get filtered pipe markers length
     //  let filteredData = this.filterPipe.transform(data, this.filtersArr);
-      this.apartmentsResults.emit(this.apartments.length);
+
+    this.markers = data;
+      this.apartmentsResults.emit(this.markers.length);
       this.lastInfoWindow = null;
     });
   }
@@ -86,12 +81,18 @@ export class MapComponent implements OnInit {
   lastInfoWindow: any;
   // close last info-window https://stackblitz.com/edit/agm-close-infowindow?file=app%2Fapp.component.html
   openApartment(apartment, infowindow) {
-    console.log(apartment);
     if (this.lastInfoWindow) {
       this.lastInfoWindow.close();
     }
-    this.lastInfoWindow = infowindow;
-    this.apartmentModal = apartment;
+
+
+    //todo - ajax here to bring apartment info 
+    this.httpReq.getApartmentData(apartment._id).subscribe(data => { 
+      console.log(data);
+      this.lastInfoWindow = infowindow;
+      this.apartmentInfo = data;
+      this.apartmentModal = data;
+    })
   }
   showMap = true;
   clickEven = false;

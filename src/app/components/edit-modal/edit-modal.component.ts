@@ -15,9 +15,11 @@ export class EditModalComponent implements OnInit {
   constructor(private httpReq: HttpRequestsService) { }
 
   ngOnInit() {
-    this.httpReq.getUserApartments().subscribe(result => {
+    //todo - open this insted of the bottom one - when tomer will finish to build aprtments of the same owner
+    /*this.httpReq.getUserApartments().subscribe(result => {
       this.data = result;
-    });
+    });*/
+    this.data  = this.httpReq.getUserApartments();
   };
 
   deleteApartment(apartment_id,ev){

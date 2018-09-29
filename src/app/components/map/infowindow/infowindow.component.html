@@ -1,11 +1,11 @@
 <div class='markerWrapper'  (click)="infoWindowClick()"  data-toggle="modal" data-target="#infowindowmodal">
 
   <div class='markerImgWrapper'>
-    <p>{{apartment.details.price}}
+    <p>{{apartment.details?.price}}
       <img src='assets/images/icons/price.png' />
     </p>
 
-    <img class='markerImg' [src]='apartment.details.images.length > 0 ? apartment.details.images[0] : "assets/images/apartments/no_image.jpg"' #img (error)="img.src = 'assets/images/apartments/no_image.jpg'"/>
+    <img class='markerImg' [src]='apartment.details?.images?.length > 0 ? apartment.details?.images[0] : "assets/images/apartments/no_image.jpg"' #img (error)="img.src = 'assets/images/apartments/no_image.jpg'"/>
     <div id='streetImg'></div>
 <!--TODO: change here to favorite-->
     <img [src]="apartment.active ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png' " class='markerHeart' (click)="markerHeart($event)" />
@@ -13,18 +13,18 @@
   </div>
 
   <div class='markerDetails'>
-    <p> {{apartment.details.apartment_type}} </p>
-    <p> {{apartment.location.address }}</p>
+    <p> {{apartment.details?.apartment_type}} </p>
+    <p> {{apartment.location?.address }}</p>
     <p>
-      <span> {{apartment.details.rooms}}
+      <span> {{apartment.details?.rooms}}
         <img src='assets/images/icons/rooms.png' />
       </span>
-      <span>{{apartment.details.floor}}
+      <span>{{apartment.details?.floor}}
         <img src='assets/images/icons/floor.png' />
       </span>
     </p>
     <p>
-      <span *ngIf="apartment.details.entrance_date">{{apartment.details.entrance_date | datePipe }}
+      <span *ngIf="apartment.details?.entrance_date">{{apartment.details?.entrance_date | datePipe }}
         <img src='assets/images/icons/entrence_date.png' />
       </span>
     </p>

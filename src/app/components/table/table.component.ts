@@ -63,7 +63,7 @@ export class TableComponent implements OnInit {
         lng: 34.772238
       }
       //TODO: get all apartments in israel
-      this.httpReq.getData(boundsTemp).subscribe(result => {
+      this.httpReq.getMarkers(boundsTemp).subscribe(result => {
         let filteredData = this.filterPipe.transform(result, this.filtersArr);
         this.mapData(filteredData);
       });

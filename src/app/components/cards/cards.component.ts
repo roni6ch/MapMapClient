@@ -18,7 +18,7 @@ export class CardsComponent implements OnInit {
       lng: 34.772238
     }
         //TODO: get all apartments in israel
-        this.httpReq.getData(boundsTemp).subscribe(result => {
+        this.httpReq.getMarkers(boundsTemp).subscribe(result => {
           this.filteredData = this.filterPipe.transform(result, this.filtersArr);
         });
   }
@@ -34,7 +34,7 @@ export class CardsComponent implements OnInit {
         lng: 34.772238
       }
       //TODO: get all apartments in israel
-      this.httpReq.getData(boundsTemp).subscribe(result => {
+      this.httpReq.getMarkers(boundsTemp).subscribe(result => {
         this.filteredData = this.filterPipe.transform(result, this.filtersArr);
       });
     }
