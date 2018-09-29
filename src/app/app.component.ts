@@ -13,7 +13,7 @@ declare var google: google;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  /* google signin button id */
+  /* google signin id */
   private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
   @ViewChild('apartmentModal') apartmentModal: ElementRef;
   @ViewChild("searchRef")  searchRef: ElementRef;
@@ -23,9 +23,9 @@ export class AppComponent implements OnInit {
   apartmentObj = null;
   scriptLoaded = false;
   showMap = true;
-  filtersInput = [];
-  apartmentsResults = 0;
   connect = false;
+  apartmentsResults = 0;
+  filtersInput = [];
   view = 'Map';
   nextView = 'טבלה';
   profile = {};
@@ -52,8 +52,8 @@ export class AppComponent implements OnInit {
   
   
 
+  //load Places Autocomplete
   initAutoComplete() {
-    //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchRef.nativeElement, {
         types: ["(cities)"]
@@ -79,6 +79,7 @@ export class AppComponent implements OnInit {
     });
   }
 
+  //change view
   changeView() {
     switch (this.view) {
       case 'Map':
