@@ -14,17 +14,63 @@
   background: rgba(0, 0, 0, 0.5);
 }
 input{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
-::-webkit-input-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
+::-webkit-input-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;  }
 ::-moz-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
 :-ms-input-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
 :-moz-placeholder{font-family:'Gloria Hallelujah','Assistant',Arial, sans-serif;}
 a:hover{text-decoration:none;color:#42A5F5 !important;}
 .btn{background:#42A5F5 !important;background-color:#42A5F5 !important;color:#fff !important;}
-body{width:100%;background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./assets/images/bg.jpg) center center;height:100vh;}
+body{width:100%;background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./assets/images/bg.jpg) center center;height:100vh; }
 hr{width:100%;}
 .modal-open .modal{margin:0;width:100%;min-height:100%;background:transparent;}
  .pac-container, .pac-item{z-index:2147483647 !important;text-align:left;}
  .pac-logo:after{display:none;}
+ .table td, .table th{direction: rtl; text-align: right;}
+
+.blur{
+  -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+::ng-deep .material-tooltip{    top: 6px !important;}
+ #toast-container{
+  left: 0;
+  right: 0 !important;
+  margin: 0 auto;
+  width: 400px !important;
+  }
+  .abcRioButtonContents > span{    position: absolute;
+    left: 0;
+    right: -28px;
+    margin: 0 auto;}
+
+  .ng2-smart-filter input{padding:0 !important;}
+
+  nav.ng2-smart-pagination-nav{background-color: transparent !important;}
+  .ng2-smart-page-item{    margin: 0px 1% !important;}
+  .tap-target-wrapper .tap-target-origin{
+    top: 33%;
+    right: 0 !important;
+    margin: 0 auto;
+  }
+
+  .blueColor{
+    background-color:#42A5F5 !important;
+  }
+
+  
+ul.dropdown-content.select-dropdown{    direction: rtl;
+  text-align: right;}
+  .input-field .select-wrapper input.select-dropdown{  direction: rtl;}
+  ul.dropdown-content.select-dropdown li  {
+    min-height:auto !important;    direction: rtl;
+    text-align: right;
+}
+.input-field .select-wrapper .caret{    left: 0;  right: auto;}
+ul.dropdown-content.select-dropdown li span{    padding: 5%;}
  @media print{agm-map{display:none }
  #infowindowmodal .modal-dialog{width:100%;margin:0 !important;max-width:none;}
 }

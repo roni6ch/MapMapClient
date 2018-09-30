@@ -1,0 +1,60 @@
+.gallery{width:100px;height:100px;}
+.gallery img{width:100px;height:100px;}
+.markerCarouselDetails{text-align:right;direction:rtl;width:100%;}
+.markerOwnerContact .ownerPhone{width:130px;float:left;margin-top:5px;float: right;}
+.markerOwnerContact h6 img{margin:0px 0px 0px 10px;float: right;}
+.apartmentModalWrapper .notes+label{text-align:right;direction:rtl;right:12px;}
+.markerOwnerContact textarea{overflow-y:hidden;padding:.8rem 0 1.6rem 0;resize:none;min-height:3rem;width:100px;}
+.carousel-item > img{margin:0 auto;height:400px;width:auto !important;}
+.modal-header{display:block;}
+.modal-header,.modal-body,.modal-footer, .modal .modal-content{padding:0px;}
+.carousel-control-next, .carousel-control-prev{background:#00000094;width:50px;}
+ .modal .carousel .carousel-item{width:100%;height:100%;visibility:visible;}
+ .modal .carousel-inner{visibility:visible;height:inherit;}
+ .modal-footer{display:block;background-color:transparent;    padding: 4px 6px;text-align:left;    height: 56px;}
+ #panorama{width:100% !important;height:400px;float:left;position:absolute;}
+ .widget-scene-canvas{width:100%!important;height:100%!important;}
+ .modal-footer span{margin:3%;cursor:pointer; display: inline-block;}
+ .modal-footer .btn-primary{margin-right:2%;}
+ .modal .modal-footer{height:auto;}
+
+ .apartmentModalChatWrapper {
+    width:100%;
+    min-height: 100px;
+    background: #e4e4e4;
+    z-index: 1;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+}
+.apartmentModalChatWrapper h3 {
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.3);
+}
+.apartmentModalChat {
+    width: 100%;
+    direction: rtl;
+    text-align: center;
+}
+.apartmentModalChat > input {
+    width: 100px;
+    margin: 5px auto;
+    left: 0;
+    height: 2rem;
+    right: 0;
+}
+#apartmentModalChatHistory{
+min-height: 50px;
+}
+.chatButtons{
+    width: 200px;
+    margin: 0 auto;
+}
+.chatButtons > input{
+width: 100px;
+float: left;}
+
+@media only screen and (max-width: 600px) {
+}

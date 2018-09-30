@@ -31,9 +31,9 @@ nav .publishBT button {
   width: 40px;
   height: 40px;
   border-radius: 50px;
-  margin-left: 10px;
-  margin-top: 10px; display:none;
+  margin-left: 10px; display:none;
 }
+
 .publishBT nav i ,  nav i.material-icons {
   line-height: initial !important;
   height: 22px  !important;
@@ -49,7 +49,6 @@ nav .btn:hover{
 .signOut{cursor: pointer;}
 .publishBT{margin-right:10px;}
 
-.googleBT{ margin-top: 10px;}
 .sidenav li>a{
   direction: rtl;
   text-align: center;
@@ -68,11 +67,6 @@ nav .btn:hover{
   -ms-transition: background-color 1s linear;
   transition: background-color 1s linear;
 }
-.searchClicked{ background-color: #fff;
-  -webkit-transition: background-color 1s linear;
-  -ms-transition: background-color 1s linear;
-  transition: background-color 1s linear;}
-nav.searchClicked a{color: #039be5;} 
 input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom: 1px solid #039be5 !important;
     box-shadow: 0 1px 0 0 #039be5 !important;font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;}
     .smallSearch{
@@ -116,8 +110,24 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
       color:#4c4c4c;
     }
 
-    .fixed-action-btn{
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #fff;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: #fff;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: #fff;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      color: #fff;
+    }
+
+
+  .fixed-action-btn{
       right: 50px; 
+      bottom: 37px !important;
     }
     .fixed-action-btn ul{
      width:250px; left:-190px;
@@ -129,21 +139,70 @@ input[type=search]:not(.browser-default):focus:not([readonly]){   border-bottom:
   border-radius: 10px;
   background: #ccc;
   display: block;
-  height: 35px;
   top: 3px;
   width: 170px;
   left: -167px;
   z-index: -1;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12);
 }
-.floatingText:hover{
-  color:#ccc;
+.floatingText:hover , .btn-floating:hover .floatingText{
+  color:#fff !important;
 }
 .fixed-action-btn ul a.btn-floating{
   overflow: inherit;    left: 94px;
 }
 
 
+/*search*/
+.searchField{
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 60px;
+  width: 320px;
+  -webkit-transition: width .3s linear;
+  transition: width .3s linear;
+  background: #ffffff9c;
+  padding: 0px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.resultsInfo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100px;
+}
+.searchField > input {
+  display: block;
+  width: 70% !important;
+  direction: rtl;
+  margin-top: 1% !important;
+  margin-bottom: 2% !important;
+  text-align: right;
+  margin: 0 27%;
+}
+.btn-search {
+  position: absolute;
+  top: 4px;
+  left: 15px;
+}
+.searchField:focus-within{background:#fff;
+  -webkit-transition: width .3s linear ; /* For Safari 3.1 to 6.0 */
+  transition: width .3s linear ;
+width:520px;
+
+background: #ffffff;
+border: 1px solid #000;
+}
+.webProfile{float:right;}
+
+.blurSection{width:100%; height:95vh;}
+.tap-target{
+  background-color:#42A5F5;
+}
 @media only screen and (max-width: 600px) {
 nav{height: 6vh;}
 #navbar{    width: 90%;}
@@ -152,4 +211,6 @@ nav .sidenav-trigger{  margin: 0;}
 agm-map{    height: 94vh;}
 .smallSearch{width:auto; float:left !important; margin-left:3%}
 .smallSearch input{width:auto; margin-left:3%}
+.searchField:focus-within{width:320px;
+}
     }

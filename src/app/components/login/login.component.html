@@ -1,0 +1,172 @@
+<!-- Modal -->
+<div
+    class="modal fade"
+    id="login"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button
+                    #btnClose
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-hidden="true">
+                    ×</button>
+                <h4 class="modal-title" id="myModalLabel">
+
+                    MapMap
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div
+                        class="col-md-8"
+                        style="border-left: 1px dotted #C2C2C2;padding-right: 30px;">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li>
+                                <a href="#Login" data-toggle="tab" class="active show">התחבר</a>
+                            </li>
+                            <li>
+                                /
+                            </li>
+                            <li>
+                                <a href="#Registration" data-toggle="tab">הירשם</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="Login">
+                                <form role="form" class="form-horizontal"  (ngSubmit)="onLoginSubmit(fLogin)" #fLogin="ngForm">
+                                    <div class="form-group">
+
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" placeholder="אימייל" ngModel #emailLogin="ngModel" email name="email" required/>
+                                            <span class="erros-validations" *ngIf="!emailLogin.valid && emailLogin.touched">אנא הזן אימייל חוקי</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="col-sm-10">
+                                            <input
+                                            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,15}$"
+                                            ngModel #passwordLogin="ngModel" name="password" required
+                                                type="password"
+                                                class="form-control"
+                                                id="exampleInputPassword1"
+                                                autocomplete=""
+                                                placeholder="סיסמה"/>
+                                                <span class="erros-validations" *ngIf="!passwordLogin.valid && passwordLogin.touched">אנא הזן : 
+                                                        <br>
+                                                        <ul>
+                                                            <li>סיסמה המורכבת מ8-15 ספרות</li>
+                                                            <li>חייבת להיות עם אות גדולה לפחות</li>
+                                                            <li>חייבת להיות עם אות קטנה לפחות</li>
+                                                            <li>חייבת להיות עם ספרה אחרת לפחות</li>
+                                                            <li>ללא רווחים</li>
+                                                        </ul>
+                                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-right mb-2">
+                                            <a href="javascript:;">שחכת סיסמה?</a>
+                                        </div>
+                                        <div class="col-sm-12 text-right">
+                                            <button type="submit" class="btn btn-primary">
+                                                שלח</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="Registration">
+
+
+                                <form role="form" class="form-horizontal" (ngSubmit)="onRegisterSubmit(f)" #f="ngForm">
+                                    <div class="form-group">
+
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="שם פרטי" ngModel #given_name="ngModel" name="given_name" required/>
+                                            <span class="erros-validations" *ngIf="!given_name.valid && given_name.touched">אנא הזן שם חוקי</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" placeholder="שם משפחה" ngModel #family_name="ngModel" name="family_name" required/>
+                                            <span class="erros-validations" *ngIf="!family_name.valid && family_name.touched">אנא הזן שם משפחה חוקי</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="col-sm-10">
+                                                <input type="email" class="form-control" placeholder="אימייל" ngModel #email="ngModel" email name="email" required/>
+                                                <span class="erros-validations" *ngIf="!email.valid && email.touched">אנא הזן אימייל חוקי</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="col-sm-10">
+                                            <input type="password" autocomplete="" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,15}$" class="form-control" placeholder="סיסמה" ngModel #password="ngModel" name="password" required/>
+                                            <span class="erros-validations" *ngIf="!password.valid && password.touched">אנא הזן : 
+                                                <br>
+                                                <ul>
+                                                    <li>סיסמה המורכבת מ8-15 ספרות</li>
+                                                    <li>חייבת להיות עם אות גדולה לפחות</li>
+                                                    <li>חייבת להיות עם אות קטנה לפחות</li>
+                                                    <li>חייבת להיות עם ספרה אחרת לפחות</li>
+                                                    <li>ללא רווחים</li>
+                                                </ul>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-right">
+                                            <button type="submit" class="btn btn-primary ml-2">
+                                                שמור והמשך</button>
+                                            <button type="button" class="btn btn-default ">
+                                                בטל</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                        <div id="OR" class="hidden-xs">
+                            או</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row text-center sign-with">
+                            <div class="col-md-12">
+                                <h3>
+                                    היכנס באמצעות</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <!--<div class="googleBT" [hidden]="true">
+                                    <google-signin
+                                        [clientId]="myClientId"
+                                        [width]="myWidth"
+                                        theme="dark"
+                                        [scope]="myScope"
+                                        [hidden]
+                                        [longTitle]="myLongTitle"
+                                        (googleSignInSuccess)="onGoogleSignInSuccess($event);"></google-signin>
+                                </div>
+                            -->
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn red g-signin2" data-onsuccess="onSignIn">Google</div>
+                                    <a href="#" class="btn btn-primary">Facebook</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

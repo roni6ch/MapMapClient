@@ -1,13 +1,11 @@
 import { Component, ElementRef, NgZone, ViewChild, OnInit } from '@angular/core';
-import { GoogleSignInSuccess } from 'angular-google-signin';
-import * as $ from 'jquery';
-import * as M from 'materialize-css';
 import { HttpClient } from '@angular/common/http';
 import { HttpRequestsService } from './services/http-requests.service';
-
-import { google } from "google-maps";
-declare var google : google;
 import { MapsAPILoader } from '@agm/core';
+import { google } from "google-maps";
+import * as $ from 'jquery';
+import * as M from 'materialize-css';
+declare var google: google;
 
 @Component({
   selector: 'app-root',
@@ -15,36 +13,51 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
-  search = false;
+  /* google signin id */
+  private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
+  @ViewChild('apartmentModal') apartmentModal: ElementRef;
+  @ViewChild("searchRef")  searchRef: ElementRef;
+  mobile = false;
+  search = true;
+  cardsView = false;
+  apartmentObj = null;
+  scriptLoaded = false;
+  showMap = true;
+  connect = false;
+  apartmentsResults = 0;
+  filtersInput = [];
+  view = 'Map';
+  nextView = 'טבלה';
   profile = {};
   latLng = {
+    //initialize coordinates
     lat: 32.056442,
     lng: 34.772238
   };
-  /* google signin button*/
-  private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
-  scriptLoaded = false;
 
-  @ViewChild("searchRef")
-  public searchElementRef: ElementRef;
-
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) { 
-
-    
+  constructor(private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
+      this.mobile = true;
   }
+
   ngOnInit() {
     this.initAutoComplete();
     M.Sidenav.init($('.sidenav'));
     M.FloatingActionButton.init($('.fixed-action-btn'));
-
+    setTimeout(() => {
+      this.searchRef.nativeElement.focus();
+    }, 200);
   }
+  
+  
 
+  //load Places Autocomplete
   initAutoComplete() {
-    //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+      let autocomplete = new google.maps.places.Autocomplete(this.searchRef.nativeElement, {
+        types: ["(cities)"]
+        //types: ["address"]
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
@@ -55,6 +68,8 @@ export class AppComponent implements OnInit {
             lng: place.geometry.location.lng()
           }
 
+          console.log("coordinates: " , this.latLng);
+
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
@@ -64,42 +79,77 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onGoogleSignInSuccess(event: GoogleSignInSuccess) {
-    let googleUser: gapi.auth2.GoogleUser = event.googleUser;
-    this.httpReq.login(googleUser.getAuthResponse().id_token).subscribe(data => {
-      if (data) {
-        this.profile = data;
-        this.showLoginBT(false);
-      }
-      else {
-        this.showLoginBT(true);
-      }
-    });
+  //change view
+  changeView() {
+    switch (this.view) {
+      case 'Map':
+        this.view = 'Table'
+        this.nextView = 'כרטיסיות';
+        break;
+      case 'Cards':
+        this.view = 'Map'
+        this.nextView = 'טבלה';
+        break;
+      case 'Table':
+        this.view = 'Cards'
+        this.nextView = 'מפה';
+        break;
+    }
   }
+  //login
+  logindata(data) {
+    if (data !== false && gapi.auth2.getAuthInstance().isSignedIn.get()) {
+      //google connection
+      this.profile = data;
+      this.profile['picture']  = data['picture'];
+      this.showLoginBT(false);
+      //pass data.token to serives
+      this.httpReq.setToken(data['token']);
+      M.Tooltip.init($(".tooltipped"));
+    } 
+    else if (data !== false){
+      //custom login
+      this.httpReq.setToken(data);
+      this.showLoginBT(false);
+      this.profile = [];
+      this.profile['picture'] = "../assets/images/apartments/no_image.jpg";
+      M.Tooltip.init($(".tooltipped"));
+    }
+    else {
+      this.showLoginBT(true);
+    }
+  }
+  //logout
   signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    console.log(auth2);
-    this.showLoginBT(true);
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
+    if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+      //disconnect from google
+      var auth2 = gapi.auth2.getAuthInstance();
+      this.showLoginBT(true);
+      auth2.signOut().then(function () {
+        console.log('google user signed out.');
+      });
+    } else {
+      //disconnect from custom login
+      this.showLoginBT(true);
+    }
   }
-  filtersInput = [];
-  filtersInputFunc(event){
-    this.filtersInput = event; 
+  filtersInputFunc(filtersInput) {
+    this.filtersInput = filtersInput;
   }
-  openSearchInput() {
-    this.search = true;
+  apartmentsResultsInput(apartmentsResultsInput) {
+    this.apartmentsResults = apartmentsResultsInput;
   }
-  focusOutSearch(e: any) {
-    this.search = false;
+  keyDownEnter(event) {
+    if (event.keyCode == 13) {
+      this.search = false;
+    }
   }
-  connect = false;
   showLoginBT(bool: boolean) {
     if (bool) {
       //show login
       this.connect = true;
       $(".googleBT").show();
+      $(".signOut").hide();
     }
     else {
       //show profile
@@ -111,4 +161,13 @@ export class AppComponent implements OnInit {
       $(".email").html(this.profile['email']);
     }
   }
+
+  editApartmentInput(apartment) {
+    this.apartmentModal.nativeElement.click();
+    this.apartmentObj = apartment;
+  }
+
+
+
+
 }

@@ -1,0 +1,20 @@
+<!-- MAP -->
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" 
+  (mapRightClick)="mapRightClick($event)"
+  (idle)="boundsChange(lng,lat)">
+  <!-- MARKERS -->
+  <agm-marker #markers *ngFor="let a of markers " [latitude]="a.location.latlng.lat" [longitude]="a.location.latlng.lng" (markerClick)="openApartment(a,infowindow)">
+     <!-- INFO WINDOW -->
+     <agm-info-window [disableAutoPan]="true" #infowindow>
+        <app-infowindow  [apartment]="apartmentInfo"  (apartmentOBJ)="openApartment($event)"></app-infowindow>
+     </agm-info-window>
+  </agm-marker>
+ <agm-direction *ngIf="origin && destination" [origin]="origin" [destination]="destination" >
+    </agm-direction>
+  
+</agm-map>
+
+
+
+<!-- INFO WINDOW MODAL -->
+<app-infowindow-modal   [apartment]="apartmentModal" ></app-infowindow-modal>
