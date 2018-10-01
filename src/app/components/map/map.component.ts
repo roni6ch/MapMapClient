@@ -62,11 +62,14 @@ export class MapComponent implements OnInit {
 
   }
   boundsChange(lng, lat) {
-    let boundsTemp = {
+    let params = {
       "lat": lng,
       "long": lat,
+      "zoom":this.zoom,
+      "width": document.body.clientWidth,
+      "height":document.body.clientHeight - 50
     }
-    this.httpReq.getMarkers(boundsTemp).subscribe(data => { 
+    this.httpReq.getMarkers(params).subscribe(data => { 
       ///todo - open this filters
      // this.markers = this.filterPipe.transform(data, this.filtersArr);
       //todo: change this to get filtered pipe markers length

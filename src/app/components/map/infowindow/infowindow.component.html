@@ -8,8 +8,8 @@
     <img class='markerImg' [src]='apartment.details?.images?.length > 0 ? apartment.details?.images[0] : "assets/images/apartments/no_image.jpg"' #img (error)="img.src = 'assets/images/apartments/no_image.jpg'"/>
     <div id='streetImg'></div>
 <!--TODO: change here to favorite-->
-    <img [src]="apartment.active ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png' " class='markerHeart' (click)="markerHeart($event)" />
-    <img [src]="apartment.active ? 'assets/images/icons/black-list-full.png' : 'assets/images/icons/black-list.png' " class='markerBlackList' (click)="markerBlackList($event)" />
+    <img [src]="apartment.user?.favorite ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png' " class='markerHeart' (click)="markerHeart($event)" />
+    <img [src]="'assets/images/icons/black-list-full.png'" class='markerBlackList' (click)="markerBlackList($event)" />
   </div>
 
   <div class='markerDetails'>

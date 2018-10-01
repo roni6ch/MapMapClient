@@ -72,7 +72,7 @@ export class TableComponent implements OnInit {
   //map data to smart table view
   mapData(data) {
     this.data = data.map(a => ({
-      favorites: a['active'],
+      favorites: a['user']['favorite'],
       address: a['location']['address'],
       price: a['details']['price'],
       apartment_type: a['details']['apartment_type'] == undefined || a['details']['apartment_type'] == "" ? "דירה" : a['details']['apartment_type'],

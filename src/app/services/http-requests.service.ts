@@ -17,11 +17,12 @@ export class HttpRequestsService {
   };
   
   //google login 
-  login(google_user_id:string){
+  login(tokenId:string){
     let url = "https://mapmapserver.herokuapp.com/login/google";
     let data = {
-      "google_user_id": google_user_id
+      "tokenId": tokenId
     }
+    console.log("tokenId: ",data.tokenId);
     return this.http.post(url,data,this.httpOptions);
   }
 
@@ -39,23 +40,23 @@ export class HttpRequestsService {
   //add or remove apartment from favorites
   favoritesAddRemove(apartment_id,bool){
     let url = "https://mapmapserver.herokuapp.com/apartments/" + apartment_id + "/favorite/" + bool;
-    return this.http.put(url,this.httpOptions);
+    return this.http.put(url,null,this.httpOptions);
   }
 
   //get all favorites by filter
   getFavorites(){
-    let url = "https://mapmapserver.herokuapp.com/apartments/favorites";
+    let url = "https://mapmapserver.herokuapp.com/user/apartments/favorites";
     return this.http.get(url,this.httpOptions);
   }
 
   //add or remove from black list
   blackListAddRemove(apartment_id,bool){
     let url = "https://mapmapserver.herokuapp.com/apartments/" + apartment_id + "/blacklist/" + bool;
-    return this.http.put(url,this.httpOptions);
+    return this.http.put(url,null,this.httpOptions);
   }
  //get all blacklist by filter
   getBlackList(){
-    let url = "https://mapmapserver.herokuapp.com/apartments/blacklist";
+    let url = "https://mapmapserver.herokuapp.com/user/apartments/blacklist";
     return this.http.get(url,this.httpOptions);
   }
 
@@ -67,6 +68,7 @@ export class HttpRequestsService {
   //get apartments data
   getMarkers(data:any): Observable<IApartments[]>{
   //  let url = "../assets/result.json";
+  //todo - send here all 5 parameters
     let url = "https://mapmapserver.herokuapp.com/apartments";
     return this.http.get<IApartments[]>(url, { params: data });
   }
@@ -74,13 +76,12 @@ export class HttpRequestsService {
   //get aprtment
   getApartmentData(id): Observable<IApartments[]>{
     let url = "https://mapmapserver.herokuapp.com/apartments/" + id;
-    return this.http.get<IApartments[]>(url);
+    return this.http.get<IApartments[]>(url,this.httpOptions);
   }
   //publish new apartment
   publishNewApartment(formData:any){
     let url = "https://mapmapserver.herokuapp.com/apartments";
-    let data = formData;
-    return this.http.post(url,data,this.httpOptions);
+    return this.http.post(url,formData,this.httpOptions);
   }
   //upload images
   uploadImages(files:any){
@@ -98,7 +99,7 @@ export class HttpRequestsService {
     return this.http.post(url,files,this.httpOptions);
   }
   //get user apartments for edit purpose
-  getUserApartments(){
+  getUserApartments2(){
     //let url = "https://mapmapserver.herokuapp.com/getUserApartments";
     let url = "https://mapmapserver.herokuapp.com/apartments";
   //  return this.http.get<IApartments[]>(url, this.httpOptions);
@@ -107,13 +108,9 @@ export class HttpRequestsService {
   // return this.http.post(url,{},this.httpOptions);
   }
   //todo: open this insted of the top one
-  getUserApartments2(): Observable<IApartments[]>{
-    //let url = "https://mapmapserver.herokuapp.com/getUserApartments";
-    let url = "https://mapmapserver.herokuapp.com/apartments";
+  getUserApartments(): Observable<IApartments[]>{
+    let url = "https://mapmapserver.herokuapp.com/user/apartments";
     return this.http.get<IApartments[]>(url, this.httpOptions);
-    
-   // return userApartmentTempData;
-  // return this.http.post(url,{},this.httpOptions);
   }
 
   //delete apartment

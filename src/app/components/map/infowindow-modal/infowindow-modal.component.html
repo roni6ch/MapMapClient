@@ -114,10 +114,10 @@
       <div class="modal-footer">
         <div class="col s12">
           <span class="heart" (click)="markerHeart($event)">
-            <img [src]="apartment?.active ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" />
+            <img [src]="apartment?.user?.favorite ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" />
           </span>
           <span class="blackList" (click)="markerBlackList($event)">
-              <img [src]="apartment?.active ? 'assets/images/icons/black-list-full.png' : 'assets/images/icons/black-list.png'" />
+              <img [src]="apartment?.user?.favorite ? 'assets/images/icons/black-list-full.png' : 'assets/images/icons/black-list.png'" />
             </span>
           <span (click)="calendar(apartment)">
             <img src="assets/images/icons/calendar.png" class="modal-action modal-close waves-effect">

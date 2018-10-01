@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef , Output , EventEmitter} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef , Output ,Input, EventEmitter} from '@angular/core';
 import { HttpRequestsService } from '../../services/http-requests.service';
 import { IApartments } from '../../shared/iapartments';
 
@@ -15,11 +15,10 @@ export class EditModalComponent implements OnInit {
   constructor(private httpReq: HttpRequestsService) { }
 
   ngOnInit() {
-    //todo - open this insted of the bottom one - when tomer will finish to build aprtments of the same owner
-    /*this.httpReq.getUserApartments().subscribe(result => {
+    this.httpReq.getUserApartments().subscribe(result => {
       this.data = result;
-    });*/
-    this.data  = this.httpReq.getUserApartments();
+    });
+   // this.data  = this.httpReq.getUserApartments();
   };
 
   deleteApartment(apartment_id,ev){

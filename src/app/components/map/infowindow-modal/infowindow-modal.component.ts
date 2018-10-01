@@ -107,9 +107,11 @@ export class InfowindowModalComponent implements OnInit {
 
   markerHeart(event) {
 //todo: fix to fav
-    this.apartment.active = !this.apartment.active;
+    this.apartment.user.favorite = !this.apartment.user.favorite;
     var apartment_id = this.apartment._id;
-    var favorite = this.apartment.active;
+    var favorite = this.apartment.user.favorite;
+
+    console.log(" change fav to favorite: " ,this.apartment.user.favorite);
     //send favorite ajax
     this.httpReq.favoritesAddRemove(apartment_id,favorite).subscribe(data => {
       if (data) {
@@ -125,10 +127,10 @@ export class InfowindowModalComponent implements OnInit {
 
     this.apartment.active = !this.apartment.active;
     var apartment_id = this.apartment._id;
-    var favorite = this.apartment.active;
+    var blacklist = true;
 
     //send blackListAddRemove ajax
-    this.httpReq.blackListAddRemove(apartment_id,favorite).subscribe(data => {
+    this.httpReq.blackListAddRemove(apartment_id,blacklist).subscribe(data => {
       if (data) {
         console.log(data)
       }
