@@ -26,8 +26,8 @@ export class InfowindowModalComponent implements OnInit {
   }
 
   ngOnChanges(changes: any) {
-    if (changes.hasOwnProperty('apartment') !== undefined && changes.apartment.currentValue.location !== undefined)
-      this.panorama(changes.apartment.currentValue.location.latlng);
+    if (changes.hasOwnProperty('apartment') !== undefined && changes.apartment.currentValue.location !== undefined && changes.apartment.currentValue.details.images.length === 0)
+      this.panorama(changes.apartment.currentValue.location.coordinates);
   }
 
   calendar(apartment) {
@@ -35,7 +35,7 @@ export class InfowindowModalComponent implements OnInit {
     var calendar = {
       title: "MAPMAP - פגישה לדירה",
       info: apartment.details.info,
-      location: apartment.location.address,
+      location: apartment.details.address,
       owner: apartment.publisher.email
     }
     window.open("http://www.google.com/calendar/event?action=TEMPLATE&sprop=website:www.mapmap.co.il&text=" + calendar.title + "&location=" + calendar.location + "&details=" + calendar.info + "&add=" + calendar.owner, "MsgWindow", "width=800,height=800");
@@ -53,7 +53,7 @@ export class InfowindowModalComponent implements OnInit {
       date = date.toLocaleDateString();
     }
     var aDetails = {
-      address : apartment.location.address,
+      address : apartment.details.address,
       type : apartment.details.apartment_type,
       date : date,
       info : apartment.details.info,
@@ -98,7 +98,7 @@ export class InfowindowModalComponent implements OnInit {
 
   }
   openWaze(apartment) {
-    window.open('http://waze.to/?ll=' + apartment.location.latlng.lat + ',' + apartment.location.latlng.lng + '&navigate=yes');
+    window.open('http://waze.to/?ll=' + apartment.location.coordinates[0] + ',' + apartment.location.coordinates[1] + '&navigate=yes');
 
   }
   print() {
@@ -141,7 +141,8 @@ export class InfowindowModalComponent implements OnInit {
   panorama(latLng) {
     var streetViewService = new google.maps.StreetViewService();
     var radius = 100;
-    streetViewService.getPanoramaByLocation(latLng, radius, function (data, status) {
+    let latLngJSON = { lat : latLng[0] , lng : latLng[1]};
+    streetViewService.getPanoramaByLocation(latLngJSON, radius, function (data, status) {
       if (status == google.maps.StreetViewStatus.OK) {
         var nearStreetViewLocation = data.location.latLng;
         var lat = nearStreetViewLocation.lat();

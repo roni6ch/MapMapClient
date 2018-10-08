@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef , Output ,Input, EventEmitter} from '@angular/core';
 import { HttpRequestsService } from '../../services/http-requests.service';
-import { IApartments } from '../../shared/iapartments';
 
 @Component({
   selector: 'app-edit-modal',
@@ -11,15 +10,28 @@ export class EditModalComponent implements OnInit {
   data = [];
 
   @ViewChild('btnClose') btnClose: ElementRef;
+  
+  @Input() editApartments: any;
+  
+  @Input() connect: any;
+  
   @Output() openEditOutput = new EventEmitter();
   constructor(private httpReq: HttpRequestsService) { }
 
   ngOnInit() {
-    this.httpReq.getUserApartments().subscribe(result => {
-      this.data = result;
-    });
+   
    // this.data  = this.httpReq.getUserApartments();
   };
+
+  ngOnChanges(changes: any) {
+
+    //send to pipe in order to filter the results on map
+    if (changes.hasOwnProperty('editApartments') !== undefined && this.connect){
+      console.log(this.editApartments);
+      console.log(this.connect);
+      this.data =  this.editApartments;
+    }
+  }
 
   deleteApartment(apartment_id,ev){
     ev.stopPropagation();

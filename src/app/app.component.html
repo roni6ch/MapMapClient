@@ -1,50 +1,45 @@
-  <!-- NAV -->
-  <nav
-      class="navbar navbar-expand-lg navbar-light"
-      [ngClass]="{ 'searchClicked': search }">
+<!-- NAV -->
+<nav
+    class="navbar navbar-expand-lg navbar-light"
+    [ngClass]="{ 'searchClicked': search }">
 
+    <a href="#" data-target="slide-out" class="sidenav-trigger" *ngIf="mobile">
+        <i class="material-icons">menu</i>
+    </a>
 
+    <!-- nav links -->
+    <div id="navbar">
+        <div class="logo left">
+            <a href="#">
+                <img src="assets/images/logo.png" class="logoImg">
+                    MapMap</a>
+            </div>
 
-      <a href="#" data-target="slide-out" class="sidenav-trigger" *ngIf="mobile">
-          <i class="material-icons">menu</i>
-      </a>
+            <div class="userProfile webProfile" *ngIf="!mobile">
+                <img
+                    data-position="left"
+                    data-tooltip="לחץ ליציאה"
+                    [src]="profile['picture'] != null ? profile['picture'] : ''"
+                    class='signOut tooltipped'
+                    (click)="signOut()">
 
+                    <button class="btn btn-info googleBT" data-toggle="modal" data-target="#login">כניסה</button>
 
-      
+                </div>
 
-      <!-- nav links -->
-      <div id="navbar">
-          <div class="logo left">
-              <a href="#">
-                  <img src="assets/images/logo.png" class="logoImg">
-                      MapMap</a>
-              </div>
+            </div>
+        </nav>
+        <!-- Hamburger Menu -->
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="./assets/images/hamburgerBG.jpg"></div>
+                        <div class="userProfile">
 
-              <div class="userProfile webProfile" *ngIf="!mobile">
-                  <img
-                      data-position="left"
-                      data-tooltip="לחץ ליציאה"
-                      [src]="profile['picture'] != null ? profile['picture'] : ''"
-                      class='signOut tooltipped'
-                      (click)="signOut()">
-
-                      <button class="btn btn-info googleBT" data-toggle="modal" data-target="#login">כניסה</button>
-
-                  </div>
-
-              </div>
-          </nav>
-          <!-- Hamburger Menu -->
-          <ul id="slide-out" class="sidenav">
-              <li>
-                  <div class="user-view">
-                      <div class="background">
-                          <img src="./assets/images/hamburgerBG.jpg"></div>
-                          <div class="userProfile">
-
-                              <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) -->
-                              <div class="googleBT" *ngIf="mobile">
-                                  <div class="btn red g-signin2" data-onsuccess="onSignIn">Google</div>
+                            <!-- GOOGLE BUTTON (dont add here *ngIf - it needs to be on dom! ) -->
+                            <div class="googleBT" *ngIf="mobile">
+                                <div class="btn red g-signin2" data-onsuccess="onSignIn">Google</div>
                                 <!--  <google-signin
                                       [clientId]="myClientId"
                                       [width]="myWidth"
@@ -53,202 +48,213 @@
                                       [longTitle]="myLongTitle"
                                       (googleSignInSuccess)="onGoogleSignInSuccess($event);"></google-signin>
                                 -->
-                              </div>
+                            </div>
 
-                              <img
-                                  [src]="profile['picture'] != null ? profile['picture'] : ''"
-                                  class='signOut'
-                                  [hidden]="connect"
-                                  (click)="signOut()"></div>
-                              <div class="navDetails">
-                                  <p>
-                                      <span class="black-text name" [hidden]="connect">{{profile['given_name'] }}
-                                          {{profile['family_name']}}</span>
-                                  </p>
-                                  <p>
-                                      <span class="black-text email" [hidden]="connect">{{profile['email']}}</span>
-                                  </p>
-                              </div>
-                          </div>
-                      </li>
-                      <li class="navOptions">
-                          <a
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#newApartmentWindowModal"
-                              (click)="apartmentObj=null"
-                              #apartmentModal>
-                              <i class="material-icons">publish</i>פירסום מודעה חדשה</a>
-                      </li>
+                            <img
+                                [src]="profile['picture'] != null ? profile['picture'] : ''"
+                                class='signOut'
+                                [hidden]="connect"
+                                (click)="signOut()"></div>
+                            <div class="navDetails">
+                                <p>
+                                    <span class="black-text name" [hidden]="connect">{{profile['given_name'] }}
+                                        {{profile['family_name']}}</span>
+                                </p>
+                                <p>
+                                    <span class="black-text email" [hidden]="connect">{{profile['email']}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="navOptions">
+                        <a
+                            href="#"
+                            data-toggle="modal"
+                            data-target="#newApartmentWindowModal"
+                            (click)="apartmentObj=null"
+                            [hidden]="connect"
+                            #apartmentModal>
+                            <i class="material-icons">publish</i>פירסום מודעה חדשה</a>
+                    </li>
 
-                      <li class="navOptions">
-                          <a href="#" data-toggle="modal" data-target="#editModal">
-                              <i class="material-icons">person</i>פאנל עריכה</a>
-                      </li>
+                    <li class="navOptions">
+                        <a
+                            href="#"
+                            data-toggle="modal"
+                            data-target="#editModal"
+                            (click)="getApartments()"
+                            [hidden]="connect">
+                            <i class="material-icons">person</i>פאנל עריכה</a>
+                    </li>
 
-                      <li class="navOptions">
-                          <a href="#" data-toggle="modal" data-target="#advancedFiltersModal">
-                              <i>
-                                  <img src="assets/images/icons/funnel.png"/>
-                              </i>
-                              פילטרים</a>
-                      </li>
+                    <li class="navOptions">
+                        <a href="#" data-toggle="modal" data-target="#advancedFiltersModal">
+                            <i>
+                                <img src="assets/images/icons/funnel.png"/>
+                            </i>
+                            פילטרים</a>
+                    </li>
 
-                      <li class="navOptions">
-                          <a href="#" (click)="changeView()">
-                              <i class="material-icons">pageview</i>
-                              תצוגת
-                              {{nextView}}</a>
-                      </li>
+                    <li class="navOptions">
+                        <a href="#" (click)="changeView()">
+                            <i class="material-icons">pageview</i>
+                            תצוגת
+                            {{nextView}}</a>
+                    </li>
 
-                      <li class="navOptions">
-                          <a href="#" data-toggle="modal" data-target="#contracts">
-                              <i class="material-icons">attach_file</i>
-                              חוזים</a>
-                      </li>
+                    <li class="navOptions">
+                        <a href="#" data-toggle="modal" data-target="#contracts">
+                            <i class="material-icons">attach_file</i>
+                            חוזים</a>
+                    </li>
 
-                      <li class="navOptions">
-                          <a href="#" [hidden]="connect" (click)="signOut()">
-                              <i class="material-icons">exit_to_app</i>
-                              יציאה</a>
-                      </li>
+                    <li class="navOptions">
+                        <a href="#" [hidden]="connect" (click)="signOut()">
+                            <i class="material-icons">exit_to_app</i>
+                            יציאה</a>
+                    </li>
 
-                  </ul>
+                </ul>
 
-                  <!-------------------------->
-                  <!-- Tap Target Structure -->
-                  <!-------------------------->
-                  <div class="tap-target" data-target="menu" *ngIf="!mobile">
-                      <div class="tap-target-content">
-                          <h5>MapMap</h5>
-                          <p>...תהנו</p>
-                      </div>
-                  </div>
+                <!-------------------------->
+                <!-- Tap Target Structure -->
+                <!-------------------------->
+                <div class="tap-target" data-target="menu" *ngIf="!mobile">
+                    <div class="tap-target-content">
+                        <h5>MapMap</h5>
+                        <p>...תהנו</p>
+                    </div>
+                </div>
 
-                  <!-------------------------->
-                  <!-- Floating Action Button -->
-                  <!-------------------------->
-                  <div class="fixed-action-btn" [hidden]="mobile" id="menu">
-                      <a class="btn-floating btn-large blueColor">
-                          <i class="large material-icons">menu</i>
-                      </a>
-                      <ul>
-                          <li>
-                              <a
-                                  class="btn-floating red"
-                                  data-toggle="modal"
-                                  data-target="#newApartmentWindowModal"
-                                  (click)="apartmentObj=null"
-                                  #apartmentModal>
-                                  <span class="floatingText red">הוספת דירה חדשה</span>
-                                  <i class="material-icons">publish</i>
-                              </a>
-                          </li>
-                          <li>
-                              <a
-                                  class="btn-floating purple lighten-3"
-                                  data-toggle="modal"
-                                  data-target="#editModal">
-                                  <span class="floatingText purple lighten-3">פאנל עריכה</span>
-                                  <i class="material-icons">person</i>
-                              </a>
-                          </li>
-                          <li>
-                              <a
-                                  class="btn-floating yellow darken-1"
-                                  data-toggle="modal"
-                                  data-target="#advancedFiltersModal">
-                                  <span class="floatingText yellow darken-1">פילטרים</span>
-                                  <i class="material-icons">filter</i>
-                              </a>
-                          </li>
-                          <li>
-                              <a class="btn-floating green" (click)="changeView()">
-                                  <span class="floatingText green">תצוגת
-                                      {{nextView}}</span>
-                                  <i class="material-icons">pageview</i>
-                              </a>
-                          </li>
-                          <li>
-                              <a class="btn-floating blue" data-toggle="modal" data-target="#contracts">
-                                  <span class="floatingText blue">חוזים</span>
-                                  <i class="material-icons">attach_file</i>
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
+                <!-------------------------->
+                <!-- Floating Action Button -->
+                <!-------------------------->
+                <div class="fixed-action-btn" [hidden]="mobile" id="menu">
+                    <a class="btn-floating btn-large blueColor">
+                        <i class="large material-icons">menu</i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a
+                                class="btn-floating red"
+                                data-toggle="modal"
+                                data-target="#newApartmentWindowModal"
+                                (click)="apartmentObj=null"
+                                [hidden]="connect"
+                                #apartmentModal>
+                                <span class="floatingText red">הוספת דירה חדשה</span>
+                                <i class="material-icons">publish</i>
+                            </a>
+                        </li>
 
-                  <!-------------------------->
-                  <!-- Search -->
-                  <!-------------------------->
-                  <div class="searchField" [hidden]="view == 'Table'">
-                      <p class="resultsInfo">
-                          <span>מציג
-                          </span>
-                          <span>
-                              <b class="ng-binding">
-                                  {{apartmentsResults}}</b>
-                          </span>
-                          <span>
-                              תוצאות
-                          </span>
-                      </p>
-                      <input
-                          class="mapsAutoComplete"
-                          name="address"
-                          type="text"
-                          placeholder="הזן מיקום"
-                          autocomplete="off"
-                          #searchRef
-                          autocorrect="off"
-                          autocapitalize="off"
-                          spellcheck="off"
-                          type="search"
-                          placeholder="חפש מיקום..."
-                          (keydown)="keyDownEnter($event)"
-                          aria-label="Search"
-                          (click)="search = true"
-                          (focusout)="search = false"/>
-                      <button class="btn-search btn  blue lighten-1 hvr-sweep-to-left">חפש</button>
-                  </div>
+                        <li>
+                            <a
+                                class="btn-floating purple lighten-3"
+                                data-toggle="modal"
+                                (click)="getApartments()"
+                                [hidden]="connect"
+                                data-target="#editModal">
+                                <span class="floatingText purple lighten-3">פאנל עריכה</span>
+                                <i class="material-icons">person</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                class="btn-floating yellow darken-1"
+                                data-toggle="modal"
+                                data-target="#advancedFiltersModal">
+                                <span class="floatingText yellow darken-1">פילטרים</span>
+                                <i class="material-icons">filter</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn-floating green" (click)="changeView()">
+                                <span class="floatingText green">תצוגת
+                                    {{nextView}}</span>
+                                <i class="material-icons">pageview</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn-floating blue" data-toggle="modal" data-target="#contracts">
+                                <span class="floatingText blue">חוזים</span>
+                                <i class="material-icons">attach_file</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-                  <div class="blurSection" [ngClass]="{ 'blur': search }">
+                <!-------------------------->
+                <!-- Search -->
+                <!-------------------------->
+                <div class="searchField" [hidden]="view == 'Table'">
+                    <p class="resultsInfo">
+                        <span>מציג
+                        </span>
+                        <span>
+                            <b class="ng-binding">
+                                {{apartmentsResults}}</b>
+                        </span>
+                        <span>
+                            תוצאות
+                        </span>
+                    </p>
+                    <input
+                        class="mapsAutoComplete"
+                        name="address"
+                        type="text"
+                        placeholder="הזן מיקום"
+                        autocomplete="off"
+                        #searchRef
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="off"
+                        type="search"
+                        placeholder="חפש מיקום..."
+                        (keydown)="keyDownEnter($event)"
+                        aria-label="Search"
+                        (click)="search = true"
+                        (focusout)="search = false"/>
+                    <button class="btn-search btn  blue lighten-1 hvr-sweep-to-left">חפש</button>
+                </div>
 
-                      <!-------------------------->
-                      <!-- Login -->
-                      <!-------------------------->
-                      <app-login (logindata)="logindata($event)"></app-login>
+                <div class="blurSection" [ngClass]="{ 'blur': search }">
 
-                      <!-- new Apartment -->
-                      <app-new-apartment-modal [apartmentObj]="apartmentObj"></app-new-apartment-modal>
+                    <!-------------------------->
+                    <!-- Login -->
+                    <!-------------------------->
+                    <app-login (logindata)="logindata($event)"></app-login>
 
-                      <!-- advanced Filter -->
-                      <app-advanced-filters
-                          
-                          (filters)="filtersInputFunc($event)"></app-advanced-filters>
+                    <!-- new Apartment -->
+                    <app-new-apartment-modal [apartmentObj]="apartmentObj"></app-new-apartment-modal>
 
-                      <!-- Contracts Modal -->
-                      <app-contracts></app-contracts>
+                    <!-- advanced Filter -->
+                    <app-advanced-filters (filters)="filtersInputFunc($event)"></app-advanced-filters>
 
-                      <!-- edit Apartment -->
-                      <app-edit-modal (openEditOutput)="editApartmentInput($event)"></app-edit-modal>
+                    <!-- Contracts Modal -->
+                    <app-contracts></app-contracts>
 
-                      <router-outlet></router-outlet>
+                    <!-- edit Apartment -->
 
-                      <!-------------------------->
-                      <!-- Map -->
-                      <!-------------------------->
-                      <app-map
-                          *ngIf="view == 'Map'"
-                          (apartmentsResults)="apartmentsResultsInput($event)"
-                          [latLng]="latLng"
-                          [filtersInput]="filtersInput"></app-map>
+                    <app-edit-modal
+                        [connect]="connect"
+                        [editApartments]="editApartments"
+                        (openEditOutput)="editApartmentInput($event)"></app-edit-modal>
 
-                      <!-- Table views go here -->
-                      <app-table *ngIf="view == 'Table'" [filtersInput]="filtersInput"></app-table>
+                    <router-outlet></router-outlet>
 
-                      <!-- Cards views go here -->
-                      <app-cards *ngIf="view == 'Cards'" [filtersInput]="filtersInput"></app-cards>
+                    <!-------------------------->
+                    <!-- Map -->
+                    <!-------------------------->
+                    <app-map
+                        *ngIf="view == 'Map'"
+                        (apartmentsResults)="apartmentsResultsInput($event)"
+                        [latLng]="latLng"
+                        [filtersInput]="filtersInput"></app-map>
 
-                  </div>
-                  
+                    <!-- Table views go here -->
+                    <app-table *ngIf="view == 'Table'" [filtersInput]="filtersInput"></app-table>
+
+                    <!-- Cards views go here -->
+                    <app-cards *ngIf="view == 'Cards'" [filtersInput]="filtersInput"></app-cards>
+
+                </div>

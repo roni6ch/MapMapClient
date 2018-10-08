@@ -160,8 +160,19 @@ export class AppComponent implements OnInit {
       $(".name").html(this.profile['given_name'] + this.profile['family_name']);
       $(".email").html(this.profile['email']);
     }
+    console.log("connect (true means - show login button): " , this.connect);
   }
 
+  editApartments = [];
+  getApartments(){
+    console.log('getApartments');
+
+    if (this.connect)
+    this.httpReq.getUserApartments().subscribe(result => {
+    console.log('getApartments ' , result);
+      this.editApartments = result;
+    });
+  }
   editApartmentInput(apartment) {
     this.apartmentModal.nativeElement.click();
     this.apartmentObj = apartment;

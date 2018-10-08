@@ -91,11 +91,7 @@
           type:""
         }
         let location = {
-          address: "",
-          latlng: {
-            lat: 0,
-            lng: 0
-          }
+          coordinates: []
         }
         let details = {
           apartment_type: [],
@@ -107,6 +103,7 @@
           price: null,
           entrance_date: "",
           images: [],
+          address: ""
         }
         let filters = {
           parking: false,
@@ -206,9 +203,9 @@
                 lat: place.geometry.location.lat(),
                 lng: place.geometry.location.lng()
               }
-              this.apartment.location.address =  place.formatted_address;
-              this.apartment.location.latlng.lat = this.latLng.lat;
-              this.apartment.location.latlng.lng = this.latLng.lng;
+              this.apartment.details.address =  place.formatted_address;
+              this.apartment.location.coordinates[0] = this.latLng.lat;
+              this.apartment.location.coordinates[1] = this.latLng.lng;
 
               //verify result
               if (place.geometry === undefined || place.geometry === null) {

@@ -62,10 +62,11 @@ export class TableComponent implements OnInit {
         lat: 32.056442,
         lng: 34.772238
       }
-      //TODO: get all apartments in israel
+      //TODO: get all apartments and open filter ?
+      //todo - get apartments from request
       this.httpReq.getMarkers(boundsTemp).subscribe(result => {
-        let filteredData = this.filterPipe.transform(result, this.filtersArr);
-        this.mapData(filteredData);
+       // let filteredData = this.filterPipe.transform(result, this.filtersArr);
+       // this.mapData();
       });
     }
   }
@@ -73,7 +74,7 @@ export class TableComponent implements OnInit {
   mapData(data) {
     this.data = data.map(a => ({
       favorites: a['user']['favorite'],
-      address: a['location']['address'],
+      address: a['details']['address'],
       price: a['details']['price'],
       apartment_type: a['details']['apartment_type'] == undefined || a['details']['apartment_type'] == "" ? "דירה" : a['details']['apartment_type'],
       entrance_date: a['details']['entrance_date'],

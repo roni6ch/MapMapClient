@@ -27,8 +27,8 @@ export class MapComponent implements OnInit {
   zoom = 14;
    
 
- origin = undefined;
- destination = undefined;
+ origin = null;
+ destination = null;
   constructor(private httpReq: HttpRequestsService, private filterPipe: FiltersPipe) {
   }
   ngOnChanges(changes: any) {
@@ -89,14 +89,20 @@ export class MapComponent implements OnInit {
     }
 
 
-    //todo - ajax here to bring apartment info 
     this.httpReq.getApartmentData(apartment._id).subscribe(data => { 
       console.log(data);
       this.lastInfoWindow = infowindow;
       this.apartmentInfo = data;
+    })
+  }
+
+  
+  openApartmentModal(apartment) {
+    this.httpReq.getApartmentData(apartment._id).subscribe(data => { 
       this.apartmentModal = data;
     })
   }
+
   showMap = true;
   clickEven = false;
   mapRightClick(event){
@@ -110,3 +116,12 @@ export class MapComponent implements OnInit {
   }
 
 }
+
+
+
+
+
+
+
+
+

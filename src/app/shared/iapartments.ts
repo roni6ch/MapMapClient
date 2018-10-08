@@ -7,10 +7,7 @@ export interface IApartments{
     id: string,
     location: string,
     info: string,
-    latlng: {
-      lat: number,
-      lng: number
-    },
+    coordinates: [string],
     images: [
         string
     ],

@@ -19,7 +19,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let d of data" (click)="openEditModalOutput(d)">
-            <td>{{d.location.address}}</td>
+            <td>{{d.details.address}}</td>
             <td>{{d.details.price}}</td>
             <td>
               <span *ngFor="let phone of d.publisher.phones">

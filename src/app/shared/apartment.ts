@@ -8,11 +8,7 @@ constructor(
         type:string
     },
     public location: {
-        address: string,
-        latlng: {
-              lat: number,
-              lng: number
-        }
+        coordinates:  Array<string>
     },
     public details?: {
         apartment_type: Array<string>,
@@ -24,6 +20,7 @@ constructor(
         price: number,
         entrance_date: string,
         images: Array<string>,
+        address: string
     },
     public filters?:{
         parking:boolean,
