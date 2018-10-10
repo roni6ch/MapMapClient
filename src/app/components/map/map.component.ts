@@ -19,6 +19,7 @@ export class MapComponent implements OnInit {
 
   filtersArr;
   favorites = false;
+  invisibleInfoWindow = false;
   markers = [];
   apartmentModal = {};
   apartmentInfo = {};
@@ -85,11 +86,13 @@ export class MapComponent implements OnInit {
   // close last info-window https://stackblitz.com/edit/agm-close-infowindow?file=app%2Fapp.component.html
   openApartment(apartment, infowindow) {
     if (this.lastInfoWindow) {
+      this.invisibleInfoWindow = true;
       this.lastInfoWindow.close();
     }
 
 
     this.httpReq.getApartmentData(apartment._id).subscribe(data => { 
+      this.invisibleInfoWindow = false;
       console.log(data);
       this.lastInfoWindow = infowindow;
       this.apartmentInfo = data;

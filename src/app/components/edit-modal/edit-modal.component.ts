@@ -26,7 +26,7 @@ export class EditModalComponent implements OnInit {
   ngOnChanges(changes: any) {
 
     //send to pipe in order to filter the results on map
-    if (changes.hasOwnProperty('editApartments') !== undefined && this.connect){
+    if (changes.hasOwnProperty('editApartments') !== undefined && !this.connect){
       console.log(this.editApartments);
       console.log(this.connect);
       this.data =  this.editApartments;

@@ -91,11 +91,15 @@ export class AdvancedFiltersComponent implements OnInit {
     //https://stackoverflow.com/questions/46702410/ngonchange-not-called-when-value-change
     this.filtersObj.status = !this.filtersObj.status
     this.filtersObj = Object.assign({}, this.filtersObj);
-
     
+    
+    this.httpReq.changeFilters(this.filtersObj);
+    /*
+    //todo: do i need this?
     this.advancedFilterService.setData(this.filtersObj);
+    //todo: send ajax with "this.filtersObj" and get new markers!
     this.filters.emit(this.filtersObj);
-    
+    */
     this.btnClose.nativeElement.click();
   }
 }

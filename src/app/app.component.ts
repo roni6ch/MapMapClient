@@ -167,7 +167,7 @@ export class AppComponent implements OnInit {
   getApartments(){
     console.log('getApartments');
 
-    if (this.connect)
+    if (!this.connect) //connected
     this.httpReq.getUserApartments().subscribe(result => {
     console.log('getApartments ' , result);
       this.editApartments = result;

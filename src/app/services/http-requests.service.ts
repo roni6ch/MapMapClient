@@ -113,6 +113,13 @@ export class HttpRequestsService {
     }
     return this.http.post(url,apartment,this.httpOptions);
   }
+
+  changeFilters(filters){
+    let url = `${this.url}/changeFilters`;
+    var filtersJSON = {  filters  }
+    console.log(filtersJSON);
+    //return this.http.post(url,filtersJSON,this.httpOptions);
+  }
   
 }
 
