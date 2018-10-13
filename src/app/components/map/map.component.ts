@@ -1,8 +1,6 @@
-import { Component, ElementRef, OnInit, Input, ViewChild ,ViewChildren, Output , EventEmitter } from '@angular/core';
+import { Component,  OnInit, Input, ViewChildren, Output , EventEmitter } from '@angular/core';
 import { HttpRequestsService } from '../../services/http-requests.service';
 import { FiltersPipe } from '../../pipes/filters.pipe';
-
-
 
 @Component({
   selector: 'app-map',
@@ -13,19 +11,27 @@ export class MapComponent implements OnInit {
   @Input() latLng: any;
   @Input() filterFavoritesInput: boolean;
   @Input() filtersInput: {};
+  @Input() loginStatus: any;
+  
   @Output() apartmentsResults = new EventEmitter();
   
   @ViewChildren('markers') markersLength;
-
+  @Output() search = new EventEmitter();
+  
   filtersArr;
   favorites = false;
   invisibleInfoWindow = false;
+  showMap = true;
+  clickEven = false;
   markers = [];
   apartmentModal = {};
   apartmentInfo = {};
   lat: number;
   lng: number;
+  lastInfoWindow: any;
   zoom = 14;
+  map : any;
+  checkLoginStatus = null;
    
 
  origin = null;
@@ -37,32 +43,36 @@ export class MapComponent implements OnInit {
     if (changes.hasOwnProperty('filtersInput') !== undefined && changes.hasOwnProperty('filtersInput') !== false){
       this.filtersArr = changes.filtersInput.currentValue;
     }
-    else if (changes.hasOwnProperty('latLng') !== undefined && changes.hasOwnProperty('latLng') !== false) {
+    if (changes.hasOwnProperty('loginStatus') !== undefined) {
+      this.checkLoginStatus = changes.hasOwnProperty('loginStatus');
+      this.boundsChange(this.latLng.lng, this.latLng.lat);
+    }
+    if (changes.hasOwnProperty('latLng') !== undefined && changes.hasOwnProperty('latLng') !== false) {
       this.lat = changes.latLng.currentValue.lat;
       this.lng = changes.latLng.currentValue.lng;
     }
 
     //todo: get apartments by boundsTemp
-    this.boundsChange(this.latLng.lng, this.latLng.lat)
+    //this.boundsChange(this.latLng.lng, this.latLng.lat);
     
   }
-  ngAfterViewInit() {
-   // this.apartmentsResults.emit(this.markers.length);
+  mapReady(map) {
+    this.map = map;
+    var that = this;
+    this.map.addListener("dragend", function () {
+      that.search.emit(false);
+      that.boundsChange(that.map.center.lng(), that.map.center.lat());
+    });
+}
 
-  }
-
-  changeFavorites(fav) {
-    console.log(fav);
-  }
   ngOnInit() {
-
     //get result.json
-    //this.httpReq.getMarkers().subscribe(data => { this.markers = data; console.log(data) });
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
-
   }
   boundsChange(lng, lat) {
+    if (this.checkLoginStatus !== null){
+    console.log("boundsChange - lng: " , lng , " ,lat: " , lat );
     let params = {
       "lat": lng,
       "long": lat,
@@ -70,26 +80,21 @@ export class MapComponent implements OnInit {
       "width": document.body.clientWidth,
       "height":document.body.clientHeight - 50
     }
-    this.httpReq.getMarkers(params).subscribe(data => { 
-      ///todo - open this filters
-     // this.markers = this.filterPipe.transform(data, this.filtersArr);
-      //todo: change this to get filtered pipe markers length
-    //  let filteredData = this.filterPipe.transform(data, this.filtersArr);
 
+    this.httpReq.getMarkers(params).subscribe(data => { 
     this.markers = data;
       this.apartmentsResults.emit(this.markers.length);
       this.lastInfoWindow = null;
     });
   }
+  }
 
-  lastInfoWindow: any;
   // close last info-window https://stackblitz.com/edit/agm-close-infowindow?file=app%2Fapp.component.html
   openApartment(apartment, infowindow) {
     if (this.lastInfoWindow) {
       this.invisibleInfoWindow = true;
       this.lastInfoWindow.close();
     }
-
 
     this.httpReq.getApartmentData(apartment._id).subscribe(data => { 
       this.invisibleInfoWindow = false;
@@ -99,15 +104,12 @@ export class MapComponent implements OnInit {
     })
   }
 
-  
   openApartmentModal(apartment) {
     this.httpReq.getApartmentData(apartment._id).subscribe(data => { 
       this.apartmentModal = data;
     })
   }
 
-  showMap = true;
-  clickEven = false;
   mapRightClick(event){
     console.log(event.coords);
     if (!this.clickEven)

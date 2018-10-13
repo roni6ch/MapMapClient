@@ -1,0 +1,30 @@
+<div class="searchField" [hidden]="view == 'Table'">
+    <p class="resultsInfo">
+        <span>מציג
+        </span>
+        <span>
+            <b class="ng-binding">
+                {{apartmentsResults}}</b>
+        </span>
+        <span>
+            תוצאות
+        </span>
+    </p>
+    <input
+        class="mapsAutoComplete"
+        name="address"
+        type="text"
+        placeholder="הזן מיקום"
+        autocomplete="off"
+        #searchRef
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="off"
+        type="search"
+        placeholder="חפש מיקום..."
+        (keydown)="keyDownEnter($event)"
+        aria-label="Search"
+        (click)="search = true"
+        (focusout)="search = false"/>
+    <button class="btn-search btn  blue lighten-1 hvr-sweep-to-left">חפש</button>
+</div>

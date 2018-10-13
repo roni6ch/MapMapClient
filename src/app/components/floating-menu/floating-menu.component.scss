@@ -1,0 +1,43 @@
+
+.tap-target {
+    background-color: #42A5F5;
+}
+.publishBT nav i,
+nav i.material-icons {
+    line-height: initial !important;
+    height: 22px !important;
+    line-height: 1 !important;
+}
+.btn-floating:hover .floatingText,
+.floatingText:hover {
+    color: #fff !important;
+}
+.fixed-action-btn ul a.btn-floating {
+    overflow: inherit;
+    left: 94px;
+}
+
+
+.fixed-action-btn {
+    right: 50px;
+    bottom: 37px !important;
+}
+.fixed-action-btn ul {
+    width: 250px;
+    left: -190px;
+}
+.fixed-action-btn ul li {
+    position: relative;
+}
+.floatingText {
+    float: left;
+    position: absolute;
+    border-radius: 10px;
+    background: #ccc;
+    display: block;
+    top: 3px;
+    width: 170px;
+    left: -167px;
+    z-index: -1;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12);
+}

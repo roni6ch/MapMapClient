@@ -38,6 +38,10 @@ import { ContractsComponent } from './components/contracts/contracts.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { LoginComponent } from './components/login/login.component';
+import { NavComponent } from './components/nav/nav.component';
+import { MobileNavComponent } from './components/mobile-nav/mobile-nav.component';
+import { FloatingMenuComponent } from './components/floating-menu/floating-menu.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 
@@ -61,7 +65,11 @@ const routes: Routes = [
     CardsComponent,
     EditModalComponent,
     DatePipePipe,
-    LoginComponent
+    LoginComponent,
+    NavComponent,
+    MobileNavComponent,
+    FloatingMenuComponent,
+    SearchComponent
   ],
   imports: [
     RouterModule.forRoot(routes, { useHash: false }),  // remove second argument

@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, NgZone, ViewChild, OnInit , Output , EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpRequestsService } from './services/http-requests.service';
 import { MapsAPILoader } from '@agm/core';
@@ -13,10 +13,13 @@ declare var google: google;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  /* google signin id */
-  private myClientId: string = '1030406172046-vlrntkrarjqaau9jbor61j1nqe4gtbja.apps.googleusercontent.com';
+
   @ViewChild('apartmentModal') apartmentModal: ElementRef;
-  @ViewChild("searchRef")  searchRef: ElementRef;
+  @Output() checkLoginStatus = new EventEmitter();
+
+  @ViewChild('searchRef') searchRef: ElementRef;
+  
+
   mobile = false;
   search = true;
   cardsView = false;
@@ -26,6 +29,7 @@ export class AppComponent implements OnInit {
   connect = false;
   apartmentsResults = 0;
   filtersInput = [];
+  editApartments = [];
   view = 'Map';
   nextView = 'טבלה';
   profile = {};
@@ -42,18 +46,15 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initAutoComplete();
     M.Sidenav.init($('.sidenav'));
-    M.FloatingActionButton.init($('.fixed-action-btn'));
     setTimeout(() => {
       this.searchRef.nativeElement.focus();
     }, 200);
   }
   
-  
-
   //load Places Autocomplete
-  initAutoComplete() {
+  initAutoComplete(search) { 
+    this.searchRef = search;
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchRef.nativeElement, {
         types: ["(cities)"]
@@ -67,9 +68,8 @@ export class AppComponent implements OnInit {
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng()
           }
-
+          this.search = false;
           console.log("coordinates: " , this.latLng);
-
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
@@ -106,6 +106,7 @@ export class AppComponent implements OnInit {
       //pass data.token to serives
       this.httpReq.setToken(data['token']);
       M.Tooltip.init($(".tooltipped"));
+      this.checkLoginStatus.emit(true);
     } 
     else if (data !== false){
       //custom login
@@ -114,10 +115,13 @@ export class AppComponent implements OnInit {
       this.profile = [];
       this.profile['picture'] = "../assets/images/apartments/no_image.jpg";
       M.Tooltip.init($(".tooltipped"));
+      this.checkLoginStatus.emit(true);
     }
     else {
       this.showLoginBT(true);
+      this.checkLoginStatus.emit(false);
     }
+    
   }
   //logout
   signOut() {
@@ -133,17 +137,16 @@ export class AppComponent implements OnInit {
       this.showLoginBT(true);
     }
   }
+
+  //get all marker's filters from modal
   filtersInputFunc(filtersInput) {
     this.filtersInput = filtersInput;
   }
+  //markers length
   apartmentsResultsInput(apartmentsResultsInput) {
     this.apartmentsResults = apartmentsResultsInput;
   }
-  keyDownEnter(event) {
-    if (event.keyCode == 13) {
-      this.search = false;
-    }
-  }
+  //show login button or image
   showLoginBT(bool: boolean) {
     if (bool) {
       //show login
@@ -163,22 +166,20 @@ export class AppComponent implements OnInit {
     console.log("connect (true means - show login button): " , this.connect);
   }
 
-  editApartments = [];
+  //edit user apartments
   getApartments(){
-    console.log('getApartments');
-
     if (!this.connect) //connected
     this.httpReq.getUserApartments().subscribe(result => {
-    console.log('getApartments ' , result);
+    console.log('edit user apartments ' , result);
       this.editApartments = result;
     });
   }
+  //open edit apartment modal
   editApartmentInput(apartment) {
     this.apartmentModal.nativeElement.click();
     this.apartmentObj = apartment;
   }
-
-
-
-
+  removeBlur(){
+    this.search = false;
+  }
 }

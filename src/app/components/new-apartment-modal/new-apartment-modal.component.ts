@@ -17,29 +17,28 @@
     })
     export class NewApartmentModalComponent implements OnInit {
 
-
       @ViewChild('btnClose') btnClose: ElementRef
       @Input() apartmentObj: any;
       addImagesToFormOutPutArr = [];
-
       advancedFilters = [];
-
+      submittedError = false;
+      apartment: any;
       
+      @ViewChild("search") searchElementRef: ElementRef;
+      latLng = {
+        lat: 32.056442,
+        lng: 34.772238
+      };
+
       apartment_types = ["דירה","סטודיו","יחידת דיור","וילה","דירת גן"];
       apartment_rooms = [1,2,3,4,5,6,7,8];
       apartment_floor = [0,1,2,3,4,5,6,7,8,9,10,20,30];
       apartment_toilets = [1,2,3,4];
       apartment_publisherType = ["פרטי","תיווך"];
 
-      apartment: any;
-
-      constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) {
-      
-      
-      }
+      constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) { }
       ngOnInit(){}
       ngOnChanges(changes: any) {
-
         //send to pipe in order to filter the results on map
         if (changes.hasOwnProperty('apartmentObj') !== undefined && changes['apartmentObj'].currentValue !== undefined && changes['apartmentObj'].currentValue !== null && changes.hasOwnProperty('apartmentObj') !== false){
           console.log(this.apartmentObj);
@@ -56,23 +55,16 @@
           M.updateTextFields();
           M.FormSelect.init(document.querySelectorAll('select')); 
           });
-          
         }
         else{
           //new apartemnt
           this.initApartment();
           this.addImagesToFormOutPutArr = [];
-
-
         }
       }
       ngAfterViewInit() {
-        
         M.FormSelect.init($("select")); 
         M.CharacterCounter.init($('#inputDescription'));
-
-
-
         this.advancedFiltersJSON.getAllFilters().subscribe(data => this.advancedFilters = data);
         this.initApartment();
         this.initAutoComplete();
@@ -81,7 +73,6 @@
         this.apartment.publisher.phones.push("");
       }
       initApartment(){
-
         //apartment class must be initialize
         let id="";
         let publisher = {
@@ -130,7 +121,6 @@
         console.log('addImagesToForm: ', images);
         //todo: iterate over images
         this.apartment.details.images = images;
-        
       }
 
       onActiveDateChange(event){
@@ -153,10 +143,7 @@
       submitPhone(number){
         console.log(number);
       }
-      submittedError = false;
       publishNewApartment(myForm: NgForm) {
-
-        
         if (!myForm.valid) {
           this.submittedError=true;
           return false;
@@ -178,20 +165,11 @@
             console.log(data)
           }
         });
-
-
       }
 
-      
-      @ViewChild("search") searchElementRef: ElementRef;
-      latLng = {
-        lat: 32.056442,
-        lng: 34.772238
-      };
       initAutoComplete() {
         //load Places Autocomplete
         this.mapsAPILoader.load().then(() => {
-          
           let autocomplete = new google.maps.places.Autocomplete(<HTMLInputElement>document.getElementById("inputLocation"), {
             types: ["address"]
           });
@@ -215,6 +193,4 @@
           });
         });
       }
-
-
     }

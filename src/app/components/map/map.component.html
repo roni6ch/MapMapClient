@@ -1,7 +1,8 @@
 <!-- MAP -->
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" 
-  (mapRightClick)="mapRightClick($event)"
-  (idle)="boundsChange(lng,lat)">
+  (mapRightClick)="mapRightClick($event)" (mapReady)="mapReady($event)"
+ 
+>
   <!-- MARKERS -->
   <agm-marker #markers *ngFor="let a of markers " [latitude]="a.location.coordinates[0]" [longitude]="a.location.coordinates[1]" (markerClick)="openApartment(a,infowindow)">
      <!-- INFO WINDOW -->

@@ -71,6 +71,8 @@ export class HttpRequestsService {
   //  let url = "../assets/result.json";
   //todo - send here all 5 parameters
     let url = `${this.url}/apartments`;
+    //if (this.token !== "" && this.token !== undefined)
+     // return this.http.get<IApartments[]>(url, { params: data },this.httpOptions);
     return this.http.get<IApartments[]>(url, { params: data });
   }
 
@@ -99,7 +101,7 @@ export class HttpRequestsService {
     let url = `${this.url}/removePicture`;
     return this.http.post(url,files,this.httpOptions);
   }
-  //todo: open this insted of the top one
+  //get user apartments for edit
   getUserApartments(): Observable<IApartments[]>{
     let url = `${this.url}/user/apartments`;
     return this.http.get<IApartments[]>(url, this.httpOptions);
@@ -114,6 +116,7 @@ export class HttpRequestsService {
     return this.http.post(url,apartment,this.httpOptions);
   }
 
+  //change filters by user
   changeFilters(filters){
     let url = `${this.url}/changeFilters`;
     var filtersJSON = {  filters  }
