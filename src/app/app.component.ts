@@ -1,5 +1,7 @@
-import { Component, ElementRef, NgZone, ViewChild, OnInit , Output , EventEmitter } from '@angular/core';
+import { Component, ElementRef, NgZone, ViewChild, OnInit , Output , EventEmitter , Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ApartmentsService } from './services/apartments.service';
 import { HttpRequestsService } from './services/http-requests.service';
 import { MapsAPILoader } from '@agm/core';
 import { google } from "google-maps";
@@ -14,7 +16,7 @@ declare var google: google;
 })
 export class AppComponent implements OnInit {
 
-  @ViewChild('apartmentModal') apartmentModal: ElementRef;
+  @Input() apartmentModal: ElementRef;
   @Output() checkLoginStatus = new EventEmitter();
 
   @ViewChild('searchRef') searchRef: ElementRef;
@@ -39,7 +41,7 @@ export class AppComponent implements OnInit {
     lng: 34.772238
   };
 
-  constructor(private mapsAPILoader: MapsAPILoader,
+  constructor(private mapsAPILoader: MapsAPILoader,   private router: Router, private apartmentService : ApartmentsService,
     private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
@@ -176,8 +178,11 @@ export class AppComponent implements OnInit {
   }
   //open edit apartment modal
   editApartmentInput(apartment) {
-    this.apartmentModal.nativeElement.click();
     this.apartmentObj = apartment;
+  this.apartmentService.setApartment( this.apartmentObj );
+   //this.apartmentModal.nativeElement.click();
+   document.getElementById("newApartmentWindowModal").click();
+    this.router.navigate(['/edit']);
   }
   removeBlur(){
     this.search = false;

@@ -16,49 +16,53 @@
                         <i class="large material-icons">menu</i>
                     </a>
                     <ul>
+                       
+
                         <li>
-                            <a
+                            <button
                                 class="btn-floating red"
+                                routerLink="/new"  
                                 data-toggle="modal"
                                 data-target="#newApartmentWindowModal"
+                                #apartmentModal
                                 (click)="apartmentObj=null"
-                                #apartmentModal>
+                                >
                                 <span class="floatingText red">הוספת דירה חדשה</span>
                                 <i class="material-icons">publish</i>
-                            </a>
+                        </button>
                         </li>
 
                         <li>
-                            <a
+                            <button
                                 class="btn-floating purple lighten-3"
                                 data-toggle="modal"
                                 (click)="getApartments()"
                                 data-target="#editModal">
                                 <span class="floatingText purple lighten-3">פאנל עריכה</span>
                                 <i class="material-icons">person</i>
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a
+                            <button
                                 class="btn-floating yellow darken-1"
                                 data-toggle="modal"
                                 data-target="#advancedFiltersModal">
                                 <span class="floatingText yellow darken-1">פילטרים</span>
                                 <i class="material-icons">filter</i>
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a class="btn-floating green" (click)="changeView()">
+                            <button class="btn-floating green" (click)="changeView()">
                                 <span class="floatingText green">תצוגת
                                     {{nextView}}</span>
                                 <i class="material-icons">pageview</i>
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a class="btn-floating blue" data-toggle="modal" data-target="#contracts">
+                            <button class="btn-floating blue" data-toggle="modal" data-target="#contracts">
                                 <span class="floatingText blue">חוזים</span>
                                 <i class="material-icons">attach_file</i>
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </div>

@@ -1,12 +1,16 @@
     import { Component, OnInit, ElementRef, ViewChild ,NgZone,Input,Output,EventEmitter } from '@angular/core';
     import { AdvancedFilterService } from '../../services/advanced-filter.service';
     import { HttpRequestsService } from '../../services/http-requests.service';
+    import { ApartmentsService } from '../../services/apartments.service';
     import {  NgForm  } from '@angular/forms';
+    import { Router ,ActivatedRoute} from '@angular/router';
+
     import { google } from "google-maps";
     declare var google : google;
     import { MapsAPILoader } from '@agm/core';
     import { Apartment } from '../../shared/apartment';
     import * as $ from 'jquery';
+    
 
     import * as M from 'materialize-css';
 
@@ -17,7 +21,8 @@
     })
     export class NewApartmentModalComponent implements OnInit {
 
-      @ViewChild('btnClose') btnClose: ElementRef
+      @ViewChild('btnClose') btnClose: ElementRef;
+      @ViewChild('newApartmentWindowModal') newApartmentWindowModal: ElementRef;
       @Input() apartmentObj: any;
       addImagesToFormOutPutArr = [];
       advancedFilters = [];
@@ -36,11 +41,14 @@
       apartment_toilets = [1,2,3,4];
       apartment_publisherType = ["פרטי","תיווך"];
 
-      constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) { }
-      ngOnInit(){}
-      ngOnChanges(changes: any) {
-        //send to pipe in order to filter the results on map
-        if (changes.hasOwnProperty('apartmentObj') !== undefined && changes['apartmentObj'].currentValue !== undefined && changes['apartmentObj'].currentValue !== null && changes.hasOwnProperty('apartmentObj') !== false){
+      constructor(private mapsAPILoader: MapsAPILoader, private apartmentService : ApartmentsService,        private route: ActivatedRoute,         private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) { }
+      ngOnInit(){
+        this.initApartment();
+        this.apartmentObj = this.apartmentService.getApartment();
+        if (this.route.snapshot['_routerState'].url == '/new'){
+          this.addImagesToFormOutPutArr = [];
+        }
+        else  if (this.route.snapshot['_routerState'].url == '/edit' && this.apartmentObj){
           console.log(this.apartmentObj);
           this.apartment = this.apartmentObj;
 
@@ -56,17 +64,12 @@
           M.FormSelect.init(document.querySelectorAll('select')); 
           });
         }
-        else{
-          //new apartemnt
-          this.initApartment();
-          this.addImagesToFormOutPutArr = [];
-        }
+
       }
       ngAfterViewInit() {
         M.FormSelect.init($("select")); 
         M.CharacterCounter.init($('#inputDescription'));
         this.advancedFiltersJSON.getAllFilters().subscribe(data => this.advancedFilters = data);
-        this.initApartment();
         this.initAutoComplete();
       }
       addPhone(){

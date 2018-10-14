@@ -22,6 +22,7 @@
     [connect]="connect"
     [mobile]="mobile"
     [apartmentObj]="apartmentObj"
+    (apartmentModalOutput)="apartmentModal=$event"
     (getApartmentsOutput)="getApartments()"
     (changeViewOutput)="changeView()"></app-floating-menu>
 

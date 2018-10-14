@@ -27,6 +27,13 @@ export class HttpRequestsService {
     return this.http.post(url,data,this.httpOptions);
   }
 
+  //todo - when user do new apartment - get the details
+   //get User Info when connected
+   getUserInfo(){
+    let url = `${this.url}/get`;
+    return this.http.get(url,this.httpOptions);
+  }
+
   //custom register 
   register(user){
     let url = `${this.url}/register`;

@@ -31,8 +31,6 @@ import { DatePipePipe } from './pipes/date-pipe.pipe';
 
 import { InfowindowComponent } from './components/map/infowindow/infowindow.component';
 import { InfowindowModalComponent } from './components/map/infowindow-modal/infowindow-modal.component';
-import { NewApartmentModalComponent } from './components/new-apartment-modal/new-apartment-modal.component';
-import { ImageUploaderComponent } from './components/new-apartment-modal/image-uploader/image-uploader.component';
 import { AdvancedFiltersComponent } from './components/advanced-filters/advanced-filters.component';
 import { ContractsComponent } from './components/contracts/contracts.component';
 import { CardsComponent } from './components/cards/cards.component';
@@ -47,6 +45,8 @@ import { SearchComponent } from './components/search/search.component';
 
 
 const routes: Routes = [
+  { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule'  },
+  { path : 'edit', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule'  },
   { path : '**', redirectTo : ''  },
 
 ];
@@ -57,8 +57,6 @@ const routes: Routes = [
     TableComponent,
     InfowindowComponent,
     InfowindowModalComponent,
-    NewApartmentModalComponent,
-    ImageUploaderComponent,
     AdvancedFiltersComponent,
     FiltersPipe,
     ContractsComponent,

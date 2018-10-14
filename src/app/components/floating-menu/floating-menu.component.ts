@@ -1,4 +1,4 @@
-import { Component, OnInit , Output , EventEmitter , Input} from '@angular/core';
+import { Component, OnInit , Output , EventEmitter , Input , ViewChild , ElementRef} from '@angular/core';
 import * as $ from 'jquery';
 import * as M from 'materialize-css';
 
@@ -9,9 +9,10 @@ import * as M from 'materialize-css';
 })
 export class FloatingMenuComponent implements OnInit {
 
-
+  @ViewChild('apartmentModal') apartmentModal: ElementRef;
   @Output() getApartmentsOutput = new EventEmitter();
   @Output() changeViewOutput = new EventEmitter();
+  @Output() apartmentModalOutput = new EventEmitter();
   @Input() connect: boolean;
   @Input() mobile: boolean;
   @Input() apartmentObj: any;
@@ -19,6 +20,7 @@ export class FloatingMenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.apartmentModalOutput.emit(this.apartmentModal);
     M.FloatingActionButton.init($('.fixed-action-btn'));
   }
 
