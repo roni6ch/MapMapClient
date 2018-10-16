@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { google } from "google-maps";
 import { HttpRequestsService } from '../../../services/http-requests.service';
+import { ApartmentsService } from '../../../services/apartments.service';
+import { ActivatedRoute} from '@angular/router';
 declare var google: google;
 declare var FB: any;
 
@@ -11,24 +13,33 @@ declare var FB: any;
 })
 export class InfowindowModalComponent implements OnInit {
 
-  @Input() apartment: any;
+  apartment: any;
   indicatorNumber = 0;
   mobile = false;
-  constructor(private httpReq: HttpRequestsService) { 
+  constructor(private httpReq: HttpRequestsService , private apartmentsService: ApartmentsService , route:ActivatedRoute) { 
+    console.log("InfowindowModalComponent");
+    //fix for triggering the second time modal
+    route.params.forEach(params => {
+      this.getApartment();
+    });
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
   }
+  getApartment(){
+    this.apartment = this.apartmentsService.getApartment();
+    //check for panorama if theres no images
+    if (this.apartment.details.images.length == 0){
+      this.panorama(this.apartment.location.coordinates);
+    }
+  }
 
-  ngOnInit() { }
+  ngOnInit() {
+   }
   updateIndector(id: number) {
     console.log(id);
     this.indicatorNumber = id;
   }
 
-  ngOnChanges(changes: any) {
-    if (changes.hasOwnProperty('apartment') !== undefined && changes.apartment.currentValue.location !== undefined && changes.apartment.currentValue.details.images.length === 0)
-      this.panorama(changes.apartment.currentValue.location.coordinates);
-  }
 
   calendar(apartment) {
     console.log(apartment);

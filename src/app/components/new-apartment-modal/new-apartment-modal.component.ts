@@ -23,7 +23,7 @@
 
       @ViewChild('btnClose') btnClose: ElementRef;
       @ViewChild('newApartmentWindowModal') newApartmentWindowModal: ElementRef;
-      @Input() apartmentObj: any;
+    apartmentObj: any;
       addImagesToFormOutPutArr = [];
       advancedFilters = [];
       submittedError = false;

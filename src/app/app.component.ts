@@ -16,7 +16,6 @@ declare var google: google;
 })
 export class AppComponent implements OnInit {
 
-  @Input() apartmentModal: ElementRef;
   @Output() checkLoginStatus = new EventEmitter();
 
   @ViewChild('searchRef') searchRef: ElementRef;

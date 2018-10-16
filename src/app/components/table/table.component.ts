@@ -12,7 +12,7 @@ import { FiltersPipe } from '../../pipes/filters.pipe';
 })
 export class TableComponent implements OnInit {
   @Input() latLng: any;
-  @Input() filtersInput: {};
+  //@Input() filtersInput: {};
 
   filtersArr;
   data = [];

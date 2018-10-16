@@ -20,7 +20,6 @@ import { SharedService } from './services/shared.service';
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { InfowindowComponent } from './components/map/infowindow/infowindow.component';
-import { InfowindowModalComponent } from './components/map/infowindow-modal/infowindow-modal.component';
 import { ContractsComponent } from './components/contracts/contracts.component';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { LoginComponent } from './components/login/login.component';
@@ -47,6 +46,7 @@ const routes: Routes = [
   { path : 'filters', loadChildren : './components/advanced-filters/advanced-filters.module#AdvancedFiltersModule'  },
   { path : 'table', loadChildren : './components/table/table.module#TableModule'  },
   { path : 'cards', loadChildren : './components/cards/cards.module#CardsModule'  },
+  { path : 'infowindow/:id', loadChildren : './components/map/infowindow-modal/info-window-modal.module#InfoWindowModalModule'  },
   { path : '**', redirectTo : ''  },
 
 ];
@@ -55,7 +55,6 @@ const routes: Routes = [
     AppComponent,
     MapComponent,
     InfowindowComponent,
-    InfowindowModalComponent,
     FiltersPipe,
     ContractsComponent,
     EditModalComponent,

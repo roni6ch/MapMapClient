@@ -9,7 +9,7 @@ import { FiltersPipe } from '../../pipes/filters.pipe';
 })
 export class CardsComponent implements OnInit {
 
-  @Input() filtersInput: {};
+ // @Input() filtersInput: {};
   constructor(private httpReq: HttpRequestsService, private filterPipe: FiltersPipe) { 
     console.log("cards");
   }

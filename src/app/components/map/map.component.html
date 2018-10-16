@@ -4,10 +4,11 @@
  
 >
   <!-- MARKERS -->
-  <agm-marker #markers [iconUrl]="a.publisher?.type == 'private' ? markerPrivateIcon : markerBrokerIcon" *ngFor="let a of markers " [latitude]="a.location.coordinates[0]" [longitude]="a.location.coordinates[1]" (markerClick)="openApartment(a,infowindow)">
+  <agm-marker #markers [iconUrl]="a.publisher?.type == 'private' ? markerPrivateIcon : markerBrokerIcon" *ngFor="let a of markers "
+   [latitude]="a.location.coordinates[0]" [longitude]="a.location.coordinates[1]" (markerClick)="openApartment(a,infowindow)">
      <!-- INFO WINDOW -->
      <agm-info-window [disableAutoPan]="true" #infowindow>
-        <app-infowindow  [apartment]="apartmentInfo"  (apartmentOBJ)="openApartmentModal($event)" [ngClass]="[invisibleInfoWindow ? 'invisible' : '']"></app-infowindow>
+        <app-infowindow  [apartment]="apartmentInfo"   [ngClass]="[invisibleInfoWindow ? 'invisible' : '']"></app-infowindow>
      </agm-info-window>
   </agm-marker>
  <agm-direction *ngIf="origin && destination" [origin]="origin" [destination]="destination" >
@@ -16,6 +17,3 @@
 </agm-map>
 
 
-
-<!-- INFO WINDOW MODAL -->
-<app-infowindow-modal   [apartment]="apartmentModal" ></app-infowindow-modal>

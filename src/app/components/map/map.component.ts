@@ -1,5 +1,6 @@
 import { Component,  OnInit, Input, ViewChildren, Output , EventEmitter } from '@angular/core';
 import { HttpRequestsService } from '../../services/http-requests.service';
+import { ApartmentsService } from '../../services/apartments.service';
 import { FiltersPipe } from '../../pipes/filters.pipe';
 
 @Component({
@@ -38,7 +39,7 @@ export class MapComponent implements OnInit {
 
  origin = null;
  destination = null;
-  constructor(private httpReq: HttpRequestsService, private filterPipe: FiltersPipe) {
+  constructor(private httpReq: HttpRequestsService, private filterPipe: FiltersPipe ,private apartmentsService: ApartmentsService) {
     console.log("map");
   }
   ngOnChanges(changes: any) {
@@ -98,20 +99,16 @@ export class MapComponent implements OnInit {
       this.invisibleInfoWindow = true;
       this.lastInfoWindow.close();
     }
-
+    //get apartment details from apartment and set into service
     this.httpReq.getApartmentData(apartment._id).subscribe(data => { 
       this.invisibleInfoWindow = false;
       console.log(data);
       this.lastInfoWindow = infowindow;
       this.apartmentInfo = data;
+      this.apartmentsService.setApartment(data);
     })
   }
 
-  openApartmentModal(apartment) {
-    this.httpReq.getApartmentData(apartment._id).subscribe(data => { 
-      this.apartmentModal = data;
-    })
-  }
 
   mapRightClick(event){
     console.log(event.coords);

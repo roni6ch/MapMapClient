@@ -22,7 +22,6 @@
     [connect]="connect"
     [mobile]="mobile"
     [apartmentObj]="apartmentObj"
-    (apartmentModalOutput)="apartmentModal=$event"
     (getApartmentsOutput)="getApartments()"></app-floating-menu>
 
 <!-- Search -->
@@ -39,8 +38,6 @@
     <!-------------------------->
     <app-login (logindata)="logindata($event);"></app-login>
 
-    <!-- new Apartment -->
-    <app-new-apartment-modal [apartmentObj]="apartmentObj"></app-new-apartment-modal>
 
     <!-- advanced Filter -->
     <app-advanced-filters (filters)="filtersInputFunc($event)"></app-advanced-filters>
@@ -68,10 +65,5 @@
         [filtersInput]="filtersInput"
         (search)="search = $event"></app-map>
 
-    <!-- Table views go here -->
-    <app-table *ngIf="view == 'table'" [filtersInput]="filtersInput"></app-table>
-
-    <!-- Cards views go here -->
-    <app-cards *ngIf="view == 'cards'" [filtersInput]="filtersInput"></app-cards>
 
 </div>
