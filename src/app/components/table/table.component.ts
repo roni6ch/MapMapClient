@@ -47,6 +47,7 @@ export class TableComponent implements OnInit {
     }
   };
   constructor(private httpReq: HttpRequestsService, private filterPipe: FiltersPipe) {
+    console.log("table");
   }
 
   ngOnInit() {

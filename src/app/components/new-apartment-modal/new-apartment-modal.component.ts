@@ -39,20 +39,37 @@
       apartment_rooms = [1,2,3,4,5,6,7,8];
       apartment_floor = [0,1,2,3,4,5,6,7,8,9,10,20,30];
       apartment_toilets = [1,2,3,4];
-      apartment_publisherType = ["פרטי","תיווך"];
+      apartment_publisherType = [
+        {
+        "heb":"פרטי",
+        "eng":"private"
+        },{
+          "heb":"תיווך",
+          "eng":"broker"
+          },
+      ];
 
       constructor(private mapsAPILoader: MapsAPILoader, private apartmentService : ApartmentsService,        private route: ActivatedRoute,         private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) { }
       ngOnInit(){
-        console.log("ng on init");
         this.initApartment();
         this.apartmentObj = this.apartmentService.getApartment();
         if (this.route.snapshot['_routerState'].url == '/new'){
           this.addImagesToFormOutPutArr = [];
+          if (this.httpReq.token !== "")
+          this.httpReq.getUserInfo().subscribe(data => {
+            if (data) {
+              console.log(data);
+              this.apartment.publisher.name = data['name'];
+              this.apartment.publisher.email = data['email'];
+            }
+            else{
+              console.log("not connected!");
+            }
+          });
         }
         else  if (this.route.snapshot['_routerState'].url == '/edit' && this.apartmentObj){
           console.log(this.apartmentObj);
           this.apartment = this.apartmentObj;
-          console.log("after");
 
           //if it havent cast yet
           if (typeof(this.apartment.details.entrance_date) == "object")

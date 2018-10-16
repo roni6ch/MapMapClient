@@ -32,9 +32,8 @@ export class AppComponent implements OnInit {
   apartmentsResults = 0;
   filtersInput = [];
   editApartments = [];
-  view = 'Map';
-  nextView = 'טבלה';
   profile = {};
+  view = 'map';
   latLng = {
     //initialize coordinates
     lat: 32.056442,
@@ -45,6 +44,7 @@ export class AppComponent implements OnInit {
 
   constructor(private mapsAPILoader: MapsAPILoader,   private router: Router, private apartmentService : ApartmentsService,
     private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) {
+      this.router.navigate(['']);
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
   }
@@ -83,23 +83,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  //change view
-  changeView() {
-    switch (this.view) {
-      case 'Map':
-        this.view = 'Table'
-        this.nextView = 'כרטיסיות';
-        break;
-      case 'Cards':
-        this.view = 'Map'
-        this.nextView = 'טבלה';
-        break;
-      case 'Table':
-        this.view = 'Cards'
-        this.nextView = 'מפה';
-        break;
-    }
-  }
+
   //login
   logindata(data) {
     if (data !== false && gapi.auth2.getAuthInstance().isSignedIn.get()) {
@@ -116,7 +100,7 @@ export class AppComponent implements OnInit {
       //custom login
       this.httpReq.setToken(data);
       this.showLoginBT(false);
-      this.profile = [];
+      this.profile = []; 
       this.profile['picture'] = "../assets/images/apartments/no_image.jpg";
       M.Tooltip.init($(".tooltipped"));
       this.checkLoginStatus.emit(true);
@@ -170,6 +154,9 @@ export class AppComponent implements OnInit {
     console.log("connect (true means - show login button): " , this.connect);
   }
 
+  changeView(view){
+    this.view = view;
+  }
   //edit user apartments
   getApartments(){
     if (!this.connect) //connected

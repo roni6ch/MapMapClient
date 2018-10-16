@@ -13,27 +13,15 @@ import { AgmDirectionModule } from 'agm-direction'   // agm-direction
 import { ApartmentsService } from './services/apartments.service';
 import { AdvancedFilterService } from './services/advanced-filter.service';
 import { HttpRequestsService } from './services/http-requests.service';
+import { SharedService } from './services/shared.service';
+
 
 /*  COMPONENTS */
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
-import { TableComponent } from './components/table/table.component';
-
-/*  LIBRERIES */
-//import { GoogleSignInComponent } from 'angular-google-signin';
-import { NouisliderModule } from 'ng2-nouislider';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-
-/* Pipes */ 
-import { FiltersPipe } from './pipes/filters.pipe';
-import { DatePipePipe } from './pipes/date-pipe.pipe';
-
 import { InfowindowComponent } from './components/map/infowindow/infowindow.component';
 import { InfowindowModalComponent } from './components/map/infowindow-modal/infowindow-modal.component';
-import { AdvancedFiltersComponent } from './components/advanced-filters/advanced-filters.component';
 import { ContractsComponent } from './components/contracts/contracts.component';
-import { CardsComponent } from './components/cards/cards.component';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -41,12 +29,24 @@ import { MobileNavComponent } from './components/mobile-nav/mobile-nav.component
 import { FloatingMenuComponent } from './components/floating-menu/floating-menu.component';
 import { SearchComponent } from './components/search/search.component';
 
+/*  LIBRERIES */
+//import { GoogleSignInComponent } from 'angular-google-signin';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
+/* Pipes */ 
+import { FiltersPipe } from './pipes/filters.pipe';
+import { DatePipePipe } from './pipes/date-pipe.pipe';
+
+
 
 
 
 const routes: Routes = [
-  { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule'  },
+  { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule' },
   { path : 'edit', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule'  },
+  { path : 'filters', loadChildren : './components/advanced-filters/advanced-filters.module#AdvancedFiltersModule'  },
+  { path : 'table', loadChildren : './components/table/table.module#TableModule'  },
+  { path : 'cards', loadChildren : './components/cards/cards.module#CardsModule'  },
   { path : '**', redirectTo : ''  },
 
 ];
@@ -54,13 +54,10 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     MapComponent,
-    TableComponent,
     InfowindowComponent,
     InfowindowModalComponent,
-    AdvancedFiltersComponent,
     FiltersPipe,
     ContractsComponent,
-    CardsComponent,
     EditModalComponent,
     DatePipePipe,
     LoginComponent,
@@ -73,7 +70,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: false }),  // remove second argument
     BrowserModule,
     BootstrapModule,
-    Ng2SmartTableModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCG43sbbdLsGywMwY0T7-1yOoKVDGfnbsk',
       libraries: ['places']
@@ -82,11 +78,10 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NouisliderModule,
     MDBBootstrapModule.forRoot(),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService,FiltersPipe],
+  providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService,FiltersPipe,SharedService],
   bootstrap: [AppComponent],
   exports:[FiltersPipe]
 })

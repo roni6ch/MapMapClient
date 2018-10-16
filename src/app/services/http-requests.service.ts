@@ -30,7 +30,7 @@ export class HttpRequestsService {
   //todo - when user do new apartment - get the details
    //get User Info when connected
    getUserInfo(){
-    let url = `${this.url}/get`;
+    let url = `${this.url}/user`;
     return this.http.get(url,this.httpOptions);
   }
 

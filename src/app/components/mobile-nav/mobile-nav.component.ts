@@ -1,4 +1,5 @@
 import { Component, OnInit , Output , EventEmitter , Input} from '@angular/core';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-mobile-nav',
@@ -15,10 +16,14 @@ export class MobileNavComponent implements OnInit {
   @Input() mobile: boolean;
   @Input() apartmentObj: any;
   
+  view = '';
+  nextView = '';
 
-  constructor() { }
+  constructor(private shared : SharedService) { }
 
   ngOnInit() {
+    this.view = this.shared.viewObj.view;
+    this.nextView = this.shared.viewObj.nextView;
     //todo: ask tomer to give me back name family and img + email
   }
   
@@ -28,8 +33,11 @@ export class MobileNavComponent implements OnInit {
   getApartments(){
     this.getApartmentsOutput.emit(true);
   }
-  changeView(){
-    this.changeViewOutput.emit(true);
+  changeView() {
+    this.shared.setViewObj(this.view,this.nextView);
+      this.view = this.shared.viewObj.view;
+      this.nextView = this.shared.viewObj.nextView;
+      this.changeViewOutput.emit(this.view);
   }
 
 }

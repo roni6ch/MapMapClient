@@ -45,14 +45,16 @@
                         <li>
                             <button
                                 class="btn-floating yellow darken-1"
-                                data-toggle="modal"
+                                data-toggle="modal" 
+                                routerLink="/filters"  
                                 data-target="#advancedFiltersModal">
                                 <span class="floatingText yellow darken-1">פילטרים</span>
                                 <i class="material-icons">filter</i>
                             </button>
                         </li>
                         <li>
-                            <button class="btn-floating green" (click)="changeView()">
+                            <button class="btn-floating green" (click)="changeView()"
+                            routerLink="/{{view}}" >
                                 <span class="floatingText green">תצוגת
                                     {{nextView}}</span>
                                 <i class="material-icons">pageview</i>

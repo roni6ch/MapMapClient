@@ -13,7 +13,7 @@
     [profile]="profile"
     [apartmentObj]="apartmentObj"
     (getApartmentsOutput)="getApartments()"
-    (changeViewOutput)="changeView()"
+    (changeViewOutput)="changeView($event)"
     (signOutOutput)="signOut()"></app-mobile-nav>
 
 <!-- Floating circle Menu -->
@@ -23,8 +23,7 @@
     [mobile]="mobile"
     [apartmentObj]="apartmentObj"
     (apartmentModalOutput)="apartmentModal=$event"
-    (getApartmentsOutput)="getApartments()"
-    (changeViewOutput)="changeView()"></app-floating-menu>
+    (getApartmentsOutput)="getApartments()"></app-floating-menu>
 
 <!-- Search -->
 <app-search
@@ -50,7 +49,7 @@
     <app-contracts></app-contracts>
 
     <!-- edit Apartment -->
-    <button #editButtonModal data-toggle="modal" data-target="#newApartmentWindowModal" ></button>
+    <button #editButtonModal data-toggle="modal" data-target="#newApartmentWindowModal" style="display:none" ></button>
     <app-edit-modal
         [connect]="connect"
         [editApartments]="editApartments"
@@ -62,7 +61,7 @@
     <!---------- Map ----------->
     <!-------------------------->
     <app-map
-        *ngIf="view == 'Map'"
+        *ngIf="view == 'map'"
         (apartmentsResults)="apartmentsResultsInput($event)"
         [latLng]="latLng"
         [loginStatus]="checkLoginStatus"
@@ -70,9 +69,9 @@
         (search)="search = $event"></app-map>
 
     <!-- Table views go here -->
-    <app-table *ngIf="view == 'Table'" [filtersInput]="filtersInput"></app-table>
+    <app-table *ngIf="view == 'table'" [filtersInput]="filtersInput"></app-table>
 
     <!-- Cards views go here -->
-    <app-cards *ngIf="view == 'Cards'" [filtersInput]="filtersInput"></app-cards>
+    <app-cards *ngIf="view == 'cards'" [filtersInput]="filtersInput"></app-cards>
 
 </div>

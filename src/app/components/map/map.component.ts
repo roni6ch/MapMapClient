@@ -32,11 +32,14 @@ export class MapComponent implements OnInit {
   zoom = 14;
   map : any;
   checkLoginStatus = null;
+  markerPrivateIcon = './../../../assets/images/icons/markerPrivateIcon.png';
+  markerBrokerIcon =  './../../../assets/images/icons/markerBrokerIcon.png';
    
 
  origin = null;
  destination = null;
   constructor(private httpReq: HttpRequestsService, private filterPipe: FiltersPipe) {
+    console.log("map");
   }
   ngOnChanges(changes: any) {
     //send to pipe in order to filter the results on map

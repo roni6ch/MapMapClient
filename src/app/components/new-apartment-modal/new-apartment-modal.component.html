@@ -16,8 +16,10 @@
               <!-- Name -->
               <div class="input-field col s6">
                 <i class="material-icons prefix">account_circle</i>
-                <label for="inputFirstName" [ngClass]="name.invalid && name.dirty  ? 'red-text' : ' grey-text '">שם מלא</label>
+                <label for="inputFirstName" [ngClass]="[name.invalid && name.dirty  ? 'red-text' : ' grey-text ' , apartment.publisher.name  ? 'active' : '']"
+               >שם מלא</label>
                 <input type="text" [(ngModel)]="apartment.publisher.name" #name="ngModel" name="name" id="inputFirstName" minlength="2" maxlength="20"
+                
                   (focus)="submittedError = false" required>
                 <span data-error="" data-success="right" *ngIf="name.invalid && (name.dirty || name.touched) ||  submittedError">
                   <span *ngIf="name.errors?.required" class="helper-text red-text"> אנא מלא שם</span>
@@ -67,7 +69,7 @@
                 <i class="material-icons prefix">email</i>
                 <input [(ngModel)]="apartment.publisher.email" name="email" id="inputMail" type="email" data-length="30" (focus)="submittedError = false"
                   min="10" max="15" #email="ngModel" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" />
-                <label for="inputMail" [ngClass]="email.invalid && email.dirty  ? 'red-text' : 'grey-text'">אימייל</label>
+                <label for="inputMail" [ngClass]="[email.invalid && email.dirty  ? 'red-text' : 'grey-text' , apartment.publisher.email  ? 'active' : '']">אימייל</label>
                 <span data-error="" data-success="right" *ngIf="email.invalid && (email.dirty || email.touched)||  submittedError">
                   <span *ngIf="email.errors?.required" class="helper-text red-text"> אנא רשום אימייל</span>
                   <span *ngIf="email.errors?.pattern" class="helper-text red-text"> אימייל לא חוקי</span>
@@ -192,7 +194,7 @@
              <div class="input-field col s2 apartmentPublisherType">
               <select [(ngModel)]="apartment.publisher.type" name="apartmentPublisherType">
                   <option value="" disabled>בעלות</option>
-                  <option *ngFor="let publisherType of apartment_publisherType" [value]="publisherType" [selected]="publisherType==apartment.publisher.type">{{publisherType}}</option>
+                  <option *ngFor="let publisherType of apartment_publisherType" [value]="publisherType.eng" [selected]="publisherType.eng==apartment.publisher.type">{{publisherType.heb}}</option>
               </select>
 
           
