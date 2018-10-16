@@ -40,6 +40,8 @@ export class AppComponent implements OnInit {
     lat: 32.056442,
     lng: 34.772238
   };
+  @ViewChild('editButtonModal') editButtonModal: ElementRef;
+  
 
   constructor(private mapsAPILoader: MapsAPILoader,   private router: Router, private apartmentService : ApartmentsService,
     private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) {
@@ -180,9 +182,11 @@ export class AppComponent implements OnInit {
   editApartmentInput(apartment) {
     this.apartmentObj = apartment;
   this.apartmentService.setApartment( this.apartmentObj );
-   //this.apartmentModal.nativeElement.click();
-   document.getElementById("newApartmentWindowModal").click();
-    this.router.navigate(['/edit']);
+    
+   this.router.navigate(['/edit']);
+    setTimeout(()=>{
+      this.editButtonModal.nativeElement.click();
+    },1000);
   }
   removeBlur(){
     this.search = false;

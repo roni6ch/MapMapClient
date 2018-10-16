@@ -43,6 +43,7 @@
 
       constructor(private mapsAPILoader: MapsAPILoader, private apartmentService : ApartmentsService,        private route: ActivatedRoute,         private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) { }
       ngOnInit(){
+        console.log("ng on init");
         this.initApartment();
         this.apartmentObj = this.apartmentService.getApartment();
         if (this.route.snapshot['_routerState'].url == '/new'){
@@ -51,6 +52,7 @@
         else  if (this.route.snapshot['_routerState'].url == '/edit' && this.apartmentObj){
           console.log(this.apartmentObj);
           this.apartment = this.apartmentObj;
+          console.log("after");
 
           //if it havent cast yet
           if (typeof(this.apartment.details.entrance_date) == "object")

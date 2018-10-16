@@ -39,9 +39,7 @@ export class EditModalComponent implements OnInit {
   }
   openEditModalOutput(apartment) {
     this.btnClose.nativeElement.click();
-    setTimeout(()=>{
-      this.openEditOutput.emit(apartment);
-    },1000);
+    this.openEditOutput.emit(apartment);
   }
 
 }
