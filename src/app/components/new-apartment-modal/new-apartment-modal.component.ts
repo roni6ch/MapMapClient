@@ -49,7 +49,9 @@
           },
       ];
 
-      constructor(private mapsAPILoader: MapsAPILoader, private apartmentService : ApartmentsService,        private route: ActivatedRoute,         private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) { }
+      constructor(private mapsAPILoader: MapsAPILoader, private apartmentService : ApartmentsService,        private route: ActivatedRoute,         private ngZone: NgZone, private advancedFiltersJSON: AdvancedFilterService, private httpReq: HttpRequestsService) { 
+
+      }
       ngOnInit(){
         this.initApartment();
         this.apartmentObj = this.apartmentService.getApartment();
@@ -58,6 +60,7 @@
           if (this.httpReq.token !== "")
           this.httpReq.getUserInfo().subscribe(data => {
             if (data) {
+              document.getElementById("newApartmentWindowModalBT").click();
               console.log(data);
               this.apartment.publisher.name = data['name'];
               this.apartment.publisher.email = data['email'];

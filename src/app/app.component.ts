@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
   showMap = true;
   connect = false;
   apartmentsResults = 0;
-  filtersInput = [];
   editApartments = [];
   profile = {};
   view = 'map';
@@ -125,10 +124,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  //get all marker's filters from modal
-  filtersInputFunc(filtersInput) {
-    this.filtersInput = filtersInput;
-  }
   //markers length
   apartmentsResultsInput(apartmentsResultsInput) {
     this.apartmentsResults = apartmentsResultsInput;

@@ -25,7 +25,6 @@ export class AdvancedFiltersComponent implements OnInit {
   @ViewChild('sliderRef') sliderRef;
   @ViewChild('btnClose') btnClose: ElementRef
   @Output() favoritesClick = new EventEmitter();
-  @Output() filters = new EventEmitter();
 
 
   constructor(private advancedFilterService: AdvancedFilterService,private httpReq: HttpRequestsService) {
@@ -35,6 +34,7 @@ export class AdvancedFiltersComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById("advancedFiltersModalBT").click();
     this.advancedFilterService.getAllFilters().subscribe(data => {
       this.advancedFilters = data;
     });
@@ -86,20 +86,8 @@ export class AdvancedFiltersComponent implements OnInit {
     })
     this.filtersObj.range = this.sliderRef.slider.get();
     console.log(this.filtersObj);
-
-    //HELP FOR NGCHANGE
-    //https://stackoverflow.com/questions/46702410/ngonchange-not-called-when-value-change
-    this.filtersObj.status = !this.filtersObj.status
-    this.filtersObj = Object.assign({}, this.filtersObj);
-    
-    
     this.httpReq.changeFilters(this.filtersObj);
-    /*
-    //todo: do i need this?
     this.advancedFilterService.setData(this.filtersObj);
-    //todo: send ajax with "this.filtersObj" and get new markers!
-    this.filters.emit(this.filtersObj);
-    */
     this.btnClose.nativeElement.click();
   }
 }

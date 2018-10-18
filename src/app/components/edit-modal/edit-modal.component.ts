@@ -19,12 +19,14 @@ export class EditModalComponent implements OnInit {
   constructor(private httpReq: HttpRequestsService) { }
 
   ngOnInit() {
-   
-   // this.data  = this.httpReq.getUserApartments();
   };
 
   ngOnChanges(changes: any) {
 
+    this.httpReq.getUserApartments().subscribe(result => {
+      console.log('edit user apartments!!! ' , result);
+        this.data = result;
+      });
     //send to pipe in order to filter the results on map
     if (changes.hasOwnProperty('editApartments') !== undefined && !this.connect){
       this.data =  this.editApartments;
