@@ -15,8 +15,8 @@ import {GoogleSignInSuccess} from 'angular-google-signin';
 @Component({selector: 'app-login', templateUrl: './login.component.html', styleUrls: ['./login.component.scss']})
 export class LoginComponent implements OnInit {
 
-    @Output() logindata = new EventEmitter();
-    @ViewChild('btnClose') btnClose : ElementRef
+    @Output()logindata = new EventEmitter();
+    @ViewChild('btnClose')btnClose : ElementRef
 
     constructor(private httpReq : HttpRequestsService, ngZone : NgZone) {
         window['onSignIn'] = () => ngZone.run(() => this.onSignIn());
@@ -70,18 +70,8 @@ export class LoginComponent implements OnInit {
     //google sign in
     onSignIn() : void {
         if(gapi.auth2.getAuthInstance() !== undefined) {
-            let token = gapi
-                .auth2
-                .getAuthInstance()
-                .currentUser
-                .get()
-                .getAuthResponse()
-                .id_token;
-            this
-                .httpReq
-                .login(token)
-                .subscribe(data => {
-                    console.log("onSignIn: ", data);
+            let token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+            this.httpReq.login(token).subscribe(data => {
                     if (data) {
                         this.logindata.emit(data);
                     } else {

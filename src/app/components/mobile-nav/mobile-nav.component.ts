@@ -1,5 +1,6 @@
 import { Component, OnInit , Output , EventEmitter , Input} from '@angular/core';
 import { SharedService } from '../../services/shared.service';
+import { HttpRequestsService } from '../../services/http-requests.service';
 
 @Component({
   selector: 'app-mobile-nav',
@@ -12,19 +13,20 @@ export class MobileNavComponent implements OnInit {
   @Output() getApartmentsOutput = new EventEmitter();
   @Output() changeViewOutput = new EventEmitter();
   @Input() profile: any;
-  @Input() connect: boolean;
   @Input() mobile: boolean;
-  @Input() apartmentObj: any;
+  connect = true;
   
   view = '';
   nextView = '';
 
-  constructor(private shared : SharedService) { }
+  constructor(private shared : SharedService,private httpReq:HttpRequestsService) { }
 
   ngOnInit() {
     this.view = this.shared.viewObj.view;
     this.nextView = this.shared.viewObj.nextView;
-    //todo: ask tomer to give me back name family and img + email
+
+    this.connect = this.httpReq.isAuthenticated();
+    console.log("connect: " , this.connect);
   }
   
   signOut(){

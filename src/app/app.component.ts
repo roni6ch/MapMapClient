@@ -24,11 +24,11 @@ export class AppComponent implements OnInit {
   mobile = false;
   search = true;
   cardsView = false;
-  apartmentObj = null;
   scriptLoaded = false;
   showMap = true;
   connect = false;
   apartmentsResults = 0;
+  filtersInput = [];
   editApartments = [];
   profile = {};
   view = 'map';
@@ -37,7 +37,6 @@ export class AppComponent implements OnInit {
     lat: 32.056442,
     lng: 34.772238
   };
-  @ViewChild('editButtonModal') editButtonModal: ElementRef;
   
 
   constructor(private mapsAPILoader: MapsAPILoader,   private router: Router, private apartmentService : ApartmentsService,
@@ -124,29 +123,35 @@ export class AppComponent implements OnInit {
     }
   }
 
+    //show login button or image
+    showLoginBT(bool: boolean) {
+      if (bool) {
+        //show login
+        this.connect = true;
+        $(".googleBT").show();
+        $(".signOut").hide();
+      }
+      else {
+        //show profile
+        this.connect = false;
+        $(".googleBT").hide();
+        $(".signOut").show();
+        $(".signOut").attr("src", this.profile['picture']);
+        $(".name").html(this.profile['given_name'] + this.profile['family_name']);
+        $(".email").html(this.profile['email']);
+      }
+      console.log("connect (true means - show login button): " , this.connect);
+    }
+
+  //get all marker's filters from modal
+  filtersInputFunc(filtersInput) {
+    this.filtersInput = filtersInput;
+  }
   //markers length
   apartmentsResultsInput(apartmentsResultsInput) {
     this.apartmentsResults = apartmentsResultsInput;
   }
-  //show login button or image
-  showLoginBT(bool: boolean) {
-    if (bool) {
-      //show login
-      this.connect = true;
-      $(".googleBT").show();
-      $(".signOut").hide();
-    }
-    else {
-      //show profile
-      this.connect = false;
-      $(".googleBT").hide();
-      $(".signOut").show();
-      $(".signOut").attr("src", this.profile['picture']);
-      $(".name").html(this.profile['given_name'] + this.profile['family_name']);
-      $(".email").html(this.profile['email']);
-    }
-    console.log("connect (true means - show login button): " , this.connect);
-  }
+
 
   changeView(view){
     this.view = view;
@@ -158,16 +163,6 @@ export class AppComponent implements OnInit {
     console.log('edit user apartments ' , result);
       this.editApartments = result;
     });
-  }
-  //open edit apartment modal
-  editApartmentInput(apartment) {
-    this.apartmentObj = apartment;
-  this.apartmentService.setApartment( this.apartmentObj );
-    
-   this.router.navigate(['/edit']);
-    setTimeout(()=>{
-      this.editButtonModal.nativeElement.click();
-    },1000);
   }
   removeBlur(){
     this.search = false;

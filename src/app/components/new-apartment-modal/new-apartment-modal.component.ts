@@ -73,6 +73,10 @@
         else  if (this.route.snapshot['_routerState'].url == '/edit' && this.apartmentObj){
           console.log(this.apartmentObj);
           this.apartment = this.apartmentObj;
+          
+          setTimeout(()=>{
+            document.getElementById("editButtonModalBT").click();
+            },1000);
 
           //if it havent cast yet
           if (typeof(this.apartment.details.entrance_date) == "object")

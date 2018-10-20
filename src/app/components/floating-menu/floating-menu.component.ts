@@ -11,12 +11,12 @@ import { SharedService } from '../../services/shared.service';
 export class FloatingMenuComponent implements OnInit {
 
   @ViewChild('apartmentModal') apartmentModal: ElementRef;
+  @ViewChild('editApartments') editApartments: ElementRef;
+  
   @Output() getApartmentsOutput = new EventEmitter();
   @Output() changeViewOutput = new EventEmitter();
   @Output() apartmentModalOutput = new EventEmitter();
-  @Input() connect: boolean;
   @Input() mobile: boolean;
-  @Input() apartmentObj: any;
   
   view = '';
   nextView = '';

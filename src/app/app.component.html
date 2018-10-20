@@ -8,10 +8,8 @@
 <!-- Hamburger Menu -->
 <app-mobile-nav
 (click)="removeBlur()"
-    [connect]="connect"
     [mobile]="mobile"
     [profile]="profile"
-    [apartmentObj]="apartmentObj"
     (getApartmentsOutput)="getApartments()"
     (changeViewOutput)="changeView($event)"
     (signOutOutput)="signOut()"></app-mobile-nav>
@@ -19,9 +17,7 @@
 <!-- Floating circle Menu -->
 <app-floating-menu
 (click)="removeBlur()"
-    [connect]="connect"
     [mobile]="mobile"
-    [apartmentObj]="apartmentObj"
     (getApartmentsOutput)="getApartments()"></app-floating-menu>
 
 <!-- Search -->
@@ -37,17 +33,12 @@
     <!-- Login -->
     <!-------------------------->
     <app-login (logindata)="logindata($event);"></app-login>
+    <button #editButtonModal data-toggle="modal" data-target="#newApartmentWindowModal" style="display:none" id="editButtonModalBT" ></button>
 
 
     <!-- Contracts Modal -->
     <app-contracts></app-contracts>
 
-    <!-- edit Apartment -->
-    <button #editButtonModal data-toggle="modal" data-target="#newApartmentWindowModal" style="display:none" ></button>
-    <app-edit-modal
-        [connect]="connect"
-        [editApartments]="editApartments"
-        (openEditOutput)="editApartmentInput($event)"></app-edit-modal>
 
     <router-outlet></router-outlet>
 

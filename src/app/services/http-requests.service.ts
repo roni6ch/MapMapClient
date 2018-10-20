@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable , of as observableOf } from 'rxjs';
 import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { IApartments } from '../shared/iapartments';
 
@@ -17,6 +17,11 @@ export class HttpRequestsService {
     }
   };
   
+  isAuthenticated() : boolean{
+    return this.token === "" ?  true :  false;
+  }
+
+
   //google login 
   login(tokenId:string){
     let url = `${this.url}/login/google`;

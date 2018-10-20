@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef , Output ,Input, EventEmitter} from '@angular/core';
 import { HttpRequestsService } from '../../services/http-requests.service';
+import { ApartmentsService } from '../../services/apartments.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-modal',
@@ -8,6 +10,7 @@ import { HttpRequestsService } from '../../services/http-requests.service';
 })
 export class EditModalComponent implements OnInit {
   data = [];
+  @ViewChild('editButtonModal') editButtonModal: ElementRef;
 
   @ViewChild('btnClose') btnClose: ElementRef;
   
@@ -16,22 +19,17 @@ export class EditModalComponent implements OnInit {
   @Input() connect: any;
   
   @Output() openEditOutput = new EventEmitter();
-  constructor(private httpReq: HttpRequestsService) { }
+  constructor(private httpReq: HttpRequestsService ,   private router: Router,private apartmentsService : ApartmentsService) { }
 
   ngOnInit() {
-  };
-
-  ngOnChanges(changes: any) {
-
+    
+    document.getElementById("editModalBT").click();
     this.httpReq.getUserApartments().subscribe(result => {
       console.log('edit user apartments!!! ' , result);
         this.data = result;
       });
-    //send to pipe in order to filter the results on map
-    if (changes.hasOwnProperty('editApartments') !== undefined && !this.connect){
-      this.data =  this.editApartments;
-    }
-  }
+
+  };
 
   deleteApartment(apartment_id,ev){
     ev.stopPropagation();
@@ -41,7 +39,9 @@ export class EditModalComponent implements OnInit {
   }
   openEditModalOutput(apartment) {
     this.btnClose.nativeElement.click();
-    this.openEditOutput.emit(apartment);
+    this.apartmentsService.setApartment(apartment);
+
+   this.router.navigate(['/edit']);
   }
 
 }

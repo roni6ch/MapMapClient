@@ -21,7 +21,6 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { InfowindowComponent } from './components/map/infowindow/infowindow.component';
 import { ContractsComponent } from './components/contracts/contracts.component';
-import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MobileNavComponent } from './components/mobile-nav/mobile-nav.component';
@@ -43,6 +42,7 @@ import { DatePipePipe } from './pipes/date-pipe.pipe';
 const routes: Routes = [
   { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule' },
   { path : 'edit', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule'  },
+  { path : 'edit-apartments', loadChildren : './components/edit-modal/edit-apartments.module#EditApartmentsModule'  },
   { path : 'filters', loadChildren : './components/advanced-filters/advanced-filters.module#AdvancedFiltersModule'  },
   { path : 'table', loadChildren : './components/table/table.module#TableModule'  },
   { path : 'cards', loadChildren : './components/cards/cards.module#CardsModule'  },
@@ -57,7 +57,6 @@ const routes: Routes = [
     InfowindowComponent,
     FiltersPipe,
     ContractsComponent,
-    EditModalComponent,
     DatePipePipe,
     LoginComponent,
     NavComponent,
