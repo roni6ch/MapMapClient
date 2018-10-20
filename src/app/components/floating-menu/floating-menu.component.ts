@@ -2,6 +2,7 @@ import { Component, OnInit , Output , EventEmitter , Input , ViewChild , Element
 import * as $ from 'jquery';
 import * as M from 'materialize-css';
 import { SharedService } from '../../services/shared.service';
+import {HttpRequestsService} from '../../services/http-requests.service';
 
 @Component({
   selector: 'app-floating-menu',
@@ -16,17 +17,29 @@ export class FloatingMenuComponent implements OnInit {
   @Output() getApartmentsOutput = new EventEmitter();
   @Output() changeViewOutput = new EventEmitter();
   @Output() apartmentModalOutput = new EventEmitter();
+  @Output() removeBlur = new EventEmitter();
+  
   @Input() mobile: boolean;
   
   view = '';
   nextView = '';
-  constructor(private shared : SharedService) { }
+  loggedIn = false;
+  constructor(private shared : SharedService , private httpReq : HttpRequestsService) { }
 
   ngOnInit() {
     this.view = this.shared.viewObj.view;
     this.nextView = this.shared.viewObj.nextView;
     this.apartmentModalOutput.emit(this.apartmentModal);
     M.FloatingActionButton.init($('.fixed-action-btn'));
+
+    this.httpReq.token.subscribe(data => {
+      if (data !== ""){
+          this.loggedIn = true;
+      }
+      else{
+        this.loggedIn = false;
+      }
+    });
   }
 
   getApartments(){
@@ -38,6 +51,10 @@ export class FloatingMenuComponent implements OnInit {
       this.view = this.shared.viewObj.view;
       this.nextView = this.shared.viewObj.nextView;
       this.changeViewOutput.emit(this.view);
+    }
+    removeBlurClick(){
+      $(".tap-target-wrapper").removeClass("open");
+      this.removeBlur.emit();
     }
 
 }

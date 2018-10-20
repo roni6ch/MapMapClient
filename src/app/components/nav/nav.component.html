@@ -1,5 +1,5 @@
 <!-- NAV -->
-<nav
+<nav 
     class="navbar navbar-expand-lg navbar-light"
     [ngClass]="{ 'searchClicked': search }">
 
@@ -19,11 +19,11 @@
                 <img
                     data-position="left"
                     data-tooltip="לחץ ליציאה"
-                    [src]="profileIMG != null ? profileIMG : ''"
+                    [src]="profile['picture'] ? profile['picture'] : '../assets/images/apartments/no_image.jpg'"
                     class='signOut tooltipped'
                     (click)="signOut()">
 
-                    <button class="btn btn-info googleBT" data-toggle="modal" data-target="#login">כניסה</button>
+                    <button class="btn btn-info googleBT" id="loginBT" data-toggle="modal" data-target="#login" >כניסה</button>
 
                 </div>
 

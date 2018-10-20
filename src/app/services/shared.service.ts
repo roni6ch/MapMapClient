@@ -5,12 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class SharedService {
 
+  profile = {};
   viewObj = {
     view : 'table',
     nextView : 'טבלה'
   }
   constructor() { }
 
+  getUserProfile(){
+    return this.profile;
+  }
+  setUserProfile(profile){
+    this.profile = profile;
+  }
   setViewObj(view,nextView){
     switch (view) {
       case 'map':

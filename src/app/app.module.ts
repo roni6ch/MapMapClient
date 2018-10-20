@@ -21,23 +21,18 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { InfowindowComponent } from './components/map/infowindow/infowindow.component';
 import { ContractsComponent } from './components/contracts/contracts.component';
-import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MobileNavComponent } from './components/mobile-nav/mobile-nav.component';
 import { FloatingMenuComponent } from './components/floating-menu/floating-menu.component';
 import { SearchComponent } from './components/search/search.component';
+import { LoginComponent } from './components/login/login.component';
 
 /*  LIBRERIES */
-//import { GoogleSignInComponent } from 'angular-google-signin';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 /* Pipes */ 
 import { FiltersPipe } from './pipes/filters.pipe';
 import { DatePipePipe } from './pipes/date-pipe.pipe';
-
-
-
-
 
 const routes: Routes = [
   { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule' },
@@ -48,8 +43,8 @@ const routes: Routes = [
   { path : 'cards', loadChildren : './components/cards/cards.module#CardsModule'  },
   { path : 'infowindow/:id', loadChildren : './components/map/infowindow-modal/info-window-modal.module#InfoWindowModalModule'  },
   { path : '**', redirectTo : ''  },
-
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,11 +53,11 @@ const routes: Routes = [
     FiltersPipe,
     ContractsComponent,
     DatePipePipe,
-    LoginComponent,
     NavComponent,
     MobileNavComponent,
     FloatingMenuComponent,
-    SearchComponent
+    SearchComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(routes, { useHash: false }),  // remove second argument

@@ -3,7 +3,6 @@ import { AdvancedFilterService } from '../../services/advanced-filter.service';
 import { Filters } from '../../pipes/filters';
 import * as $ from 'jquery';
 import * as M from 'materialize-css';
-import {  NgForm  } from '@angular/forms';
 import { HttpRequestsService } from '../../services/http-requests.service';
 
 @Component({
@@ -18,27 +17,23 @@ export class AdvancedFiltersComponent implements OnInit {
   imgFilterImg;
   blackListFilter;
   rangeConfig: any;
-
   filtersObj: any;
-
-
   @ViewChild('sliderRef') sliderRef;
   @ViewChild('btnClose') btnClose: ElementRef
   @Output() favoritesClick = new EventEmitter();
 
-
   constructor(private advancedFilterService: AdvancedFilterService,private httpReq: HttpRequestsService) {
     //init filters
-    this.filtersObj = new Filters(false, {}, ["3000", "7000"], "all", 0, 0, 0, false);
+    this.filtersObj = new Filters(false, {}, ["3000", "7000"], "all", 0, 0, 0, false,"");
     this.initFilters();
   }
 
   ngOnInit() {
     document.getElementById("advancedFiltersModalBT").click();
+    M.FormSelect.init($("select"));
     this.advancedFilterService.getAllFilters().subscribe(data => {
       this.advancedFilters = data;
     });
-    var instances = M.FormSelect.init($("select"));
   }
   initFilters(){
     this.favFilterImg = false;

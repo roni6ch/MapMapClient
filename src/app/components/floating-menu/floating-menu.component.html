@@ -1,7 +1,7 @@
    <!-------------------------->
                 <!-- Tap Target Structure -->
                 <!-------------------------->
-                <div class="tap-target" data-target="menu" *ngIf="!mobile">
+                <div class="tap-target" data-target="menu" *ngIf="!mobile" (click)="removeBlurClick()">
                     <div class="tap-target-content">
                         <h5>MapMap</h5>
                         <p>...תהנו</p>
@@ -11,7 +11,7 @@
                 <!-------------------------->
                 <!-- Floating Action Button -->
                 <!-------------------------->
-                <div class="fixed-action-btn" [hidden]="mobile" id="menu">
+                <div class="fixed-action-btn" [hidden]="mobile" id="menu" (click)="removeBlurClick()">
                     <a class="btn-floating btn-large blueColor">
                         <i class="large material-icons">menu</i>
                     </a>
@@ -20,7 +20,8 @@
 
                         <li>
                             <button
-                                class="btn-floating red"
+                                class="btn-floating red hide"
+                                [ngClass]="{ 'show': loggedIn }"
                                 routerLink="/new"  
                                 id="newApartmentWindowModalBT"
                                 data-toggle="modal"
@@ -35,7 +36,8 @@
 
                         <li>
                             <button
-                                class="btn-floating purple lighten-3"
+                                class="btn-floating purple lighten-3 hide"
+                                [ngClass]="{ 'show': loggedIn }"
                                 data-toggle="modal"
                                 (click)="getApartments()"
                                 routerLink="/edit-apartments"

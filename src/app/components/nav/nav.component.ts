@@ -1,4 +1,6 @@
 import { Component, OnInit , Output , EventEmitter , Input} from '@angular/core';
+import { SharedService } from '../../services/shared.service';
+import {HttpRequestsService} from '../../services/http-requests.service';
 
 @Component({
   selector: 'app-nav',
@@ -6,19 +8,27 @@ import { Component, OnInit , Output , EventEmitter , Input} from '@angular/core'
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-
-  @Output() signOutOutput = new EventEmitter();
-  @Input() profileIMG: string;
+  @Output() logout = new EventEmitter();
   @Input() search: boolean;
   @Input() mobile: boolean;
-
-  constructor() { }
+  profile = {}
+  
+  constructor( private shared : SharedService , private httpReq : HttpRequestsService) { 
+  }
 
   ngOnInit() {
+    this.httpReq.token.subscribe(data => {
+      if (data !== ""){
+          this.profile = this.shared.getUserProfile();
+      }
+      else{
+        this.profile = {};
+      }
+    });
 
   }
 
   signOut(){
-    this.signOutOutput.emit(true);
+    this.logout.emit();
   }
 }

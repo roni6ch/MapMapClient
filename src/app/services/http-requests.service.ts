@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable , of as observableOf } from 'rxjs';
+import { Observable , of as observableOf , BehaviorSubject} from 'rxjs';
 import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { IApartments } from '../shared/iapartments';
+import { IUserProfile } from '../shared/iuserprofile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpRequestsService {
-  token:string = "";
+  token = new BehaviorSubject<string>('');
+
   url = "https://mapmapserver.herokuapp.com";
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient) { 
+  }
 
    httpOptions = {
     headers: {
@@ -17,21 +20,22 @@ export class HttpRequestsService {
     }
   };
   
-  isAuthenticated() : boolean{
-    return this.token === "" ?  true :  false;
-  }
-
 
   //google login 
-  login(tokenId:string){
+  login(tokenId:string) : Observable<IUserProfile>{
     let url = `${this.url}/login/google`;
     let data = {
       "tokenId": tokenId
     }
     console.log("tokenId: ",data.tokenId);
-    return this.http.post(url,data,this.httpOptions);
+    return this.http.post<IUserProfile>(url,data,this.httpOptions);
   }
-
+    //set token when user connect's login
+    setToken(token : string){
+      this.httpOptions.headers['Authorization'] =   "JWT " + token;
+      this.token.next(token);
+    }
+  
   //todo - when user do new apartment - get the details
    //get User Info when connected
    getUserInfo(){
@@ -73,11 +77,6 @@ export class HttpRequestsService {
     return this.http.get(url,this.httpOptions);
   }
 
-   //set token when user connect's login
-  setToken(token:string){
-    this.token = token;
-    this.httpOptions.headers['Authorization'] =   "JWT " + token;
-  }
   //get apartments data
   getMarkers(data:any): Observable<IApartments[]>{
   //  let url = "../assets/result.json";
@@ -103,7 +102,7 @@ export class HttpRequestsService {
     let url = `${this.url}/uploadPicture`;
     let httpOptions = {
       headers: {
-        'Authorization':  "JWT " + this.token
+        'Authorization':  "JWT " + this.token.getValue()
       }
     };
     return this.http.post(url,files,httpOptions);

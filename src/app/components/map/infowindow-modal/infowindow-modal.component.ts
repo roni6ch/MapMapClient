@@ -5,6 +5,7 @@ import { ApartmentsService } from '../../../services/apartments.service';
 import { ActivatedRoute} from '@angular/router';
 declare var google: google;
 declare var FB: any;
+declare var $:any;
 
 @Component({
   selector: 'app-infowindow-modal',
@@ -16,11 +17,14 @@ export class InfowindowModalComponent implements OnInit {
   apartment: any;
   indicatorNumber = 0;
   mobile = false;
+  apartmentId : string;
+  loggedIn;
   constructor(private httpReq: HttpRequestsService , private apartmentsService: ApartmentsService , route:ActivatedRoute) { 
-    console.log("InfowindowModalComponent");
+
     //fix for triggering the second time modal
     route.params.forEach(params => {
       this.getApartment();
+      this.apartmentId = params.id;
     });
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
@@ -34,6 +38,15 @@ export class InfowindowModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById(this.apartmentId).click();
+    this.httpReq.token.subscribe(data => {
+      if (data !== ""){
+          this.loggedIn = true;
+      }
+      else{
+        this.loggedIn = false;
+      }
+    });
    }
   updateIndector(id: number) {
     console.log(id);

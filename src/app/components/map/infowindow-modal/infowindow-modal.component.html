@@ -111,8 +111,8 @@
         </div>
       </div>
 
-      <div class="modal-footer">
-        <div class="col s12">
+      <div class="modal-footer" >
+        <div class="col s12"  [ngClass]="{ 'disableGrey': !loggedIn }">
           <span class="heart" (click)="markerHeart($event)">
             <img [src]="apartment?.user?.favorite ? 'assets/images/icons/heart-full.png' : 'assets/images/icons/heart.png'" />
           </span>

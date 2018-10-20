@@ -32,7 +32,6 @@ export class MapComponent implements OnInit {
   lastInfoWindow: any;
   zoom = 14;
   map : any;
-  checkLoginStatus = null;
   markerPrivateIcon = './../../../assets/images/icons/markerPrivateIcon.png';
   markerBrokerIcon =  './../../../assets/images/icons/markerBrokerIcon.png';
    
@@ -40,17 +39,14 @@ export class MapComponent implements OnInit {
  origin = null;
  destination = null;
   constructor(private httpReq: HttpRequestsService, private filterPipe: FiltersPipe ,private apartmentsService: ApartmentsService) {
-    console.log("map");
+    
   }
   ngOnChanges(changes: any) {
     //send to pipe in order to filter the results on map
     if (changes.hasOwnProperty('filtersInput') !== undefined && changes.hasOwnProperty('filtersInput') !== false){
       this.filtersArr = changes.filtersInput.currentValue;
     }
-    if (changes.hasOwnProperty('loginStatus') !== undefined) {
-      this.checkLoginStatus = changes.hasOwnProperty('loginStatus');
-      this.boundsChange(this.latLng.lng, this.latLng.lat);
-    }
+ 
     if (changes.hasOwnProperty('latLng') !== undefined && changes.hasOwnProperty('latLng') !== false) {
       this.lat = changes.latLng.currentValue.lat;
       this.lng = changes.latLng.currentValue.lng;
@@ -73,9 +69,12 @@ export class MapComponent implements OnInit {
     //get result.json
     this.lat = this.latLng.lat;
     this.lng = this.latLng.lng;
+
+    this.httpReq.token.subscribe(data => {
+      this.boundsChange(this.latLng.lng, this.latLng.lat);
+    })
   }
   boundsChange(lng, lat) {
-    if (this.checkLoginStatus !== null){
     console.log("boundsChange - lng: " , lng , " ,lat: " , lat );
     let params = {
       "lat": lng,
@@ -90,7 +89,6 @@ export class MapComponent implements OnInit {
       this.apartmentsResults.emit(this.markers.length);
       this.lastInfoWindow = null;
     });
-  }
   }
 
   // close last info-window https://stackblitz.com/edit/agm-close-infowindow?file=app%2Fapp.component.html

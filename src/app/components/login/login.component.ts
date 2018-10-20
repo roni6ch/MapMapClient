@@ -11,38 +11,33 @@ import {
 import {HttpRequestsService} from '../../services/http-requests.service';
 import * as $ from 'jquery';
 import {GoogleSignInSuccess} from 'angular-google-signin';
+import { SharedService } from '../../services/shared.service';
 
 @Component({selector: 'app-login', templateUrl: './login.component.html', styleUrls: ['./login.component.scss']})
 export class LoginComponent implements OnInit {
 
-    @Output()logindata = new EventEmitter();
+    @Output() loggedIn = new EventEmitter();
     @ViewChild('btnClose')btnClose : ElementRef
-
-    constructor(private httpReq : HttpRequestsService, ngZone : NgZone) {
+    profile= {};
+    constructor(private httpReq : HttpRequestsService, ngZone : NgZone , private shared : SharedService) {
         window['onSignIn'] = () => ngZone.run(() => this.onSignIn());
 
     }
-    ngOnInit() {}
+    ngOnInit() {
+      
+    }
 
     //custom login
     onLoginSubmit(ngForm : NgForm) {
         var data = ngForm.form.value;
-        this
-            .httpReq
-            .customLogin(data)
-            .subscribe(token => {
-                console.log("customLogin succsess: ", token);
-                if (token) {
+        this.httpReq.customLogin(data).subscribe(tokenId => {
+                if (tokenId) {
+                    console.log("customLogin succsess: ", tokenId);
+                    this.shared.setUserProfile(data);
+                    //todo - check if i get token from server?
+                  //  this.httpReq.token.next(tokenId);
                     //close modal
-                    this
-                        .btnClose
-                        .nativeElement
-                        .click();
-                    console.log(token);
-                    //send token and change image
-                    this
-                        .logindata
-                        .emit(token);
+                    this.btnClose.nativeElement.click();
                 }
             });
     }
@@ -72,13 +67,15 @@ export class LoginComponent implements OnInit {
         if(gapi.auth2.getAuthInstance() !== undefined) {
             let token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
             this.httpReq.login(token).subscribe(data => {
-                    if (data) {
-                        this.logindata.emit(data);
-                    } else {
-                        this.logindata.emit(false);
+                    console.log('data' , data);
+                    if (data){
+                        this.shared.setUserProfile(data);
+                        this.httpReq.setToken(data['token']);
+                        //this.httpReq.httpOptions.headers['Authorization'] =   "JWT " + token; 
+                        console.log('google user signed in.');
+                        this.btnClose.nativeElement.click();
                     }
-                    this.btnClose.nativeElement.click();
-                });
+                })
         }
     }
 

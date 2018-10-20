@@ -8,8 +8,21 @@ export class InfowindowComponent implements OnInit {
 
     @Input()apartment : any;
     @Output()apartmentOBJ = new EventEmitter();
+    loggedIn;
 
     constructor(private httpReq : HttpRequestsService, private apartmentsService : ApartmentsService,   private router: Router) {}
+    
+    ngOnInit() {
+        this.httpReq.token.subscribe(data => {
+            if (data !== ""){
+                this.loggedIn = true;
+            }
+            else{
+              this.loggedIn = false;
+            }
+          });
+    }
+
     markerHeart(event) {
         console.log(this.apartment);
         this.apartment.user.favorite = !this.apartment.user.favorite;
@@ -46,7 +59,6 @@ export class InfowindowComponent implements OnInit {
 
         event.stopPropagation();
     }
-    ngOnInit() {}
 
     infoWindowClick(id) {
         this

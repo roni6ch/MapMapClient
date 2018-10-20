@@ -9,10 +9,9 @@ import { HttpRequestsService } from '../../services/http-requests.service';
 })
 export class MobileNavComponent implements OnInit {
 
-  @Output() signOutOutput = new EventEmitter();
   @Output() getApartmentsOutput = new EventEmitter();
   @Output() changeViewOutput = new EventEmitter();
-  @Input() profile: any;
+  profile = {};
   @Input() mobile: boolean;
   connect = true;
   
@@ -22,16 +21,13 @@ export class MobileNavComponent implements OnInit {
   constructor(private shared : SharedService,private httpReq:HttpRequestsService) { }
 
   ngOnInit() {
+    this.httpReq.token.subscribe(data => {
+      this.profile = this.shared.getUserProfile();
+    })
     this.view = this.shared.viewObj.view;
     this.nextView = this.shared.viewObj.nextView;
-
-    this.connect = this.httpReq.isAuthenticated();
-    console.log("connect: " , this.connect);
   }
   
-  signOut(){
-    this.signOutOutput.emit(true);
-  }
   getApartments(){
     this.getApartmentsOutput.emit(true);
   }

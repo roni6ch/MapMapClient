@@ -55,6 +55,10 @@ min-height: 50px;
 .chatButtons > input{
 width: 100px;
 float: left;}
-
+.disableGrey{
+    pointer-events: none;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
 @media only screen and (max-width: 600px) {
 }

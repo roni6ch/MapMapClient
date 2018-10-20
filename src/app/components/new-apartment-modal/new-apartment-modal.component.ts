@@ -57,19 +57,23 @@
         this.apartmentObj = this.apartmentService.getApartment();
         if (this.route.snapshot['_routerState'].url == '/new'){
           this.addImagesToFormOutPutArr = [];
-          if (this.httpReq.token !== "")
-          this.httpReq.getUserInfo().subscribe(data => {
-            if (data) {
-              document.getElementById("newApartmentWindowModalBT").click();
-              console.log(data);
-              this.apartment.publisher.name = data['name'];
-              this.apartment.publisher.email = data['email'];
-            }
+          this.httpReq.token.subscribe(data => {
+            if (data !== ""){
+            this.httpReq.getUserInfo().subscribe(data => {
+              if (data) {
+                document.getElementById("newApartmentWindowModalBT").click();
+                console.log(data);
+                this.apartment.publisher.name = data['name'];
+                this.apartment.publisher.email = data['email'];
+              }
             else{
               console.log("not connected!");
             }
           });
         }
+      })
+    }
+    
         else  if (this.route.snapshot['_routerState'].url == '/edit' && this.apartmentObj){
           console.log(this.apartmentObj);
           this.apartment = this.apartmentObj;

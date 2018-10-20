@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApartmentsService } from './services/apartments.service';
 import { HttpRequestsService } from './services/http-requests.service';
+import { SharedService } from './services/shared.service';
 import { MapsAPILoader } from '@agm/core';
 import { google } from "google-maps";
 import * as $ from 'jquery';
@@ -40,19 +41,55 @@ export class AppComponent implements OnInit {
   
 
   constructor(private mapsAPILoader: MapsAPILoader,   private router: Router, private apartmentService : ApartmentsService,
-    private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService) {
+    private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService , private shared : SharedService) {
       this.router.navigate(['']);
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
   }
 
   ngOnInit() {
+    //login listener
+    this.httpReq.token.subscribe(token => {
+      if (token !== ""){
+        this.showLoginBT(false);
+        M.Tooltip.init($(".tooltipped"));
+      }
+    })
     M.Sidenav.init($('.sidenav'));
     setTimeout(() => {
       this.searchRef.nativeElement.focus();
     }, 200);
   }
-  
+  logout(){
+    let that = this;
+    gapi.auth2.getAuthInstance().signOut().then(function () {
+      that.httpReq.token.next('');
+      that.showLoginBT(true);
+      console.log('google user signed out.');
+  });
+  }
+
+    //show login button or image
+    showLoginBT(bool: boolean) {
+      if (bool) {
+        //show login
+        this.connect = true;
+        $(".googleBT").show();
+        $(".signOut").hide();
+      }
+      else {
+        //show profile
+        console.log( this.profile);
+        this.connect = false;
+        $(".googleBT").hide();
+        $(".signOut").show();
+        $(".signOut").attr("src", this.profile['picture']);
+        $(".name").html(this.profile['given_name'] + this.profile['family_name']);
+        $(".email").html(this.profile['email']);
+      }
+      console.log("connect (true means - show login button): " , this.connect);
+    }
+
   //load Places Autocomplete
   initAutoComplete(search) { 
     this.searchRef = search;
@@ -80,68 +117,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-
-  //login
-  logindata(data) {
-    if (data !== false && gapi.auth2.getAuthInstance().isSignedIn.get()) {
-      //google connection
-      this.profile = data;
-      this.profile['picture']  = data['picture'];
-      this.showLoginBT(false);
-      //pass data.token to serives
-      this.httpReq.setToken(data['token']);
-      M.Tooltip.init($(".tooltipped"));
-      this.checkLoginStatus.emit(true);
-    } 
-    else if (data !== false){
-      //custom login
-      this.httpReq.setToken(data);
-      this.showLoginBT(false);
-      this.profile = []; 
-      this.profile['picture'] = "../assets/images/apartments/no_image.jpg";
-      M.Tooltip.init($(".tooltipped"));
-      this.checkLoginStatus.emit(true);
-    }
-    else {
-      this.showLoginBT(true);
-      this.checkLoginStatus.emit(false);
-    }
-    
-  }
-  //logout
-  signOut() {
-    if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-      //disconnect from google
-      var auth2 = gapi.auth2.getAuthInstance();
-      this.showLoginBT(true);
-      auth2.signOut().then(function () {
-        console.log('google user signed out.');
-      });
-    } else {
-      //disconnect from custom login
-      this.showLoginBT(true);
-    }
-  }
-
-    //show login button or image
-    showLoginBT(bool: boolean) {
-      if (bool) {
-        //show login
-        this.connect = true;
-        $(".googleBT").show();
-        $(".signOut").hide();
-      }
-      else {
-        //show profile
-        this.connect = false;
-        $(".googleBT").hide();
-        $(".signOut").show();
-        $(".signOut").attr("src", this.profile['picture']);
-        $(".name").html(this.profile['given_name'] + this.profile['family_name']);
-        $(".email").html(this.profile['email']);
-      }
-      console.log("connect (true means - show login button): " , this.connect);
-    }
 
   //get all marker's filters from modal
   filtersInputFunc(filtersInput) {

@@ -8,6 +8,7 @@ export class Filters {
         public floor : number,
         public toilets : number,
         public images : boolean,
+        public publisher : string
 
       ) {  }
 }
