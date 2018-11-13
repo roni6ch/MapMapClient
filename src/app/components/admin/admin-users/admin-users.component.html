@@ -1,10 +1,13 @@
 <div class="AdminCommentsUsers">
     <ul class="collection">
       <li class="collection-item avatar" *ngFor="let user of data">
-  
+          <div>
+              <i class="material-icons circle" >person</i>
+          </div>
         <div class="row">
           <div class="col-9">
-              <img src="images/yuna.jpg" alt="" class="circle">
+        
+
               <span class="title">Address: {{user.address}}</span>
               <p>mail: {{user.mail}} <br>
                 User: {{user.owner}}

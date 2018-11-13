@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,12 @@ export class SharedService {
     view : 'table',
     nextView : 'טבלה'
   }
+  coordinates = new BehaviorSubject({
+    lat: 32.056442,
+    lng: 34.772238
+  });
+  apartmentsResults = new BehaviorSubject(0);
+  search = new BehaviorSubject(false);
   constructor() { }
 
   getUserProfile(){

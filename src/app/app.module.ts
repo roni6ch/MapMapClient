@@ -15,7 +15,6 @@ import { AdvancedFilterService } from './services/advanced-filter.service';
 import { HttpRequestsService } from './services/http-requests.service';
 import { SharedService } from './services/shared.service';
 
-
 /*  COMPONENTS */
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
@@ -26,12 +25,6 @@ import { MobileNavComponent } from './components/mobile-nav/mobile-nav.component
 import { FloatingMenuComponent } from './components/floating-menu/floating-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { LoginComponent } from './components/login/login.component';
-import { AdminComponent } from './components/admin/admin.component';
-/*  ADMIN */
-import { AdminApartmentsComponent } from './components/admin/admin-apartments/admin-apartments.component';
-import { AdminCommentsComponent } from './components/admin/admin-comments/admin-comments.component';
-import { AdminUsersComponent } from './components/admin/admin-users/admin-users.component';
-
 
 /*  LIBRERIES */
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -41,14 +34,8 @@ import { FiltersPipe } from './pipes/filters.pipe';
 import { DatePipePipe } from './pipes/date-pipe.pipe';
 
 const routes: Routes = [
-  { path : 'admin', component : AdminComponent ,
-    children : [
-    {  path : '' , redirectTo : 'apartments'  , pathMatch: 'full' },
-    {  path : 'apartments' , component : AdminApartmentsComponent },
-    {  path : 'comments' , component : AdminCommentsComponent },
-    {  path : 'users' , component : AdminUsersComponent }
-    ]
-  },
+  { path : '', component : MapComponent },
+  { path : 'admin', loadChildren : './components/admin/admin.module#AdminModule' },
   { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule' },
   { path : 'edit', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule'  },
   { path : 'edit-apartments', loadChildren : './components/edit-modal/edit-apartments.module#EditApartmentsModule'  },
@@ -63,10 +50,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     MapComponent,
-    AdminComponent,
-    AdminApartmentsComponent,
-    AdminCommentsComponent,
-    AdminUsersComponent,
     InfowindowComponent,
     FiltersPipe,
     ContractsComponent,

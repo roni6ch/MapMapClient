@@ -10,9 +10,9 @@ import {HttpRequestsService} from '../../services/http-requests.service';
 export class NavComponent implements OnInit {
   @Output() logout = new EventEmitter();
   @Output() admin = new EventEmitter();
-  @Input() search: boolean;
   @Input() mobile: boolean;
   profile = {}
+  search = false;
   
   constructor( private shared : SharedService , private httpReq : HttpRequestsService) { 
   }
@@ -25,6 +25,10 @@ export class NavComponent implements OnInit {
       else{
         this.profile = {};
       }
+    });
+
+    this.shared.search.subscribe(data => {
+      this.search = data
     });
 
   }

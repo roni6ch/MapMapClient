@@ -1,23 +1,13 @@
 <!-- NAV -->
-<app-nav [search]="search" [mobile]="mobile" (logout)="logout()" (admin)="view = $event" (click)="removeBlur()"></app-nav>
+<app-nav [mobile]="mobile" (logout)="logout()" (admin)="view = $event" (click)="removeBlur()"></app-nav>
 <!-- Hamburger Menu -->
-<app-mobile-nav
-    [mobile]="mobile"
-    (getApartmentsOutput)="getApartments()" (click)="removeBlur()"
-    (changeViewOutput)="changeView($event)"></app-mobile-nav>
+<app-mobile-nav [mobile]="mobile" (getApartmentsOutput)="getApartments()" (click)="removeBlur()" (changeViewOutput)="changeView($event)"></app-mobile-nav>
 
 <!-- Floating circle Menu -->
-<app-floating-menu 
-    (removeBlur)="removeBlur()"
-    [mobile]="mobile"
-    (getApartmentsOutput)="getApartments()"></app-floating-menu>
+<app-floating-menu (removeBlur)="removeBlur()" [mobile]="mobile" (getApartmentsOutput)="getApartments()"></app-floating-menu>
 
 <!-- Search -->
-<app-search
-    [view]="view"
-    [ngClass]="{ 'hide': view == 'admin' }"
-    [apartmentsResults]="apartmentsResults"
-    (searchOutput)="search = $event"
+<app-search [view]="view" [ngClass]="{ 'hide': view == 'admin' }" [apartmentsResults]="apartmentsResults"
     (searchRefOutput)="initAutoComplete($event)"></app-search>
 
 <div class="blurSection" [ngClass]="{ 'blur': search }" (click)="removeBlur()">
@@ -25,30 +15,13 @@
     <!-------------------------->
     <!-- Login -->
     <!-------------------------->
-    <app-login ></app-login>
-    <button
-        #editButtonModal
-        data-toggle="modal"
-        data-target="#newApartmentWindowModal"
-        style="display:none"
-        id="editButtonModalBT"></button>
-
-        
-
+    <app-login></app-login>
+    <button #editButtonModal data-toggle="modal" data-target="#newApartmentWindowModal" style="display:none" id="editButtonModalBT"></button>
 
     <!-- Contracts Modal -->
     <app-contracts></app-contracts>
 
     <router-outlet></router-outlet>
 
-    <!-------------------------->
-    <!---------- Map ----------->
-    <!-------------------------->
-    <app-map
-        *ngIf="view == 'map'"
-        (apartmentsResults)="apartmentsResultsInput($event)"
-        [latLng]="latLng"
-        [filtersInput]="filtersInput"
-        (search)="search = $event"></app-map>
 
 </div>

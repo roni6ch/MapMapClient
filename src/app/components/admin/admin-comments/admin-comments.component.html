@@ -1,10 +1,12 @@
 <div class="AdminCommentsWrapper">
       <ul class="collection">
         <li class="collection-item avatar" *ngFor="let apartment of data">
-    
+            <div>
+                <i class="material-icons circle" >person</i>
+
+            </div>
           <div class="row">
             <div class="col-9">
-                <img src="images/yuna.jpg" alt="" class="circle">
                 <span class="title">Address: {{apartment.address}}</span>
                 <p>comment: {{apartment.comment}} <br>
                   Owner: {{apartment.owner}}

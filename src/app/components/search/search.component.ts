@@ -1,4 +1,5 @@
 import { Component, OnInit , Output , EventEmitter , Input , ViewChild ,ElementRef} from '@angular/core';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-search',
@@ -10,15 +11,17 @@ export class SearchComponent implements OnInit {
   @Output() searchOutput = new EventEmitter();
   @Output() searchRefOutput = new EventEmitter();
   @Input() view: any;
-  @Input() apartmentsResults: number;
   @ViewChild("searchRef")  searchRef: ElementRef;
-
-  search = true;
-  constructor() { 
+  apartmentsResults;
+  constructor( private shared : SharedService) { 
   }
 
   ngOnInit() {
     this.searchRefOutput.emit(this.searchRef);
+
+    this.shared.apartmentsResults.subscribe((data) => {
+      this.apartmentsResults = data;
+  });
 
   }
 

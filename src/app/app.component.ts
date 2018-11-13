@@ -33,11 +33,6 @@ export class AppComponent implements OnInit {
   editApartments = [];
   profile = {};
   view = 'map';
-  latLng = {
-    //initialize coordinates
-    lat: 32.056442,
-    lng: 34.772238
-  };
   
 
   constructor(private mapsAPILoader: MapsAPILoader,   private router: Router, private apartmentService : ApartmentsService,
@@ -102,12 +97,13 @@ export class AppComponent implements OnInit {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          this.latLng = {
+          let latLng = {
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng()
           }
           this.search = false;
-          console.log("coordinates: " , this.latLng);
+          this.shared.coordinates.next(latLng);
+          console.log("coordinates: " , latLng);
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
