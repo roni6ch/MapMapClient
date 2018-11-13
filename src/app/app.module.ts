@@ -2,8 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA, Component } from '@angular/core';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 import { RouterModule , Routes} from "@angular/router";
+
+/* AUTH */
+import { AuthGuard } from './auth/auth.guard';
+import { AuthService } from './auth/auth.service';
+import { TokenInterceptorService } from './auth/token-interceptor.service';
 
 /* MAP */
 import { AgmCoreModule } from '@agm/core';
@@ -33,10 +38,11 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FiltersPipe } from './pipes/filters.pipe';
 import { DatePipePipe } from './pipes/date-pipe.pipe';
 
+
+//todo - add   canActivate: [AuthGuard] to some component and check the AuthGuard and TokenInterceptorService 
 const routes: Routes = [
-  { path : '', component : MapComponent },
   { path : 'admin', loadChildren : './components/admin/admin.module#AdminModule' },
-  { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule' },
+  { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule'},
   { path : 'edit', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule'  },
   { path : 'edit-apartments', loadChildren : './components/edit-modal/edit-apartments.module#EditApartmentsModule'  },
   { path : 'filters', loadChildren : './components/advanced-filters/advanced-filters.module#AdvancedFiltersModule'  },
@@ -75,7 +81,14 @@ const routes: Routes = [
     MDBBootstrapModule.forRoot(),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService,FiltersPipe,SharedService],
+  providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService,FiltersPipe,SharedService,
+    AuthService, AuthGuard,
+    /*{
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }*/
+  ],
   bootstrap: [AppComponent],
   exports:[FiltersPipe]
 })

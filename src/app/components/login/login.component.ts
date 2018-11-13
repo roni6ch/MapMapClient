@@ -12,6 +12,7 @@ import {HttpRequestsService} from '../../services/http-requests.service';
 import * as $ from 'jquery';
 import {GoogleSignInSuccess} from 'angular-google-signin';
 import { SharedService } from '../../services/shared.service';
+import { AuthService } from './../../auth/auth.service';
 
 @Component({selector: 'app-login', templateUrl: './login.component.html', styleUrls: ['./login.component.scss']})
 export class LoginComponent implements OnInit {
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
     @Output() loggedIn = new EventEmitter();
     @ViewChild('btnClose')btnClose : ElementRef
     profile= {};
-    constructor(private httpReq : HttpRequestsService, ngZone : NgZone , private shared : SharedService) {
+    constructor(private httpReq : HttpRequestsService, ngZone : NgZone , private shared : SharedService, private authService : AuthService) {
         window['onSignIn'] = () => ngZone.run(() => this.onSignIn());
 
     }
@@ -27,11 +28,12 @@ export class LoginComponent implements OnInit {
       
     }
 
-    //custom login
+    //CUSTOM login
     onLoginSubmit(ngForm : NgForm) {
         var data = ngForm.form.value;
         this.httpReq.customLogin(data).subscribe(tokenId => {
                 if (tokenId) {
+                    this.authService.setToken(tokenId.toString());
                     console.log("customLogin succsess: ", tokenId);
                     this.shared.setUserProfile(data);
                     //todo - check if i get token from server?
@@ -51,6 +53,8 @@ export class LoginComponent implements OnInit {
             .register(data)
             .subscribe(data => {
                 console.log("register succsess: ", data);
+                this.authService.setToken(data.toString());
+                this.authService.logoutUser();
                 if (data) {
                     //close modal
                     this
@@ -69,6 +73,7 @@ export class LoginComponent implements OnInit {
             this.httpReq.login(token).subscribe(data => {
                     console.log('data' , data);
                     if (data){
+                        this.authService.setToken(token.toString());
                         this.shared.setUserProfile(data);
                         this.httpReq.setToken(data['token']);
                         //this.httpReq.httpOptions.headers['Authorization'] =   "JWT " + token; 

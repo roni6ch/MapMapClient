@@ -9,6 +9,7 @@ import { google } from "google-maps";
 import * as $ from 'jquery';
 import * as M from 'materialize-css';
 declare var google: google;
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +37,7 @@ export class AppComponent implements OnInit {
   
 
   constructor(private mapsAPILoader: MapsAPILoader,   private router: Router, private apartmentService : ApartmentsService,
-    private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService , private shared : SharedService) {
+    private ngZone: NgZone, private http: HttpClient, private httpReq: HttpRequestsService , private shared : SharedService , private authService : AuthService) {
       this.router.navigate(['']);
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
@@ -58,6 +59,7 @@ export class AppComponent implements OnInit {
   logout(){
     let that = this;
     gapi.auth2.getAuthInstance().signOut().then(function () {
+      that.authService.logoutUser();
       that.httpReq.token.next('');
       that.showLoginBT(true);
       console.log('google user signed out.');
@@ -131,7 +133,6 @@ export class AppComponent implements OnInit {
   getApartments(){
     if (!this.connect) //connected
     this.httpReq.getUserApartments().subscribe(result => {
-    console.log('edit user apartments ' , result);
       this.editApartments = result;
     });
   }
