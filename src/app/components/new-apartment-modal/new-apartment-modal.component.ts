@@ -152,7 +152,6 @@
     
       addImagesToForm(images) {
         console.log('addImagesToForm: ', images);
-        //todo: iterate over images
         this.apartment.details.images = images;
       }
 

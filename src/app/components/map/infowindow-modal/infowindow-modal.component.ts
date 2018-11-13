@@ -85,8 +85,6 @@ export class InfowindowModalComponent implements OnInit {
       image: apartment.details.images.length > 0 ? apartment.details.images[0] : "https://res.cloudinary.com/sharedmoments/image/upload/v1533336239/MapMap/UploadImages/logo.png"
     }
 
-
-    //TODO: CHANGE URL TO ID and check if it is work online
     FB.ui({
       method: 'share_open_graph',
       action_type: 'og.shares',
@@ -130,7 +128,6 @@ export class InfowindowModalComponent implements OnInit {
   }
 
   markerHeart(event) {
-//todo: fix to fav
     this.apartment.user.favorite = !this.apartment.user.favorite;
     var apartment_id = this.apartment._id;
     var favorite = this.apartment.user.favorite;
@@ -146,10 +143,7 @@ export class InfowindowModalComponent implements OnInit {
     event.stopPropagation();
   }
   markerBlackList(event){
-    //todo: fix to blacklist
     console.log(this.apartment);
-
-    this.apartment.active = !this.apartment.active;
     var apartment_id = this.apartment._id;
     var blacklist = true;
 

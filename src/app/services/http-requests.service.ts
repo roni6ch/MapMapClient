@@ -36,7 +36,6 @@ export class HttpRequestsService {
       this.token.next(token);
     }
   
-  //todo - when user do new apartment - get the details
    //get User Info when connected
    getUserInfo(){
     let url = `${this.url}/user`;
@@ -80,10 +79,7 @@ export class HttpRequestsService {
   //get apartments data
   getMarkers(data:any): Observable<IApartments[]>{
   //  let url = "../assets/result.json";
-  //todo - send here all 5 parameters
     let url = `${this.url}/apartments`;
-    //if (this.token !== "" && this.token !== undefined)
-     // return this.http.get<IApartments[]>(url, { params: data },this.httpOptions);
     return this.http.get<IApartments[]>(url, { params: data });
   }
 

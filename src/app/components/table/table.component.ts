@@ -63,7 +63,6 @@ export class TableComponent implements OnInit {
         lat: 32.056442,
         lng: 34.772238
       }
-      //TODO: get all apartments and open filter ?
       //todo - get apartments from request
       this.httpReq.getMarkers(boundsTemp).subscribe(result => {
        // let filteredData = this.filterPipe.transform(result, this.filtersArr);
