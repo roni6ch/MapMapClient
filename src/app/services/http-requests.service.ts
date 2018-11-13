@@ -134,6 +134,11 @@ export class HttpRequestsService {
     console.log(filtersJSON);
     //return this.http.post(url,filtersJSON,this.httpOptions);
   }
+
+  getAllNewAdminApartments(){
+    //let url = `${this.url}/getAllNewAdminApartments`;
+    //return this.http.post(url,this.httpOptions);
+  }
   
 }
 

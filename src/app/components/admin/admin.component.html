@@ -1,0 +1,33 @@
+<div class="AdminWrapper">
+  <div class="row">
+    <div class="col-3">
+      <ul id="slide-out1" class="sidenav">
+        <div class="user-view">
+          <div class="background">
+            <img src="./assets/images/hamburgerBG.jpg" />
+          </div>
+          <div class="navDetails">
+            <h5>שלום רוני / תומר</h5>
+            <h6>מערכת ניהול אדמין</h6>
+          </div>
+        </div>
+
+        <li><a class="waves-effect" routerLink="/admin/apartments" RouterLinkActive="activeLink"><i class="material-icons">cloud</i>מודעות חדשות</a></li>
+        <li>
+          <div class="divider"></div>
+        </li>
+        <li><a class="waves-effect" routerLink="/admin/comments" RouterLinkActive="activeLink"><i class="material-icons">cloud</i>תגובות חדשות</a></li>
+        <li>
+          <div class="divider"></div>
+        </li>
+        <li><a class="waves-effect" routerLink="/admin/users" RouterLinkActive="activeLink"><i class="material-icons">cloud</i>משתמשים חדשים</a></li>
+        <li>
+          <div class="divider"></div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-9">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

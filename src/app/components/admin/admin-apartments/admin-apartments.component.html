@@ -1,0 +1,27 @@
+<div class="AdminApartmentsWrapper">
+  <ul class="collection">
+    <li class="collection-item avatar" *ngFor="let apartment of data">
+
+      <div class="row">
+        <div class="col-9">
+          <img src="images/yuna.jpg" alt="" class="circle">
+          <span class="title">Address: {{apartment.address}}</span>
+          <p>Price: {{apartment.price}} <br>
+            Owner: {{apartment.owner}}
+          </p>
+        </div>
+
+        <div class="col-3">
+          <button class="btn blue lighten-3 waves-effect waves-light w-100" (click)="adminApproveApartment(apartment)">Approve
+            <i class="material-icons right">send</i>
+          </button>
+          <button class="btn red lighten-3 waves-effect waves-light w-100" (click)="adminDeleteApartment(apartment)">Delete
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+
+      </div>
+    </li>
+  </ul>
+
+</div>

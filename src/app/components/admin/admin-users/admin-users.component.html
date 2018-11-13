@@ -1,0 +1,27 @@
+<div class="AdminCommentsUsers">
+    <ul class="collection">
+      <li class="collection-item avatar" *ngFor="let user of data">
+  
+        <div class="row">
+          <div class="col-9">
+              <img src="images/yuna.jpg" alt="" class="circle">
+              <span class="title">Address: {{user.address}}</span>
+              <p>mail: {{user.mail}} <br>
+                User: {{user.owner}}
+              </p>
+          </div>
+  
+          <div class="col-3">
+              <button class="btn blue lighten-3 waves-effect waves-light w-100" (click)="adminApproveUser(user)">Approve
+                  <i class="material-icons right">send</i>
+                </button>
+              <button class="btn red lighten-3 waves-effect waves-light w-100" (click)="adminDeleteUser(user)">Delete
+                  <i class="material-icons right">send</i>
+                </button>
+          </div>
+  
+        </div>
+      </li>
+    </ul>
+  
+  </div>

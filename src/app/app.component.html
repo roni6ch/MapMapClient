@@ -1,5 +1,5 @@
 <!-- NAV -->
-<app-nav [search]="search" [mobile]="mobile" (logout)="logout()" (click)="removeBlur()"></app-nav>
+<app-nav [search]="search" [mobile]="mobile" (logout)="logout()" (admin)="view = $event" (click)="removeBlur()"></app-nav>
 <!-- Hamburger Menu -->
 <app-mobile-nav
     [mobile]="mobile"
@@ -15,6 +15,7 @@
 <!-- Search -->
 <app-search
     [view]="view"
+    [ngClass]="{ 'hide': view == 'admin' }"
     [apartmentsResults]="apartmentsResults"
     (searchOutput)="search = $event"
     (searchRefOutput)="initAutoComplete($event)"></app-search>
@@ -31,6 +32,9 @@
         data-target="#newApartmentWindowModal"
         style="display:none"
         id="editButtonModalBT"></button>
+
+        
+
 
     <!-- Contracts Modal -->
     <app-contracts></app-contracts>

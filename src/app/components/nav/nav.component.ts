@@ -9,6 +9,7 @@ import {HttpRequestsService} from '../../services/http-requests.service';
 })
 export class NavComponent implements OnInit {
   @Output() logout = new EventEmitter();
+  @Output() admin = new EventEmitter();
   @Input() search: boolean;
   @Input() mobile: boolean;
   profile = {}
@@ -31,4 +32,9 @@ export class NavComponent implements OnInit {
   signOut(){
     this.logout.emit();
   }
+
+  adminPanel(){
+    this.admin.emit('admin');
+  }
+
 }
