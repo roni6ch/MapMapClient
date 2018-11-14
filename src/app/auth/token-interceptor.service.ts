@@ -7,7 +7,6 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private injector: Injector){}
   intercept(req, next) {
     let authService = this.injector.get(AuthService);
-    console.log("authService.getToken()",authService.getToken());
     let tokenizedReq = req.clone(
       {
         headers: req.headers.set('Authorization', 'JWT ' + authService.getToken())

@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import * as M from 'materialize-css';
+import { SharedService } from './../../services/shared.service';
 
 @Component({
   selector: 'app-admin',
@@ -7,12 +8,13 @@ import * as M from 'materialize-css';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  constructor() { 
+  constructor(private shared : SharedService ) { 
   }
 
   ngOnInit() {
 
   }
+
 
 
 }

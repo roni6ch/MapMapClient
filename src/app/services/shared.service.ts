@@ -39,6 +39,9 @@ export class SharedService {
       this.viewObj.view = 'cards';
         this.viewObj.nextView = 'כרטיסיות';
         break;
+      default: 
+        this.viewObj.view = 'table';
+        this.viewObj.nextView = 'טבלה';
     }
    
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit , Output , EventEmitter , Input , ViewChild ,ElementRef} from '@angular/core';
+import { Component, OnInit , Output , EventEmitter , Input , ViewChild ,ElementRef , NgZone} from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 
 @Component({
@@ -13,14 +13,17 @@ export class SearchComponent implements OnInit {
   @Input() view: any;
   @ViewChild("searchRef")  searchRef: ElementRef;
   apartmentsResults;
-  constructor( private shared : SharedService) { 
+  constructor( private shared : SharedService , private zone:NgZone) { 
   }
 
   ngOnInit() {
     this.searchRefOutput.emit(this.searchRef);
-
+    let that = this;
     this.shared.apartmentsResults.subscribe((data) => {
-      this.apartmentsResults = data;
+     //fix for render issue
+      this.zone.run(() => { 
+        that.apartmentsResults = data;
+      });
   });
 
   }
