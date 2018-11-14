@@ -39,16 +39,15 @@ import { FiltersPipe } from './pipes/filters.pipe';
 import { DatePipePipe } from './pipes/date-pipe.pipe';
 
 
-//todo - add   canActivate: [AuthGuard] to some component and check the AuthGuard and TokenInterceptorService 
 const routes: Routes = [
   { path : 'admin', loadChildren : './components/admin/admin.module#AdminModule' },
-  { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule'},
-  { path : 'edit', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule'  },
-  { path : 'edit-apartments', loadChildren : './components/edit-modal/edit-apartments.module#EditApartmentsModule'  },
-  { path : 'filters', loadChildren : './components/advanced-filters/advanced-filters.module#AdvancedFiltersModule'  },
-  { path : 'table', loadChildren : './components/table/table.module#TableModule'  },
-  { path : 'cards', loadChildren : './components/cards/cards.module#CardsModule'  },
-  { path : 'infowindow/:id', loadChildren : './components/map/infowindow-modal/info-window-modal.module#InfoWindowModalModule'  },
+  { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule' , canActivate: [AuthGuard]},
+  { path : 'edit', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule' , canActivate: [AuthGuard] },
+  { path : 'edit-apartments', loadChildren : './components/edit-modal/edit-apartments.module#EditApartmentsModule' , canActivate: [AuthGuard] },
+  { path : 'filters', loadChildren : './components/advanced-filters/advanced-filters.module#AdvancedFiltersModule' , canActivate: [AuthGuard] },
+  { path : 'table', loadChildren : './components/table/table.module#TableModule' , canActivate: [AuthGuard] },
+  { path : 'cards', loadChildren : './components/cards/cards.module#CardsModule' , canActivate: [AuthGuard] },
+  { path : 'infowindow/:id', loadChildren : './components/map/infowindow-modal/info-window-modal.module#InfoWindowModalModule' , canActivate: [AuthGuard] },
   { path : '**', redirectTo : ''  },
 ];
 
@@ -83,11 +82,11 @@ const routes: Routes = [
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [ApartmentsService, AdvancedFilterService, HttpRequestsService,FiltersPipe,SharedService,
     AuthService, AuthGuard,
-    /*{
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }*/
+    }
   ],
   bootstrap: [AppComponent],
   exports:[FiltersPipe]

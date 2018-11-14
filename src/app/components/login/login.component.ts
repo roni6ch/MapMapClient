@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         var data = ngForm.form.value;
         this.httpReq.customLogin(data).subscribe(tokenId => {
                 if (tokenId) {
-                    this.authService.setToken(tokenId.toString());
+                    this.authService.setToken(tokenId['token']);
                     console.log("customLogin succsess: ", tokenId);
                     this.shared.setUserProfile(data);
                     //todo - check if i get token from server?
@@ -53,8 +53,7 @@ export class LoginComponent implements OnInit {
             .register(data)
             .subscribe(data => {
                 console.log("register succsess: ", data);
-                this.authService.setToken(data.toString());
-                this.authService.logoutUser();
+                this.authService.setToken(data['token']);
                 if (data) {
                     //close modal
                     this
@@ -73,9 +72,8 @@ export class LoginComponent implements OnInit {
             this.httpReq.login(token).subscribe(data => {
                     console.log('data' , data);
                     if (data){
-                        this.authService.setToken(token.toString());
                         this.shared.setUserProfile(data);
-                        this.httpReq.setToken(data['token']);
+                        this.authService.setToken(data['token']);
                         //this.httpReq.httpOptions.headers['Authorization'] =   "JWT " + token; 
                         console.log('google user signed in.');
                         this.btnClose.nativeElement.click();

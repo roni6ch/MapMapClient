@@ -30,11 +30,7 @@ export class HttpRequestsService {
     console.log("tokenId: ",data.tokenId);
     return this.http.post<IUserProfile>(url,data,this.httpOptions);
   }
-    //set token when user connect's login
-    setToken(token : string){
-      this.httpOptions.headers['Authorization'] =   "JWT " + token;
-      this.token.next(token);
-    }
+    
   
    //get User Info when connected
    getUserInfo(){
