@@ -1,29 +1,24 @@
 <!-- NAV -->
-<app-nav [mobile]="mobile" (logout)="logout()" (view)="view = $event" (click)="removeBlur()"></app-nav>
-<!-- Hamburger Menu -->
-<app-mobile-nav [mobile]="mobile" (getApartmentsOutput)="getApartments()" (click)="removeBlur()" (changeViewOutput)="changeView($event)"></app-mobile-nav>
+<app-nav [mobile]="mobile" (logout)="logout()" (view)="view = $event" (click)="removeBlur()" (getApartmentsOutput)="getApartments()"></app-nav>
 
 <!-- Floating circle Menu -->
-<app-floating-menu (removeBlur)="removeBlur()" [mobile]="mobile" (getApartmentsOutput)="getApartments()" (changeViewOutput)="changeView($event)"></app-floating-menu>
+<app-floating-menu  [mobile]="mobile" (removeBlur)="removeBlur()" (getApartmentsOutput)="getApartments()" (changeViewOutput)="changeView($event)"></app-floating-menu>
 
 <!-- Search -->
-<app-search [view]="view" [ngClass]="{ 'hide': view == 'admin' }" [apartmentsResults]="apartmentsResults"
-    (searchRefOutput)="initAutoComplete($event)"></app-search>
+<app-search [view]="view" [ngClass]="{ 'hide': view == 'admin' }" (click)="blur = true" (searchRefOutput)="initAutoComplete($event)"></app-search>
 
-<div class="blurSection" [ngClass]="{ 'blur': search }" (click)="removeBlur()">
+<div class="blurSection" [ngClass]="{ 'blur': blur }" (click)="removeBlur()">
 
-    <!-------------------------->
     <!-- Login -->
-    <!-------------------------->
     <app-login></app-login>
     <button #editButtonModal data-toggle="modal" data-target="#newApartmentWindowModal" style="display:none" id="editButtonModalBT"></button>
 
     <!-- Contracts Modal -->
     <app-contracts></app-contracts>
-
-    <app-map  [ngClass]="{ 'hide': view !== 'map' }"></app-map>
+    
+    <!-- MAP -->
+    <app-map [ngClass]="{ 'hide': view !== 'map' }"></app-map>
 
     <router-outlet></router-outlet>
-
 
 </div>

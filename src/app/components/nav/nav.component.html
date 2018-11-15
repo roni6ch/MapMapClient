@@ -1,9 +1,7 @@
 <!-- NAV -->
-<nav 
-    class="navbar navbar-expand-lg navbar-light"
-    [ngClass]="{ 'searchClicked': search }">
+<nav class="navbar navbar-expand-lg navbar-light" [ngClass]="{ 'searchClicked': search }">
 
-    <a href="#" data-target="slide-out" class="sidenav-trigger" *ngIf="mobile">
+    <a href="#" data-target="mobileMenu" class="sidenav-trigger" *ngIf="mobile">
         <i class="material-icons">menu</i>
     </a>
 
@@ -12,22 +10,105 @@
         <div class="logo left">
             <a href="#">
                 <img src="assets/images/logo.png" class="logoImg">
-                    MapMap</a>
-            </div>
+                MapMap</a>
+        </div>
 
-            <div class="userProfile webProfile" *ngIf="!mobile">
-                <img
-                    data-position="left"
-                    data-tooltip="לחץ ליציאה"
-                    [src]="profile['picture'] ? profile['picture'] : '../assets/images/apartments/no_image.jpg'"
-                    class='signOut tooltipped'
-                    (click)="signOut()">
+        <div class="userProfile webProfile" *ngIf="!mobile">
+            <img data-position="left" data-tooltip="לחץ ליציאה" [src]="profile['picture'] ? profile['picture'] : '../assets/images/apartments/no_image.jpg'"
+                class='signOut tooltipped' (click)="signOut()">
 
-                    <button class="btn btn-info googleBT" id="loginBT" data-toggle="modal" data-target="#login" >כניסה</button>
+            <button class="btn btn-info googleBT" id="loginBT" data-toggle="modal" data-target="#login">כניסה</button>
+
+        </div>
+
+        <a routerLink='/admin' class="btn btn-info" (click)="adminPanel()">Admin</a>
+
+    </div>
+</nav>
+
+
+
+
+
+
+<!-- Hamburger Menu -->
+<ul id="mobileMenu" class="sidenav" [hidden]="!mobile">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="./assets/images/hamburgerBG.jpg"></div>
+            <div class="userProfile">
+
+                <!-- GOOGLE BUTTON -->
+                <div class="googleBT" *ngIf="mobile">
+                    <div class="btn red g-signin2" data-onsuccess="onSignIn">Google</div>
 
                 </div>
 
-<a routerLink='/admin' class="btn btn-info" (click)="adminPanel()">Admin</a>
-
+                <img [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut' [hidden]="connect"
+                    (click)="signOut()">
             </div>
-        </nav>
+            <div class="navDetails">
+                <p>
+                    <span class="black-text name" [hidden]="connect">{{profile['given_name'] }}
+                        {{profile['family_name']}}</span>
+                </p>
+                <p>
+                    <span class="black-text email" [hidden]="connect">{{profile['email']}}</span>
+                </p>
+            </div>
+        </div>
+    </li>
+    <li class="navOptions">
+        <button
+        [hidden]="connect" href="#" 
+        routerLink="/new"  
+        id="newApartmentWindowModalBT"
+        data-toggle="modal"
+        data-target="#newApartmentWindowModal"
+        #apartmentModal
+        (click)="apartmentObj=null">
+            <i class="material-icons">publish</i>פירסום מודעה חדשה</button>
+    </li>
+
+    <li class="navOptions">
+        <button   href="#" [routerLink]="['/edit-apartments']" id="editModalBT" data-toggle="modal"  data-target="#editModal" (click)="getApartments()"
+            [hidden]="connect">
+            <i class="material-icons">person</i>פאנל עריכה</button>
+    </li>
+
+
+
+
+    <li class="navOptions">
+        <button   data-toggle="modal" 
+        id="advancedFiltersModalBT"
+        routerLink="/filters"  
+        data-target="#advancedFiltersModal">
+            <i class="material-icons">
+                    filter_list
+            </i>
+            פילטרים</button>
+          
+    </li>
+
+    <li class="navOptions">
+        <button href="#" (click)="changeView()" routerLink="/{{view}}">
+            <i class="material-icons">pageview</i>
+            תצוגת
+            {{nextView}}</button>
+    </li>
+
+    <li class="navOptions">
+        <button href="#" data-toggle="modal" data-target="#contracts">
+            <i class="material-icons">attach_file</i>
+            חוזים</button>
+    </li>
+
+    <li class="navOptions">
+        <button href="#" [hidden]="connect" (click)="signOut()">
+            <i class="material-icons">exit_to_app</i>
+            יציאה</button>
+    </li>
+
+</ul>

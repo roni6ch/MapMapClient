@@ -26,7 +26,6 @@ import { MapComponent } from './components/map/map.component';
 import { InfowindowComponent } from './components/map/infowindow/infowindow.component';
 import { ContractsComponent } from './components/contracts/contracts.component';
 import { NavComponent } from './components/nav/nav.component';
-import { MobileNavComponent } from './components/mobile-nav/mobile-nav.component';
 import { FloatingMenuComponent } from './components/floating-menu/floating-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { LoginComponent } from './components/login/login.component';
@@ -44,10 +43,10 @@ const routes: Routes = [
   { path : 'new', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule' , canActivate: [AuthGuard]},
   { path : 'edit', loadChildren : './components/new-apartment-modal/new-apartment.module#NewApartmentModule' , canActivate: [AuthGuard] },
   { path : 'edit-apartments', loadChildren : './components/edit-modal/edit-apartments.module#EditApartmentsModule' , canActivate: [AuthGuard] },
-  { path : 'filters', loadChildren : './components/advanced-filters/advanced-filters.module#AdvancedFiltersModule' , canActivate: [AuthGuard] },
+  { path : 'filters', loadChildren : './components/advanced-filters/advanced-filters.module#AdvancedFiltersModule' },
   { path : 'table', loadChildren : './components/table/table.module#TableModule' , canActivate: [AuthGuard] },
   { path : 'cards', loadChildren : './components/cards/cards.module#CardsModule' , canActivate: [AuthGuard] },
-  { path : 'infowindow/:id', loadChildren : './components/map/infowindow-modal/info-window-modal.module#InfoWindowModalModule' , canActivate: [AuthGuard] },
+  { path : 'infowindow/:id', loadChildren : './components/map/infowindow-modal/info-window-modal.module#InfoWindowModalModule' },
   { path : '**', redirectTo : ''  },
 ];
 
@@ -60,7 +59,6 @@ const routes: Routes = [
     ContractsComponent,
     DatePipePipe,
     NavComponent,
-    MobileNavComponent,
     FloatingMenuComponent,
     SearchComponent,
     LoginComponent

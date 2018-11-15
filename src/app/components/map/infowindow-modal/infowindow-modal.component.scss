@@ -10,9 +10,15 @@
 .modal-header,.modal-body,.modal-footer, .modal .modal-content{padding:0px;}
 .carousel-control-next, .carousel-control-prev{background:#00000094;width:50px;}
  .modal .carousel .carousel-item{width:100%;height:100%;visibility:visible;}
+ ::ng-deep .carousel-inner{ height: 100%; }
+.carouselWrapper{
+    background: #0000009c;
+}
+::ng-deep .carousel .carousel-item {width:100% !important;height:100% !important;visibility:visible !important;}
+
  .modal .carousel-inner{visibility:visible;height:inherit;}
  .modal-footer{display:block;background-color:transparent;    padding: 4px 6px;text-align:left;    height: 56px;}
- #panorama{width:100% !important;height:400px;float:left;position:absolute;}
+ #panorama{width:100% !important;height:400px;float:left;}
  .widget-scene-canvas{width:100%!important;height:100%!important;}
  .modal-footer span{margin:3%;cursor:pointer; display: inline-block;}
  .modal-footer .btn-primary{margin-right:2%;}

@@ -36,8 +36,6 @@ export class LoginComponent implements OnInit {
                     this.authService.setToken(tokenId['token']);
                     console.log("customLogin succsess: ", tokenId);
                     this.shared.setUserProfile(data);
-                    //todo - check if i get token from server?
-                  //  this.httpReq.token.next(tokenId);
                     //close modal
                     this.btnClose.nativeElement.click();
                 }

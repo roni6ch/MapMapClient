@@ -10,9 +10,11 @@ import {HttpRequestsService} from '../../services/http-requests.service';
 export class NavComponent implements OnInit {
   @Output() logout = new EventEmitter();
   @Output() view = new EventEmitter();
+  @Output() getApartmentsOutput = new EventEmitter();
   @Input() mobile: boolean;
   profile = {}
   search = false;
+  
   
   constructor( private shared : SharedService , private httpReq : HttpRequestsService) { 
   }
@@ -40,6 +42,10 @@ export class NavComponent implements OnInit {
   adminPanel(){
     this.view.emit('admin');
     console.log('admin');
+  }
+
+  getApartments(){
+    this.getApartmentsOutput.emit(true);
   }
 
 }

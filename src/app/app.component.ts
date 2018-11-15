@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   
 
   mobile = false;
-  search = true;
+  blur = true;
   cardsView = false;
   scriptLoaded = false;
   showMap = true;
@@ -41,9 +41,12 @@ export class AppComponent implements OnInit {
       this.router.navigate(['']);
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
+      console.log("mobile");
   }
 
   ngOnInit() {
+    
+
     //login listener
     this.httpReq.token.subscribe(token => {
       if (token !== ""){
@@ -103,7 +106,7 @@ export class AppComponent implements OnInit {
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng()
           }
-          this.search = false;
+          this.blur = false;
           this.shared.coordinates.next(latLng);
           console.log("coordinates: " , latLng);
           //verify result
@@ -133,10 +136,11 @@ export class AppComponent implements OnInit {
   getApartments(){
     if (!this.connect) //connected
     this.httpReq.getUserApartments().subscribe(result => {
+      console.log('a',result);
       this.editApartments = result;
     });
   }
   removeBlur(){
-    this.search = false;
+    this.blur = false;
   }
 }

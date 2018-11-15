@@ -91,7 +91,6 @@ nav .btn:hover {
     float: right;
 }
 
-
 @media only screen and (max-width: 600px) {
     nav {
         height: 6vh;
@@ -101,5 +100,37 @@ nav .btn:hover {
     }
     nav .sidenav-trigger {
         margin: 0;
+    }
+
+.sidenav li > a {
+    direction: rtl;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+.sidenav-trigger {
+    display: block;
+    height: auto;
+}
+.sidenav {
+    width: 250px;
+}
+
+.user-view {
+    height: 170px;
+}
+
+.navOptions button{width: 100%; background: #fff;
+    line-height: inherit;
+    font-family: 'Gloria Hallelujah','Assistant',Arial, sans-serif;
+    direction: rtl;
+    text-align: center;
+    border-bottom: 1px solid #ccc;}
+    .navOptions button i{
+    float: left;
+    margin: 10px 32px;
+    color: rgba(0,0,0,0.54);
+    }
+    button:focus{
+        background-color: #42A5F5 !important;
     }
 }
