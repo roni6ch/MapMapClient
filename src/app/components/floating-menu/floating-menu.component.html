@@ -27,7 +27,6 @@
                                 data-toggle="modal"
                                 data-target="#newApartmentWindowModal"
                                 #apartmentModal
-                                (click)="apartmentObj=null"
                                 >
                                 <span class="floatingText red">הוספת דירה חדשה</span>
                                 <i class="material-icons">publish</i>
@@ -60,9 +59,9 @@
                         </li>
                         <li>
                             <button class="btn-floating green" (click)="changeView()"
-                            routerLink="/{{view}}" >
+                            routerLink="/{{viewObj.view}}" >
                                 <span class="floatingText green">תצוגת
-                                    {{nextView}}</span>
+                                    {{viewObj.nextView}}</span>
                                 <i class="material-icons">pageview</i>
                             </button>
                         </li>

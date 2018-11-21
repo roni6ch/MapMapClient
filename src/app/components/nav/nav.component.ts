@@ -12,14 +12,30 @@ export class NavComponent implements OnInit {
   @Output() view = new EventEmitter();
   @Output() getApartmentsOutput = new EventEmitter();
   @Input() mobile: boolean;
-  profile = {}
+  loggedIn: boolean;
+  viewObj = {
+    view : '',
+    nextView : ''
+    };
+  profile = {};
   search = false;
   
   
-  constructor( private shared : SharedService , private httpReq : HttpRequestsService) { 
+  constructor( private shared : SharedService , private httpReq : HttpRequestsService) {  
+    this.shared.viewObj.subscribe(data => this.viewObj = data);
   }
 
   ngOnInit() {
+    this.httpReq.token.subscribe(data => {
+      if (data !== ""){
+          this.loggedIn = true;
+      }
+      else{
+        this.loggedIn = false;
+      }
+    });
+    
+   
     this.httpReq.token.subscribe(data => {
       if (data !== ""){
           this.profile = this.shared.getUserProfile();
@@ -40,12 +56,16 @@ export class NavComponent implements OnInit {
   }
 
   adminPanel(){
-    this.view.emit('admin');
-    console.log('admin');
+    this.viewObj = {view : 'admin' , nextView : 'אדמין'};
+    this.changeView();
   }
 
   getApartments(){
     this.getApartmentsOutput.emit(true);
+  }
+
+  changeView() {
+    this.shared.setViewObj(this.viewObj.view);
   }
 
 }

@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   filtersInput = [];
   editApartments = [];
   profile = {};
-  view = 'map';
+  view;
   
 
   constructor(private mapsAPILoader: MapsAPILoader,   private router: Router, private apartmentService : ApartmentsService,
@@ -41,12 +41,12 @@ export class AppComponent implements OnInit {
       this.router.navigate(['']);
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent))
       this.mobile = true;
-      console.log("mobile");
+      console.log("im on mobile view");
   }
 
   ngOnInit() {
     
-
+    this.shared.viewObj.subscribe(data => {this.view = data.view; });
     //login listener
     this.httpReq.token.subscribe(token => {
       if (token !== ""){
@@ -128,10 +128,6 @@ export class AppComponent implements OnInit {
     this.apartmentsResults = apartmentsResultsInput;
   }
 
-
-  changeView(view){
-    this.view = view;
-  }
   //edit user apartments
   getApartments(){
     if (!this.connect) //connected

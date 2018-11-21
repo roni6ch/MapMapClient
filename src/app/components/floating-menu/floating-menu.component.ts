@@ -15,20 +15,20 @@ export class FloatingMenuComponent implements OnInit {
   @ViewChild('editApartments') editApartments: ElementRef;
   
   @Output() getApartmentsOutput = new EventEmitter();
-  @Output() changeViewOutput = new EventEmitter();
   @Output() apartmentModalOutput = new EventEmitter();
   @Output() removeBlur = new EventEmitter();
   
   @Input() mobile: boolean;
   
-  view = '';
-  nextView = '';
+  viewObj = {
+    view : '',
+    nextView : ''
+  };
   loggedIn = false;
   constructor(private shared : SharedService , private httpReq : HttpRequestsService) { }
 
   ngOnInit() {
-    this.view = this.shared.viewObj.view;
-    this.nextView = this.shared.viewObj.nextView;
+    this.shared.viewObj.subscribe(data => this.viewObj = data);
     this.apartmentModalOutput.emit(this.apartmentModal);
     M.FloatingActionButton.init($('.fixed-action-btn'));
 
@@ -47,10 +47,7 @@ export class FloatingMenuComponent implements OnInit {
   }
     //change view
     changeView() {
-      this.shared.setViewObj(this.view,this.nextView);
-      this.view = this.shared.viewObj.view;
-      this.nextView = this.shared.viewObj.nextView;
-      this.changeViewOutput.emit(this.view);
+      this.shared.setViewObj(this.viewObj.view);
     }
     removeBlurClick(){
       $(".tap-target-wrapper").removeClass("open");

@@ -29,8 +29,8 @@ export class MapComponent implements OnInit {
   lastInfoWindow: any;
   zoom = 14;
   map: any;
-  markerPrivateIcon = './../../../assets/images/icons/markerPrivateIcon.png';
-  markerBrokerIcon = './../../../assets/images/icons/markerBrokerIcon.png';
+  markerPrivateIcon = './assets/images/icons/markerPrivateIcon.png';
+  markerBrokerIcon = './assets/images/icons/markerBrokerIcon.png';
 
 
   origin = null;

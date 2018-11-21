@@ -1,11 +1,11 @@
 <!-- NAV -->
-<app-nav [mobile]="mobile" (logout)="logout()" (view)="view = $event" (click)="removeBlur()" (getApartmentsOutput)="getApartments()"></app-nav>
+<app-nav [mobile]="mobile" (logout)="logout()" (click)="removeBlur()" (getApartmentsOutput)="getApartments()"></app-nav>
 
 <!-- Floating circle Menu -->
-<app-floating-menu  [mobile]="mobile" (removeBlur)="removeBlur()" (getApartmentsOutput)="getApartments()" (changeViewOutput)="changeView($event)"></app-floating-menu>
+<app-floating-menu  [mobile]="mobile" (removeBlur)="removeBlur()" (getApartmentsOutput)="getApartments()"></app-floating-menu>
 
 <!-- Search -->
-<app-search [view]="view" [ngClass]="{ 'hide': view == 'admin' }" (click)="blur = true" (searchRefOutput)="initAutoComplete($event)"></app-search>
+<app-search [ngClass]="{ 'hide': view == 'admin' }" (click)="blur = true" (searchRefOutput)="initAutoComplete($event)"></app-search>
 
 <div class="blurSection" [ngClass]="{ 'blur': blur }" (click)="removeBlur()">
 
@@ -17,7 +17,7 @@
     <app-contracts></app-contracts>
     
     <!-- MAP -->
-    <app-map [ngClass]="{ 'hide': view !== 'map' }"></app-map>
+    <app-map [ngClass]="{ 'hide': view !== 'table' }"></app-map>
 
     <router-outlet></router-outlet>
 

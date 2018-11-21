@@ -7,10 +7,10 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedService {
 
   profile = {};
-  viewObj = {
-    view : 'table',
-    nextView : 'טבלה'
-  }
+  viewObj = new BehaviorSubject({
+    view: 'table',
+    nextView: 'טבלה'
+  });
   coordinates = new BehaviorSubject({
     lat: 32.056442,
     lng: 34.772238
@@ -19,30 +19,47 @@ export class SharedService {
   search = new BehaviorSubject(false);
   constructor() { }
 
-  getUserProfile(){
+  getUserProfile() {
     return this.profile;
   }
-  setUserProfile(profile){
+  setUserProfile(profile) {
     this.profile = profile;
   }
-  setViewObj(view,nextView){
+  getViewObj() {
+    return this.viewObj.getValue();
+  }
+  setViewObj(view) {
     switch (view) {
       case 'map':
-        this.viewObj.view = 'table';
-        this.viewObj.nextView = 'טבלה';
+        this.viewObj.next({
+          view: 'table',
+          nextView: 'טבלה'
+        });
         break;
       case 'cards':
-      this.viewObj.view = 'map';
-        this.viewObj.nextView = 'מפה';
+        this.viewObj.next({
+          view: 'map',
+          nextView: 'מפה'
+        });
         break;
       case 'table':
-      this.viewObj.view = 'cards';
-        this.viewObj.nextView = 'כרטיסיות';
+        this.viewObj.next({
+          view: 'cards',
+          nextView: 'כרטיסיות'
+        });
         break;
-      default: 
-        this.viewObj.view = 'table';
-        this.viewObj.nextView = 'טבלה';
+      case 'admin':
+        this.viewObj.next({
+          view: 'map',
+          nextView: 'מפה'
+        });
+        break;
+      default:
+        this.viewObj.next({
+          view: 'table',
+          nextView: 'טבלה'
+        });
     }
-   
+
   }
 }

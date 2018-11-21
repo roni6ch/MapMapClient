@@ -10,13 +10,18 @@ export class SearchComponent implements OnInit {
 
   @Output() searchOutput = new EventEmitter();
   @Output() searchRefOutput = new EventEmitter();
-  @Input() view: any;
+  search : boolean;
+  viewObj = {
+    view : '',nextView :''
+  };
   @ViewChild("searchRef")  searchRef: ElementRef;
   apartmentsResults;
   constructor( private shared : SharedService , private zone:NgZone) { 
   }
 
   ngOnInit() {
+
+    this.shared.viewObj.subscribe(data => this.viewObj = data);
     this.searchRefOutput.emit(this.searchRef);
     let that = this;
     this.shared.apartmentsResults.subscribe((data) => {

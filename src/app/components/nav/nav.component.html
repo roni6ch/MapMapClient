@@ -45,35 +45,34 @@
 
                 </div>
 
-                <img [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut' [hidden]="connect"
+                <img [src]="profile['picture'] != null ? profile['picture'] : ''" class='signOut' [hidden]="!loggedIn"
                     (click)="signOut()">
             </div>
             <div class="navDetails">
                 <p>
-                    <span class="black-text name" [hidden]="connect">{{profile['given_name'] }}
+                    <span class="black-text name" [hidden]="!loggedIn">{{profile['given_name'] }}
                         {{profile['family_name']}}</span>
                 </p>
                 <p>
-                    <span class="black-text email" [hidden]="connect">{{profile['email']}}</span>
+                    <span class="black-text email" [hidden]="!loggedIn">{{profile['email']}}</span>
                 </p>
             </div>
         </div>
     </li>
     <li class="navOptions">
         <button
-        [hidden]="connect" href="#" 
+        [hidden]="!loggedIn" href="#" 
         routerLink="/new"  
         id="newApartmentWindowModalBT"
         data-toggle="modal"
         data-target="#newApartmentWindowModal"
-        #apartmentModal
-        (click)="apartmentObj=null">
+        #apartmentModal >
             <i class="material-icons">publish</i>פירסום מודעה חדשה</button>
     </li>
 
     <li class="navOptions">
         <button   href="#" [routerLink]="['/edit-apartments']" id="editModalBT" data-toggle="modal"  data-target="#editModal" (click)="getApartments()"
-            [hidden]="connect">
+            [hidden]="!loggedIn">
             <i class="material-icons">person</i>פאנל עריכה</button>
     </li>
 
@@ -93,10 +92,10 @@
     </li>
 
     <li class="navOptions">
-        <button href="#" (click)="changeView()" routerLink="/{{view}}">
+        <button href="#" routerLink="/{{viewObj.view}}" (click)="changeView()">
             <i class="material-icons">pageview</i>
             תצוגת
-            {{nextView}}</button>
+            {{viewObj.nextView}}</button>
     </li>
 
     <li class="navOptions">
@@ -106,7 +105,7 @@
     </li>
 
     <li class="navOptions">
-        <button href="#" [hidden]="connect" (click)="signOut()">
+        <button href="#" [hidden]="!loggedIn" (click)="signOut()">
             <i class="material-icons">exit_to_app</i>
             יציאה</button>
     </li>
